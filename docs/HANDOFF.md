@@ -2,8 +2,8 @@
 
 ## Estado actual
 
-- Versión `0.3.1` Trydan Hero XL preparada para GitHub/HACS.
-- Rama de entrega: `codex/enlarge-trydan-hero`.
+- Versión `0.3.1` Trydan Hero XL lista en GitHub/HACS.
+- Rama estable: `main`.
 - Lit 3, TypeScript 7 estricto, Vite 8 y pnpm 11.5.1.
 - Los 11 SVG compilados y sus 11 fuentes usan `viewBox="24 0 312 480"`.
 - Hero centrado en estándar, compacto y ultracompacto; estado grande inmediatamente debajo.

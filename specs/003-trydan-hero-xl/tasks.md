@@ -23,4 +23,4 @@
 - [x] T010 Generate and inspect four responsive screenshots
 - [x] T011 Update `docs/FAILURES.md` and `docs/HANDOFF.md`
 - [x] T012 Run pnpm 11.5.1 typecheck, 37+ tests, build and smoke
-- [ ] T013 Commit, push, PR, CI and GitHub release v0.3.1
+- [x] T013 Commit, push, PR, CI and GitHub release v0.3.1
