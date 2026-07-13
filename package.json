@@ -1,0 +1,58 @@
+{
+  "name": "v2c-trydan-card",
+  "version": "0.2.0",
+  "description": "Modern Home Assistant Lovelace card for V2C Trydan EV chargers",
+  "type": "module",
+  "main": "dist/v2c-trydan-card.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "demo": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "smoke": "node scripts/smoke.mjs",
+    "check": "tsc --noEmit && vitest run && vite build && node scripts/smoke.mjs"
+  },
+  "keywords": [
+    "home-assistant",
+    "lovelace",
+    "custom-card",
+    "v2c",
+    "trydan",
+    "evse"
+  ],
+  "author": "Codex",
+  "contributors": [
+    "Marco (@mactron254)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mactron254/v2c-trydan-card.git"
+  },
+  "homepage": "https://github.com/mactron254/v2c-trydan-card#readme",
+  "bugs": {
+    "url": "https://github.com/mactron254/v2c-trydan-card/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=11"
+  },
+  "packageManager": "pnpm@11.5.1",
+  "dependencies": {
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "jsdom": "^29.1.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10"
+  }
+}

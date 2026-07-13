@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>V2C Trydan Card · Demo</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, system-ui, sans-serif;
+        background: #090a0b;
+        color: #f3f5f6;
+        --primary-text-color: #f3f5f6;
+        --secondary-text-color: #9ba1a6;
+        --card-background-color: #111315;
+        --ha-card-background: #111315;
+        --divider-color: #ffffff20;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; }
+      main { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+      aside { padding: 24px; border-right: 1px solid #ffffff18; background: #111315; }
+      aside h1 { margin: 0 0 4px; color: #ff8001; font-size: 0.75rem; letter-spacing: 0.16em; }
+      aside p { margin: 0 0 24px; color: #9ba1a6; font-size: 0.8rem; }
+      label { display: grid; gap: 7px; margin: 14px 0; color: #bcc1c4; font-size: 0.75rem; }
+      select, input {
+        min-height: 40px; padding: 8px; border: 1px solid #ffffff25; border-radius: 8px;
+        color: inherit; background: #1c1f22; font: inherit;
+      }
+      input[type="range"] { padding: 0; accent-color: #ff8001; }
+      .stage { display: grid; place-items: center; padding: 34px; overflow: auto; }
+      .preview { width: 520px; max-width: 100%; transition: width 160ms ease; }
+      .service-log {
+        max-height: 170px; overflow: auto; margin-top: 18px; padding: 10px;
+        border-radius: 8px; color: #ffb35c; background: #08090a;
+        font: 0.66rem/1.45 ui-monospace, monospace; white-space: pre-wrap;
+      }
+      body.light {
+        color-scheme: light; background: #e9ecee; color: #151719;
+        --primary-text-color: #17191b; --secondary-text-color: #62686c;
+        --card-background-color: #f9fafb; --ha-card-background: #f9fafb;
+      }
+      body.light aside { background: #f9fafb; border-color: #00000018; }
+      body.light select, body.light input { color: #17191b; background: #fff; border-color: #00000025; }
+      @media (max-width: 760px) {
+        main { grid-template-columns: 1fr; }
+        aside { border-right: 0; border-bottom: 1px solid #ffffff18; }
+        .stage { padding: 18px 8px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .preview { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <aside>
+        <h1>V2C · TRYDAN</h1>
+        <p>Laboratorio responsive del card</p>
+        <label>Estado visual <select id="state"></select></label>
+        <label>Anchura: <output id="width-value">520 px</output>
+          <input id="width" type="range" min="280" max="800" value="520" />
+        </label>
+        <label>Tema
+          <select id="theme">
+            <option value="auto">Sistema / Home Assistant</option>
+            <option value="light">Claro</option>
+            <option value="dark">Oscuro</option>
+          </select>
+        </label>
+        <label>Densidad
+          <select id="density">
+            <option value="standard">Estándar</option>
+            <option value="compact">Compacto</option>
+            <option value="ultra_compact">Ultracompacto</option>
+          </select>
+        </label>
+        <label>Idioma
+          <select id="language">
+            <option value="en">English</option><option value="it">Italiano</option>
+            <option value="de">Deutsch</option><option value="fr">Français</option>
+            <option value="nl">Nederlands</option><option value="sv">Svenska</option>
+            <option value="da">Dansk</option><option value="no">Norsk</option>
+            <option value="ro">Română</option><option value="es" selected>Español</option>
+          </select>
+        </label>
+        <div id="service-log" class="service-log" aria-live="polite">Servicios Home Assistant</div>
+      </aside>
+      <section class="stage"><div id="preview" class="preview"></div></section>
+    </main>
+    <script type="module" src="/demo/mock-hass.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "V2C Trydan Card",
+  "render_readme": true,
+  "filename": "v2c-trydan-card.js",
+  "homeassistant": "2024.1.0"
+}
