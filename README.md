@@ -5,7 +5,7 @@ Diseño Trydan Hero XL sobre Quiet Hardware: SVG de gran formato centrado, resum
 
 > Proyecto independiente; no afiliado ni respaldado por V2C.
 
-![Trydan Hero XL en tema oscuro](docs/screenshots/trydan-hero-xl-standard-dark.png)
+![Trydan Hero XL en tema oscuro](docs/screenshots/v041/density-standard-dark.png)
 
 ## Características
 
@@ -13,10 +13,10 @@ Diseño Trydan Hero XL sobre Quiet Hardware: SVG de gran formato centrado, resum
 - Responsive real para móvil, tablet y escritorio mediante container queries.
 - Cuatro densidades: XXL, estándar, compacta y ultracompacta.
 - 10 idiomas: English, Italiano, Deutsch, Français, Nederlands, Svenska, Dansk, Norsk, Română y Español.
-- Editor GUI para entidad, título, ubicación, idioma, tema, densidad y visibilidad.
+- Editor visual traducido para apariencia, color, densidad, layout, contenido, orden, entidades y opciones avanzadas.
 - Opciones avanzadas en YAML: overrides, signos, presets, umbrales y estado externo.
 - Estado por capas: carga, inhibidores, conectividad y errores no se pisan.
-- 11 SVG Trydan locales como Hero XL centrado de 170 a 360 px; sus LED reales son el único acento cromático ordinario.
+- 11 SVG Trydan locales de 170 a 430 px, con Hero XXL claramente diferenciado; sus LED reales son el único acento cromático ordinario.
 - Resumen energético inteligente: actividad, reposo, datos parciales o sin datos.
 - Descubrimiento por dispositivo y `translation_key`, resistente a idioma y renombrados.
 - Intensidad, pausa, bloqueo, temporizador, control dinámico, luces y modo de carga.
@@ -62,16 +62,19 @@ language: es                 # normalmente se detecta desde Home Assistant
 El SVG permanece centrado en las cuatro densidades y nunca desborda tarjetas estrechas. `show_charger: false` elimina el hero sin reservar espacio.
 
 Editor agrupado para apariencia, contenido, orden, entidades y opciones avanzadas.
-Configuración completa: [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
+Configuración completa: [docs/CONFIGURATION.md](docs/CONFIGURATION.md). Galería: [docs/VISUAL_GUIDE.md](docs/VISUAL_GUIDE.md).
+
+![Editor visual en español](docs/screenshots/v041/editor-es.png)
 
 ## Desarrollo
 
 Requiere Node.js 20+ y **pnpm 11+**. Proyecto fijado a pnpm 11.5.1.
 
 ```powershell
-corepack pnpm install
-corepack pnpm check
-corepack pnpm demo
+corepack pnpm@11.5.1 install
+corepack pnpm@11.5.1 check
+corepack pnpm@11.5.1 demo
+corepack pnpm@11.5.1 docs:capture
 ```
 
 ## Estructura

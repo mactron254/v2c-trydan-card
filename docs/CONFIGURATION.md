@@ -110,3 +110,16 @@ invert_solar_power: false
 ## Estado 0.4.0 final
 
 Editor agrupa General, Apariencia, Contenido y orden, Entidades y Avanzado. Los 26 roles indican `automatic`, `manual`, `ambiguous`, `invalid` o `missing`; una entidad inválida nunca habilita servicio.
+## Editor visual 0.4.1
+
+- **Métricas**: activa Potencia, Energía y Tiempo mediante chips.
+- **Fuentes de energía**: activa Solar, Red, Casa, Batería y Coche.
+- **Orden de secciones**: usa flechas; no escribas claves manualmente.
+- **Intensidades rápidas**: añade amperios y elimina tokens existentes.
+- **Color personalizado**: elige `Personalizado`, abre la paleta o escribe `#RRGGBB`.
+- **Radio y escala**: sliders con resultado inmediato.
+- **Layouts**: centrado vertical, dividido, en línea o automático responsive.
+
+![Editor visual en español](screenshots/v041/editor-es.png)
+
+Consulta matriz completa en [VISUAL_GUIDE.md](VISUAL_GUIDE.md).

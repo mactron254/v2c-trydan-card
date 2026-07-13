@@ -126,3 +126,15 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: card inicializaba entidades directamente desde YAML.
 - **Resolución**: resolución síncrona por dominio/dispositivo al configurar y resolución asíncrona posterior.
 - **Prevención**: nunca llamar servicios desde entidades no resueltas.
+## 2026-07-13 — Personalización 0.4.0 poco visible y sin traducir
+
+- **Síntoma**: secciones del editor quedaban en inglés; XXL, layouts y radio parecían no actuar; listas CSV no explicaban valores.
+- **Causa**: textos hardcoded, ausencia de CSS XXL, Hero con un solo hijo de grid y controles de texto técnico.
+- **Resolución**: catálogo visual en diez idiomas, Hero con arte/copia separados, reglas responsive y controles visuales accesibles.
+- **Prevención**: pruebas interactivas del editor, contratos CSS y matriz de 14 capturas antes de release.
+## 2026-07-13 — `spawn EINVAL` en capturas Windows
+
+- **Síntoma**: `docs:capture` no iniciaba Vite al ejecutar `corepack.cmd` directamente.
+- **Causa**: Node 24 rechazó el wrapper CMD sin intérprete.
+- **Resolución**: iniciar comando fijo mediante `ComSpec` y cerrar el árbol de procesos al terminar.
+- **Prevención**: probar el script de capturas completo antes de publicar.
