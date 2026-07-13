@@ -31,4 +31,4 @@
 - [x] T012 Update `docs/FAILURES.md` and `docs/HANDOFF.md`
 - [x] T013 Set version 0.3.0 in `package.json`
 - [x] T014 Run pnpm 11.5.1 validation
-- [ ] T015 Commit, push, PR and GitHub release 0.3.0
+- [x] T015 Commit, push, PR and GitHub release 0.3.0
