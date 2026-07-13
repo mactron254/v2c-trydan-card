@@ -1,7 +1,8 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { getDictionary, getLanguage, SUPPORTED_LANGUAGES, translate } from "../localization";
-import type { HomeAssistant, V2cTrydanCardConfig } from "../models/types";
+import { ENTITY_ROLES, type EntityRole, type HomeAssistant, type V2cTrydanCardConfig } from "../models/types";
+import { resolveRegistryRoles } from "../services/discovery";
 
 const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = {
   en: "English",
@@ -21,6 +22,9 @@ const VISIBILITY_FIELDS = [
   ["show_controls", "editor.showControls"],
   ["show_advanced", "editor.showAdvanced"],
   ["show_charger", "editor.showCharger"],
+  ["show_header", "Header"],
+  ["show_badges", "Badges"],
+  ["show_presets", "Presets"],
 ] as const;
 
 export class V2cTrydanCardEditor extends LitElement {
@@ -39,6 +43,7 @@ export class V2cTrydanCardEditor extends LitElement {
     .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
     .checks label { display: flex; align-items: center; gap: 7px; min-height: 32px; }
     .checks input { width: auto; min-height: auto; accent-color: var(--primary-text-color, #202326); }
+    .entity-status { font-size: 0.72rem; text-transform: capitalize; color: var(--secondary-text-color); }
     .yaml-note {
       margin: 0; padding: 9px 11px; border-left: 3px solid var(--primary-text-color, #202326);
       color: var(--secondary-text-color); background: var(--secondary-background-color, #f4f5f6);
@@ -73,6 +78,29 @@ export class V2cTrydanCardEditor extends LitElement {
     this.#emit(next);
   }
 
+  #updateList(field: "metrics" | "energy_sources" | "section_order" | "current_presets", value: string): void {
+    if (!this.config) return;
+    const values = value.split(",").map((item) => item.trim()).filter(Boolean);
+    const next = { ...this.config };
+    if (field === "current_presets") next.current_presets = values.map(Number).filter(Number.isFinite);
+    else Object.assign(next, { [field]: values });
+    this.#emit(next);
+  }
+
+  #updateNumber(field: "hero_scale" | "card_radius" | "flow_threshold_w", value: string): void {
+    if (!this.config) return;
+    const number = Number(value);
+    const next = { ...this.config };
+    if (Number.isFinite(number)) Object.assign(next, { [field]: number }); else delete next[field];
+    this.#emit(next);
+  }
+  #updateEntity(role: EntityRole, value: string): void {
+    if (!this.config) return;
+    const entities = { ...(this.config.entities ?? {}) };
+    if (value.trim()) entities[role] = value; else delete entities[role];
+    this.#emit({ ...this.config, entities });
+  }
+
   protected override render() {
     if (!this.config) return nothing;
     const language = getLanguage(
@@ -80,6 +108,7 @@ export class V2cTrydanCardEditor extends LitElement {
     );
     const dictionary = getDictionary(language);
     const entities = Object.keys(this.hass?.states ?? {});
+    const discovery = this.hass ? resolveRegistryRoles(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities) : undefined;
     return html`
       <div class="editor">
         <h3>${translate(dictionary, "editor.title")}</h3>
@@ -109,10 +138,10 @@ export class V2cTrydanCardEditor extends LitElement {
             <span>${translate(dictionary, "editor.language")}</span>
             <select
               data-field="language"
-              .value=${this.config.language ?? language}
+              .value=${this.config.language ?? "auto"}
               @change=${(event: Event) => this.#updateField("language", (event.target as HTMLSelectElement).value)}
             >
-              ${SUPPORTED_LANGUAGES.map(
+              <option value="auto">Automatic</option>${SUPPORTED_LANGUAGES.map(
                 (code) => html`<option .value=${code}>${LANGUAGE_NAMES[code]}</option>`,
               )}
             </select>
@@ -136,13 +165,28 @@ export class V2cTrydanCardEditor extends LitElement {
               .value=${this.config.display_mode ?? "standard"}
               @change=${(event: Event) => this.#updateField("display_mode", (event.target as HTMLSelectElement).value)}
             >
+              <option value="xxl">XXL</option>
               <option value="standard">${translate(dictionary, "editor.modeStandard")}</option>
               <option value="compact">${translate(dictionary, "editor.modeCompact")}</option>
               <option value="ultra_compact">${translate(dictionary, "editor.modeUltra")}</option>
             </select>
           </label>
         </div>
-        <div class="checks">
+        <h3>Appearance</h3>
+        <div class="grid">
+          <label><span>Layout</span><select data-field="layout" .value=${this.config.layout ?? "auto"} @change=${(event: Event) => this.#updateField("layout", (event.target as HTMLSelectElement).value)}><option value="auto">Auto</option><option value="centered">Centered</option><option value="split">Split</option><option value="inline">Inline</option></select></label>
+          <label><span>Color scheme</span><select data-field="color_scheme" .value=${this.config.color_scheme ?? "monochrome"} @change=${(event: Event) => this.#updateField("color_scheme", (event.target as HTMLSelectElement).value)}><option value="monochrome">Monochrome</option><option value="v2c_blue">V2C blue</option><option value="teal">Teal</option><option value="green">Green</option><option value="violet">Violet</option><option value="custom">Custom</option></select></label>
+          <label><span>Accent color</span><input data-field="accent_color" .value=${this.config.accent_color ?? ""} @change=${(event: Event) => this.#updateField("accent_color", (event.target as HTMLInputElement).value)} /></label>
+          <label><span>Surface</span><select data-field="surface_style" .value=${this.config.surface_style ?? "solid"} @change=${(event: Event) => this.#updateField("surface_style", (event.target as HTMLSelectElement).value)}><option value="solid">Solid</option><option value="tinted">Tinted</option><option value="transparent">Transparent</option></select></label>
+        </div>
+        <h3>Content and order</h3>
+        <div class="grid">
+          <label><span>Metrics</span><input data-field="metrics" .value=${(this.config.metrics ?? []).join(", ")} @change=${(event: Event) => this.#updateList("metrics", (event.target as HTMLInputElement).value)} /></label>
+          <label><span>Energy sources</span><input data-field="energy_sources" .value=${(this.config.energy_sources ?? []).join(", ")} @change=${(event: Event) => this.#updateList("energy_sources", (event.target as HTMLInputElement).value)} /></label>
+          <label><span>Section order</span><input data-field="section_order" .value=${(this.config.section_order ?? []).join(", ")} @change=${(event: Event) => this.#updateList("section_order", (event.target as HTMLInputElement).value)} /></label>
+          <label><span>Hero scale</span><input data-field="hero_scale" type="number" min="0.75" max="1.25" step="0.05" .value=${String(this.config.hero_scale ?? 1)} @change=${(event: Event) => this.#updateNumber("hero_scale", (event.target as HTMLInputElement).value)} /></label>
+          <label><span>Card radius</span><input data-field="card_radius" type="number" min="0" max="40" step="1" .value=${String(this.config.card_radius ?? "")} @change=${(event: Event) => this.#updateNumber("card_radius", (event.target as HTMLInputElement).value)} /></label>
+        </div>        <div class="checks">
           ${VISIBILITY_FIELDS.map(
             ([field, label]) => html`
               <label>
@@ -152,12 +196,26 @@ export class V2cTrydanCardEditor extends LitElement {
                   .checked=${this.config?.[field] !== false}
                   @change=${(event: Event) => this.#updateField(field, (event.target as HTMLInputElement).checked)}
                 />
-                ${translate(dictionary, label)}
+                ${label.includes(".") ? translate(dictionary, label) : label}
               </label>
             `,
           )}
         </div>
-        <p class="yaml-note"><code>YAML | status_entity | entities | invert_*_power | current_presets | flow_threshold_w</code></p>
+        <h3>Advanced</h3>
+        <div class="grid">
+          <label><span>Intensity control</span><select data-field="intensity_control" .value=${this.config.intensity_control ?? "both"} @change=${(event: Event) => this.#updateField("intensity_control", (event.target as HTMLSelectElement).value)}><option value="slider">Slider</option><option value="presets">Presets</option><option value="both">Both</option></select></label>
+          <label><span>Flow threshold (W)</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @change=${(event: Event) => this.#updateNumber("flow_threshold_w", (event.target as HTMLInputElement).value)} /></label>
+          <label><span>Current presets</span><input data-field="current_presets" .value=${(this.config.current_presets ?? []).join(", ")} @change=${(event: Event) => this.#updateList("current_presets", (event.target as HTMLInputElement).value)} /></label>
+        </div>
+        <div class="checks">
+          <label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === true} @change=${(event: Event) => this.#updateField("advanced_open", (event.target as HTMLInputElement).checked)} />Open advanced</label>
+          <label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== false} @change=${(event: Event) => this.#updateField("confirm_lock", (event.target as HTMLInputElement).checked)} />Confirm lock</label>
+          <label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === true} @change=${(event: Event) => this.#updateField("invert_grid_power", (event.target as HTMLInputElement).checked)} />Invert grid power</label>
+          <label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === true} @change=${(event: Event) => this.#updateField("invert_battery_power", (event.target as HTMLInputElement).checked)} />Invert battery power</label>
+          <label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === true} @change=${(event: Event) => this.#updateField("invert_solar_power", (event.target as HTMLInputElement).checked)} />Invert solar power</label>
+        </div>
+        <h3>Entities</h3>
+        <details><summary>Entities (manual overrides)</summary><div class="grid">${ENTITY_ROLES.map((role) => html`<label><span>${role.replaceAll("_", " ")}</span><input data-role=${role} list="v2c-entities" .value=${this.config?.entities?.[role] ?? ""} @change=${(event: Event) => this.#updateEntity(role, (event.target as HTMLInputElement).value)} /><small class="entity-status" data-status=${discovery?.statuses[role] ?? "missing"}>${discovery?.statuses[role] ?? "missing"}</small></label>`)}</div></details>        <p class="yaml-note"><code>YAML | status_entity | entities | invert_*_power | current_presets | flow_threshold_w</code></p>
         <datalist id="v2c-entities">${entities.map((entity) => html`<option value=${entity}></option>`)}</datalist>
       </div>
     `;

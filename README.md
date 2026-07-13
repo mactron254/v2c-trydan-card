@@ -11,7 +11,7 @@ Diseño Trydan Hero XL sobre Quiet Hardware: SVG de gran formato centrado, resum
 
 - Tema `auto`, claro u oscuro. `auto` sigue Home Assistant y el sistema.
 - Responsive real para móvil, tablet y escritorio mediante container queries.
-- Tres densidades: estándar, compacta y ultracompacta.
+- Cuatro densidades: XXL, estándar, compacta y ultracompacta.
 - 10 idiomas: English, Italiano, Deutsch, Français, Nederlands, Svenska, Dansk, Norsk, Română y Español.
 - Editor GUI para entidad, título, ubicación, idioma, tema, densidad y visibilidad.
 - Opciones avanzadas en YAML: overrides, signos, presets, umbrales y estado externo.
@@ -53,13 +53,15 @@ La entidad semilla puede ser cualquier entidad del dispositivo V2C. La card desc
 type: custom:v2c-trydan-card
 entity: binary_sensor.garaje_v2c_cargador_conectado
 theme: auto                  # auto | light | dark
-display_mode: compact        # standard | compact | ultra_compact
+display_mode: standard       # xxl | standard | compact | ultra_compact
+layout: auto                 # auto | centered | split | inline
+language: auto               # config > HA locale > HA language > browser > en
 language: es                 # normalmente se detecta desde Home Assistant
 ```
 
-El SVG permanece centrado en las tres densidades y nunca desborda tarjetas estrechas. `show_charger: false` elimina el hero sin reservar espacio.
+El SVG permanece centrado en las cuatro densidades y nunca desborda tarjetas estrechas. `show_charger: false` elimina el hero sin reservar espacio.
 
-Opciones principales también disponibles desde el editor del dashboard.
+Editor agrupado para apariencia, contenido, orden, entidades y opciones avanzadas.
 Configuración completa: [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
 
 ## Desarrollo

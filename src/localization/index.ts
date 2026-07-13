@@ -1,10 +1,17 @@
-import { da, de, fr, it, nl, no, ro, sv } from "./catalog";
+import { da } from "./da";
+import { de } from "./de";
+import { fr } from "./fr";
+import { it } from "./it";
+import { nl } from "./nl";
+import { no } from "./no";
+import { ro } from "./ro";
+import { sv } from "./sv";
 import { en } from "./en";
 import { es } from "./es";
 
 export const SUPPORTED_LANGUAGES = ["en", "it", "de", "fr", "nl", "sv", "da", "no", "ro", "es"] as const;
 export type Language = (typeof SUPPORTED_LANGUAGES)[number];
-export type Dictionary = typeof en;
+export type Dictionary = { [Section in keyof typeof en]: { [Key in keyof (typeof en)[Section]]: string } };
 
 const dictionaries: Record<Language, Dictionary> = {
   en,
@@ -16,11 +23,11 @@ const dictionaries: Record<Language, Dictionary> = {
   da,
   no,
   ro,
-  es: es as unknown as Dictionary,
+  es,
 };
 
-export function getLanguage(value?: string): Language {
-  const raw = value?.toLowerCase().split(/[-_]/)[0] ?? "en";
+export function getLanguage(value?: string, fallback?: string): Language {
+  const raw = (value === "auto" ? fallback : value)?.toLowerCase().split(/[-_]/)[0] ?? "en";
   const normalized = raw === "nb" || raw === "nn" ? "no" : raw;
   return SUPPORTED_LANGUAGES.includes(normalized as Language) ? (normalized as Language) : "en";
 }

@@ -113,3 +113,16 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: PowerShell interpretó `$id:` como nombre con ámbito.
 - **Resolución**: delimitación explícita `${id}:`.
 - **Prevención**: delimitar variables interpoladas cuando van seguidas de `:`.
+## 2026-07-13 — Edición TypeScript con saltos literales
+
+- **Síntoma**: editor no compilaba por marcador `` `n`` literal.
+- **Causa**: reemplazo PowerShell conservó escapes.
+- **Resolución**: normalizar saltos y ejecutar typecheck antes de pruebas.
+- **Prevención**: validar cada edición con typecheck y Vitest.
+
+## 2026-07-13 — Control visible antes de resolver entidades
+
+- **Síntoma**: override podía aparecer antes de validar discovery.
+- **Causa**: card inicializaba entidades directamente desde YAML.
+- **Resolución**: resolución síncrona por dominio/dispositivo al configurar y resolución asíncrona posterior.
+- **Prevención**: nunca llamar servicios desde entidades no resueltas.

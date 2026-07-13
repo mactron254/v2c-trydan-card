@@ -92,10 +92,10 @@ describe("Trydan Hero XL contracts", () => {
   it("reports stable 8, 6 and 4 row estimates", () => {
     const card = document.createElement("v2c-trydan-card") as V2cTrydanCard;
     card.setConfig({ ...baseConfig, display_mode: "standard", show_advanced: false });
-    expect(card.getCardSize()).toBe(8);
-    card.setConfig({ ...baseConfig, display_mode: "compact", show_advanced: false });
     expect(card.getCardSize()).toBe(6);
-    card.setConfig({ ...baseConfig, display_mode: "ultra_compact", show_advanced: false });
+    card.setConfig({ ...baseConfig, display_mode: "compact", show_advanced: false });
     expect(card.getCardSize()).toBe(4);
+    card.setConfig({ ...baseConfig, display_mode: "ultra_compact", show_advanced: false });
+    expect(card.getCardSize()).toBe(3);
   });
 });

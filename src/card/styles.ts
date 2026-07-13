@@ -26,7 +26,7 @@ export const cardStyles = css`
     color: var(--v2c-text);
     background: var(--v2c-surface);
     border: 1px solid var(--v2c-border);
-    border-radius: var(--ha-card-border-radius, 20px);
+    border-radius: var(--v2c-radius, var(--ha-card-border-radius, 20px));
   }
 
   .shell { padding: clamp(20px, 4cqw, 30px); }
@@ -533,6 +533,17 @@ export const cardStyles = css`
   ha-card[data-mode="ultra_compact"] .energy-note { display: none; }
   ha-card[data-mode="ultra_compact"] details { margin-top: 9px; }
   ha-card[data-mode="ultra_compact"] summary { padding-top: 9px; }
+
+  ha-card[data-show-header="false"] .card-heading { display: none; }
+  ha-card[data-surface="transparent"] { background: transparent; }
+  ha-card[data-surface="tinted"] { background: color-mix(in srgb, var(--v2c-control) 8%, var(--v2c-surface)); }
+  .charger-stage { transform: scale(var(--v2c-hero-scale, 1)); transform-origin: center; }
+  ha-card[data-layout="inline"] .hero { grid-template-columns: auto minmax(0, 1fr); gap: 12px; }
+  ha-card[data-layout="inline"] .charger-stage { width: min(112px, 26cqw); }
+  ha-card[data-layout="inline"] .charger-status { font-size: clamp(1.1rem, 4cqw, 1.6rem); }
+  @container (min-width: 520px) {
+    ha-card[data-layout="split"] .hero, ha-card[data-layout="auto"][data-mode="standard"] .hero { grid-template-columns: minmax(180px, .8fr) minmax(0, 1.2fr); }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     *,

@@ -38,11 +38,29 @@ describe("multilingual GUI editor", () => {
     document.body.append(editor);
     await editor.updateComplete;
 
-    expect(editor.shadowRoot?.querySelector('select[data-field="language"]')?.querySelectorAll("option")).toHaveLength(10);
+    expect(editor.shadowRoot?.querySelector('select[data-field="language"]')?.querySelectorAll("option")).toHaveLength(11);
     expect(editor.shadowRoot?.querySelector('select[data-field="theme"]')).toBeTruthy();
     expect(editor.shadowRoot?.querySelector('select[data-field="display_mode"]')).toBeTruthy();
-    expect(editor.shadowRoot?.querySelector('[data-role="grid_power"]')).toBeNull();
+    expect(editor.shadowRoot?.querySelectorAll('[data-role]')).toHaveLength(26);
     expect(editor.shadowRoot?.textContent).toContain("Dimensione scheda");
     expect(String((editor.constructor as typeof V2cTrydanCardEditor).styles)).not.toContain("#ff8001");
+  });
+  it("expone todos los grupos y estados de resolución de entidades", async () => {
+    const editor = document.createElement("v2c-trydan-card-editor") as V2cTrydanCardEditor;
+    editor.hass = {
+      states: {}, callService: async () => undefined,
+      entities: {
+        "binary_sensor.trydan": { entity_id: "binary_sensor.trydan", device_id: "trydan", translation_key: "connected" },
+        "sensor.manual_power": { entity_id: "sensor.manual_power", device_id: "trydan", translation_key: "charge_power" },
+      },
+    } as HomeAssistant;
+    editor.setConfig({ type: "custom:v2c-trydan-card", entity: "binary_sensor.trydan", entities: { charge_power: "sensor.manual_power" } });
+    document.body.append(editor);
+    await editor.updateComplete;
+    expect(editor.shadowRoot?.textContent).toContain("Appearance");
+    expect(editor.shadowRoot?.textContent).toContain("Content and order");
+    expect(editor.shadowRoot?.querySelector('[data-field="hero_scale"]')).toBeTruthy();
+    expect(editor.shadowRoot?.querySelector('[data-field="section_order"]')).toBeTruthy();
+    expect(editor.shadowRoot?.querySelector('[data-role="charge_power"] + [data-status="manual"]')).toBeTruthy();
   });
 });

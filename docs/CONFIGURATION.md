@@ -9,7 +9,7 @@
 | `location` | string | — | Sí | Ubicación secundaria |
 | `language` | código | idioma HA | Sí | Idioma de interfaz |
 | `theme` | `auto`/`light`/`dark` | `auto` | Sí | Tema automático o forzado |
-| `display_mode` | `standard`/`compact`/`ultra_compact` | `standard` | Sí | Densidad visual |
+| `display_mode` | `xxl`/`standard`/`compact`/`ultra_compact` | `standard` | Sí | Densidad visual |
 | `show_energy_flow` | boolean | `true` | Sí | Resumen energético inteligente |
 | `show_controls` | boolean | `true` | Sí | Intensidad y pausa |
 | `show_advanced` | boolean | `true` | Sí | Ajustes plegados |
@@ -44,7 +44,7 @@ display_mode: compact
 display_mode: ultra_compact
 ```
 
-Las tres densidades usan composición vertical centrada y límites fluidos seguros a 280 px. El modo ultracompacto mantiene la ilustración, el estado, la potencia, la intensidad y pausa; oculta presets y condensa el flujo. `show_charger: false` elimina la ilustración y su espacio, mientras el estado textual permanece visible.
+Las cuatro densidades usan composición vertical centrada y límites fluidos seguros a 280 px. El modo ultracompacto mantiene la ilustración, el estado, la potencia, la intensidad y pausa; oculta presets y condensa el flujo. `show_charger: false` elimina la ilustración y su espacio, mientras el estado textual permanece visible.
 
 ## Overrides de entidad
 
@@ -102,3 +102,11 @@ invert_solar_power: false
 - **Card demasiado alta**: usa `display_mode: compact` o `ultra_compact`.
 - **Estado inesperado**: revisa `status_entity`.
 - **Card no carga**: confirma recurso tipo módulo y limpia caché del navegador.
+
+## Novedades 0.4.0
+
+`standard` es nueva densidad equilibrada. Para conservar Hero anterior usa `display_mode: xxl`. Añade `layout`, `color_scheme`, `accent_color`, `surface_style`, `hero_scale`, `card_radius`, `metrics`, `energy_sources`, `intensity_control`, `section_order`, `show_header`, `show_badges`, `show_presets` y `advanced_open`. `language: auto` resuelve configuración, locale HA, idioma HA, navegador e inglés.
+
+## Estado 0.4.0 final
+
+Editor agrupa General, Apariencia, Contenido y orden, Entidades y Avanzado. Los 26 roles indican `automatic`, `manual`, `ambiguous`, `invalid` o `missing`; una entidad inválida nunca habilita servicio.

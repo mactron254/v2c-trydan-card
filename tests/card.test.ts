@@ -205,4 +205,13 @@ describe("v2c-trydan-card", () => {
     expect(unavailable.shadowRoot?.querySelector('.energy-summary[data-kind="unavailable"]')?.textContent).toContain("Sin datos energéticos");
   });
 
+  it("aplica section_order al orden real de las secciones", async () => {
+    const card = await renderCard(mockHass(), {
+      ...config,
+      section_order: ["advanced", "energy", "controls", "metrics", "hero"],
+    });
+    const order = Array.from(card.shadowRoot?.querySelectorAll<HTMLElement>("[data-section]") ?? [])
+      .map((element) => element.dataset.section);
+    expect(order).toEqual(["advanced", "energy", "controls", "metrics", "hero"]);
+  });
 });

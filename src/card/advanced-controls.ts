@@ -11,6 +11,7 @@ export interface AdvancedControlOptions {
   voltage?: HassEntity;
   diagnostic?: string;
   ambiguityRoles?: string[];
+  advancedOpen?: boolean;
   onToggle: (role: EntityRole) => void;
   onSelect: (option: string) => void;
   onBrightness: (value: number) => void;
@@ -62,7 +63,7 @@ export function renderAdvancedControls(options: AdvancedControlOptions): Templat
   if (!switchRows.some((row) => row !== nothing) && !modeId && !logoId && !lightId && !hasTechnical) return nothing;
 
   return html`
-    <details>
+    <details ?open=${options.advancedOpen === true}>
       <summary>${translate(options.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
         ${switchRows.slice(0, 2).some((row) => row !== nothing) || modeId

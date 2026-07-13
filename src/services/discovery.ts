@@ -5,6 +5,7 @@ import {
   type EntityRole,
   type HassEntityRegistryEntry,
   type HomeAssistant,
+  type ResolutionStatus,
 } from "../models/types";
 
 const KEY_TO_ROLE: Record<string, EntityRole> = {
@@ -22,6 +23,9 @@ const KEY_TO_ROLE: Record<string, EntityRole> = {
   min_intensity: "min_intensity",
   max_intensity: "max_intensity",
   meter_error: "meter_error",
+  ssid: "ssid",
+  ip_address: "ip_address",
+  signal_status: "signal_status",
   paused: "paused",
   locked: "locked",
   timer: "timer",
@@ -48,6 +52,9 @@ const SUFFIXES: Partial<Record<EntityRole, string[]>> = {
   min_intensity: ["_min_intensity", "_intensidad_minima"],
   max_intensity: ["_max_intensity", "_intensidad_maxima"],
   meter_error: ["_meter_error", "_error_del_medidor"],
+  ssid: ["_ssid"],
+  ip_address: ["_ip_address", "_ip"],
+  signal_status: ["_signal_status", "_signal"],
   paused: ["_paused", "_pausar_sesion"],
   locked: ["_locked", "_bloquear_evse"],
   timer: ["_timer", "_temporizador_de_punto_de_recarga"],
@@ -57,6 +64,14 @@ const SUFFIXES: Partial<Record<EntityRole, string[]>> = {
   light_led: ["_light_led", "_luz_led"],
   charge_mode: ["_charge_mode", "_modo_de_carga"],
 };
+
+const ROLE_DOMAINS: Partial<Record<EntityRole, string[]>> = {
+  connected: ["binary_sensor"], charging: ["binary_sensor"], ready: ["binary_sensor"],
+  charge_power: ["sensor"], charge_energy: ["sensor"], charge_time: ["sensor"], house_power: ["sensor"], fv_power: ["sensor"], battery_power: ["sensor"], grid_power: ["sensor"], voltage: ["sensor"],
+  intensity: ["number"], min_intensity: ["number"], max_intensity: ["number"], meter_error: ["sensor", "binary_sensor"], ssid: ["sensor"], ip_address: ["sensor"], signal_status: ["sensor"],
+  paused: ["switch"], locked: ["switch"], timer: ["switch"], dynamic: ["switch"], pause_dynamic: ["switch"], logo_led: ["light"], light_led: ["light"], charge_mode: ["select"],
+};
+function domainMatches(role: EntityRole, entityId: string): boolean { const domain = entityId.split(".", 1)[0] ?? ""; return ROLE_DOMAINS[role]?.includes(domain) ?? true; }
 
 function matchingSuffix(entityId: string, role: EntityRole): boolean {
   return SUFFIXES[role]?.some((suffix) => entityId.endsWith(suffix)) ?? false;
@@ -76,13 +91,22 @@ export function resolveRegistryRoles(
   seedEntityId: string,
   overrides: EntityMap = {},
 ): DiscoveryResult {
-  const entities: EntityMap = { ...overrides };
+  const entities: EntityMap = {};
+  const statuses: Partial<Record<EntityRole, ResolutionStatus>> = {};
   const ambiguities: DiscoveryResult["ambiguities"] = {};
   const seedEntry = entries.find((entry) => entry.entity_id === seedEntityId);
   const deviceId = seedEntry?.device_id ?? undefined;
   const scoped = deviceId
     ? entries.filter((entry) => entry.device_id === deviceId && entry.disabled_by == null)
     : entries.filter((entry) => entry.disabled_by == null);
+
+  for (const role of ENTITY_ROLES) {
+    const override = overrides[role];
+    if (!override) continue;
+    if (domainMatches(role, override) && (!deviceId || scoped.some((entry) => entry.entity_id === override) || !entries.some((entry) => entry.entity_id === override))) {
+      entities[role] = override; statuses[role] = "manual";
+    } else statuses[role] = "invalid";
+  }
 
   for (const role of ENTITY_ROLES) {
     if (entities[role]) continue;
@@ -92,22 +116,24 @@ export function resolveRegistryRoles(
     const translationPick = preferCandidate(role, translated);
     if (translationPick) {
       entities[role] = translationPick;
+      statuses[role] = "automatic";
       continue;
     }
     if (translated.length > 1) {
       ambiguities[role] = translated;
+      statuses[role] = "ambiguous";
       continue;
     }
 
     const suffixed = scoped.filter((entry) => matchingSuffix(entry.entity_id, role)).map((entry) => entry.entity_id);
     const suffixPick = preferCandidate(role, suffixed);
-    if (suffixPick) entities[role] = suffixPick;
-    else if (suffixed.length > 1) ambiguities[role] = suffixed;
+    if (suffixPick) { entities[role] = suffixPick; statuses[role] = "automatic"; }
+    else if (suffixed.length > 1) { ambiguities[role] = suffixed; statuses[role] = "ambiguous"; }
   }
 
   if (seedEntry?.translation_key) {
     const seedRole = KEY_TO_ROLE[seedEntry.translation_key];
-    if (seedRole && !entities[seedRole]) entities[seedRole] = seedEntityId;
+    if (seedRole && !entities[seedRole]) { entities[seedRole] = seedEntityId; statuses[seedRole] = "automatic"; }
   }
 
   return {
@@ -115,6 +141,7 @@ export function resolveRegistryRoles(
     ambiguities,
     missing: ENTITY_ROLES.filter((role) => !entities[role]),
     deviceId,
+    statuses: Object.fromEntries(ENTITY_ROLES.map((role) => [role, statuses[role] ?? "missing"])) as Partial<Record<EntityRole, ResolutionStatus>>,
   };
 }
 
