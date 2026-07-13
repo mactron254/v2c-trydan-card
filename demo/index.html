@@ -30,6 +30,8 @@
       input[type="range"] { padding: 0; accent-color: #f4f5f6; }
       .stage { min-width: 0; display: grid; place-items: center; padding: 34px; overflow: auto; }
       .preview { width: 520px; min-width: 0; max-width: 100%; transition: width 160ms ease; }
+      .preview.editor-preview { width: min(720px, 100%); padding: 12px; border-radius: 16px; background: var(--card-background-color); }
+      v2c-trydan-card-editor { display: block; width: 100%; }
       v2c-trydan-card { display: block; width: 100%; min-width: 0; }
       body.capture main { display: block; }
       body.capture aside { display: none; }
@@ -73,12 +75,20 @@
         </label>
         <label>Densidad
           <select id="density">
+            <option value="xxl">XXL</option>
             <option value="standard">Estándar</option>
             <option value="compact">Compacto</option>
             <option value="ultra_compact">Ultracompacto</option>
           </select>
         </label>
-        <label>Idioma
+        <label>Distribución
+          <select id="layout">
+            <option value="auto">Automática</option>
+            <option value="centered">Centrada</option>
+            <option value="split">Dividida</option>
+            <option value="inline">En línea</option>
+          </select>
+        </label>        <label>Idioma
           <select id="language">
             <option value="en">English</option><option value="it">Italiano</option>
             <option value="de">Deutsch</option><option value="fr">Français</option>

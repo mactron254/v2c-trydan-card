@@ -1,6 +1,7 @@
 import "../src/index";
 import { VISUAL_STATE_KEYS, type HassEntity, type HomeAssistant, type V2cTrydanCardConfig } from "../src/models/types";
 import type { V2cTrydanCard } from "../src/card/v2c-trydan-card";
+import type { V2cTrydanCardEditor } from "../src/editor/v2c-trydan-card-editor";
 
 const make = (entity_id: string, state: string, attributes: HassEntity["attributes"] = {}): HassEntity => ({
   entity_id,
@@ -121,6 +122,9 @@ document.querySelector<HTMLSelectElement>("#density")!.addEventListener("change"
   });
 });
 
+document.querySelector<HTMLSelectElement>("#layout")!.addEventListener("change", (event) => {
+  updateConfig({ layout: (event.target as HTMLSelectElement).value as NonNullable<V2cTrydanCardConfig["layout"]> });
+});
 document.querySelector<HTMLSelectElement>("#language")!.addEventListener("change", (event) => {
   updateConfig({
     language: (event.target as HTMLSelectElement).value as NonNullable<V2cTrydanCardConfig["language"]>,
@@ -145,8 +149,16 @@ if (Number.isFinite(requestedWidth) && requestedWidth >= 280 && requestedWidth <
 applySelectParam("#state", "state");
 applySelectParam("#theme", "theme");
 applySelectParam("#density", "density");
+applySelectParam("#layout", "layout");
 applySelectParam("#language", "language");
 
+if (params.get("view") === "editor") {
+  const editor = document.createElement("v2c-trydan-card-editor") as V2cTrydanCardEditor;
+  editor.hass = { ...hass, locale: { language: params.get("language") ?? "es" } };
+  editor.setConfig({ ...config, language: (params.get("language") ?? "es") as NonNullable<V2cTrydanCardConfig["language"]>, color_scheme: "custom", accent_color: "#0067D9", card_radius: 24 });
+  preview.replaceChildren(editor);
+  preview.classList.add("editor-preview");
+}
 if (params.get("debug") === "1") {
   window.setTimeout(() => {
     document.body.dataset.cardWidth = String(Math.round(card.getBoundingClientRect().width));

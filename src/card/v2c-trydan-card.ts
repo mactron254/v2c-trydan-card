@@ -279,9 +279,9 @@ export class V2cTrydanCard extends LitElement {
       : undefined;
 
     const heroSection = html`
-      <section class="hero" data-section="hero">
-        <div class="device-column ${this.config.show_charger ? "has-charger" : "without-charger"}">
-          ${this.config.show_charger ? html`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}</div></div>` : nothing}
+      <section class="hero ${this.config.show_charger ? "has-charger" : "without-charger"}" data-section="hero">
+        ${this.config.show_charger ? html`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}</div></div>` : nothing}
+        <div class="hero-copy">
           <div class="charger-status" data-severity=${visual.severity} role="status">${translate(dictionary, visual.labelKey)}</div>
           ${this.config.show_badges !== false && visual.badges.length ? html`<div class="badges" aria-label=${translate(dictionary, "labels.additionalStatus")}>${visual.badges.map((badge) => html`<span class="badge">${translate(dictionary, `badges.${badge}`)}</span>`)}</div>` : nothing}
         </div>

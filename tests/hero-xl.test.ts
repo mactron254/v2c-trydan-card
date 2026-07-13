@@ -59,10 +59,13 @@ describe("Trydan Hero XL contracts", () => {
 
   it("uses centered overflow-safe Hero XL bounds in every density", () => {
     const styles = String(V2cTrydanCard.styles);
-    expect(styles).toContain("width: min(100%, clamp(260px, 68cqw, 360px))");
+    expect(styles).toContain("width: min(100%, clamp(260px, 66cqw, 340px))");
+    expect(styles).toContain("width: min(100%, clamp(320px, 84cqw, 430px))");
     expect(styles).toContain("width: min(100%, clamp(210px, 62cqw, 280px))");
     expect(styles).toContain("width: min(100%, clamp(170px, 56cqw, 220px))");
     expect(styles).toContain("font-size: clamp(2rem, 7cqw, 2.5rem)");
+    expect(styles).toContain("@container (min-width: 400px)");
+    expect(styles).toContain('ha-card[data-layout="split"] .hero');
     expect(styles).not.toContain("minmax(180px, 0.44fr)");
   });
 

@@ -29,11 +29,11 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 	let t = "";
 	for (let n of e.cssRules) t += n.cssText;
 	return a(t);
-})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: p, getPrototypeOf: ee } = Object, m = globalThis, h = m.trustedTypes, te = h ? h.emptyScript : "", ne = m.reactiveElementPolyfillSupport, g = (e, t) => e, _ = {
+})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: ee, getPrototypeOf: te } = Object, p = globalThis, m = p.trustedTypes, ne = m ? m.emptyScript : "", re = p.reactiveElementPolyfillSupport, h = (e, t) => e, g = {
 	toAttribute(e, t) {
 		switch (t) {
 			case Boolean:
-				e = e ? te : null;
+				e = e ? ne : null;
 				break;
 			case Object:
 			case Array: e = e == null ? e : JSON.stringify(e);
@@ -58,23 +58,23 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 		}
 		return n;
 	}
-}, re = (e, t) => !l(e, t), ie = {
+}, ie = (e, t) => !l(e, t), ae = {
 	attribute: !0,
 	type: String,
-	converter: _,
+	converter: g,
 	reflect: !1,
 	useDefault: !1,
-	hasChanged: re
+	hasChanged: ie
 };
-Symbol.metadata ??= Symbol("metadata"), m.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-var v = class extends HTMLElement {
+Symbol.metadata ??= Symbol("metadata"), p.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+var _ = class extends HTMLElement {
 	static addInitializer(e) {
 		this._$Ei(), (this.l ??= []).push(e);
 	}
 	static get observedAttributes() {
 		return this.finalize(), this._$Eh && [...this._$Eh.keys()];
 	}
-	static createProperty(e, t = ie) {
+	static createProperty(e, t = ae) {
 		if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
 			let n = Symbol(), r = this.getPropertyDescriptor(e, n, t);
 			r !== void 0 && u(this.prototype, e, r);
@@ -100,17 +100,17 @@ var v = class extends HTMLElement {
 		};
 	}
 	static getPropertyOptions(e) {
-		return this.elementProperties.get(e) ?? ie;
+		return this.elementProperties.get(e) ?? ae;
 	}
 	static _$Ei() {
-		if (this.hasOwnProperty(g("elementProperties"))) return;
-		let e = ee(this);
+		if (this.hasOwnProperty(h("elementProperties"))) return;
+		let e = te(this);
 		e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
 	}
 	static finalize() {
-		if (this.hasOwnProperty(g("finalized"))) return;
-		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(g("properties"))) {
-			let e = this.properties, t = [...f(e), ...p(e)];
+		if (this.hasOwnProperty(h("finalized"))) return;
+		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(h("properties"))) {
+			let e = this.properties, t = [...f(e), ...ee(e)];
 			for (let n of t) this.createProperty(n, e[n]);
 		}
 		let e = this[Symbol.metadata];
@@ -171,14 +171,14 @@ var v = class extends HTMLElement {
 	_$ET(e, t) {
 		let n = this.constructor.elementProperties.get(e), r = this.constructor._$Eu(e, n);
 		if (r !== void 0 && !0 === n.reflect) {
-			let i = (n.converter?.toAttribute === void 0 ? _ : n.converter).toAttribute(t, n.type);
+			let i = (n.converter?.toAttribute === void 0 ? g : n.converter).toAttribute(t, n.type);
 			this._$Em = e, i == null ? this.removeAttribute(r) : this.setAttribute(r, i), this._$Em = null;
 		}
 	}
 	_$AK(e, t) {
 		let n = this.constructor, r = n._$Eh.get(e);
 		if (r !== void 0 && this._$Em !== r) {
-			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? _ : e.converter;
+			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? g : e.converter;
 			this._$Em = r;
 			let a = i.fromAttribute(t, e.type);
 			this[r] = a ?? this._$Ej?.get(r) ?? a, this._$Em = null;
@@ -187,7 +187,7 @@ var v = class extends HTMLElement {
 	requestUpdate(e, t, n, r = !1, i) {
 		if (e !== void 0) {
 			let a = this.constructor;
-			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? re)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
+			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? ie)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
 			this.C(e, t, n);
 		}
 		!1 === this.isUpdatePending && (this._$ES = this._$EP());
@@ -251,10 +251,10 @@ var v = class extends HTMLElement {
 	updated(e) {}
 	firstUpdated(e) {}
 };
-v.elementStyles = [], v.shadowRootOptions = { mode: "open" }, v[g("elementProperties")] = /* @__PURE__ */ new Map(), v[g("finalized")] = /* @__PURE__ */ new Map(), ne?.({ ReactiveElement: v }), (m.reactiveElementVersions ??= []).push("2.1.2");
+_.elementStyles = [], _.shadowRootOptions = { mode: "open" }, _[h("elementProperties")] = /* @__PURE__ */ new Map(), _[h("finalized")] = /* @__PURE__ */ new Map(), re?.({ ReactiveElement: _ }), (p.reactiveElementVersions ??= []).push("2.1.2");
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/lit-html.js
-var ae = globalThis, oe = (e) => e, y = ae.trustedTypes, se = y ? y.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, ce = "$lit$", b = `lit$${Math.random().toFixed(9).slice(2)}$`, le = "?" + b, ue = `<${le}>`, x = document, S = () => x.createComment(""), C = (e) => e === null || typeof e != "object" && typeof e != "function", de = Array.isArray, fe = (e) => de(e) || typeof e?.[Symbol.iterator] == "function", pe = "[ 	\n\f\r]", w = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, me = /-->/g, he = />/g, T = RegExp(`>|${pe}(?:([^\\s"'>=/]+)(${pe}*=${pe}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), ge = /'/g, _e = /"/g, ve = /^(?:script|style|textarea|title)$/i, E = ((e) => (t, ...n) => ({
+var v = globalThis, oe = (e) => e, y = v.trustedTypes, se = y ? y.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, ce = "$lit$", b = `lit$${Math.random().toFixed(9).slice(2)}$`, le = "?" + b, ue = `<${le}>`, x = document, S = () => x.createComment(""), C = (e) => e === null || typeof e != "object" && typeof e != "function", de = Array.isArray, fe = (e) => de(e) || typeof e?.[Symbol.iterator] == "function", pe = "[ 	\n\f\r]", w = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, me = /-->/g, he = />/g, T = RegExp(`>|${pe}(?:([^\\s"'>=/]+)(${pe}*=${pe}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), ge = /'/g, _e = /"/g, ve = /^(?:script|style|textarea|title)$/i, E = ((e) => (t, ...n) => ({
 	_$litType$: e,
 	strings: t,
 	values: n
@@ -472,8 +472,8 @@ var Se = class {
 	_$AI(e) {
 		j(this, e);
 	}
-}, De = ae.litHtmlPolyfillSupport;
-De?.(A, M), (ae.litHtmlVersions ??= []).push("3.3.3");
+}, De = v.litHtmlPolyfillSupport;
+De?.(A, M), (v.litHtmlVersions ??= []).push("3.3.3");
 var Oe = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
@@ -481,7 +481,7 @@ var Oe = (e, t, n) => {
 		r._$litPart$ = i = new M(t.insertBefore(S(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, P = globalThis, F = class extends v {
+}, P = globalThis, F = class extends _ {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -511,9 +511,9 @@ ke?.({ LitElement: F }), (P.litElementVersions ??= []).push("4.2.2");
 var Ae = {
 	attribute: !0,
 	type: String,
-	converter: _,
+	converter: g,
 	reflect: !1,
-	hasChanged: re
+	hasChanged: ie
 }, je = (e = Ae, t, n) => {
 	let { kind: r, metadata: i } = n, a = globalThis.litPropertyMetadata.get(i);
 	if (a === void 0 && globalThis.litPropertyMetadata.set(i, a = /* @__PURE__ */ new Map()), r === "setter" && ((e = Object.create(e)).wrapped = !0), a.set(n.name, e), r === "accessor") {
@@ -613,7 +613,7 @@ var Fe = Ne(z), Ie = {
 	waiting_power: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Esperando potencia\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f28c28\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">ESPERANDO</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">POTENCIA</text>\n</g>\n</svg>",
 	wifi_connected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: WiFi conectado\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-once\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">WIFI CONECTADO</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">RED OK</text>\n</g>\n</svg>",
 	wifi_connecting: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Conectando WiFi\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-slow\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">CONECTANDO WIFI</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">ESPERE...</text>\n</g>\n</svg>"
-}, Le = [
+}, B = [
 	6,
 	10,
 	13,
@@ -621,55 +621,55 @@ var Fe = Ne(z), Ie = {
 	20,
 	25,
 	32
-], Re = [
+], Le = [
 	"xxl",
 	"standard",
 	"compact",
 	"ultra_compact"
-], ze = [
+], Re = [
 	"auto",
 	"centered",
 	"split",
 	"inline"
-], Be = [
+], ze = [
 	"power",
 	"energy",
 	"time"
-], Ve = [
+], Be = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], He = [
+], Ve = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
 ];
-function B(e, t, n) {
+function V(e, t, n) {
 	return typeof e == "string" && t.includes(e) ? e : n;
 }
-function V(e, t) {
+function H(e, t) {
 	return [...new Set(Array.isArray(e) ? e.filter((e) => typeof e == "string" && t.includes(e)) : t)];
 }
-function Ue(e, t) {
-	let n = V(e, t);
+function He(e, t) {
+	let n = H(e, t);
 	return [...n, ...t.filter((e) => !n.includes(e))];
 }
-function We(e) {
+function Ue(e) {
 	if (!e || typeof e != "object") throw Error("V2C Trydan Card: configuración no válida");
 	if (!e.entity || typeof e.entity != "string") throw Error("V2C Trydan Card: debes indicar una entidad V2C principal");
-	let t = [...new Set(e.current_presets ?? Le)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), n = B(e.display_mode, Re, "standard"), r = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
+	let t = [...new Set(e.current_presets ?? B)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), n = V(e.display_mode, Le, "standard"), r = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
 	return {
 		...e,
 		type: "custom:v2c-trydan-card",
 		theme: e.theme ?? "auto",
 		display_mode: n,
 		language: e.language ?? "auto",
-		layout: B(e.layout, ze, "auto"),
-		color_scheme: e.color_scheme === "custom" && !r ? "monochrome" : B(e.color_scheme, [
+		layout: V(e.layout, Re, "auto"),
+		color_scheme: e.color_scheme === "custom" && !r ? "monochrome" : V(e.color_scheme, [
 			"monochrome",
 			"v2c_blue",
 			"teal",
@@ -678,21 +678,21 @@ function We(e) {
 			"custom"
 		], "monochrome"),
 		accent_color: r,
-		surface_style: B(e.surface_style, [
+		surface_style: V(e.surface_style, [
 			"solid",
 			"tinted",
 			"transparent"
 		], "solid"),
 		hero_scale: Math.min(1.25, Math.max(.75, Number(e.hero_scale) || 1)),
 		card_radius: Number.isFinite(e.card_radius) ? Math.min(40, Math.max(0, Number(e.card_radius))) : void 0,
-		metrics: V(e.metrics, Be),
-		energy_sources: V(e.energy_sources, Ve),
-		intensity_control: B(e.intensity_control, [
+		metrics: H(e.metrics, ze),
+		energy_sources: H(e.energy_sources, Be),
+		intensity_control: V(e.intensity_control, [
 			"slider",
 			"presets",
 			"both"
 		], "both"),
-		section_order: Ue(e.section_order, He),
+		section_order: He(e.section_order, Ve),
 		show_header: e.show_header ?? !0,
 		show_badges: e.show_badges ?? !0,
 		show_presets: e.show_presets ?? n !== "ultra_compact",
@@ -707,7 +707,7 @@ function We(e) {
 		entities: { ...e.entities ?? {} }
 	};
 }
-function Ge(e) {
+function We(e) {
 	let t = Object.values(e?.entities ?? {}).find((e) => e.platform === "v2c" && e.translation_key === "connected"), n = Object.keys(e?.states ?? {}).find((e) => e.startsWith("binary_sensor.") && e.toLowerCase().includes("v2c"));
 	return {
 		type: "custom:v2c-trydan-card",
@@ -718,7 +718,7 @@ function Ge(e) {
 }
 //#endregion
 //#region src/localization/da.ts
-var Ke = {
+var Ge = {
 	states: {
 		disconnected: "Intet køretøj",
 		unavailable: "Ikke tilgængelig",
@@ -831,7 +831,7 @@ var Ke = {
 		showAdvanced: "Avancerede kontroller",
 		showCharger: "Trydan-illustration"
 	}
-}, qe = {
+}, Ke = {
 	states: {
 		disconnected: "Kein Fahrzeug",
 		unavailable: "Nicht verfügbar",
@@ -944,7 +944,7 @@ var Ke = {
 		showAdvanced: "Erweiterte Steuerung",
 		showCharger: "Trydan-Abbildung"
 	}
-}, Je = {
+}, qe = {
 	states: {
 		disconnected: "Aucun véhicule",
 		unavailable: "Indisponible",
@@ -1057,7 +1057,7 @@ var Ke = {
 		showAdvanced: "Commandes avancées",
 		showCharger: "Illustration Trydan"
 	}
-}, Ye = {
+}, Je = {
 	states: {
 		disconnected: "Nessun veicolo",
 		unavailable: "Non disponibile",
@@ -1170,7 +1170,7 @@ var Ke = {
 		showAdvanced: "Controlli avanzati",
 		showCharger: "Illustrazione Trydan"
 	}
-}, Xe = {
+}, Ye = {
 	states: {
 		disconnected: "Geen voertuig",
 		unavailable: "Niet beschikbaar",
@@ -1283,7 +1283,7 @@ var Ke = {
 		showAdvanced: "Geavanceerde bediening",
 		showCharger: "Trydan-afbeelding"
 	}
-}, Ze = {
+}, Xe = {
 	states: {
 		disconnected: "Ingen bil",
 		unavailable: "Ikke tilgjengelig",
@@ -1396,7 +1396,7 @@ var Ke = {
 		showAdvanced: "Avanserte kontroller",
 		showCharger: "Trydan-illustrasjon"
 	}
-}, Qe = {
+}, Ze = {
 	states: {
 		disconnected: "Niciun vehicul",
 		unavailable: "Indisponibil",
@@ -1509,7 +1509,7 @@ var Ke = {
 		showAdvanced: "Comenzi avansate",
 		showCharger: "Ilustrație Trydan"
 	}
-}, $e = {
+}, Qe = {
 	states: {
 		disconnected: "Inget fordon",
 		unavailable: "Inte tillgänglig",
@@ -1622,7 +1622,7 @@ var Ke = {
 		showAdvanced: "Avancerade kontroller",
 		showCharger: "Trydan-illustration"
 	}
-}, et = {
+}, $e = {
 	states: {
 		disconnected: "No vehicle",
 		unavailable: "Unavailable",
@@ -1735,7 +1735,7 @@ var Ke = {
 		showAdvanced: "Advanced controls",
 		showCharger: "Trydan artwork"
 	}
-}, tt = {
+}, et = {
 	states: {
 		disconnected: "Sin vehículo",
 		unavailable: "No disponible",
@@ -1848,7 +1848,7 @@ var Ke = {
 		showAdvanced: "Controles avanzados",
 		showCharger: "Ilustración Trydan"
 	}
-}, nt = [
+}, tt = [
 	"en",
 	"it",
 	"de",
@@ -1859,26 +1859,26 @@ var Ke = {
 	"no",
 	"ro",
 	"es"
-], rt = {
-	en: et,
-	it: Ye,
-	de: qe,
-	fr: Je,
-	nl: Xe,
-	sv: $e,
-	da: Ke,
-	no: Ze,
-	ro: Qe,
-	es: tt
+], nt = {
+	en: $e,
+	it: Je,
+	de: Ke,
+	fr: qe,
+	nl: Ye,
+	sv: Qe,
+	da: Ge,
+	no: Xe,
+	ro: Ze,
+	es: et
 };
-function H(e, t) {
+function U(e, t) {
 	let n = (e === "auto" ? t : e)?.toLowerCase().split(/[-_]/)[0] ?? "en", r = n === "nb" || n === "nn" ? "no" : n;
-	return nt.includes(r) ? r : "en";
+	return tt.includes(r) ? r : "en";
 }
-function U(e) {
-	return rt[H(e)];
+function W(e) {
+	return nt[U(e)];
 }
-function W(e, t) {
+function G(e, t) {
 	let n = t.split(".").reduce((e, t) => {
 		if (!(typeof e != "object" || !e)) return e[t];
 	}, e);
@@ -1886,28 +1886,28 @@ function W(e, t) {
 }
 //#endregion
 //#region src/services/actions.ts
-async function it(e, t, n) {
+async function rt(e, t, n) {
 	return e.callService("number", "set_value", {
 		entity_id: t,
 		value: n
 	});
 }
-async function at(e, t, n) {
+async function it(e, t, n) {
 	return e.callService("switch", n ? "turn_on" : "turn_off", { entity_id: t });
 }
-async function ot(e, t, n) {
+async function at(e, t, n) {
 	return e.callService("select", "select_option", {
 		entity_id: t,
 		option: n
 	});
 }
-async function st(e, t, n, r) {
+async function ot(e, t, n, r) {
 	let i = { entity_id: t };
 	return n && r !== void 0 && (i.brightness = r), e.callService("light", n ? "turn_on" : "turn_off", i);
 }
 //#endregion
 //#region src/models/types.ts
-var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), ct = [
+var K = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), st = [
 	"disconnected",
 	"charging",
 	"complete",
@@ -1919,7 +1919,7 @@ var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.cha
 	"waiting_power",
 	"wifi_connected",
 	"wifi_connecting"
-], lt = {
+], ct = {
 	connected: "connected",
 	charging: "charging",
 	ready: "ready",
@@ -1945,7 +1945,7 @@ var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.cha
 	logo_led: "logo_led",
 	light_led: "light_led",
 	charge_mode: "charge_mode"
-}, ut = {
+}, lt = {
 	connected: ["_connected", "_conectado"],
 	charging: ["_charging", "_cargando"],
 	ready: ["_ready", "_listo"],
@@ -1976,7 +1976,7 @@ var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.cha
 	logo_led: ["_logo_led"],
 	light_led: ["_light_led", "_luz_led"],
 	charge_mode: ["_charge_mode", "_modo_de_carga"]
-}, dt = {
+}, ut = {
 	connected: ["binary_sensor"],
 	charging: ["binary_sensor"],
 	ready: ["binary_sensor"],
@@ -2004,29 +2004,29 @@ var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.cha
 	light_led: ["light"],
 	charge_mode: ["select"]
 };
-function ft(e, t) {
+function dt(e, t) {
 	let n = t.split(".", 1)[0] ?? "";
-	return dt[e]?.includes(n) ?? !0;
+	return ut[e]?.includes(n) ?? !0;
+}
+function ft(e, t) {
+	return lt[t]?.some((t) => e.endsWith(t)) ?? !1;
 }
 function pt(e, t) {
-	return ut[t]?.some((t) => e.endsWith(t)) ?? !1;
-}
-function mt(e, t) {
 	if (t.length === 1) return t[0];
 	if (e === "voltage") {
 		let e = t.filter((e) => e.startsWith("sensor."));
 		if (e.length === 1) return e[0];
 	}
 }
-function ht(e, t, n = {}) {
+function mt(e, t, n = {}) {
 	let r = {}, i = {}, a = {}, o = e.find((e) => e.entity_id === t), s = o?.device_id ?? void 0, c = s ? e.filter((e) => e.device_id === s && e.disabled_by == null) : e.filter((e) => e.disabled_by == null);
-	for (let t of G) {
+	for (let t of K) {
 		let a = n[t];
-		a && (ft(t, a) && (!s || c.some((e) => e.entity_id === a) || !e.some((e) => e.entity_id === a)) ? (r[t] = a, i[t] = "manual") : i[t] = "invalid");
+		a && (dt(t, a) && (!s || c.some((e) => e.entity_id === a) || !e.some((e) => e.entity_id === a)) ? (r[t] = a, i[t] = "manual") : i[t] = "invalid");
 	}
-	for (let e of G) {
+	for (let e of K) {
 		if (r[e]) continue;
-		let t = c.filter((t) => lt[t.translation_key ?? ""] === e).map((e) => e.entity_id), n = mt(e, t);
+		let t = c.filter((t) => ct[t.translation_key ?? ""] === e).map((e) => e.entity_id), n = pt(e, t);
 		if (n) {
 			r[e] = n, i[e] = "automatic";
 			continue;
@@ -2035,22 +2035,22 @@ function ht(e, t, n = {}) {
 			a[e] = t, i[e] = "ambiguous";
 			continue;
 		}
-		let o = c.filter((t) => pt(t.entity_id, e)).map((e) => e.entity_id), s = mt(e, o);
+		let o = c.filter((t) => ft(t.entity_id, e)).map((e) => e.entity_id), s = pt(e, o);
 		s ? (r[e] = s, i[e] = "automatic") : o.length > 1 && (a[e] = o, i[e] = "ambiguous");
 	}
 	if (o?.translation_key) {
-		let e = lt[o.translation_key];
+		let e = ct[o.translation_key];
 		e && !r[e] && (r[e] = t, i[e] = "automatic");
 	}
 	return {
 		entities: r,
 		ambiguities: a,
-		missing: G.filter((e) => !r[e]),
+		missing: K.filter((e) => !r[e]),
 		deviceId: s,
-		statuses: Object.fromEntries(G.map((e) => [e, i[e] ?? "missing"]))
+		statuses: Object.fromEntries(K.map((e) => [e, i[e] ?? "missing"]))
 	};
 }
-var gt = class {
+var ht = class {
 	#e = 0;
 	#t = /* @__PURE__ */ new Map();
 	invalidate() {
@@ -2058,23 +2058,23 @@ var gt = class {
 	}
 	async discover(e, t, n = {}) {
 		let r = ++this.#e, i = this.#t.get(t);
-		return i || (i = Object.values(e.entities ?? {}), i.length === 0 && e.callWS && (i = await e.callWS({ type: "config/entity_registry/list" })), this.#t.set(t, i)), r === this.#e ? ht(i, t, n) : null;
+		return i || (i = Object.values(e.entities ?? {}), i.length === 0 && e.callWS && (i = await e.callWS({ type: "config/entity_registry/list" })), this.#t.set(t, i)), r === this.#e ? mt(i, t, n) : null;
 	}
 };
 //#endregion
 //#region src/services/energy.ts
-function _t(e) {
+function gt(e) {
 	if (!e || e.state === "unknown" || e.state === "unavailable") return null;
 	let t = Number(e.state);
 	if (!Number.isFinite(t)) return null;
 	let n = e.attributes.unit_of_measurement?.toLowerCase();
 	return n === "kw" ? t * 1e3 : n === "mw" ? t * 1e6 : t;
 }
-function vt(e, t, n) {
+function _t(e, t, n) {
 	return Math.abs(t) < n ? "idle" : e === "grid" ? t > 0 ? "import" : "export" : e === "battery" ? t > 0 ? "discharge" : "charge" : e === "solar" ? t > 0 ? "produce" : "unknown" : t > 0 ? "consume" : "export";
 }
-function yt(e, t, n = {}) {
-	let r = _t(t);
+function vt(e, t, n = {}) {
+	let r = gt(t);
 	if (r === null) return {
 		role: e,
 		watts: null,
@@ -2085,13 +2085,13 @@ function yt(e, t, n = {}) {
 	return {
 		role: e,
 		watts: i,
-		direction: vt(e, i, n.thresholdW ?? 50),
+		direction: _t(e, i, n.thresholdW ?? 50),
 		available: !0
 	};
 }
 //#endregion
 //#region src/services/format.ts
-var bt = {
+var yt = {
 	en: "en-US",
 	it: "it-IT",
 	de: "de-DE",
@@ -2103,19 +2103,19 @@ var bt = {
 	ro: "ro-RO",
 	es: "es-ES"
 };
-function xt(e) {
-	return bt[e ?? "es"] ?? "en-US";
+function bt(e) {
+	return yt[e ?? "es"] ?? "en-US";
 }
-function St(e, t = "es") {
+function xt(e, t = "es") {
 	if (e === null || !Number.isFinite(e)) return "—";
 	let n = Math.abs(e);
-	return n >= 1e3 ? `${new Intl.NumberFormat(xt(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(xt(t), { maximumFractionDigits: 0 }).format(n)} W`;
+	return n >= 1e3 ? `${new Intl.NumberFormat(bt(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(bt(t), { maximumFractionDigits: 0 }).format(n)} W`;
 }
-function Ct(e, t = "es") {
+function St(e, t = "es") {
 	let n = Number(e);
-	return Number.isFinite(n) ? `${new Intl.NumberFormat(xt(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
+	return Number.isFinite(n) ? `${new Intl.NumberFormat(bt(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
 }
-function wt(e) {
+function Ct(e) {
 	let t = Number(e);
 	if (!Number.isFinite(t) || t < 0) return "—";
 	let n = Math.floor(t / 3600), r = Math.floor(t % 3600 / 60);
@@ -2123,7 +2123,7 @@ function wt(e) {
 }
 //#endregion
 //#region src/services/state.ts
-var Tt = {
+var wt = {
 	sin_vehiculo: "disconnected",
 	desconectado: "disconnected",
 	cargando: "charging",
@@ -2140,7 +2140,7 @@ var Tt = {
 	esperando_potencia: "waiting_power",
 	wifi_conectado: "wifi_connected",
 	conectando_wifi: "wifi_connecting"
-}, Et = {
+}, Tt = {
 	disconnected: "neutral",
 	charging: "info",
 	complete: "success",
@@ -2153,16 +2153,16 @@ var Tt = {
 	wifi_connected: "success",
 	wifi_connecting: "info"
 };
-function Dt(e) {
+function Et(e) {
 	return e.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 }
-function Ot(e) {
+function Dt(e) {
 	if (!e) return;
-	let t = Dt(e);
-	return ct.includes(t) ? t : Tt[t];
+	let t = Et(e);
+	return st.includes(t) ? t : wt[t];
 }
-function kt(e) {
-	let t = Ot(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
+function Ot(e) {
+	let t = Dt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
 	r = e.charging === !0 ? "charging" : e.ready === !0 ? "complete" : e.connected === !0 ? "connected" : n || e.seedAvailable === !1 ? "unavailable" : "disconnected";
 	let i = [];
 	e.paused === !0 && i.push("paused"), e.locked === !0 && i.push("locked"), e.timer === !0 && i.push("timer");
@@ -2179,26 +2179,26 @@ function kt(e) {
 		diagnostic: l ? c : void 0
 	};
 }
-function K(e, t, n = !1) {
+function q(e, t, n = !1) {
 	return {
 		key: e,
 		labelKey: n ? "states.unavailable" : `states.${e}`,
 		detailKey: n ? "details.unavailable" : `details.${e}`,
-		severity: Et[e],
+		severity: Tt[e],
 		badges: t.inhibitors,
 		diagnostic: t.diagnostic,
 		unavailable: n
 	};
 }
-function At(e) {
-	return e.externalStatus ? K(e.externalStatus, e) : e.fault === "control_pilot" ? K("control_pilot", e) : e.fault === "load_balancing" ? K("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? K("error", e) : e.maintenance === "updating" ? K("updating", e) : e.phase === "charging" ? K("charging", e) : e.phase === "complete" ? K("complete", e) : e.inhibitors.includes("timer") ? K("timer", e) : e.connectivity === "wifi_connecting" ? K("wifi_connecting", e) : e.connectivity === "wifi_connected" ? K("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? K("waiting_power", e) : K("disconnected", e, e.phase === "unavailable");
+function kt(e) {
+	return e.externalStatus ? q(e.externalStatus, e) : e.fault === "control_pilot" ? q("control_pilot", e) : e.fault === "load_balancing" ? q("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? q("error", e) : e.maintenance === "updating" ? q("updating", e) : e.phase === "charging" ? q("charging", e) : e.phase === "complete" ? q("complete", e) : e.inhibitors.includes("timer") ? q("timer", e) : e.connectivity === "wifi_connecting" ? q("wifi_connecting", e) : e.connectivity === "wifi_connected" ? q("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? q("waiting_power", e) : q("disconnected", e, e.phase === "unavailable");
 }
-function q(e) {
+function J(e) {
 	return e === "on" || e === "true" ? !0 : e === "off" || e === "false" ? !1 : "unknown";
 }
 //#endregion
 //#region src/card/advanced-controls.ts
-var jt = [
+var At = [
 	{
 		role: "locked",
 		label: "actions.lock"
@@ -2216,7 +2216,7 @@ var jt = [
 		label: "actions.pauseDynamic"
 	}
 ];
-function J(e) {
+function jt(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
 function Mt(e, t, n) {
@@ -2225,36 +2225,36 @@ function Mt(e, t, n) {
 	let i = e.hass.states[r], a = i?.state === "on";
 	return E`
     <div class="toggle-row">
-      <span>${t === "locked" && a ? W(e.dictionary, "actions.unlock") : W(e.dictionary, n)}</span>
+      <span>${t === "locked" && a ? G(e.dictionary, "actions.unlock") : G(e.dictionary, n)}</span>
       <button
         data-role=${t}
         role="switch"
         aria-checked=${String(a)}
         aria-pressed=${String(a)}
         aria-busy=${String(e.pending.includes(t))}
-        ?disabled=${!J(i) || e.pending.includes(t)}
+        ?disabled=${!jt(i) || e.pending.includes(t)}
         @click=${() => e.onToggle(t)}
       >${a ? "ON" : "OFF"}</button>
     </div>
   `;
 }
 function Nt(e) {
-	let t = jt.map(({ role: t, label: n }) => Mt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
+	let t = At.map(({ role: t, label: n }) => Mt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
 	return !t.some((e) => e !== O) && !n && !i && !o && !s ? O : E`
     <details ?open=${e.advancedOpen === !0}>
-      <summary>${W(e.dictionary, "labels.advanced")}</summary>
+      <summary>${G(e.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
         ${t.slice(0, 2).some((e) => e !== O) || n ? E`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.chargingControls")}</h3>
+                <h3>${G(e.dictionary, "labels.chargingControls")}</h3>
                 ${t.slice(0, 2)}
                 ${n ? E`
                       <label class="select-row">
-                        <span>${W(e.dictionary, "actions.chargeMode")}</span>
+                        <span>${G(e.dictionary, "actions.chargeMode")}</span>
                         <select
                           data-role="charge_mode"
                           .value=${r?.state ?? ""}
-                          ?disabled=${!J(r) || e.pending.includes("charge_mode")}
+                          ?disabled=${!jt(r) || e.pending.includes("charge_mode")}
                           @change=${(t) => e.onSelect(t.target.value)}
                         >
                           ${(r?.attributes.options ?? []).map((e) => E`<option .value=${String(e)}>${String(e)}</option>`)}
@@ -2265,17 +2265,17 @@ function Nt(e) {
             ` : O}
         ${t.slice(2).some((e) => e !== O) ? E`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.energyControls")}</h3>
+                <h3>${G(e.dictionary, "labels.energyControls")}</h3>
                 ${t.slice(2)}
               </section>
             ` : O}
         ${i || o ? E`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.lightControls")}</h3>
+                <h3>${G(e.dictionary, "labels.lightControls")}</h3>
                 ${Mt(e, "logo_led", "actions.logoLed")}
-                ${i && J(a) ? E`
+                ${i && jt(a) ? E`
                       <label class="range-head" for="v2c-logo-brightness">
-                        <span>${W(e.dictionary, "actions.logoLed")}</span>
+                        <span>${G(e.dictionary, "actions.logoLed")}</span>
                         <output>${Math.round((Number(a?.attributes.brightness ?? 0) || 0) / 255 * 100)}%</output>
                       </label>
                       <input
@@ -2292,23 +2292,23 @@ function Nt(e) {
             ` : O}
         ${s ? E`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.diagnostics")}</h3>
+                <h3>${G(e.dictionary, "labels.diagnostics")}</h3>
                 <dl class="technical-list">
                   ${e.voltage ? E`
                         <div class="technical-row">
-                          <dt>${W(e.dictionary, "labels.voltage")}</dt>
+                          <dt>${G(e.dictionary, "labels.voltage")}</dt>
                           <dd>${e.voltage.state} ${e.voltage.attributes.unit_of_measurement ?? "V"}</dd>
                         </div>
                       ` : O}
                   ${e.diagnostic ? E`
                         <div class="technical-row" data-severity="error">
-                          <dt>${W(e.dictionary, "labels.diagnostics")}</dt>
+                          <dt>${G(e.dictionary, "labels.diagnostics")}</dt>
                           <dd>${e.diagnostic}</dd>
                         </div>
                       ` : O}
                   ${e.ambiguityRoles?.length ? E`
                         <div class="technical-row">
-                          <dt>${W(e.dictionary, "labels.configuration")}</dt>
+                          <dt>${G(e.dictionary, "labels.configuration")}</dt>
                           <dd>YAML · ${e.ambiguityRoles.join(", ")}</dd>
                         </div>
                       ` : O}
@@ -2330,9 +2330,9 @@ var Pt = {
 };
 function Ft(e, t, n) {
 	if (e.length === 0) return O;
-	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${W(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
+	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${G(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
 	return E`
-    <section class="energy-section" aria-label=${W(t, "labels.energyFlow")}>
+    <section class="energy-section" aria-label=${G(t, "labels.energyFlow")}>
       <div class="energy-summary" data-kind=${o}>
         <p class="energy-summary-title">
           <ha-icon icon="mdi:lightning-bolt-outline" aria-hidden="true"></ha-icon>
@@ -2341,7 +2341,7 @@ function Ft(e, t, n) {
         ${a.length ? E`
               <div class="energy-nodes">
                 ${a.map((e) => {
-		let r = W(t, `flows.${e.role}`), i = W(t, `flows.${e.direction}`), a = St(e.watts, n);
+		let r = G(t, `flows.${e.role}`), i = G(t, `flows.${e.direction}`), a = xt(e.watts, n);
 		return E`
                     <div class="flow-node" aria-label=${`${r}: ${a}, ${i}`}>
                       <span class="flow-name" aria-hidden="true"><ha-icon icon=${Pt[e.role]}></ha-icon></span>
@@ -2353,7 +2353,7 @@ function Ft(e, t, n) {
 	})}
               </div>
             ` : O}
-        ${a.length && i ? E`<p class="energy-note">${W(t, "flows.partialData")}</p>` : O}
+        ${a.length && i ? E`<p class="energy-note">${G(t, "flows.partialData")}</p>` : O}
       </div>
     </section>
   `;
@@ -2366,15 +2366,15 @@ function Y(e) {
 function It(e) {
 	let t = e.entities.intensity, n = e.entities.paused, r = t ? e.hass.states[t] : void 0, i = n ? e.hass.states[n] : void 0;
 	if (!t && !n) return O;
-	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on", f = e.intensityControl !== "presets", p = e.showPresets !== !1 && e.intensityControl !== "slider";
+	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on", f = e.intensityControl !== "presets", ee = e.showPresets !== !1 && e.intensityControl !== "slider";
 	return E`
-    <section class="session-controls" aria-label=${W(e.dictionary, "labels.chargingControls")}>
+    <section class="session-controls" aria-label=${G(e.dictionary, "labels.chargingControls")}>
       ${t ? E`<div class="range-control">
-        ${f ? E`<label class="range-head" for="v2c-intensity"><span>${W(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
+        ${f ? E`<label class="range-head" for="v2c-intensity"><span>${G(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
         <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!Y(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : O}
-        ${p ? E`<div class="presets" aria-label=${W(e.dictionary, "labels.intensity")}>${u.map((t) => E`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!Y(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : O}
+        ${ee ? E`<div class="presets" aria-label=${G(e.dictionary, "labels.intensity")}>${u.map((t) => E`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!Y(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : O}
       </div>` : O}
-      ${n ? E`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!Y(i) || e.pending.includes("paused")} title=${Y(i) ? "" : W(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${W(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : O}
+      ${n ? E`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!Y(i) || e.pending.includes("paused")} title=${Y(i) ? "" : G(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${G(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : O}
     </section>
   `;
 }
@@ -2443,26 +2443,30 @@ var Lt = o`
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(28px, 5cqw, 38px);
+    gap: 0;
     align-items: center;
+    justify-items: center;
     margin-top: 18px;
   }
 
-  .device-column {
+  .hero-copy {
     display: flex;
     min-width: 0;
+    max-width: 100%;
+    margin-top: -18px;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  .hero.without-charger .hero-copy { margin-top: 0; }
+
   .charger-stage {
     display: grid;
-    width: min(100%, clamp(260px, 68cqw, 360px));
+    width: min(100%, clamp(260px, 66cqw, 340px));
     aspect-ratio: 312 / 480;
     place-items: center;
   }
-
   .charger-art {
     width: 100%;
     height: 100%;
@@ -2477,7 +2481,7 @@ var Lt = o`
 
   .charger-status {
     max-width: 100%;
-    margin-top: 14px;
+    margin-top: 0;
     overflow-wrap: anywhere;
     color: var(--v2c-text);
     font-size: clamp(2rem, 7cqw, 2.5rem);
@@ -2486,7 +2490,6 @@ var Lt = o`
     line-height: 1.05;
   }
 
-  .device-column.without-charger .charger-status { margin-top: 0; }
   .charger-status[data-severity="error"] { color: var(--v2c-danger); }
 
   .badges {
@@ -2874,9 +2877,10 @@ var Lt = o`
   }
 
   ha-card[data-mode="compact"] .shell { padding: 18px; }
-  ha-card[data-mode="compact"] .hero { gap: 20px; margin-top: 12px; }
+  ha-card[data-mode="compact"] .hero { gap: 0; margin-top: 12px; }
+  ha-card[data-mode="compact"] .hero-copy { margin-top: -14px; }
   ha-card[data-mode="compact"] .charger-stage { width: min(100%, clamp(210px, 62cqw, 280px)); }
-  ha-card[data-mode="compact"] .charger-status { margin-top: 10px; font-size: clamp(1.65rem, 6cqw, 2rem); }
+  ha-card[data-mode="compact"] .charger-status { margin-top: 0; font-size: clamp(1.65rem, 6cqw, 2rem); }
   ha-card[data-mode="compact"] .metric { padding: 9px; }
   ha-card[data-mode="compact"] .session-controls,
   ha-card[data-mode="compact"] .energy-section { margin-top: 10px; padding-top: 10px; }
@@ -2887,12 +2891,13 @@ var Lt = o`
   ha-card[data-mode="ultra_compact"] h2 { font-size: 0.86rem; }
   ha-card[data-mode="ultra_compact"] .hero {
     grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
+    gap: 0;
     margin-top: 10px;
     align-items: center;
   }
   ha-card[data-mode="ultra_compact"] .charger-stage { width: min(100%, clamp(170px, 56cqw, 220px)); }
-  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 8px; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
+  ha-card[data-mode="ultra_compact"] .hero-copy { margin-top: -10px; }
+  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 0; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
   ha-card[data-mode="ultra_compact"] .badges { margin-top: 6px; }
   ha-card[data-mode="ultra_compact"] .badge { padding: 3px 6px; font-size: 0.62rem; }
   ha-card[data-mode="ultra_compact"] .primary-metrics { grid-template-columns: 1fr; }
@@ -2917,14 +2922,35 @@ var Lt = o`
   ha-card[data-show-header="false"] .card-heading { display: none; }
   ha-card[data-surface="transparent"] { background: transparent; }
   ha-card[data-surface="tinted"] { background: color-mix(in srgb, var(--v2c-control) 8%, var(--v2c-surface)); }
-  .charger-stage { transform: scale(var(--v2c-hero-scale, 1)); transform-origin: center; }
-  ha-card[data-layout="inline"] .hero { grid-template-columns: auto minmax(0, 1fr); gap: 12px; }
-  ha-card[data-layout="inline"] .charger-stage { width: min(112px, 26cqw); }
-  ha-card[data-layout="inline"] .charger-status { font-size: clamp(1.1rem, 4cqw, 1.6rem); }
-  @container (min-width: 520px) {
-    ha-card[data-layout="split"] .hero, ha-card[data-layout="auto"][data-mode="standard"] .hero { grid-template-columns: minmax(180px, .8fr) minmax(0, 1.2fr); }
-  }
+  .charger-stage { transform: scale(var(--v2c-hero-scale, 1)); transform-origin: center bottom; }
 
+  ha-card[data-mode="xxl"] .shell { padding: clamp(26px, 5cqw, 36px); }
+  ha-card[data-mode="xxl"] .hero { margin-top: 24px; }
+  ha-card[data-mode="xxl"] .charger-stage { width: min(100%, clamp(320px, 84cqw, 430px)); }
+  ha-card[data-mode="xxl"] .hero-copy { margin-top: -22px; }
+  ha-card[data-mode="xxl"] .charger-status { font-size: clamp(2.35rem, 8cqw, 3rem); }
+  ha-card[data-mode="xxl"] .metric { padding: 16px; }
+  ha-card[data-mode="xxl"] .metric-value { font-size: clamp(1.2rem, 4.8cqw, 1.7rem); }
+  ha-card[data-mode="xxl"] .metric-power .metric-value { font-size: clamp(1.5rem, 6cqw, 2.25rem); }
+  ha-card[data-mode="xxl"] .session-controls { margin-top: 18px; padding-top: 18px; }
+
+  @container (min-width: 400px) {
+    ha-card[data-layout="split"] .hero { grid-template-columns: minmax(150px, .9fr) minmax(0, 1.1fr); gap: clamp(16px, 4cqw, 30px); justify-items: stretch; }
+    ha-card[data-layout="split"] .charger-stage { width: min(100%, 280px); justify-self: end; }
+    ha-card[data-layout="split"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="split"] .badges { justify-content: flex-start; }
+    ha-card[data-layout="inline"] .hero { grid-template-columns: auto minmax(0, 1fr); gap: 14px; justify-items: stretch; }
+    ha-card[data-layout="inline"] .charger-stage { width: min(132px, 28cqw); }
+    ha-card[data-layout="inline"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="inline"] .charger-status { font-size: clamp(1.1rem, 4cqw, 1.6rem); }
+    ha-card[data-layout="inline"] .badges { justify-content: flex-start; }
+  }
+  @container (min-width: 520px) {
+    ha-card[data-layout="auto"] .hero { grid-template-columns: minmax(180px, .9fr) minmax(0, 1.1fr); gap: clamp(18px, 4cqw, 32px); justify-items: stretch; }
+    ha-card[data-layout="auto"] .charger-stage { width: min(100%, 300px); justify-self: end; }
+    ha-card[data-layout="auto"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="auto"] .badges { justify-content: flex-start; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -2948,7 +2974,7 @@ function X(e, t, n, r) {
 //#region src/card/v2c-trydan-card.ts
 var Z = class extends F {
 	constructor(...e) {
-		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = new gt(), this.#t = /* @__PURE__ */ new Map(), this.#n = "";
+		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = new ht(), this.#t = /* @__PURE__ */ new Map(), this.#n = "";
 	}
 	static {
 		this.styles = Lt;
@@ -2960,11 +2986,11 @@ var Z = class extends F {
 		return document.createElement("v2c-trydan-card-editor");
 	}
 	static getStubConfig(e) {
-		return Ge(e);
+		return We(e);
 	}
 	setConfig(e) {
 		let t = this.config?.entity;
-		this.config = We(e), this.resolvedEntities = ht(Object.values(this.hass?.entities ?? {}), this.config.entity, this.config.entities).entities, this.sliderValue = void 0, this.#n = "", t && t !== this.config.entity && this.#e.invalidate();
+		this.config = Ue(e), this.resolvedEntities = mt(Object.values(this.hass?.entities ?? {}), this.config.entity, this.config.entities).entities, this.sliderValue = void 0, this.#n = "", t && t !== this.config.entity && this.#e.invalidate();
 	}
 	getCardSize() {
 		return this.config?.display_mode === "ultra_compact" ? 3 : this.config?.display_mode === "compact" ? 4 : this.config?.display_mode === "standard" ? 6 : 8;
@@ -2999,7 +3025,7 @@ var Z = class extends F {
 		return (e ? `--v2c-control:${e};--v2c-on-control:${t};` : "") + (this.config?.card_radius === void 0 ? "" : `--v2c-radius:${this.config.card_radius}px;`) + `--v2c-hero-scale:${this.config?.hero_scale ?? 1};`;
 	}
 	#o() {
-		return H(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
+		return U(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
 	}
 	#s(e, t) {
 		this.#t.set(e, t), this.pendingRoles = [...this.#t.keys()];
@@ -3007,16 +3033,16 @@ var Z = class extends F {
 	#c(e, t) {
 		let n = this.#t.get(e);
 		n?.timer && clearTimeout(n.timer), this.#t.delete(e), this.pendingRoles = [...this.#t.keys()];
-		let r = U(this.#o());
-		this.actionMessage = W(r, t ? "labels.actionDone" : "labels.actionFailed");
+		let r = W(this.#o());
+		this.actionMessage = G(r, t ? "labels.actionDone" : "labels.actionFailed");
 	}
 	#l() {
 		if (this.hass) for (let [e, t] of this.#t) t.matches(this.hass.states[t.entityId]) && this.#c(e, !0);
 	}
 	async #u(e, t, n, r) {
 		if (this.#t.has(e)) return;
-		let i = U(this.#o());
-		this.actionMessage = W(i, "labels.actionPending");
+		let i = W(this.#o());
+		this.actionMessage = G(i, "labels.actionPending");
 		let a = {
 			entityId: t,
 			matches: n
@@ -3036,39 +3062,39 @@ var Z = class extends F {
 		let t = this.resolvedEntities.intensity, n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = Number(n.attributes.min ?? 6), i = Number(n.attributes.max ?? 32), a = Number(n.attributes.step ?? 1), o = Math.min(i, Math.max(r, Math.round(e / a) * a));
-		this.sliderValue = o, this.#u("intensity", t, (e) => Number(e?.state) === o, () => it(this.hass, t, o));
+		this.sliderValue = o, this.#u("intensity", t, (e) => Number(e?.state) === o, () => rt(this.hass, t, o));
 	}
 	#f(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(W(U(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => at(this.hass, t, r));
+		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(G(W(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => it(this.hass, t, r));
 	}
 	#p(e) {
 		let t = this.resolvedEntities.charge_mode;
-		!this.hass || !t || this.#u("charge_mode", t, (t) => t?.state === e, () => ot(this.hass, t, e));
+		!this.hass || !t || this.#u("charge_mode", t, (t) => t?.state === e, () => at(this.hass, t, e));
 	}
 	#m(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => st(this.hass, t, r));
+		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ot(this.hass, t, r));
 	}
 	#h(e) {
 		let t = this.resolvedEntities.logo_led;
-		!this.hass || !t || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => st(this.hass, t, !0, e));
+		!this.hass || !t || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => ot(this.hass, t, !0, e));
 	}
 	render() {
 		if (!this.config || !this.hass) return E`<ha-card><div class="empty">V2C Trydan Card · configuración pendiente</div></ha-card>`;
-		let e = this.#o(), t = U(e), n = this.hass.states[this.config.entity], r = yt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = At(kt({
+		let e = this.#o(), t = W(e), n = this.hass.states[this.config.entity], r = vt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = kt(Ot({
 			seedAvailable: !!(n && n.state !== "unknown" && n.state !== "unavailable"),
-			connected: q(this.#i("connected")?.state),
-			charging: q(this.#i("charging")?.state),
-			ready: q(this.#i("ready")?.state),
-			paused: q(this.#i("paused")?.state),
-			locked: q(this.#i("locked")?.state),
-			timer: q(this.#i("timer")?.state),
-			dynamic: q(this.#i("dynamic")?.state),
+			connected: J(this.#i("connected")?.state),
+			charging: J(this.#i("charging")?.state),
+			ready: J(this.#i("ready")?.state),
+			paused: J(this.#i("paused")?.state),
+			locked: J(this.#i("locked")?.state),
+			timer: J(this.#i("timer")?.state),
+			dynamic: J(this.#i("dynamic")?.state),
 			meterError: this.#i("meter_error")?.state,
 			externalStatus: this.config.status_entity ? this.hass.states[this.config.status_entity]?.state : void 0,
 			chargePowerW: r.watts
@@ -3098,17 +3124,17 @@ var Z = class extends F {
 				"charge_power",
 				!1
 			]
-		], l = this.config.energy_sources ?? [], u = c.filter(([e, t]) => l.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => yt(e, this.#i(t), {
+		], l = this.config.energy_sources ?? [], u = c.filter(([e, t]) => l.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => vt(e, this.#i(t), {
 			invert: n,
 			thresholdW: this.config?.flow_threshold_w
-		})), d = (this.config.metrics ?? []).map((n) => n === "power" ? E`<div class="metric metric-power"><span class="metric-label">${W(t, "labels.power")}</span><strong class="metric-value">${St(r.watts, e)}</strong></div>` : n === "energy" ? E`<div class="metric"><span class="metric-label">${W(t, "labels.energy")}</span><strong class="metric-value">${Ct(o?.state ?? null, e)}</strong></div>` : E`<div class="metric"><span class="metric-label">${W(t, "labels.time")}</span><strong class="metric-value">${wt(s?.state ?? null)}</strong></div>`), f = Object.keys(this.ambiguities), p = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, ee = E`
-      <section class="hero" data-section="hero">
-        <div class="device-column ${this.config.show_charger ? "has-charger" : "without-charger"}">
-          ${this.config.show_charger ? E`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${Fe(Ie[i.key])}</div></div>` : O}
-          <div class="charger-status" data-severity=${i.severity} role="status">${W(t, i.labelKey)}</div>
-          ${this.config.show_badges !== !1 && i.badges.length ? E`<div class="badges" aria-label=${W(t, "labels.additionalStatus")}>${i.badges.map((e) => E`<span class="badge">${W(t, `badges.${e}`)}</span>`)}</div>` : O}
+		})), d = (this.config.metrics ?? []).map((n) => n === "power" ? E`<div class="metric metric-power"><span class="metric-label">${G(t, "labels.power")}</span><strong class="metric-value">${xt(r.watts, e)}</strong></div>` : n === "energy" ? E`<div class="metric"><span class="metric-label">${G(t, "labels.energy")}</span><strong class="metric-value">${St(o?.state ?? null, e)}</strong></div>` : E`<div class="metric"><span class="metric-label">${G(t, "labels.time")}</span><strong class="metric-value">${Ct(s?.state ?? null)}</strong></div>`), f = Object.keys(this.ambiguities), ee = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, te = E`
+      <section class="hero ${this.config.show_charger ? "has-charger" : "without-charger"}" data-section="hero">
+        ${this.config.show_charger ? E`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${Fe(Ie[i.key])}</div></div>` : O}
+        <div class="hero-copy">
+          <div class="charger-status" data-severity=${i.severity} role="status">${G(t, i.labelKey)}</div>
+          ${this.config.show_badges !== !1 && i.badges.length ? E`<div class="badges" aria-label=${G(t, "labels.additionalStatus")}>${i.badges.map((e) => E`<span class="badge">${G(t, `badges.${e}`)}</span>`)}</div>` : O}
         </div>
-      </section>`, m = d.length ? E`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${d}</div></section>` : O, h = this.config.show_controls ? E`<div data-section="controls">${It({
+      </section>`, p = d.length ? E`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${d}</div></section>` : O, m = this.config.show_controls ? E`<div data-section="controls">${It({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
@@ -3120,27 +3146,27 @@ var Z = class extends F {
 			onSliderInput: (e) => this.sliderValue = e,
 			onIntensity: (e) => this.#d(e),
 			onPause: () => this.#f("paused")
-		})}</div>` : O, te = this.config.show_energy_flow ? E`<div data-section="energy">${Ft(u, t, e)}</div>` : O, ne = this.config.show_advanced ? E`<div data-section="advanced">${Nt({
+		})}</div>` : O, ne = this.config.show_energy_flow ? E`<div data-section="energy">${Ft(u, t, e)}</div>` : O, re = this.config.show_advanced ? E`<div data-section="advanced">${Nt({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
 			pending: this.pendingRoles,
 			voltage: this.#i("voltage"),
-			diagnostic: p,
+			diagnostic: ee,
 			ambiguityRoles: f,
 			advancedOpen: this.config.advanced_open,
 			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#m(e) : this.#f(e),
 			onSelect: (e) => this.#p(e),
 			onBrightness: (e) => this.#h(e)
-		})}</div>` : O, g = (e) => {
+		})}</div>` : O, h = (e) => {
 			switch (e) {
-				case "hero": return ee;
-				case "metrics": return m;
-				case "controls": return h;
-				case "energy": return te;
-				default: return ne;
+				case "hero": return te;
+				case "metrics": return p;
+				case "controls": return m;
+				case "energy": return ne;
+				default: return re;
 			}
-		}, _ = this.config.section_order ?? [
+		}, g = this.config.section_order ?? [
 			"hero",
 			"metrics",
 			"controls",
@@ -3151,7 +3177,7 @@ var Z = class extends F {
       <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== !1)} style=${this.#a()}>
         <div class="shell">
           ${this.config.show_header === !1 ? O : E`<header class="card-heading"><h2>${a}</h2>${this.config.location ? E`<span class="location">${this.config.location}</span>` : O}</header>`}
-          <div class="content-sections">${_.map(g)}</div>
+          <div class="content-sections">${g.map(h)}</div>
           <p class="live-region" aria-live="polite">${this.actionMessage}</p>
         </div>
       </ha-card>`;
@@ -3159,8 +3185,872 @@ var Z = class extends F {
 };
 X([I({ attribute: !1 })], Z.prototype, "hass", void 0), X([L()], Z.prototype, "config", void 0), X([L()], Z.prototype, "resolvedEntities", void 0), X([L()], Z.prototype, "ambiguities", void 0), X([L()], Z.prototype, "sliderValue", void 0), X([L()], Z.prototype, "pendingRoles", void 0), X([L()], Z.prototype, "actionMessage", void 0);
 //#endregion
-//#region src/editor/v2c-trydan-card-editor.ts
+//#region src/localization/editor-copy.ts
 var Rt = {
+	en: {
+		general: "General",
+		appearance: "Appearance",
+		contentOrder: "Content and order",
+		advanced: "Advanced",
+		entities: "Entities",
+		automatic: "Automatic",
+		modeXxl: "XXL showcase",
+		layout: "Layout",
+		centered: "Centered",
+		split: "Split",
+		inline: "Inline",
+		colorScheme: "Color scheme",
+		monochrome: "Monochrome",
+		v2cBlue: "V2C blue",
+		teal: "Teal",
+		green: "Green",
+		violet: "Violet",
+		custom: "Custom",
+		accentColor: "Custom accent",
+		accentHelp: "Choose a color or enter a six-digit HEX value.",
+		invalidHex: "Use format #RRGGBB.",
+		surface: "Surface",
+		solid: "Solid",
+		tinted: "Tinted",
+		transparent: "Transparent",
+		heroScale: "Charger scale",
+		cardRadius: "Card corner radius",
+		metrics: "Metrics",
+		energySources: "Energy sources",
+		sectionOrder: "Section order",
+		moveUp: "Move up",
+		moveDown: "Move down",
+		resetOrder: "Restore default order",
+		header: "Header",
+		badges: "Status badges",
+		presets: "Current presets",
+		intensityControl: "Current control",
+		slider: "Slider",
+		both: "Slider and presets",
+		flowThreshold: "Idle threshold (W)",
+		currentPresets: "Preset amperages",
+		addPreset: "Add amperage",
+		removePreset: "Remove",
+		amps: "amps",
+		openAdvanced: "Open Trydan settings",
+		confirmLock: "Confirm before locking",
+		invertGrid: "Invert grid power",
+		invertBattery: "Invert battery power",
+		invertSolar: "Invert solar power",
+		entityOverrides: "Manual entity overrides",
+		statusAutomatic: "Automatic",
+		statusManual: "Manual",
+		statusAmbiguous: "Ambiguous",
+		statusInvalid: "Invalid",
+		statusMissing: "Not found"
+	},
+	es: {
+		general: "General",
+		appearance: "Apariencia",
+		contentOrder: "Contenido y orden",
+		advanced: "Avanzado",
+		entities: "Entidades",
+		automatic: "Automático",
+		modeXxl: "XXL escaparate",
+		layout: "Distribución",
+		centered: "Centrada",
+		split: "Dividida",
+		inline: "En línea",
+		colorScheme: "Paleta de color",
+		monochrome: "Monocromo",
+		v2cBlue: "Azul V2C",
+		teal: "Turquesa",
+		green: "Verde",
+		violet: "Violeta",
+		custom: "Personalizado",
+		accentColor: "Color personalizado",
+		accentHelp: "Elige un color o escribe un valor HEX de seis dígitos.",
+		invalidHex: "Usa el formato #RRGGBB.",
+		surface: "Superficie",
+		solid: "Sólida",
+		tinted: "Tintada",
+		transparent: "Transparente",
+		heroScale: "Escala del cargador",
+		cardRadius: "Radio de las esquinas",
+		metrics: "Métricas",
+		energySources: "Fuentes de energía",
+		sectionOrder: "Orden de secciones",
+		moveUp: "Subir",
+		moveDown: "Bajar",
+		resetOrder: "Restaurar orden",
+		header: "Cabecera",
+		badges: "Insignias de estado",
+		presets: "Presets de intensidad",
+		intensityControl: "Control de intensidad",
+		slider: "Deslizador",
+		both: "Deslizador y presets",
+		flowThreshold: "Umbral de reposo (W)",
+		currentPresets: "Intensidades rápidas",
+		addPreset: "Añadir amperaje",
+		removePreset: "Eliminar",
+		amps: "amperios",
+		openAdvanced: "Abrir ajustes Trydan",
+		confirmLock: "Confirmar antes de bloquear",
+		invertGrid: "Invertir potencia de red",
+		invertBattery: "Invertir potencia de batería",
+		invertSolar: "Invertir potencia solar",
+		entityOverrides: "Entidades manuales",
+		statusAutomatic: "Automática",
+		statusManual: "Manual",
+		statusAmbiguous: "Ambigua",
+		statusInvalid: "Inválida",
+		statusMissing: "No encontrada"
+	},
+	it: {
+		general: "Generale",
+		appearance: "Aspetto",
+		contentOrder: "Contenuto e ordine",
+		advanced: "Avanzate",
+		entities: "Entità",
+		automatic: "Automatico",
+		modeXxl: "Vetrina XXL",
+		layout: "Layout",
+		centered: "Centrato",
+		split: "Diviso",
+		inline: "In linea",
+		colorScheme: "Schema colori",
+		monochrome: "Monocromatico",
+		v2cBlue: "Blu V2C",
+		teal: "Turchese",
+		green: "Verde",
+		violet: "Viola",
+		custom: "Personalizzato",
+		accentColor: "Colore personalizzato",
+		accentHelp: "Scegli un colore o inserisci un valore HEX di sei cifre.",
+		invalidHex: "Usa il formato #RRGGBB.",
+		surface: "Superficie",
+		solid: "Solida",
+		tinted: "Colorata",
+		transparent: "Trasparente",
+		heroScale: "Scala caricatore",
+		cardRadius: "Raggio angoli",
+		metrics: "Metriche",
+		energySources: "Fonti energetiche",
+		sectionOrder: "Ordine sezioni",
+		moveUp: "Sposta su",
+		moveDown: "Sposta giù",
+		resetOrder: "Ripristina ordine",
+		header: "Intestazione",
+		badges: "Badge di stato",
+		presets: "Preset di corrente",
+		intensityControl: "Controllo corrente",
+		slider: "Cursore",
+		both: "Cursore e preset",
+		flowThreshold: "Soglia inattività (W)",
+		currentPresets: "Amperaggi rapidi",
+		addPreset: "Aggiungi amperaggio",
+		removePreset: "Rimuovi",
+		amps: "ampere",
+		openAdvanced: "Apri impostazioni Trydan",
+		confirmLock: "Conferma prima del blocco",
+		invertGrid: "Inverti potenza rete",
+		invertBattery: "Inverti potenza batteria",
+		invertSolar: "Inverti potenza solare",
+		entityOverrides: "Entità manuali",
+		statusAutomatic: "Automatica",
+		statusManual: "Manuale",
+		statusAmbiguous: "Ambigua",
+		statusInvalid: "Non valida",
+		statusMissing: "Non trovata"
+	},
+	de: {
+		general: "Allgemein",
+		appearance: "Darstellung",
+		contentOrder: "Inhalt und Reihenfolge",
+		advanced: "Erweitert",
+		entities: "Entitäten",
+		automatic: "Automatisch",
+		modeXxl: "XXL-Präsentation",
+		layout: "Layout",
+		centered: "Zentriert",
+		split: "Geteilt",
+		inline: "In einer Reihe",
+		colorScheme: "Farbschema",
+		monochrome: "Monochrom",
+		v2cBlue: "V2C-Blau",
+		teal: "Türkis",
+		green: "Grün",
+		violet: "Violett",
+		custom: "Benutzerdefiniert",
+		accentColor: "Eigene Akzentfarbe",
+		accentHelp: "Farbe wählen oder sechsstelligen HEX-Wert eingeben.",
+		invalidHex: "Format #RRGGBB verwenden.",
+		surface: "Oberfläche",
+		solid: "Einfarbig",
+		tinted: "Getönt",
+		transparent: "Transparent",
+		heroScale: "Lader-Skalierung",
+		cardRadius: "Eckenradius",
+		metrics: "Messwerte",
+		energySources: "Energiequellen",
+		sectionOrder: "Abschnittsreihenfolge",
+		moveUp: "Nach oben",
+		moveDown: "Nach unten",
+		resetOrder: "Reihenfolge zurücksetzen",
+		header: "Kopfzeile",
+		badges: "Statusmarken",
+		presets: "Stromvorgaben",
+		intensityControl: "Stromsteuerung",
+		slider: "Regler",
+		both: "Regler und Vorgaben",
+		flowThreshold: "Leerlaufschwelle (W)",
+		currentPresets: "Schnelle Stromwerte",
+		addPreset: "Stromwert hinzufügen",
+		removePreset: "Entfernen",
+		amps: "Ampere",
+		openAdvanced: "Trydan-Einstellungen öffnen",
+		confirmLock: "Vor Sperren bestätigen",
+		invertGrid: "Netzleistung umkehren",
+		invertBattery: "Batterieleistung umkehren",
+		invertSolar: "Solarleistung umkehren",
+		entityOverrides: "Manuelle Entitäten",
+		statusAutomatic: "Automatisch",
+		statusManual: "Manuell",
+		statusAmbiguous: "Mehrdeutig",
+		statusInvalid: "Ungültig",
+		statusMissing: "Nicht gefunden"
+	},
+	fr: {
+		general: "Général",
+		appearance: "Apparence",
+		contentOrder: "Contenu et ordre",
+		advanced: "Avancé",
+		entities: "Entités",
+		automatic: "Automatique",
+		modeXxl: "Vitrine XXL",
+		layout: "Disposition",
+		centered: "Centrée",
+		split: "Divisée",
+		inline: "En ligne",
+		colorScheme: "Palette de couleurs",
+		monochrome: "Monochrome",
+		v2cBlue: "Bleu V2C",
+		teal: "Turquoise",
+		green: "Vert",
+		violet: "Violet",
+		custom: "Personnalisé",
+		accentColor: "Couleur personnalisée",
+		accentHelp: "Choisissez une couleur ou saisissez une valeur HEX à six chiffres.",
+		invalidHex: "Utilisez le format #RRGGBB.",
+		surface: "Surface",
+		solid: "Solide",
+		tinted: "Teintée",
+		transparent: "Transparente",
+		heroScale: "Échelle du chargeur",
+		cardRadius: "Rayon des angles",
+		metrics: "Mesures",
+		energySources: "Sources d'énergie",
+		sectionOrder: "Ordre des sections",
+		moveUp: "Monter",
+		moveDown: "Descendre",
+		resetOrder: "Rétablir l'ordre",
+		header: "En-tête",
+		badges: "Badges d'état",
+		presets: "Préréglages de courant",
+		intensityControl: "Contrôle du courant",
+		slider: "Curseur",
+		both: "Curseur et préréglages",
+		flowThreshold: "Seuil de repos (W)",
+		currentPresets: "Intensités rapides",
+		addPreset: "Ajouter une intensité",
+		removePreset: "Supprimer",
+		amps: "ampères",
+		openAdvanced: "Ouvrir les réglages Trydan",
+		confirmLock: "Confirmer avant verrouillage",
+		invertGrid: "Inverser puissance réseau",
+		invertBattery: "Inverser puissance batterie",
+		invertSolar: "Inverser puissance solaire",
+		entityOverrides: "Entités manuelles",
+		statusAutomatic: "Automatique",
+		statusManual: "Manuelle",
+		statusAmbiguous: "Ambiguë",
+		statusInvalid: "Invalide",
+		statusMissing: "Introuvable"
+	},
+	nl: {
+		general: "Algemeen",
+		appearance: "Uiterlijk",
+		contentOrder: "Inhoud en volgorde",
+		advanced: "Geavanceerd",
+		entities: "Entiteiten",
+		automatic: "Automatisch",
+		modeXxl: "XXL-weergave",
+		layout: "Indeling",
+		centered: "Gecentreerd",
+		split: "Gesplitst",
+		inline: "Naast elkaar",
+		colorScheme: "Kleurenschema",
+		monochrome: "Monochroom",
+		v2cBlue: "V2C-blauw",
+		teal: "Turkoois",
+		green: "Groen",
+		violet: "Violet",
+		custom: "Aangepast",
+		accentColor: "Aangepaste accentkleur",
+		accentHelp: "Kies een kleur of voer een zescijferige HEX-waarde in.",
+		invalidHex: "Gebruik formaat #RRGGBB.",
+		surface: "Oppervlak",
+		solid: "Effen",
+		tinted: "Getint",
+		transparent: "Transparant",
+		heroScale: "Schaal van lader",
+		cardRadius: "Hoekradius",
+		metrics: "Meetwaarden",
+		energySources: "Energiebronnen",
+		sectionOrder: "Volgorde secties",
+		moveUp: "Omhoog",
+		moveDown: "Omlaag",
+		resetOrder: "Standaardvolgorde",
+		header: "Koptekst",
+		badges: "Statusbadges",
+		presets: "Stroompresets",
+		intensityControl: "Stroomregeling",
+		slider: "Schuifregelaar",
+		both: "Schuifregelaar en presets",
+		flowThreshold: "Rustdrempel (W)",
+		currentPresets: "Snelle stroomwaarden",
+		addPreset: "Stroomwaarde toevoegen",
+		removePreset: "Verwijderen",
+		amps: "ampère",
+		openAdvanced: "Trydan-instellingen openen",
+		confirmLock: "Bevestigen voor vergrendelen",
+		invertGrid: "Netvermogen omkeren",
+		invertBattery: "Batterijvermogen omkeren",
+		invertSolar: "Zonnevermogen omkeren",
+		entityOverrides: "Handmatige entiteiten",
+		statusAutomatic: "Automatisch",
+		statusManual: "Handmatig",
+		statusAmbiguous: "Dubbelzinnig",
+		statusInvalid: "Ongeldig",
+		statusMissing: "Niet gevonden"
+	},
+	sv: {
+		general: "Allmänt",
+		appearance: "Utseende",
+		contentOrder: "Innehåll och ordning",
+		advanced: "Avancerat",
+		entities: "Entiteter",
+		automatic: "Automatiskt",
+		modeXxl: "XXL-visning",
+		layout: "Layout",
+		centered: "Centrerad",
+		split: "Delad",
+		inline: "I rad",
+		colorScheme: "Färgschema",
+		monochrome: "Monokrom",
+		v2cBlue: "V2C-blå",
+		teal: "Turkos",
+		green: "Grön",
+		violet: "Violett",
+		custom: "Anpassad",
+		accentColor: "Egen accentfärg",
+		accentHelp: "Välj en färg eller ange ett sexsiffrigt HEX-värde.",
+		invalidHex: "Använd formatet #RRGGBB.",
+		surface: "Yta",
+		solid: "Enfärgad",
+		tinted: "Tonad",
+		transparent: "Genomskinlig",
+		heroScale: "Laddarens skala",
+		cardRadius: "Hörnradie",
+		metrics: "Mätvärden",
+		energySources: "Energikällor",
+		sectionOrder: "Sektionsordning",
+		moveUp: "Flytta upp",
+		moveDown: "Flytta ned",
+		resetOrder: "Återställ ordning",
+		header: "Rubrik",
+		badges: "Statusmärken",
+		presets: "Strömförval",
+		intensityControl: "Strömstyrning",
+		slider: "Reglage",
+		both: "Reglage och förval",
+		flowThreshold: "Vilotröskel (W)",
+		currentPresets: "Snabba strömvärden",
+		addPreset: "Lägg till strömvärde",
+		removePreset: "Ta bort",
+		amps: "ampere",
+		openAdvanced: "Öppna Trydan-inställningar",
+		confirmLock: "Bekräfta före låsning",
+		invertGrid: "Invertera nätkraft",
+		invertBattery: "Invertera batterikraft",
+		invertSolar: "Invertera solkraft",
+		entityOverrides: "Manuella entiteter",
+		statusAutomatic: "Automatisk",
+		statusManual: "Manuell",
+		statusAmbiguous: "Tvetydig",
+		statusInvalid: "Ogiltig",
+		statusMissing: "Hittades inte"
+	},
+	da: {
+		general: "Generelt",
+		appearance: "Udseende",
+		contentOrder: "Indhold og rækkefølge",
+		advanced: "Avanceret",
+		entities: "Entiteter",
+		automatic: "Automatisk",
+		modeXxl: "XXL-visning",
+		layout: "Layout",
+		centered: "Centreret",
+		split: "Delt",
+		inline: "På linje",
+		colorScheme: "Farveskema",
+		monochrome: "Monokrom",
+		v2cBlue: "V2C-blå",
+		teal: "Turkis",
+		green: "Grøn",
+		violet: "Violet",
+		custom: "Brugerdefineret",
+		accentColor: "Egen accentfarve",
+		accentHelp: "Vælg en farve eller indtast en sekscifret HEX-værdi.",
+		invalidHex: "Brug formatet #RRGGBB.",
+		surface: "Overflade",
+		solid: "Ensfarvet",
+		tinted: "Tonet",
+		transparent: "Gennemsigtig",
+		heroScale: "Laderens skala",
+		cardRadius: "Hjørneradius",
+		metrics: "Målinger",
+		energySources: "Energikilder",
+		sectionOrder: "Sektionsrækkefølge",
+		moveUp: "Flyt op",
+		moveDown: "Flyt ned",
+		resetOrder: "Gendan rækkefølge",
+		header: "Overskrift",
+		badges: "Statusmærker",
+		presets: "Strømforvalg",
+		intensityControl: "Strømstyring",
+		slider: "Skyder",
+		both: "Skyder og forvalg",
+		flowThreshold: "Hviletærskel (W)",
+		currentPresets: "Hurtige strømværdier",
+		addPreset: "Tilføj strømværdi",
+		removePreset: "Fjern",
+		amps: "ampere",
+		openAdvanced: "Åbn Trydan-indstillinger",
+		confirmLock: "Bekræft før låsning",
+		invertGrid: "Vend neteffekt",
+		invertBattery: "Vend batterieffekt",
+		invertSolar: "Vend solenergi",
+		entityOverrides: "Manuelle entiteter",
+		statusAutomatic: "Automatisk",
+		statusManual: "Manuel",
+		statusAmbiguous: "Tvetydig",
+		statusInvalid: "Ugyldig",
+		statusMissing: "Ikke fundet"
+	},
+	no: {
+		general: "Generelt",
+		appearance: "Utseende",
+		contentOrder: "Innhold og rekkefølge",
+		advanced: "Avansert",
+		entities: "Entiteter",
+		automatic: "Automatisk",
+		modeXxl: "XXL-visning",
+		layout: "Layout",
+		centered: "Sentrert",
+		split: "Delt",
+		inline: "På linje",
+		colorScheme: "Fargeskjema",
+		monochrome: "Monokrom",
+		v2cBlue: "V2C-blå",
+		teal: "Turkis",
+		green: "Grønn",
+		violet: "Fiolett",
+		custom: "Egendefinert",
+		accentColor: "Egen aksentfarge",
+		accentHelp: "Velg en farge eller skriv inn en sekssifret HEX-verdi.",
+		invalidHex: "Bruk formatet #RRGGBB.",
+		surface: "Overflate",
+		solid: "Ensfarget",
+		tinted: "Tonet",
+		transparent: "Gjennomsiktig",
+		heroScale: "Laderens skala",
+		cardRadius: "Hjørneradius",
+		metrics: "Målinger",
+		energySources: "Energikilder",
+		sectionOrder: "Seksjonsrekkefølge",
+		moveUp: "Flytt opp",
+		moveDown: "Flytt ned",
+		resetOrder: "Gjenopprett rekkefølge",
+		header: "Topptekst",
+		badges: "Statusmerker",
+		presets: "Strømforvalg",
+		intensityControl: "Strømstyring",
+		slider: "Glidebryter",
+		both: "Glidebryter og forvalg",
+		flowThreshold: "Hvileterskel (W)",
+		currentPresets: "Raske strømverdier",
+		addPreset: "Legg til strømverdi",
+		removePreset: "Fjern",
+		amps: "ampere",
+		openAdvanced: "Åpne Trydan-innstillinger",
+		confirmLock: "Bekreft før låsing",
+		invertGrid: "Snu netteffekt",
+		invertBattery: "Snu batterieffekt",
+		invertSolar: "Snu solkraft",
+		entityOverrides: "Manuelle entiteter",
+		statusAutomatic: "Automatisk",
+		statusManual: "Manuell",
+		statusAmbiguous: "Tvetydig",
+		statusInvalid: "Ugyldig",
+		statusMissing: "Ikke funnet"
+	},
+	ro: {
+		general: "General",
+		appearance: "Aspect",
+		contentOrder: "Conținut și ordine",
+		advanced: "Avansat",
+		entities: "Entități",
+		automatic: "Automat",
+		modeXxl: "Prezentare XXL",
+		layout: "Dispunere",
+		centered: "Centrat",
+		split: "Împărțit",
+		inline: "În linie",
+		colorScheme: "Schemă de culori",
+		monochrome: "Monocrom",
+		v2cBlue: "Albastru V2C",
+		teal: "Turcoaz",
+		green: "Verde",
+		violet: "Violet",
+		custom: "Personalizat",
+		accentColor: "Culoare personalizată",
+		accentHelp: "Alege o culoare sau introdu o valoare HEX de șase cifre.",
+		invalidHex: "Folosește formatul #RRGGBB.",
+		surface: "Suprafață",
+		solid: "Solidă",
+		tinted: "Nuanțată",
+		transparent: "Transparentă",
+		heroScale: "Scara încărcătorului",
+		cardRadius: "Raza colțurilor",
+		metrics: "Indicatori",
+		energySources: "Surse de energie",
+		sectionOrder: "Ordinea secțiunilor",
+		moveUp: "Mută sus",
+		moveDown: "Mută jos",
+		resetOrder: "Restabilește ordinea",
+		header: "Antet",
+		badges: "Insigne de stare",
+		presets: "Presetări de curent",
+		intensityControl: "Controlul curentului",
+		slider: "Glisor",
+		both: "Glisor și presetări",
+		flowThreshold: "Prag de repaus (W)",
+		currentPresets: "Intensități rapide",
+		addPreset: "Adaugă intensitate",
+		removePreset: "Elimină",
+		amps: "amperi",
+		openAdvanced: "Deschide setările Trydan",
+		confirmLock: "Confirmă înainte de blocare",
+		invertGrid: "Inversează puterea rețelei",
+		invertBattery: "Inversează puterea bateriei",
+		invertSolar: "Inversează puterea solară",
+		entityOverrides: "Entități manuale",
+		statusAutomatic: "Automată",
+		statusManual: "Manuală",
+		statusAmbiguous: "Ambiguă",
+		statusInvalid: "Invalidă",
+		statusMissing: "Negăsită"
+	}
+}, zt = {
+	en: {
+		connected: "Vehicle connected",
+		charging: "Charging",
+		ready: "Ready",
+		charge_power: "Charge power",
+		charge_energy: "Charge energy",
+		charge_time: "Charge time",
+		house_power: "Home power",
+		fv_power: "Solar power",
+		battery_power: "Battery power",
+		grid_power: "Grid power",
+		voltage: "Voltage",
+		intensity: "Charging current",
+		min_intensity: "Minimum current",
+		max_intensity: "Maximum current",
+		meter_error: "Meter error",
+		ssid: "Wi-Fi network",
+		ip_address: "IP address",
+		signal_status: "Signal status",
+		paused: "Pause",
+		locked: "EVSE lock",
+		timer: "Timer",
+		dynamic: "Dynamic modulation",
+		pause_dynamic: "Pause dynamic control",
+		logo_led: "Logo LED",
+		light_led: "Charger light",
+		charge_mode: "Charge mode"
+	},
+	es: {
+		connected: "Vehículo conectado",
+		charging: "Cargando",
+		ready: "Preparado",
+		charge_power: "Potencia de carga",
+		charge_energy: "Energía de carga",
+		charge_time: "Tiempo de carga",
+		house_power: "Potencia de casa",
+		fv_power: "Potencia solar",
+		battery_power: "Potencia de batería",
+		grid_power: "Potencia de red",
+		voltage: "Voltaje",
+		intensity: "Intensidad de carga",
+		min_intensity: "Intensidad mínima",
+		max_intensity: "Intensidad máxima",
+		meter_error: "Error del medidor",
+		ssid: "Red Wi-Fi",
+		ip_address: "Dirección IP",
+		signal_status: "Estado de señal",
+		paused: "Pausa",
+		locked: "Bloqueo EVSE",
+		timer: "Temporizador",
+		dynamic: "Modulación dinámica",
+		pause_dynamic: "Pausa de control dinámico",
+		logo_led: "LED del logo",
+		light_led: "Luz del cargador",
+		charge_mode: "Modo de carga"
+	},
+	it: {
+		connected: "Veicolo collegato",
+		charging: "Ricarica",
+		ready: "Pronto",
+		charge_power: "Potenza di ricarica",
+		charge_energy: "Energia di ricarica",
+		charge_time: "Tempo di ricarica",
+		house_power: "Potenza casa",
+		fv_power: "Potenza solare",
+		battery_power: "Potenza batteria",
+		grid_power: "Potenza rete",
+		voltage: "Tensione",
+		intensity: "Corrente di ricarica",
+		min_intensity: "Corrente minima",
+		max_intensity: "Corrente massima",
+		meter_error: "Errore contatore",
+		ssid: "Rete Wi-Fi",
+		ip_address: "Indirizzo IP",
+		signal_status: "Stato segnale",
+		paused: "Pausa",
+		locked: "Blocco EVSE",
+		timer: "Timer",
+		dynamic: "Modulazione dinamica",
+		pause_dynamic: "Pausa controllo dinamico",
+		logo_led: "LED logo",
+		light_led: "Luce caricatore",
+		charge_mode: "Modalità di ricarica"
+	},
+	de: {
+		connected: "Fahrzeug verbunden",
+		charging: "Ladevorgang",
+		ready: "Bereit",
+		charge_power: "Ladeleistung",
+		charge_energy: "Ladeenergie",
+		charge_time: "Ladezeit",
+		house_power: "Hausleistung",
+		fv_power: "Solarleistung",
+		battery_power: "Batterieleistung",
+		grid_power: "Netzleistung",
+		voltage: "Spannung",
+		intensity: "Ladestrom",
+		min_intensity: "Mindeststrom",
+		max_intensity: "Höchststrom",
+		meter_error: "Zählerfehler",
+		ssid: "WLAN-Netz",
+		ip_address: "IP-Adresse",
+		signal_status: "Signalstatus",
+		paused: "Pause",
+		locked: "EVSE-Sperre",
+		timer: "Timer",
+		dynamic: "Dynamische Modulation",
+		pause_dynamic: "Dynamische Steuerung pausieren",
+		logo_led: "Logo-LED",
+		light_led: "Laderlicht",
+		charge_mode: "Lademodus"
+	},
+	fr: {
+		connected: "Véhicule connecté",
+		charging: "Recharge",
+		ready: "Prêt",
+		charge_power: "Puissance de charge",
+		charge_energy: "Énergie de charge",
+		charge_time: "Temps de charge",
+		house_power: "Puissance maison",
+		fv_power: "Puissance solaire",
+		battery_power: "Puissance batterie",
+		grid_power: "Puissance réseau",
+		voltage: "Tension",
+		intensity: "Courant de charge",
+		min_intensity: "Courant minimal",
+		max_intensity: "Courant maximal",
+		meter_error: "Erreur compteur",
+		ssid: "Réseau Wi-Fi",
+		ip_address: "Adresse IP",
+		signal_status: "État du signal",
+		paused: "Pause",
+		locked: "Verrou EVSE",
+		timer: "Minuterie",
+		dynamic: "Modulation dynamique",
+		pause_dynamic: "Pause du contrôle dynamique",
+		logo_led: "LED du logo",
+		light_led: "Éclairage du chargeur",
+		charge_mode: "Mode de charge"
+	},
+	nl: {
+		connected: "Voertuig verbonden",
+		charging: "Laden",
+		ready: "Gereed",
+		charge_power: "Laadvermogen",
+		charge_energy: "Laadenergie",
+		charge_time: "Laadtijd",
+		house_power: "Huisvermogen",
+		fv_power: "Zonnevermogen",
+		battery_power: "Batterijvermogen",
+		grid_power: "Netvermogen",
+		voltage: "Spanning",
+		intensity: "Laadstroom",
+		min_intensity: "Minimale stroom",
+		max_intensity: "Maximale stroom",
+		meter_error: "Meterfout",
+		ssid: "Wi-Fi-netwerk",
+		ip_address: "IP-adres",
+		signal_status: "Signaalstatus",
+		paused: "Pauze",
+		locked: "EVSE-vergrendeling",
+		timer: "Timer",
+		dynamic: "Dynamische modulatie",
+		pause_dynamic: "Dynamische regeling pauzeren",
+		logo_led: "Logo-LED",
+		light_led: "Laderlicht",
+		charge_mode: "Laadmodus"
+	},
+	sv: {
+		connected: "Fordon anslutet",
+		charging: "Laddning",
+		ready: "Redo",
+		charge_power: "Laddeffekt",
+		charge_energy: "Laddenergi",
+		charge_time: "Laddtid",
+		house_power: "Huseffekt",
+		fv_power: "Soleffekt",
+		battery_power: "Batterieffekt",
+		grid_power: "Näteffekt",
+		voltage: "Spänning",
+		intensity: "Laddström",
+		min_intensity: "Minsta ström",
+		max_intensity: "Högsta ström",
+		meter_error: "Mätarfel",
+		ssid: "Wi-Fi-nätverk",
+		ip_address: "IP-adress",
+		signal_status: "Signalstatus",
+		paused: "Paus",
+		locked: "EVSE-lås",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pause_dynamic: "Pausa dynamisk styrning",
+		logo_led: "Logo-LED",
+		light_led: "Laddarljus",
+		charge_mode: "Laddläge"
+	},
+	da: {
+		connected: "Køretøj tilsluttet",
+		charging: "Opladning",
+		ready: "Klar",
+		charge_power: "Ladeeffekt",
+		charge_energy: "Ladeenergi",
+		charge_time: "Ladetid",
+		house_power: "Huseffekt",
+		fv_power: "Soleffekt",
+		battery_power: "Batterieffekt",
+		grid_power: "Neteffekt",
+		voltage: "Spænding",
+		intensity: "Ladestrøm",
+		min_intensity: "Minimumstrøm",
+		max_intensity: "Maksimumstrøm",
+		meter_error: "Målerfejl",
+		ssid: "Wi-Fi-netværk",
+		ip_address: "IP-adresse",
+		signal_status: "Signalstatus",
+		paused: "Pause",
+		locked: "EVSE-lås",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pause_dynamic: "Pause dynamisk styring",
+		logo_led: "Logo-LED",
+		light_led: "Laderlys",
+		charge_mode: "Ladetilstand"
+	},
+	no: {
+		connected: "Kjøretøy tilkoblet",
+		charging: "Lading",
+		ready: "Klar",
+		charge_power: "Ladeeffekt",
+		charge_energy: "Ladeenergi",
+		charge_time: "Ladetid",
+		house_power: "Huseffekt",
+		fv_power: "Soleffekt",
+		battery_power: "Batterieffekt",
+		grid_power: "Netteffekt",
+		voltage: "Spenning",
+		intensity: "Ladestrøm",
+		min_intensity: "Minimumsstrøm",
+		max_intensity: "Maksimumsstrøm",
+		meter_error: "Målerfeil",
+		ssid: "Wi-Fi-nettverk",
+		ip_address: "IP-adresse",
+		signal_status: "Signalstatus",
+		paused: "Pause",
+		locked: "EVSE-lås",
+		timer: "Tidsur",
+		dynamic: "Dynamisk modulering",
+		pause_dynamic: "Pause dynamisk styring",
+		logo_led: "Logo-LED",
+		light_led: "Laderlys",
+		charge_mode: "Lademodus"
+	},
+	ro: {
+		connected: "Vehicul conectat",
+		charging: "Încărcare",
+		ready: "Pregătit",
+		charge_power: "Putere de încărcare",
+		charge_energy: "Energie de încărcare",
+		charge_time: "Timp de încărcare",
+		house_power: "Puterea casei",
+		fv_power: "Putere solară",
+		battery_power: "Puterea bateriei",
+		grid_power: "Puterea rețelei",
+		voltage: "Tensiune",
+		intensity: "Curent de încărcare",
+		min_intensity: "Curent minim",
+		max_intensity: "Curent maxim",
+		meter_error: "Eroare contor",
+		ssid: "Rețea Wi-Fi",
+		ip_address: "Adresă IP",
+		signal_status: "Starea semnalului",
+		paused: "Pauză",
+		locked: "Blocare EVSE",
+		timer: "Temporizator",
+		dynamic: "Modulare dinamică",
+		pause_dynamic: "Pauză control dinamic",
+		logo_led: "LED logo",
+		light_led: "Lumina încărcătorului",
+		charge_mode: "Mod de încărcare"
+	}
+};
+function Bt(e) {
+	return Rt[e];
+}
+function Vt(e, t) {
+	return zt[e][t];
+}
+function Ht(e, t) {
+	return e[`status${t[0].toUpperCase()}${t.slice(1)}`];
+}
+//#endregion
+//#region src/editor/v2c-trydan-card-editor.ts
+var Ut = {
 	en: "English",
 	it: "Italiano",
 	de: "Deutsch",
@@ -3171,45 +4061,96 @@ var Rt = {
 	no: "Norsk",
 	ro: "Română",
 	es: "Español"
-}, zt = [
+}, Wt = [
+	"power",
+	"energy",
+	"time"
+], Gt = [
+	"solar",
+	"grid",
+	"home",
+	"battery",
+	"charger"
+], Kt = [
+	"hero",
+	"metrics",
+	"controls",
+	"energy",
+	"advanced"
+], qt = [
 	["show_energy_flow", "editor.showEnergyFlow"],
 	["show_controls", "editor.showControls"],
 	["show_advanced", "editor.showAdvanced"],
-	["show_charger", "editor.showCharger"],
-	["show_header", "Header"],
-	["show_badges", "Badges"],
-	["show_presets", "Presets"]
+	["show_charger", "editor.showCharger"]
 ], Q = class extends F {
+	constructor(...e) {
+		super(...e), this.accentDraft = "#0067D9", this.presetDraft = "";
+	}
 	static {
 		this.styles = o`
-    :host { display: block; color: var(--primary-text-color); }
-    .editor { display: grid; gap: 14px; padding: 8px 0; }
-    h3 { margin: 0; font-size: 1rem; }
-    label { display: grid; gap: 5px; color: var(--secondary-text-color); font-size: 0.8rem; }
-    input, select {
-      width: 100%; min-height: 40px; padding: 8px 10px; box-sizing: border-box;
-      border: 1px solid var(--divider-color, #7775); border-radius: 8px;
-      color: var(--primary-text-color); background: var(--card-background-color);
-    }
-    input:focus-visible, select:focus-visible { outline: 3px solid var(--primary-color, #0067d9); outline-offset: 2px; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
-    .checks label { display: flex; align-items: center; gap: 7px; min-height: 32px; }
-    .checks input { width: auto; min-height: auto; accent-color: var(--primary-text-color, #202326); }
-    .entity-status { font-size: 0.72rem; text-transform: capitalize; color: var(--secondary-text-color); }
-    .yaml-note {
-      margin: 0; padding: 9px 11px; border-left: 3px solid var(--primary-text-color, #202326);
-      color: var(--secondary-text-color); background: var(--secondary-background-color, #f4f5f6);
-      font-size: 0.73rem; line-height: 1.4;
-    }
-    @media (max-width: 500px) { .grid, .checks { grid-template-columns: 1fr; } }
+    :host { display:block; color:var(--primary-text-color); }
+    * { box-sizing:border-box; }
+    .editor { display:grid; gap:12px; padding:8px 0; }
+    .group { border:1px solid var(--divider-color,#7775); border-radius:14px; background:var(--card-background-color); overflow:hidden; }
+    .group > summary { display:flex; min-height:48px; padding:12px 14px; align-items:center; gap:8px; cursor:pointer; color:var(--primary-text-color); font-size:.92rem; font-weight:700; list-style:none; }
+    .group > summary::-webkit-details-marker { display:none; }
+    .group > summary::after { content:"+"; margin-left:auto; color:var(--secondary-text-color); font-size:1.15rem; }
+    .group[open] > summary::after { content:"−"; }
+    .group-body { display:grid; gap:14px; padding:0 14px 16px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    label,.field { display:grid; gap:6px; color:var(--secondary-text-color); font-size:.78rem; }
+    .field-title { color:var(--primary-text-color); font-weight:650; }
+    input,select,button { font:inherit; }
+    input:not([type="checkbox"]):not([type="color"]),select { width:100%; min-height:42px; padding:8px 10px; border:1px solid var(--divider-color,#7775); border-radius:9px; color:var(--primary-text-color); background:var(--card-background-color); }
+    input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid var(--primary-color,#0067d9); outline-offset:2px; }
+    .choices { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+    .choice { display:grid; min-height:66px; padding:8px 5px; place-items:center; gap:5px; border:1px solid var(--divider-color,#7775); border-radius:10px; color:var(--secondary-text-color); background:transparent; cursor:pointer; font-size:.68rem; text-align:center; }
+    .choice[aria-pressed="true"] { border-color:var(--primary-color,#0067d9); color:var(--primary-text-color); background:color-mix(in srgb,var(--primary-color,#0067d9) 10%,transparent); box-shadow:inset 0 0 0 1px var(--primary-color,#0067d9); }
+    .layout-icon { display:grid; width:34px; height:22px; padding:3px; border:1px solid currentColor; border-radius:4px; gap:2px; opacity:.9; }
+    .layout-icon::before,.layout-icon::after { content:""; display:block; border-radius:2px; background:currentColor; opacity:.7; }
+    .layout-icon[data-kind="split"],.layout-icon[data-kind="inline"] { grid-template-columns:1fr 1fr; }
+    .layout-icon[data-kind="centered"]::before { width:55%; justify-self:center; }
+    .layout-icon[data-kind="auto"]::after { width:70%; justify-self:center; }
+    .chips { display:flex; flex-wrap:wrap; gap:7px; }
+    .chip { min-height:36px; padding:6px 11px; border:1px solid var(--divider-color,#7775); border-radius:999px; color:var(--secondary-text-color); background:transparent; cursor:pointer; }
+    .chip[aria-pressed="true"] { color:var(--primary-text-color); border-color:var(--primary-color,#0067d9); background:color-mix(in srgb,var(--primary-color,#0067d9) 12%,transparent); }
+    .swatches { display:grid; grid-template-columns:repeat(6,minmax(38px,1fr)); gap:7px; }
+    .swatch { min-height:44px; padding:4px; border:1px solid var(--divider-color,#7775); border-radius:9px; color:var(--primary-text-color); background:transparent; cursor:pointer; }
+    .swatch::before { content:""; display:block; width:22px; height:22px; margin:auto; border:1px solid #7777; border-radius:50%; background:var(--swatch); }
+    .swatch[aria-pressed="true"] { border-color:var(--primary-color,#0067d9); box-shadow:inset 0 0 0 1px var(--primary-color,#0067d9); }
+    .color-row { display:grid; grid-template-columns:52px minmax(0,1fr); gap:9px; align-items:end; }
+    input[type="color"] { width:52px; height:42px; padding:3px; border:1px solid var(--divider-color,#7775); border-radius:9px; background:transparent; cursor:pointer; }
+    .help,.error { margin:0; font-size:.7rem; line-height:1.4; }
+    .help { color:var(--secondary-text-color); } .error { color:var(--error-color,#b42335); }
+    .range-row { display:grid; grid-template-columns:minmax(0,1fr) 64px; gap:10px; align-items:center; }
+    input[type="range"] { width:100%; accent-color:var(--primary-color,#0067d9); }
+    output { color:var(--primary-text-color); font-variant-numeric:tabular-nums; font-weight:700; text-align:right; }
+    .order-list { display:grid; gap:6px; margin:0; padding:0; list-style:none; }
+    .order-item { display:grid; grid-template-columns:28px minmax(0,1fr) 34px 34px; min-height:42px; align-items:center; gap:5px; padding:5px 6px; border:1px solid var(--divider-color,#7775); border-radius:9px; }
+    .order-index { display:grid; width:24px; height:24px; place-items:center; border-radius:50%; color:var(--secondary-text-color); background:var(--secondary-background-color,#7772); font-size:.7rem; }
+    .icon-button { min-width:32px; min-height:32px; border:1px solid var(--divider-color,#7775); border-radius:8px; color:var(--primary-text-color); background:transparent; cursor:pointer; }
+    .icon-button:disabled { opacity:.35; cursor:not-allowed; }
+    .reset { justify-self:start; min-height:36px; padding:6px 10px; border:1px solid var(--divider-color,#7775); border-radius:8px; color:var(--primary-text-color); background:transparent; cursor:pointer; }
+    .checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px 12px; }
+    .checks label { display:flex; min-height:34px; align-items:center; gap:8px; }
+    .checks input { width:auto; accent-color:var(--primary-color,#0067d9); }
+    .preset-editor { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; }
+    .preset-editor button { min-height:42px; padding:8px 12px; border:0; border-radius:9px; color:var(--text-primary-color,#fff); background:var(--primary-color,#0067d9); cursor:pointer; font-weight:700; }
+    .preset-list { display:flex; flex-wrap:wrap; gap:6px; }
+    .preset-token { display:flex; align-items:center; gap:5px; padding:5px 6px 5px 10px; border:1px solid var(--divider-color,#7775); border-radius:999px; color:var(--primary-text-color); font-size:.75rem; }
+    .preset-token button { width:25px; height:25px; padding:0; border:0; border-radius:50%; color:inherit; background:var(--secondary-background-color,#7773); cursor:pointer; }
+    .entity-status { font-size:.7rem; font-weight:650; }
+    .entity-status[data-status="automatic"] { color:var(--success-color,#2e7d32); }
+    .entity-status[data-status="manual"] { color:var(--primary-color,#0067d9); }
+    .entity-status[data-status="invalid"],.entity-status[data-status="ambiguous"] { color:var(--error-color,#b42335); }
+    @media (max-width:500px) { .grid,.checks { grid-template-columns:1fr; } .choices { grid-template-columns:repeat(2,minmax(0,1fr)); } .swatches { grid-template-columns:repeat(3,1fr); } }
   `;
 	}
 	setConfig(e) {
 		this.config = {
 			...e,
 			entities: { ...e.entities ?? {} }
-		};
+		}, this.accentDraft = /^#[0-9a-f]{6}$/i.test(e.accent_color ?? "") ? e.accent_color.toUpperCase() : "#0067D9";
 	}
 	#e(e) {
 		this.config = e, this.dispatchEvent(new CustomEvent("config-changed", {
@@ -3225,15 +4166,78 @@ var Rt = {
 	}
 	#n(e, t) {
 		if (!this.config) return;
-		let n = t.split(",").map((e) => e.trim()).filter(Boolean), r = { ...this.config };
-		e === "current_presets" ? r.current_presets = n.map(Number).filter(Number.isFinite) : Object.assign(r, { [e]: n }), this.#e(r);
+		let n = Number(t);
+		Number.isFinite(n) && this.#e({
+			...this.config,
+			[e]: n
+		});
 	}
-	#r(e, t) {
+	#r(e) {
 		if (!this.config) return;
-		let n = Number(t), r = { ...this.config };
-		Number.isFinite(n) ? Object.assign(r, { [e]: n }) : delete r[e], this.#e(r);
+		let t = this.config.metrics ?? [...Wt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		this.#e({
+			...this.config,
+			metrics: n
+		});
 	}
-	#i(e, t) {
+	#i(e) {
+		if (!this.config) return;
+		let t = this.config.energy_sources ?? [...Gt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		this.#e({
+			...this.config,
+			energy_sources: n
+		});
+	}
+	#a() {
+		let e = (this.config?.section_order ?? []).filter((e) => Kt.includes(e));
+		return [.../* @__PURE__ */ new Set([...e, ...Kt])];
+	}
+	#o(e, t) {
+		if (!this.config) return;
+		let n = this.#a(), r = e + t;
+		r < 0 || r >= n.length || ([n[e], n[r]] = [n[r], n[e]], this.#e({
+			...this.config,
+			section_order: n
+		}));
+	}
+	#s() {
+		if (!this.config) return;
+		let e = { ...this.config };
+		delete e.section_order, this.#e(e);
+	}
+	#c(e) {
+		if (!this.config) return;
+		let t = e === "custom" ? this.config.accent_color ?? "#0067D9" : this.config.accent_color;
+		e === "custom" && (this.accentDraft = t), this.#e({
+			...this.config,
+			color_scheme: e,
+			accent_color: t
+		});
+	}
+	#l(e) {
+		this.accentDraft = e.toUpperCase(), !(!this.config || !/^#[0-9A-F]{6}$/.test(this.accentDraft)) && this.#e({
+			...this.config,
+			color_scheme: "custom",
+			accent_color: this.accentDraft
+		});
+	}
+	#u() {
+		if (!this.config) return;
+		let e = Number(this.presetDraft);
+		if (!Number.isInteger(e) || e <= 0 || e > 80) return;
+		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? B, e])].sort((e, t) => e - t);
+		this.presetDraft = "", this.#e({
+			...this.config,
+			current_presets: t
+		});
+	}
+	#d(e) {
+		this.config && this.#e({
+			...this.config,
+			current_presets: (this.config.current_presets ?? B).filter((t) => t !== e)
+		});
+	}
+	#f(e, t) {
 		if (!this.config) return;
 		let n = { ...this.config.entities ?? {} };
 		t.trim() ? n[e] = t : delete n[e], this.#e({
@@ -3243,118 +4247,135 @@ var Rt = {
 	}
 	render() {
 		if (!this.config) return O;
-		let e = U(H(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language)), t = Object.keys(this.hass?.states ?? {}), n = this.hass ? ht(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities) : void 0;
+		let e = U(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = W(e), n = Bt(e), r = Object.keys(this.hass?.states ?? {}), i = this.hass ? mt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities) : void 0, a = this.#a(), o = this.config.metrics ?? [...Wt], s = this.config.energy_sources ?? [...Gt], c = this.config.current_presets ?? B, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = {
+			hero: G(t, "editor.showCharger"),
+			metrics: n.metrics,
+			controls: G(t, "editor.showControls"),
+			energy: G(t, "editor.showEnergyFlow"),
+			advanced: G(t, "editor.showAdvanced")
+		}, d = {
+			power: G(t, "labels.power"),
+			energy: G(t, "labels.energy"),
+			time: G(t, "labels.time")
+		}, f = {
+			solar: G(t, "flows.solar"),
+			grid: G(t, "flows.grid"),
+			home: G(t, "flows.home"),
+			battery: G(t, "flows.battery"),
+			charger: G(t, "flows.charger")
+		};
 		return E`
       <div class="editor">
-        <h3>${W(e, "editor.title")}</h3>
-        <label>
-          <span>${W(e, "editor.entity")}</span>
-          <input
-            data-field="entity"
-            list="v2c-entities"
-            .value=${this.config.entity}
-            @change=${(e) => this.#t("entity", e.target.value)}
-          />
-        </label>
-        <div class="grid">
-          ${["name", "location"].map((t) => E`
-              <label>
-                <span>${W(e, `editor.${t}`)}</span>
-                <input
-                  data-field=${t}
-                  .value=${this.config?.[t] ?? ""}
-                  @change=${(e) => this.#t(t, e.target.value)}
-                />
-              </label>
-            `)}
-          <label>
-            <span>${W(e, "editor.language")}</span>
-            <select
-              data-field="language"
-              .value=${this.config.language ?? "auto"}
-              @change=${(e) => this.#t("language", e.target.value)}
-            >
-              <option value="auto">Automatic</option>${nt.map((e) => E`<option .value=${e}>${Rt[e]}</option>`)}
-            </select>
-          </label>
-          <label>
-            <span>${W(e, "editor.theme")}</span>
-            <select
-              data-field="theme"
-              .value=${this.config.theme ?? "auto"}
-              @change=${(e) => this.#t("theme", e.target.value)}
-            >
-              <option value="auto">${W(e, "editor.themeAuto")}</option>
-              <option value="light">${W(e, "editor.themeLight")}</option>
-              <option value="dark">${W(e, "editor.themeDark")}</option>
-            </select>
-          </label>
-          <label>
-            <span>${W(e, "editor.displayMode")}</span>
-            <select
-              data-field="display_mode"
-              .value=${this.config.display_mode ?? "standard"}
-              @change=${(e) => this.#t("display_mode", e.target.value)}
-            >
-              <option value="xxl">XXL</option>
-              <option value="standard">${W(e, "editor.modeStandard")}</option>
-              <option value="compact">${W(e, "editor.modeCompact")}</option>
-              <option value="ultra_compact">${W(e, "editor.modeUltra")}</option>
-            </select>
-          </label>
-        </div>
-        <h3>Appearance</h3>
-        <div class="grid">
-          <label><span>Layout</span><select data-field="layout" .value=${this.config.layout ?? "auto"} @change=${(e) => this.#t("layout", e.target.value)}><option value="auto">Auto</option><option value="centered">Centered</option><option value="split">Split</option><option value="inline">Inline</option></select></label>
-          <label><span>Color scheme</span><select data-field="color_scheme" .value=${this.config.color_scheme ?? "monochrome"} @change=${(e) => this.#t("color_scheme", e.target.value)}><option value="monochrome">Monochrome</option><option value="v2c_blue">V2C blue</option><option value="teal">Teal</option><option value="green">Green</option><option value="violet">Violet</option><option value="custom">Custom</option></select></label>
-          <label><span>Accent color</span><input data-field="accent_color" .value=${this.config.accent_color ?? ""} @change=${(e) => this.#t("accent_color", e.target.value)} /></label>
-          <label><span>Surface</span><select data-field="surface_style" .value=${this.config.surface_style ?? "solid"} @change=${(e) => this.#t("surface_style", e.target.value)}><option value="solid">Solid</option><option value="tinted">Tinted</option><option value="transparent">Transparent</option></select></label>
-        </div>
-        <h3>Content and order</h3>
-        <div class="grid">
-          <label><span>Metrics</span><input data-field="metrics" .value=${(this.config.metrics ?? []).join(", ")} @change=${(e) => this.#n("metrics", e.target.value)} /></label>
-          <label><span>Energy sources</span><input data-field="energy_sources" .value=${(this.config.energy_sources ?? []).join(", ")} @change=${(e) => this.#n("energy_sources", e.target.value)} /></label>
-          <label><span>Section order</span><input data-field="section_order" .value=${(this.config.section_order ?? []).join(", ")} @change=${(e) => this.#n("section_order", e.target.value)} /></label>
-          <label><span>Hero scale</span><input data-field="hero_scale" type="number" min="0.75" max="1.25" step="0.05" .value=${String(this.config.hero_scale ?? 1)} @change=${(e) => this.#r("hero_scale", e.target.value)} /></label>
-          <label><span>Card radius</span><input data-field="card_radius" type="number" min="0" max="40" step="1" .value=${String(this.config.card_radius ?? "")} @change=${(e) => this.#r("card_radius", e.target.value)} /></label>
-        </div>        <div class="checks">
-          ${zt.map(([t, n]) => E`
-              <label>
-                <input
-                  data-field=${t}
-                  type="checkbox"
-                  .checked=${this.config?.[t] !== !1}
-                  @change=${(e) => this.#t(t, e.target.checked)}
-                />
-                ${n.includes(".") ? W(e, n) : n}
-              </label>
-            `)}
-        </div>
-        <h3>Advanced</h3>
-        <div class="grid">
-          <label><span>Intensity control</span><select data-field="intensity_control" .value=${this.config.intensity_control ?? "both"} @change=${(e) => this.#t("intensity_control", e.target.value)}><option value="slider">Slider</option><option value="presets">Presets</option><option value="both">Both</option></select></label>
-          <label><span>Flow threshold (W)</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @change=${(e) => this.#r("flow_threshold_w", e.target.value)} /></label>
-          <label><span>Current presets</span><input data-field="current_presets" .value=${(this.config.current_presets ?? []).join(", ")} @change=${(e) => this.#n("current_presets", e.target.value)} /></label>
-        </div>
-        <div class="checks">
-          <label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />Open advanced</label>
-          <label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />Confirm lock</label>
-          <label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />Invert grid power</label>
-          <label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />Invert battery power</label>
-          <label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />Invert solar power</label>
-        </div>
-        <h3>Entities</h3>
-        <details><summary>Entities (manual overrides)</summary><div class="grid">${G.map((e) => E`<label><span>${e.replaceAll("_", " ")}</span><input data-role=${e} list="v2c-entities" .value=${this.config?.entities?.[e] ?? ""} @change=${(t) => this.#i(e, t.target.value)} /><small class="entity-status" data-status=${n?.statuses[e] ?? "missing"}>${n?.statuses[e] ?? "missing"}</small></label>`)}</div></details>        <p class="yaml-note"><code>YAML | status_entity | entities | invert_*_power | current_presets | flow_threshold_w</code></p>
-        <datalist id="v2c-entities">${t.map((e) => E`<option value=${e}></option>`)}</datalist>
-      </div>
-    `;
+        <details class="group" open>
+          <summary>${n.general}</summary><div class="group-body">
+            <label><span>${G(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
+            <div class="grid">
+              <label><span>${G(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
+              <label><span>${G(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
+              <label><span>${G(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${tt.map((e) => E`<option .value=${e}>${Ut[e]}</option>`)}</select></label>
+              <label><span>${G(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${G(t, "editor.themeAuto")}</option><option value="light">${G(t, "editor.themeLight")}</option><option value="dark">${G(t, "editor.themeDark")}</option></select></label>
+            </div>
+            <div class="field"><span class="field-title">${G(t, "editor.displayMode")}</span><div class="choices">${[
+			["xxl", n.modeXxl],
+			["standard", G(t, "editor.modeStandard")],
+			["compact", G(t, "editor.modeCompact")],
+			["ultra_compact", G(t, "editor.modeUltra")]
+		].map(([e, t]) => E`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
+          </div>
+        </details>
+
+        <details class="group" open>
+          <summary>${n.appearance}</summary><div class="group-body">
+            <div class="field"><span class="field-title">${n.layout}</span><div class="choices">${[
+			["auto", n.automatic],
+			["centered", n.centered],
+			["split", n.split],
+			["inline", n.inline]
+		].map(([e, t]) => E`<button type="button" class="choice" data-field="layout" data-value=${e} aria-pressed=${String((this.config?.layout ?? "auto") === e)} @click=${() => this.#t("layout", e)}><span class="layout-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.colorScheme}</span><div class="swatches">${[
+			[
+				"monochrome",
+				n.monochrome,
+				"#808080"
+			],
+			[
+				"v2c_blue",
+				n.v2cBlue,
+				"#0067D9"
+			],
+			[
+				"teal",
+				n.teal,
+				"#00897B"
+			],
+			[
+				"green",
+				n.green,
+				"#2E7D32"
+			],
+			[
+				"violet",
+				n.violet,
+				"#6A4BBC"
+			],
+			[
+				"custom",
+				n.custom,
+				this.config.accent_color ?? "#0067D9"
+			]
+		].map(([e, t, n]) => E`<button type="button" class="swatch" style=${`--swatch:${n}`} title=${t} aria-label=${t} aria-pressed=${String((this.config?.color_scheme ?? "monochrome") === e)} @click=${() => this.#c(e)}></button>`)}</div></div>
+            ${this.config.color_scheme === "custom" ? E`<div class="field"><span class="field-title">${n.accentColor}</span><div class="color-row"><input data-field="accent_picker" type="color" .value=${/^#[0-9A-F]{6}$/.test(this.accentDraft) ? this.accentDraft : "#0067D9"} @input=${(e) => this.#l(e.target.value)} /><input data-field="accent_color" inputmode="text" .value=${this.accentDraft} @input=${(e) => this.#l(e.target.value)} /></div><p class="help">${n.accentHelp}</p>${l ? E`<p class="error" role="alert">${n.invalidHex}</p>` : O}</div>` : O}
+            <div class="field"><span class="field-title">${n.surface}</span><div class="chips">${[
+			["solid", n.solid],
+			["tinted", n.tinted],
+			["transparent", n.transparent]
+		].map(([e, t]) => E`<button type="button" class="chip" aria-pressed=${String((this.config?.surface_style ?? "solid") === e)} @click=${() => this.#t("surface_style", e)}>${t}</button>`)}</div></div>
+            <div class="grid">
+              <label><span class="field-title">${n.heroScale}</span><div class="range-row"><input data-field="hero_scale" type="range" min="0.75" max="1.25" step="0.05" .value=${String(this.config.hero_scale ?? 1)} @input=${(e) => this.#n("hero_scale", e.target.value)} /><output>${Math.round((this.config.hero_scale ?? 1) * 100)}%</output></div></label>
+              <label><span class="field-title">${n.cardRadius}</span><div class="range-row"><input data-field="card_radius" type="range" min="0" max="40" step="1" .value=${String(this.config.card_radius ?? 20)} @input=${(e) => this.#n("card_radius", e.target.value)} /><output>${this.config.card_radius ?? 20}px</output></div></label>
+            </div>
+          </div>
+        </details>
+
+        <details class="group" open>
+          <summary>${n.contentOrder}</summary><div class="group-body">
+            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${Wt.map((e) => E`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#r(e)}>${d[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${Gt.map((e) => E`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => E`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${u[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${u[e]}`} ?disabled=${t === 0} @click=${() => this.#o(t, -1)}>↑</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${u[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#o(t, 1)}>↓</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#s()}>${n.resetOrder}</button></div>
+            <div class="checks">${qt.map(([e, n]) => E`<label><input data-field=${e} type="checkbox" .checked=${this.config?.[e] !== !1} @change=${(t) => this.#t(e, t.target.checked)} />${G(t, n)}</label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary>${n.advanced}</summary><div class="group-body">
+            <div class="field"><span class="field-title">${n.intensityControl}</span><div class="chips">${[
+			["slider", n.slider],
+			["presets", n.presets],
+			["both", n.both]
+		].map(([e, t]) => E`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
+            <label><span class="field-title">${n.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e) => this.#n("flow_threshold_w", e.target.value)} /></label>
+            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => E`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#d(e)}>×</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
+			e.key === "Enter" && (e.preventDefault(), this.#u());
+		}} /><button type="button" @click=${() => this.#u()}>${n.addPreset}</button></div></div>
+            <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />${n.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />${n.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />${n.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />${n.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />${n.invertSolar}</label></div>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p><div class="grid">${K.map((t) => {
+			let r = i?.statuses[t] ?? "missing";
+			return E`<label><span>${Vt(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#f(t, e.target.value)} /><small class="entity-status" data-status=${r}>${Ht(n, r)}</small></label>`;
+		})}</div></div>
+        </details>
+        <datalist id="v2c-entities">${r.map((e) => E`<option value=${e}></option>`)}</datalist>
+      </div>`;
 	}
 };
-X([I({ attribute: !1 })], Q.prototype, "hass", void 0), X([L()], Q.prototype, "config", void 0);
+X([I({ attribute: !1 })], Q.prototype, "hass", void 0), X([L()], Q.prototype, "config", void 0), X([L()], Q.prototype, "accentDraft", void 0), X([L()], Q.prototype, "presetDraft", void 0);
 //#endregion
 //#region src/index.ts
-var $ = "v2c-trydan-card", Bt = "v2c-trydan-card-editor";
-customElements.get($) || customElements.define($, Z), customElements.get(Bt) || customElements.define(Bt, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
+var $ = "v2c-trydan-card", Jt = "v2c-trydan-card-editor";
+customElements.get($) || customElements.define($, Z), customElements.get(Jt) || customElements.define(Jt, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
 	type: $,
 	name: "V2C Trydan Card",
 	description: "Quiet Hardware V2C Trydan charger control and smart energy summary.",
