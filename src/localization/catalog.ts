@@ -39,6 +39,8 @@ export const it = make({
     unavailableEntity: "Entità non disponibile", actionPending: "Modifica in corso",
     actionDone: "Modifica confermata", actionFailed: "Impossibile applicare la modifica",
     additionalStatus: "Stato aggiuntivo",
+    power: "Potenza", energyFlow: "Flusso energetico", voltage: "Tensione",
+    diagnostics: "Diagnostica", configuration: "Configurazione",
   },
   actions: {
     pause: "Pausa", resume: "Riprendi", lock: "Blocca EVSE", unlock: "Sblocca EVSE",
@@ -50,6 +52,8 @@ export const it = make({
     solar: "Solare", grid: "Rete", home: "Casa", battery: "Batteria", charger: "Auto",
     import: "Importazione", export: "Esportazione", charge: "Ricarica", discharge: "Scarica",
     consume: "Consumo", produce: "Produzione", idle: "Inattivo", unknown: "Nessun dato",
+    activeFlow: "Flusso energetico attivo", noFlow: "Nessun flusso energetico",
+    partialData: "Dati energetici parziali", noData: "Nessun dato energetico",
   },
   editor: {
     entity: "Entità V2C principale", name: "Nome", location: "Posizione", language: "Lingua",
@@ -84,6 +88,8 @@ export const de = make({
     lightControls: "Beleuchtung", unavailableEntity: "Entität nicht verfügbar",
     actionPending: "Änderung wird angewendet", actionDone: "Änderung bestätigt",
     actionFailed: "Änderung konnte nicht angewendet werden", additionalStatus: "Zusätzlicher Status",
+    power: "Leistung", energyFlow: "Energiefluss", voltage: "Spannung",
+    diagnostics: "Diagnose", configuration: "Konfiguration",
   },
   actions: {
     pause: "Pausieren", resume: "Fortsetzen", lock: "EVSE sperren", unlock: "EVSE entsperren",
@@ -95,6 +101,8 @@ export const de = make({
     solar: "Solar", grid: "Netz", home: "Haus", battery: "Batterie", charger: "Auto",
     import: "Bezug", export: "Einspeisung", charge: "Lädt", discharge: "Entlädt",
     consume: "Verbrauch", produce: "Erzeugung", idle: "Leerlauf", unknown: "Keine Daten",
+    activeFlow: "Aktiver Energiefluss", noFlow: "Kein Energiefluss",
+    partialData: "Teilweise Energiedaten", noData: "Keine Energiedaten",
   },
   editor: {
     entity: "Haupt-V2C-Entität", name: "Name", location: "Standort", language: "Sprache", theme: "Design",
@@ -129,6 +137,8 @@ export const fr = make({
     lightControls: "Éclairage", unavailableEntity: "Entité indisponible",
     actionPending: "Modification en cours", actionDone: "Modification confirmée",
     actionFailed: "Impossible d'appliquer la modification", additionalStatus: "État supplémentaire",
+    power: "Puissance", energyFlow: "Flux d'énergie", voltage: "Tension",
+    diagnostics: "Diagnostic", configuration: "Configuration",
   },
   actions: {
     pause: "Mettre en pause", resume: "Reprendre", lock: "Verrouiller l'EVSE", unlock: "Déverrouiller l'EVSE",
@@ -140,6 +150,8 @@ export const fr = make({
     solar: "Solaire", grid: "Réseau", home: "Maison", battery: "Batterie", charger: "Voiture",
     import: "Importation", export: "Exportation", charge: "Charge", discharge: "Décharge",
     consume: "Consommation", produce: "Production", idle: "Au repos", unknown: "Aucune donnée",
+    activeFlow: "Flux d'énergie actif", noFlow: "Aucun flux d'énergie",
+    partialData: "Données énergétiques partielles", noData: "Aucune donnée énergétique",
   },
   editor: {
     entity: "Entité V2C principale", name: "Nom", location: "Emplacement", language: "Langue", theme: "Thème",
@@ -173,6 +185,8 @@ export const nl = make({
     lightControls: "Verlichting", unavailableEntity: "Entiteit niet beschikbaar",
     actionPending: "Wijziging toepassen", actionDone: "Wijziging bevestigd",
     actionFailed: "Wijziging kon niet worden toegepast", additionalStatus: "Aanvullende status",
+    power: "Vermogen", energyFlow: "Energiestroom", voltage: "Spanning",
+    diagnostics: "Diagnostiek", configuration: "Configuratie",
   },
   actions: {
     pause: "Pauzeren", resume: "Hervatten", lock: "EVSE vergrendelen", unlock: "EVSE ontgrendelen",
@@ -184,6 +198,8 @@ export const nl = make({
     solar: "Zon", grid: "Net", home: "Huis", battery: "Batterij", charger: "Auto",
     import: "Import", export: "Export", charge: "Laden", discharge: "Ontladen",
     consume: "Verbruik", produce: "Productie", idle: "In rust", unknown: "Geen gegevens",
+    activeFlow: "Actieve energiestroom", noFlow: "Geen energiestroom",
+    partialData: "Gedeeltelijke energiegegevens", noData: "Geen energiegegevens",
   },
   editor: {
     entity: "Hoofd-V2C-entiteit", name: "Naam", location: "Locatie", language: "Taal", theme: "Thema",
@@ -216,6 +232,8 @@ export const sv = make({
     lightControls: "Belysning", unavailableEntity: "Entiteten är inte tillgänglig",
     actionPending: "Tillämpar ändring", actionDone: "Ändring bekräftad",
     actionFailed: "Ändringen kunde inte tillämpas", additionalStatus: "Ytterligare status",
+    power: "Effekt", energyFlow: "Energiflöde", voltage: "Spänning",
+    diagnostics: "Diagnostik", configuration: "Konfiguration",
   },
   actions: {
     pause: "Pausa", resume: "Fortsätt", lock: "Lås EVSE", unlock: "Lås upp EVSE", timer: "Timer",
@@ -226,6 +244,8 @@ export const sv = make({
     solar: "Sol", grid: "Elnät", home: "Hem", battery: "Batteri", charger: "Bil",
     import: "Import", export: "Export", charge: "Laddar", discharge: "Urladdning",
     consume: "Förbrukning", produce: "Produktion", idle: "Viloläge", unknown: "Ingen data",
+    activeFlow: "Aktivt energiflöde", noFlow: "Inget energiflöde",
+    partialData: "Delvisa energidata", noData: "Inga energidata",
   },
   editor: {
     entity: "Primär V2C-entitet", name: "Namn", location: "Plats", language: "Språk", theme: "Tema",
@@ -258,6 +278,8 @@ export const da = make({
     lightControls: "Belysning", unavailableEntity: "Enheden er ikke tilgængelig",
     actionPending: "Anvender ændring", actionDone: "Ændring bekræftet",
     actionFailed: "Ændringen kunne ikke anvendes", additionalStatus: "Ekstra status",
+    power: "Effekt", energyFlow: "Energiflow", voltage: "Spænding",
+    diagnostics: "Diagnostik", configuration: "Konfiguration",
   },
   actions: {
     pause: "Pause", resume: "Fortsæt", lock: "Lås EVSE", unlock: "Lås EVSE op", timer: "Timer",
@@ -268,6 +290,8 @@ export const da = make({
     solar: "Sol", grid: "Elnet", home: "Hjem", battery: "Batteri", charger: "Bil",
     import: "Import", export: "Eksport", charge: "Oplader", discharge: "Aflader",
     consume: "Forbrug", produce: "Produktion", idle: "Inaktiv", unknown: "Ingen data",
+    activeFlow: "Aktivt energiflow", noFlow: "Intet energiflow",
+    partialData: "Delvise energidata", noData: "Ingen energidata",
   },
   editor: {
     entity: "Primær V2C-enhed", name: "Navn", location: "Placering", language: "Sprog", theme: "Tema",
@@ -300,6 +324,8 @@ export const no = make({
     lightControls: "Belysning", unavailableEntity: "Enheten er ikke tilgjengelig",
     actionPending: "Bruker endring", actionDone: "Endring bekreftet",
     actionFailed: "Kunne ikke bruke endringen", additionalStatus: "Ekstra status",
+    power: "Effekt", energyFlow: "Energiflyt", voltage: "Spenning",
+    diagnostics: "Diagnostikk", configuration: "Konfigurasjon",
   },
   actions: {
     pause: "Pause", resume: "Fortsett", lock: "Lås EVSE", unlock: "Lås opp EVSE", timer: "Timer",
@@ -310,6 +336,8 @@ export const no = make({
     solar: "Sol", grid: "Strømnett", home: "Hjem", battery: "Batteri", charger: "Bil",
     import: "Import", export: "Eksport", charge: "Lader", discharge: "Lader ut",
     consume: "Forbruk", produce: "Produksjon", idle: "Inaktiv", unknown: "Ingen data",
+    activeFlow: "Aktiv energiflyt", noFlow: "Ingen energiflyt",
+    partialData: "Delvise energidata", noData: "Ingen energidata",
   },
   editor: {
     entity: "Primær V2C-enhet", name: "Navn", location: "Plassering", language: "Språk", theme: "Tema",
@@ -343,6 +371,8 @@ export const ro = make({
     lightControls: "Iluminare", unavailableEntity: "Entitate indisponibilă",
     actionPending: "Se aplică modificarea", actionDone: "Modificare confirmată",
     actionFailed: "Modificarea nu a putut fi aplicată", additionalStatus: "Stare suplimentară",
+    power: "Putere", energyFlow: "Flux de energie", voltage: "Tensiune",
+    diagnostics: "Diagnostic", configuration: "Configurare",
   },
   actions: {
     pause: "Pauză", resume: "Continuă", lock: "Blochează EVSE", unlock: "Deblochează EVSE",
@@ -354,6 +384,8 @@ export const ro = make({
     solar: "Solar", grid: "Rețea", home: "Casă", battery: "Baterie", charger: "Mașină",
     import: "Import", export: "Export", charge: "Încărcare", discharge: "Descărcare",
     consume: "Consum", produce: "Producție", idle: "Repaus", unknown: "Fără date",
+    activeFlow: "Flux de energie activ", noFlow: "Fără flux de energie",
+    partialData: "Date energetice parțiale", noData: "Fără date energetice",
   },
   editor: {
     entity: "Entitate V2C principală", name: "Nume", location: "Locație", language: "Limbă", theme: "Temă",

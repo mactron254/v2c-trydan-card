@@ -145,4 +145,64 @@ describe("v2c-trydan-card", () => {
     expect(confirm).toHaveBeenCalledOnce();
     expect(hass.callService).not.toHaveBeenCalled();
   });
+
+  it("uses one title and places the textual state directly after the charger", async () => {
+    const card = await renderCard();
+    const art = card.shadowRoot?.querySelector(".charger-art");
+    const status = card.shadowRoot?.querySelector(".charger-status");
+    expect(card.shadowRoot?.querySelectorAll(".card-heading h2")).toHaveLength(1);
+    expect(card.shadowRoot?.querySelector(".card-heading h2")?.textContent).toBe("V2C Trydan");
+    expect(card.shadowRoot?.querySelector(".eyebrow")).toBeNull();
+    expect(card.shadowRoot?.querySelector(".status")).toBeNull();
+    expect(card.shadowRoot?.textContent).not.toContain("Trydan preparado");
+    expect(status?.getAttribute("role")).toBe("status");
+    expect(art).toBeTruthy();
+    if (!art || !status) return;
+    expect(Boolean(art.compareDocumentPosition(status) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
+  });
+
+  it("keeps the Trydan artwork visible in compact and ultra compact modes", async () => {
+    for (const display_mode of ["compact", "ultra_compact"] as const) {
+      const card = await renderCard(mockHass(), { ...config, display_mode });
+      expect(card.shadowRoot?.querySelector(".charger-art")).toBeTruthy();
+      expect(card.shadowRoot?.querySelector(".charger-status")?.textContent).toContain("Cargando");
+      card.remove();
+    }
+  });
+
+  it("shows only active energy sources", async () => {
+    const card = await renderCard(mockHass({ "sensor.trydan_solar": "1800" }), {
+      ...config,
+      entities: { ...config.entities, fv_power: "sensor.trydan_solar" },
+    });
+    const summary = card.shadowRoot?.querySelector('.energy-summary[data-kind="active"]');
+    expect(summary).toBeTruthy();
+    expect(summary?.querySelectorAll(".flow-node")).toHaveLength(2);
+    expect(summary?.textContent).toContain("Solar");
+  });
+
+  it("summarizes idle, partial and unavailable energy data", async () => {
+    const flowConfig: V2cTrydanCardConfig = {
+      ...config,
+      entities: { ...config.entities, fv_power: "sensor.trydan_solar" },
+    };
+    const idle = await renderCard(mockHass({
+      "sensor.trydan_charge_power": "0",
+      "sensor.trydan_solar": "0",
+    }), flowConfig);
+    expect(idle.shadowRoot?.querySelector('.energy-summary[data-kind="idle"]')?.textContent).toContain("Sin flujo energético · 0 W");
+
+    const partial = await renderCard(mockHass({
+      "sensor.trydan_charge_power": "0",
+      "sensor.trydan_solar": "unavailable",
+    }), flowConfig);
+    expect(partial.shadowRoot?.querySelector('.energy-summary[data-kind="partial"]')?.textContent).toContain("Datos energéticos parciales");
+
+    const unavailable = await renderCard(mockHass({
+      "sensor.trydan_charge_power": "unknown",
+      "sensor.trydan_solar": "unavailable",
+    }), flowConfig);
+    expect(unavailable.shadowRoot?.querySelector('.energy-summary[data-kind="unavailable"]')?.textContent).toContain("Sin datos energéticos");
+  });
+
 });

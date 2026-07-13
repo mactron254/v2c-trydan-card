@@ -64,3 +64,17 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: caché pnpm se configuró antes de activar pnpm con Corepack.
 - **Resolución**: `pnpm/action-setup@v4` instala pnpm 11.5.1 antes de `setup-node`.
 - **Prevención**: el gestor debe existir antes de habilitar su caché en `setup-node`.
+
+## 2026-07-13 — Overflow responsive detectado en capturas
+
+- **Síntoma**: slider y botón salían por la derecha en compacto y ultracompacto.
+- **Causa**: controles en dos columnas dentro de contenedores estrechos y ancho intrínseco del rango.
+- **Resolución**: controles apilados por defecto, dos columnas solo en estándar desde 520 px y `min-width: 0` en rango.
+- **Prevención**: capturas headless a 280, 320 y 520 px antes de cada release visual.
+
+## 2026-07-13 — Typecheck en prueba de orden DOM
+
+- **Síntoma**: TS2532 al combinar optional chaining con máscara `DOCUMENT_POSITION_FOLLOWING`.
+- **Causa**: el resultado podía ser `undefined` antes de la operación binaria.
+- **Resolución**: asserts explícitos y guard clause antes de comparar nodos.
+- **Prevención**: ejecutar typecheck además de Vitest; las pruebas podían pasar en runtime.

@@ -3,7 +3,7 @@ import "../src/index";
 import { V2cTrydanCard } from "../src/card/v2c-trydan-card";
 import type { HomeAssistant } from "../src/models/types";
 
-describe("accessible Carbon Flow contract", () => {
+describe("accessible Quiet Hardware contract", () => {
   beforeEach(() => (document.body.innerHTML = ""));
 
   it("keeps state, flow, range and disclosure semantics without relying on motion", async () => {
@@ -40,7 +40,10 @@ describe("accessible Carbon Flow contract", () => {
     expect(card.shadowRoot?.querySelector("details > summary")).toBeTruthy();
     expect(card.shadowRoot?.querySelector('.charger-art[aria-hidden="true"]')).toBeTruthy();
     expect(String(V2cTrydanCard.styles)).toContain("prefers-reduced-motion");
-    expect(String(V2cTrydanCard.styles)).toContain("@container (min-width: 650px)");
+    expect(String(V2cTrydanCard.styles)).toContain("@container (min-width: 520px)");
+    expect(String(V2cTrydanCard.styles)).toContain("drop-shadow");
+    expect(String(V2cTrydanCard.styles)).not.toContain("--v2c-orange");
+    expect(String(V2cTrydanCard.styles)).not.toContain("#ff8001");
     expect(String(V2cTrydanCard.styles)).toContain("light-dark(");
   });
 });

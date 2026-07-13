@@ -34,14 +34,14 @@ export class V2cTrydanCardEditor extends LitElement {
       border: 1px solid var(--divider-color, #7775); border-radius: 8px;
       color: var(--primary-text-color); background: var(--card-background-color);
     }
-    input:focus-visible, select:focus-visible { outline: 3px solid #ffb35c; outline-offset: 2px; }
+    input:focus-visible, select:focus-visible { outline: 3px solid var(--primary-color, #0067d9); outline-offset: 2px; }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
     .checks label { display: flex; align-items: center; gap: 7px; min-height: 32px; }
-    .checks input { width: auto; min-height: auto; accent-color: #ff8001; }
+    .checks input { width: auto; min-height: auto; accent-color: var(--primary-text-color, #202326); }
     .yaml-note {
-      margin: 0; padding: 9px 11px; border-left: 3px solid #ff8001;
-      color: var(--secondary-text-color); background: color-mix(in srgb, #ff8001 8%, transparent);
+      margin: 0; padding: 9px 11px; border-left: 3px solid var(--primary-text-color, #202326);
+      color: var(--secondary-text-color); background: var(--secondary-background-color, #f4f5f6);
       font-size: 0.73rem; line-height: 1.4;
     }
     @media (max-width: 500px) { .grid, .checks { grid-template-columns: 1fr; } }

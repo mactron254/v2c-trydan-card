@@ -2,37 +2,39 @@
 
 ## Estado actual
 
-- Versión `0.2.0` lista para GitHub/HACS.
+- Versión `0.3.0` Quiet Hardware lista para GitHub/HACS.
+- Rama: `codex/quiet-hardware-redesign`.
 - Lit 3, TypeScript 7 estricto, Vite 8 y pnpm 11.5.1.
-- Tema automático, claro y oscuro.
-- Responsive 280–800+ px: móvil, tablet y escritorio.
-- Densidades `standard`, `compact`, `ultra_compact`.
-- 10 idiomas y editor GUI para opciones principales.
-- Overrides, signos, presets, umbrales y estado externo quedan en YAML.
+- SVG Trydan protagonista; estado grande debajo y sin línea naranja.
+- Tema automático, claro y oscuro con controles monocromos.
+- Densidades `standard`, `compact`, `ultra_compact`; SVG visible en todas.
+- Resumen energético inteligente: activo, cero, parcial y sin datos.
+- 10 idiomas y editor GUI; YAML compatible con 0.2.0.
 - Bundle HACS único en `dist/v2c-trydan-card.js`.
-- CI GitHub ejecuta `pnpm check`.
 
 ## Decisiones clave
 
-- Identidad Carbon Flow: carbono, blanco y naranja V2C `#FF8001`.
-- Mismo DOM para tres densidades; CSS container queries evita divergencias.
-- Tema `auto` usa variables de Home Assistant y `light-dark()` como fallback del sistema.
-- Ultracompacto muestra potencia y controles esenciales; secciones secundarias quedan ocultas.
-- Idioma detectado desde locale HA; fallback inglés; noruego acepta `no`, `nb` y `nn`.
-- Editor GUI solo para decisiones frecuentes; configuración avanzada continúa en YAML.
+- Identidad Quiet Hardware: superficie neutra, espacio negativo y LED SVG como color ordinario.
+- Un solo título; SVG → estado → métricas → controles → energía → ajustes.
+- Potencia, energía y tiempo quedan en portada; tensión y diagnóstico pasan a ajustes.
+- Estándar usa dos columnas desde 520 px. Compacto y ultra apilan controles para evitar overflow.
+- Ultra conserva SVG, estado, potencia, intensidad, pausa y resumen textual.
+- El flujo oculta nodos inactivos y nunca interpreta `unknown` como cero.
 - Atribución: Codex primero, Marco después.
 
 ## Verificación
 
 ```powershell
-corepack pnpm install
+corepack pnpm install --frozen-lockfile
 corepack pnpm check
 corepack pnpm demo
 ```
 
+Capturas verificadas en `docs/screenshots/` para estándar oscuro, compacto claro y ultra oscuro.
+
 ## Continuación
 
-1. Consultar release y estado de GitHub Actions.
-2. Añadir repositorio como Dashboard personalizado en HACS.
-3. Probar discovery y servicios contra un Trydan real.
+1. Revisar PR y GitHub Actions.
+2. Instalar release `0.3.0` desde HACS.
+3. Validar discovery y servicios con Trydan real.
 4. Registrar cualquier fallo real en `docs/FAILURES.md` antes de corregirlo.

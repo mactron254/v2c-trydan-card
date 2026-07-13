@@ -1,9 +1,11 @@
 # V2C Trydan Card
 
 Card Lovelace moderna para monitorizar y controlar cargadores **V2C Trydan** desde Home Assistant.
-Diseño Carbon Flow, 11 estados SVG, flujo energético, controles seguros y editor visual.
+Diseño Quiet Hardware: SVG Trydan protagonista, resumen energético inteligente, controles seguros y editor visual.
 
 > Proyecto independiente; no afiliado ni respaldado por V2C.
+
+![Quiet Hardware en tema oscuro](docs/screenshots/quiet-hardware-standard-dark.png)
 
 ## Características
 
@@ -14,7 +16,8 @@ Diseño Carbon Flow, 11 estados SVG, flujo energético, controles seguros y edit
 - Editor GUI para entidad, título, ubicación, idioma, tema, densidad y visibilidad.
 - Opciones avanzadas en YAML: overrides, signos, presets, umbrales y estado externo.
 - Estado por capas: carga, inhibidores, conectividad y errores no se pisan.
-- 11 SVG Trydan locales; sin recursos remotos ni telemetría.
+- 11 SVG Trydan locales como elemento principal; sus LED reales son el único acento cromático ordinario.
+- Resumen energético inteligente: actividad, reposo, datos parciales o sin datos.
 - Descubrimiento por dispositivo y `translation_key`, resistente a idioma y renombrados.
 - Intensidad, pausa, bloqueo, temporizador, control dinámico, luces y modo de carga.
 - Teclado, foco visible, texto semántico y movimiento reducido.

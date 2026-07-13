@@ -36,20 +36,6 @@ export function renderSessionControls(options: SessionControlOptions): TemplateR
 
   return html`
     <section class="session-controls" aria-label=${translate(options.dictionary, "labels.chargingControls")}>
-      ${pauseId
-        ? html`
-            <button
-              class="primary-action"
-              data-role="paused"
-              aria-busy=${String(options.pending.includes("paused"))}
-              ?disabled=${!available(pause) || options.pending.includes("paused")}
-              title=${available(pause) ? "" : translate(options.dictionary, "labels.unavailableEntity")}
-              @click=${options.onPause}
-            >
-              ${translate(options.dictionary, paused ? "actions.resume" : "actions.pause")}
-            </button>
-          `
-        : nothing}
       ${intensityId
         ? html`
             <div class="range-control">
@@ -83,6 +69,20 @@ export function renderSessionControls(options: SessionControlOptions): TemplateR
                 )}
               </div>
             </div>
+          `
+        : nothing}
+      ${pauseId
+        ? html`
+            <button
+              class="primary-action"
+              data-role="paused"
+              aria-busy=${String(options.pending.includes("paused"))}
+              ?disabled=${!available(pause) || options.pending.includes("paused")}
+              title=${available(pause) ? "" : translate(options.dictionary, "labels.unavailableEntity")}
+              @click=${options.onPause}
+            >
+              ${translate(options.dictionary, paused ? "actions.resume" : "actions.pause")}
+            </button>
           `
         : nothing}
     </section>

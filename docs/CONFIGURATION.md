@@ -10,7 +10,7 @@
 | `language` | código | idioma HA | Sí | Idioma de interfaz |
 | `theme` | `auto`/`light`/`dark` | `auto` | Sí | Tema automático o forzado |
 | `display_mode` | `standard`/`compact`/`ultra_compact` | `standard` | Sí | Densidad visual |
-| `show_energy_flow` | boolean | `true` | Sí | Rail energético |
+| `show_energy_flow` | boolean | `true` | Sí | Resumen energético inteligente |
 | `show_controls` | boolean | `true` | Sí | Intensidad y pausa |
 | `show_advanced` | boolean | `true` | Sí | Ajustes plegados |
 | `show_charger` | boolean | `true` | Sí | Ilustración Trydan |
@@ -34,17 +34,17 @@ Los locales `nb-NO` y `nn-NO` se asignan a noruego. Idiomas no soportados usan i
 ## Ejemplos de densidad
 
 ```yaml
-# Completa: información, energía y controles
+# Completa: Trydan protagonista, tres métricas, energía y controles
 display_mode: standard
 
-# Menor altura; conserva todas las secciones
+# Menor altura; conserva SVG, estado, métricas y controles
 display_mode: compact
 
-# Cabecera, potencia y controles esenciales
+# SVG reducido, estado, potencia y controles esenciales
 display_mode: ultra_compact
 ```
 
-El modo ultracompacto oculta ilustración, estadísticas secundarias, flujo y panel avanzado. Cambia a compacto o estándar para acceder a ellos.
+El modo ultracompacto mantiene la ilustración, el estado, la potencia, la intensidad y pausa. Oculta presets y condensa el flujo; los ajustes siguen plegados.
 
 ## Overrides de entidad
 
