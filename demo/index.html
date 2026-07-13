@@ -28,12 +28,13 @@
         color: inherit; background: #1c1f22; font: inherit;
       }
       input[type="range"] { padding: 0; accent-color: #f4f5f6; }
-      .stage { display: grid; place-items: center; padding: 34px; overflow: auto; }
-      .preview { width: 520px; max-width: 100%; transition: width 160ms ease; }
+      .stage { min-width: 0; display: grid; place-items: center; padding: 34px; overflow: auto; }
+      .preview { width: 520px; min-width: 0; max-width: 100%; transition: width 160ms ease; }
+      v2c-trydan-card { display: block; width: 100%; min-width: 0; }
       body.capture main { display: block; }
       body.capture aside { display: none; }
       body.capture .stage { min-height: 100vh; padding: 12px; place-items: start; }
-      body.capture .preview { max-width: 100%; }
+      body.capture .preview { max-width: 100%; transition: none; }
       .service-log {
         max-height: 170px; overflow: auto; margin-top: 18px; padding: 10px;
         border-radius: 8px; color: #a7adb4; background: #08090a;
@@ -57,7 +58,7 @@
   <body>
     <main>
       <aside>
-        <h1>QUIET HARDWARE</h1>
+        <h1>TRYDAN HERO XL</h1>
         <p>Laboratorio responsive del card</p>
         <label>Estado visual <select id="state"></select></label>
         <label>Anchura: <output id="width-value">520 px</output>

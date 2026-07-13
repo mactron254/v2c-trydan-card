@@ -34,17 +34,17 @@ Los locales `nb-NO` y `nn-NO` se asignan a noruego. Idiomas no soportados usan i
 ## Ejemplos de densidad
 
 ```yaml
-# Completa: Trydan protagonista, tres métricas, energía y controles
+# Completa: Hero XL de 260–360 px, tres métricas, energía y controles
 display_mode: standard
 
-# Menor altura; conserva SVG, estado, métricas y controles
+# Hero XL de 210–280 px; conserva estado, métricas y controles
 display_mode: compact
 
-# SVG reducido, estado, potencia y controles esenciales
+# Hero XL de 170–220 px, estado, potencia y controles esenciales
 display_mode: ultra_compact
 ```
 
-El modo ultracompacto mantiene la ilustración, el estado, la potencia, la intensidad y pausa. Oculta presets y condensa el flujo; los ajustes siguen plegados.
+Las tres densidades usan composición vertical centrada y límites fluidos seguros a 280 px. El modo ultracompacto mantiene la ilustración, el estado, la potencia, la intensidad y pausa; oculta presets y condensa el flujo. `show_charger: false` elimina la ilustración y su espacio, mientras el estado textual permanece visible.
 
 ## Overrides de entidad
 

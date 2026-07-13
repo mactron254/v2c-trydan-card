@@ -29,7 +29,7 @@ export const cardStyles = css`
     border-radius: var(--ha-card-border-radius, 20px);
   }
 
-  .shell { padding: clamp(16px, 3cqw, 24px); }
+  .shell { padding: clamp(20px, 4cqw, 30px); }
 
   .card-heading {
     display: flex;
@@ -63,9 +63,9 @@ export const cardStyles = css`
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: clamp(28px, 5cqw, 38px);
     align-items: center;
-    margin-top: 12px;
+    margin-top: 18px;
   }
 
   .device-column {
@@ -78,8 +78,8 @@ export const cardStyles = css`
 
   .charger-stage {
     display: grid;
-    width: clamp(180px, 55cqw, 230px);
-    aspect-ratio: 360 / 500;
+    width: min(100%, clamp(260px, 68cqw, 360px));
+    aspect-ratio: 312 / 480;
     place-items: center;
   }
 
@@ -97,15 +97,16 @@ export const cardStyles = css`
 
   .charger-status {
     max-width: 100%;
-    margin-top: 10px;
+    margin-top: 14px;
     overflow-wrap: anywhere;
     color: var(--v2c-text);
-    font-size: clamp(1.45rem, 6cqw, 2rem);
+    font-size: clamp(2rem, 7cqw, 2.5rem);
     font-weight: 650;
     letter-spacing: -0.035em;
     line-height: 1.05;
   }
 
+  .device-column.without-charger .charger-status { margin-top: 0; }
   .charger-status[data-severity="error"] { color: var(--v2c-danger); }
 
   .badges {
@@ -127,7 +128,12 @@ export const cardStyles = css`
     line-height: 1.2;
   }
 
-  .overview { min-width: 0; }
+  .overview {
+    width: 100%;
+    min-width: 0;
+    max-width: 760px;
+    justify-self: center;
+  }
 
   .primary-metrics {
     display: grid;
@@ -468,7 +474,7 @@ export const cardStyles = css`
   }
 
   @container (max-width: 359px) {
-    .shell { padding: 14px; }
+    .shell { padding: 16px; }
     .card-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
     .location::before { content: ""; }
     .primary-metrics { gap: 6px; }
@@ -479,12 +485,6 @@ export const cardStyles = css`
   }
 
   @container (min-width: 520px) {
-    ha-card[data-mode="standard"] .hero {
-      grid-template-columns: minmax(180px, 0.44fr) minmax(0, 0.56fr);
-      gap: clamp(24px, 5cqw, 40px);
-    }
-
-    ha-card[data-mode="standard"] .charger-stage { width: clamp(190px, 34cqw, 250px); }
     ha-card[data-mode="standard"] .session-controls {
       grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
       align-items: end;
@@ -493,26 +493,26 @@ export const cardStyles = css`
     .advanced-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 
-  ha-card[data-mode="compact"] .shell { padding: 14px; }
-  ha-card[data-mode="compact"] .hero { gap: 16px; margin-top: 8px; }
-  ha-card[data-mode="compact"] .charger-stage { width: clamp(140px, 44cqw, 180px); }
-  ha-card[data-mode="compact"] .charger-status { margin-top: 6px; font-size: clamp(1.25rem, 5cqw, 1.55rem); }
+  ha-card[data-mode="compact"] .shell { padding: 18px; }
+  ha-card[data-mode="compact"] .hero { gap: 20px; margin-top: 12px; }
+  ha-card[data-mode="compact"] .charger-stage { width: min(100%, clamp(210px, 62cqw, 280px)); }
+  ha-card[data-mode="compact"] .charger-status { margin-top: 10px; font-size: clamp(1.65rem, 6cqw, 2rem); }
   ha-card[data-mode="compact"] .metric { padding: 9px; }
   ha-card[data-mode="compact"] .session-controls,
   ha-card[data-mode="compact"] .energy-section { margin-top: 10px; padding-top: 10px; }
   ha-card[data-mode="compact"] details { margin-top: 10px; }
 
-  ha-card[data-mode="ultra_compact"] .shell { padding: 10px 12px; }
+  ha-card[data-mode="ultra_compact"] .shell { padding: 14px; }
   ha-card[data-mode="ultra_compact"] .location { display: none; }
   ha-card[data-mode="ultra_compact"] h2 { font-size: 0.86rem; }
   ha-card[data-mode="ultra_compact"] .hero {
     grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-    margin-top: 8px;
+    gap: 14px;
+    margin-top: 10px;
     align-items: center;
   }
-  ha-card[data-mode="ultra_compact"] .charger-stage { width: clamp(112px, 38cqw, 140px); }
-  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 4px; font-size: clamp(1rem, 4.5cqw, 1.2rem); }
+  ha-card[data-mode="ultra_compact"] .charger-stage { width: min(100%, clamp(170px, 56cqw, 220px)); }
+  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 8px; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
   ha-card[data-mode="ultra_compact"] .badges { margin-top: 6px; }
   ha-card[data-mode="ultra_compact"] .badge { padding: 3px 6px; font-size: 0.62rem; }
   ha-card[data-mode="ultra_compact"] .primary-metrics { grid-template-columns: 1fr; }

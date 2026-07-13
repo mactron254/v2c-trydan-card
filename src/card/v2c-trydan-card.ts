@@ -60,9 +60,9 @@ export class V2cTrydanCard extends LitElement {
   }
 
   getCardSize(): number {
-    if (this.config?.display_mode === "ultra_compact") return 3;
-    if (this.config?.display_mode === "compact") return this.config.show_advanced === false ? 4 : 5;
-    return this.config?.show_advanced === false ? 5 : 7;
+    if (this.config?.display_mode === "ultra_compact") return 4;
+    if (this.config?.display_mode === "compact") return 6;
+    return 8;
   }
 
   override disconnectedCallback(): void {
@@ -277,7 +277,7 @@ export class V2cTrydanCard extends LitElement {
           </header>
 
           <section class="hero">
-            <div class="device-column">
+            <div class="device-column ${this.config.show_charger ? "has-charger" : "without-charger"}">
               ${this.config.show_charger
                 ? html`
                     <div class="charger-stage">
