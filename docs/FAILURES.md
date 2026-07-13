@@ -57,3 +57,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: reemplazo global coincidió con dos objetos que compartían `type`.
 - **Resolución**: stub usa literales `auto` y `standard`; prueba de tipos ejecutada antes de commit.
 - **Prevención**: acotar reemplazos con contexto de función.
+
+## 2026-07-13 — GitHub Actions no encontró pnpm
+
+- **Síntoma**: CI falló en `actions/setup-node` con `Unable to locate executable file: pnpm`.
+- **Causa**: caché pnpm se configuró antes de activar pnpm con Corepack.
+- **Resolución**: `pnpm/action-setup@v4` instala pnpm 11.5.1 antes de `setup-node`.
+- **Prevención**: el gestor debe existir antes de habilitar su caché en `setup-node`.
