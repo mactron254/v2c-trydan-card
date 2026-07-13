@@ -60,7 +60,7 @@ export class V2cTrydanCard extends LitElement {
   }
 
   getCardSize(): number {
-    if (this.config?.display_mode === "ultra_compact") return 2;
+    if (this.config?.display_mode === "ultra_compact") return 3;
     if (this.config?.display_mode === "compact") return this.config.show_advanced === false ? 4 : 5;
     return this.config?.show_advanced === false ? 5 : 7;
   }
@@ -86,11 +86,7 @@ export class V2cTrydanCard extends LitElement {
     const key = `${this.config.entity}|${JSON.stringify(this.config.entities ?? {})}|${metadataCount}`;
     if (key === this.#discoveryKey) return;
     this.#discoveryKey = key;
-    const result = await this.#discovery.discover(
-      this.hass,
-      this.config.entity,
-      this.config.entities,
-    );
+    const result = await this.#discovery.discover(this.hass, this.config.entity, this.config.entities);
     if (!result || !this.isConnected || key !== this.#discoveryKey) return;
     this.resolvedEntities = result.entities;
     this.ambiguities = result.ambiguities;
@@ -116,10 +112,7 @@ export class V2cTrydanCard extends LitElement {
     this.#pending.delete(role);
     this.pendingRoles = [...this.#pending.keys()];
     const dictionary = getDictionary(this.#language());
-    this.actionMessage = translate(
-      dictionary,
-      success ? "labels.actionDone" : "labels.actionFailed",
-    );
+    this.actionMessage = translate(dictionary, success ? "labels.actionDone" : "labels.actionFailed");
   }
 
   #confirmPending(): void {
@@ -179,9 +172,7 @@ export class V2cTrydanCard extends LitElement {
       desired &&
       this.config?.confirm_lock !== false &&
       !window.confirm(translate(getDictionary(this.#language()), "actions.confirmLock"))
-    ) {
-      return;
-    }
+    ) return;
     void this.#runAction(
       role,
       entityId,
@@ -273,29 +264,30 @@ export class V2cTrydanCard extends LitElement {
         }),
       );
     const ambiguityRoles = Object.keys(this.ambiguities);
+    const diagnostic = visual.diagnostic && visual.diagnostic !== "no_error"
+      ? visual.diagnostic.replaceAll("_", " ")
+      : undefined;
 
     return html`
-      <ha-card
-        data-theme=${this.config.theme ?? "auto"}
-        data-mode=${this.config.display_mode ?? "standard"}
-      >
+      <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"}>
         <div class="shell">
-          <header class="topline">
-            <div>
-              <p class="eyebrow">${translate(dictionary, "labels.brand")}</p>
-              <h2>${title}</h2>
-              ${this.config.location ? html`<span class="location">${this.config.location}</span>` : nothing}
-            </div>
-            <div class="status" data-severity=${visual.severity} role="status">
-              <span class="status-dot" aria-hidden="true"></span>
-              <span>${translate(dictionary, visual.labelKey)}</span>
-            </div>
+          <header class="card-heading">
+            <h2>${title}</h2>
+            ${this.config.location ? html`<span class="location">${this.config.location}</span>` : nothing}
           </header>
 
           <section class="hero">
-            <div class="hero-copy">
-              <p class="hero-value">${formatPower(chargePower.watts, language)}</p>
-              <p class="state-detail">${translate(dictionary, visual.detailKey ?? visual.labelKey)}</p>
+            <div class="device-column">
+              ${this.config.show_charger
+                ? html`
+                    <div class="charger-stage">
+                      <div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}</div>
+                    </div>
+                  `
+                : nothing}
+              <div class="charger-status" data-severity=${visual.severity} role="status">
+                ${translate(dictionary, visual.labelKey)}
+              </div>
               ${visual.badges.length
                 ? html`
                     <div class="badges" aria-label=${translate(dictionary, "labels.additionalStatus")}>
@@ -305,63 +297,50 @@ export class V2cTrydanCard extends LitElement {
                     </div>
                   `
                 : nothing}
-              <div class="session-stats">
-                <div class="stat">
-                  <span class="stat-label">${translate(dictionary, "labels.energy")}</span>
-                  <span class="stat-value">${formatEnergy(energy?.state ?? null, language)}</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-label">${translate(dictionary, "labels.time")}</span>
-                  <span class="stat-value">${formatDuration(time?.state ?? null)}</span>
-                </div>
-                ${this.#entity("voltage")
-                  ? html`
-                      <div class="stat">
-                        <span class="stat-label">VOLT</span>
-                        <span class="stat-value">${this.#entity("voltage")?.state} V</span>
-                      </div>
-                    `
-                  : nothing}
-              </div>
             </div>
-            ${this.config.show_charger
-              ? html`
-                  <div class="charger-stage">
-                    <div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}</div>
-                  </div>
-                `
-              : nothing}
+
+            <div class="overview">
+              <div class="primary-metrics">
+                <div class="metric metric-power">
+                  <span class="metric-label">${translate(dictionary, "labels.power")}</span>
+                  <strong class="metric-value">${formatPower(chargePower.watts, language)}</strong>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">${translate(dictionary, "labels.energy")}</span>
+                  <strong class="metric-value">${formatEnergy(energy?.state ?? null, language)}</strong>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">${translate(dictionary, "labels.time")}</span>
+                  <strong class="metric-value">${formatDuration(time?.state ?? null)}</strong>
+                </div>
+              </div>
+
+              ${this.config.show_controls
+                ? renderSessionControls({
+                    hass: this.hass,
+                    entities: this.resolvedEntities,
+                    dictionary,
+                    presets: this.config.current_presets ?? [],
+                    pending: this.pendingRoles,
+                    sliderValue: this.sliderValue,
+                    onSliderInput: (value) => (this.sliderValue = value),
+                    onIntensity: (value) => this.#setIntensity(value),
+                    onPause: () => this.#toggleSwitch("paused"),
+                  })
+                : nothing}
+            </div>
           </section>
 
-          ${visual.diagnostic && visual.diagnostic !== "no_error"
-            ? html`<p class="diagnostic">${visual.diagnostic.replaceAll("_", " ")}</p>`
-            : nothing}
-          ${ambiguityRoles.length
-            ? html`<p class="config-warning">YAML | ${ambiguityRoles.join(", ")}</p>`
-            : nothing}
-
-          ${this.config.show_energy_flow
-            ? renderEnergyFlow(normalizedFlows, dictionary, language)
-            : nothing}
-          ${this.config.show_controls
-            ? renderSessionControls({
-                hass: this.hass,
-                entities: this.resolvedEntities,
-                dictionary,
-                presets: this.config.current_presets ?? [],
-                pending: this.pendingRoles,
-                sliderValue: this.sliderValue,
-                onSliderInput: (value) => (this.sliderValue = value),
-                onIntensity: (value) => this.#setIntensity(value),
-                onPause: () => this.#toggleSwitch("paused"),
-              })
-            : nothing}
+          ${this.config.show_energy_flow ? renderEnergyFlow(normalizedFlows, dictionary, language) : nothing}
           ${this.config.show_advanced
             ? renderAdvancedControls({
                 hass: this.hass,
                 entities: this.resolvedEntities,
                 dictionary,
                 pending: this.pendingRoles,
+                voltage: this.#entity("voltage"),
+                diagnostic,
+                ambiguityRoles,
                 onToggle: (role) =>
                   role === "logo_led" || role === "light_led"
                     ? this.#toggleLight(role)

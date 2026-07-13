@@ -20,19 +20,23 @@
       body { margin: 0; min-height: 100vh; }
       main { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
       aside { padding: 24px; border-right: 1px solid #ffffff18; background: #111315; }
-      aside h1 { margin: 0 0 4px; color: #ff8001; font-size: 0.75rem; letter-spacing: 0.16em; }
+      aside h1 { margin: 0 0 4px; color: #f4f5f6; font-size: 0.75rem; letter-spacing: 0.16em; }
       aside p { margin: 0 0 24px; color: #9ba1a6; font-size: 0.8rem; }
       label { display: grid; gap: 7px; margin: 14px 0; color: #bcc1c4; font-size: 0.75rem; }
       select, input {
         min-height: 40px; padding: 8px; border: 1px solid #ffffff25; border-radius: 8px;
         color: inherit; background: #1c1f22; font: inherit;
       }
-      input[type="range"] { padding: 0; accent-color: #ff8001; }
+      input[type="range"] { padding: 0; accent-color: #f4f5f6; }
       .stage { display: grid; place-items: center; padding: 34px; overflow: auto; }
       .preview { width: 520px; max-width: 100%; transition: width 160ms ease; }
+      body.capture main { display: block; }
+      body.capture aside { display: none; }
+      body.capture .stage { min-height: 100vh; padding: 12px; place-items: start; }
+      body.capture .preview { max-width: 100%; }
       .service-log {
         max-height: 170px; overflow: auto; margin-top: 18px; padding: 10px;
-        border-radius: 8px; color: #ffb35c; background: #08090a;
+        border-radius: 8px; color: #a7adb4; background: #08090a;
         font: 0.66rem/1.45 ui-monospace, monospace; white-space: pre-wrap;
       }
       body.light {
@@ -53,7 +57,7 @@
   <body>
     <main>
       <aside>
-        <h1>V2C · TRYDAN</h1>
+        <h1>QUIET HARDWARE</h1>
         <p>Laboratorio responsive del card</p>
         <label>Estado visual <select id="state"></select></label>
         <label>Anchura: <output id="width-value">520 px</output>

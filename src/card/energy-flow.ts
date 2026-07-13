@@ -18,26 +18,55 @@ export function renderEnergyFlow(
   language: string,
 ): TemplateResult | typeof nothing {
   if (flows.length === 0) return nothing;
+
+  const available = flows.filter((flow) => flow.available);
+  const unavailable = flows.length - available.length;
+  const active = available.filter((flow) => !["idle", "unknown"].includes(flow.direction));
+  const kind = active.length > 0
+    ? "active"
+    : available.length === 0
+      ? "unavailable"
+      : unavailable > 0
+        ? "partial"
+        : "idle";
+  const titleKey = kind === "active"
+    ? "flows.activeFlow"
+    : kind === "partial"
+      ? "flows.partialData"
+      : kind === "unavailable"
+        ? "flows.noData"
+        : "flows.noFlow";
+  const title = `${translate(dictionary, titleKey)}${kind === "idle" ? " · 0 W" : ""}`;
+
   return html`
-    <section class="energy-section" aria-label=${translate(dictionary, "labels.energy")}>
-      <div class="energy-rail">
-        ${flows.map((flow) => {
-          const name = translate(dictionary, `flows.${flow.role}`);
-          const direction = translate(dictionary, `flows.${flow.direction}`);
-          const value = formatPower(flow.watts, language);
-          const active = flow.available && !["idle", "unknown"].includes(flow.direction);
-          return html`
-            <div
-              class="flow-node"
-              data-active=${String(active)}
-              aria-label=${`${name}: ${value}, ${direction}`}
-            >
-              <span class="flow-name"><ha-icon icon=${ICONS[flow.role]}></ha-icon>${name}</span>
-              <strong class="flow-value">${value}</strong>
-              <span class="flow-direction">${direction}</span>
-            </div>
-          `;
-        })}
+    <section class="energy-section" aria-label=${translate(dictionary, "labels.energyFlow")}>
+      <div class="energy-summary" data-kind=${kind}>
+        <p class="energy-summary-title">
+          <ha-icon icon="mdi:lightning-bolt-outline" aria-hidden="true"></ha-icon>
+          <span>${title}</span>
+        </p>
+        ${active.length
+          ? html`
+              <div class="energy-nodes">
+                ${active.map((flow) => {
+                  const name = translate(dictionary, `flows.${flow.role}`);
+                  const direction = translate(dictionary, `flows.${flow.direction}`);
+                  const value = formatPower(flow.watts, language);
+                  return html`
+                    <div class="flow-node" aria-label=${`${name}: ${value}, ${direction}`}>
+                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${ICONS[flow.role]}></ha-icon></span>
+                      <span class="flow-name-text">${name}</span>
+                      <strong class="flow-value">${value}</strong>
+                      <span class="flow-direction">${direction}</span>
+                    </div>
+                  `;
+                })}
+              </div>
+            `
+          : nothing}
+        ${active.length && unavailable
+          ? html`<p class="energy-note">${translate(dictionary, "flows.partialData")}</p>`
+          : nothing}
       </div>
     </section>
   `;

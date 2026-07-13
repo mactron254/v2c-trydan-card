@@ -126,3 +126,31 @@ document.querySelector<HTMLSelectElement>("#language")!.addEventListener("change
     language: (event.target as HTMLSelectElement).value as NonNullable<V2cTrydanCardConfig["language"]>,
   });
 });
+
+const params = new URLSearchParams(window.location.search);
+document.body.classList.toggle("capture", params.get("capture") === "1");
+const applySelectParam = (id: string, key: string): void => {
+  const value = params.get(key);
+  const select = document.querySelector<HTMLSelectElement>(id);
+  if (!value || !select || ![...select.options].some((option) => option.value === value)) return;
+  select.value = value;
+  select.dispatchEvent(new Event("change"));
+};
+
+const requestedWidth = Number(params.get("width"));
+if (Number.isFinite(requestedWidth) && requestedWidth >= 280 && requestedWidth <= 800) {
+  width.value = String(requestedWidth);
+  width.dispatchEvent(new Event("input"));
+}
+applySelectParam("#state", "state");
+applySelectParam("#theme", "theme");
+applySelectParam("#density", "density");
+applySelectParam("#language", "language");
+
+if (params.get("debug") === "1") {
+  window.setTimeout(() => {
+    const surface = card.shadowRoot?.querySelector<HTMLElement>("ha-card");
+    document.body.dataset.cardWidth = String(surface?.clientWidth ?? 0);
+    document.body.dataset.cardScrollWidth = String(surface?.scrollWidth ?? 0);
+  }, 250);
+}

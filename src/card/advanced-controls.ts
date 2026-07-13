@@ -8,6 +8,9 @@ export interface AdvancedControlOptions {
   entities: EntityMap;
   dictionary: Dictionary;
   pending: string[];
+  voltage?: HassEntity;
+  diagnostic?: string;
+  ambiguityRoles?: string[];
   onToggle: (role: EntityRole) => void;
   onSelect: (option: string) => void;
   onBrightness: (value: number) => void;
@@ -29,10 +32,9 @@ function toggleRow(options: AdvancedControlOptions, role: EntityRole, labelKey: 
   if (!id) return nothing;
   const entity = options.hass.states[id];
   const on = entity?.state === "on";
-  const label =
-    role === "locked" && on
-      ? translate(options.dictionary, "actions.unlock")
-      : translate(options.dictionary, labelKey);
+  const label = role === "locked" && on
+    ? translate(options.dictionary, "actions.unlock")
+    : translate(options.dictionary, labelKey);
   return html`
     <div class="toggle-row">
       <span>${label}</span>
@@ -56,37 +58,46 @@ export function renderAdvancedControls(options: AdvancedControlOptions): Templat
   const logoId = options.entities.logo_led;
   const logo = logoId ? options.hass.states[logoId] : undefined;
   const lightId = options.entities.light_led;
-  if (!switchRows.some((row) => row !== nothing) && !modeId && !logoId && !lightId) return nothing;
+  const hasTechnical = Boolean(options.voltage || options.diagnostic || options.ambiguityRoles?.length);
+  if (!switchRows.some((row) => row !== nothing) && !modeId && !logoId && !lightId && !hasTechnical) return nothing;
 
   return html`
     <details>
       <summary>${translate(options.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
-        <section class="control-group">
-          <h3>${translate(options.dictionary, "labels.chargingControls")}</h3>
-          ${switchRows.slice(0, 2)}
-          ${modeId
-            ? html`
-                <label class="select-row">
-                  <span>${translate(options.dictionary, "actions.chargeMode")}</span>
-                  <select
-                    data-role="charge_mode"
-                    .value=${mode?.state ?? ""}
-                    ?disabled=${!valid(mode) || options.pending.includes("charge_mode")}
-                    @change=${(event: Event) => options.onSelect((event.target as HTMLSelectElement).value)}
-                  >
-                    ${(mode?.attributes.options ?? []).map(
-                      (option) => html`<option .value=${String(option)}>${String(option)}</option>`,
-                    )}
-                  </select>
-                </label>
-              `
-            : nothing}
-        </section>
-        <section class="control-group">
-          <h3>${translate(options.dictionary, "labels.energyControls")}</h3>
-          ${switchRows.slice(2)}
-        </section>
+        ${switchRows.slice(0, 2).some((row) => row !== nothing) || modeId
+          ? html`
+              <section class="control-group">
+                <h3>${translate(options.dictionary, "labels.chargingControls")}</h3>
+                ${switchRows.slice(0, 2)}
+                ${modeId
+                  ? html`
+                      <label class="select-row">
+                        <span>${translate(options.dictionary, "actions.chargeMode")}</span>
+                        <select
+                          data-role="charge_mode"
+                          .value=${mode?.state ?? ""}
+                          ?disabled=${!valid(mode) || options.pending.includes("charge_mode")}
+                          @change=${(event: Event) => options.onSelect((event.target as HTMLSelectElement).value)}
+                        >
+                          ${(mode?.attributes.options ?? []).map(
+                            (option) => html`<option .value=${String(option)}>${String(option)}</option>`,
+                          )}
+                        </select>
+                      </label>
+                    `
+                  : nothing}
+              </section>
+            `
+          : nothing}
+        ${switchRows.slice(2).some((row) => row !== nothing)
+          ? html`
+              <section class="control-group">
+                <h3>${translate(options.dictionary, "labels.energyControls")}</h3>
+                ${switchRows.slice(2)}
+              </section>
+            `
+          : nothing}
         ${logoId || lightId
           ? html`
               <section class="control-group">
@@ -109,6 +120,39 @@ export function renderAdvancedControls(options: AdvancedControlOptions): Templat
                     `
                   : nothing}
                 ${toggleRow(options, "light_led", "actions.lightLed")}
+              </section>
+            `
+          : nothing}
+        ${hasTechnical
+          ? html`
+              <section class="control-group">
+                <h3>${translate(options.dictionary, "labels.diagnostics")}</h3>
+                <dl class="technical-list">
+                  ${options.voltage
+                    ? html`
+                        <div class="technical-row">
+                          <dt>${translate(options.dictionary, "labels.voltage")}</dt>
+                          <dd>${options.voltage.state} ${options.voltage.attributes.unit_of_measurement ?? "V"}</dd>
+                        </div>
+                      `
+                    : nothing}
+                  ${options.diagnostic
+                    ? html`
+                        <div class="technical-row" data-severity="error">
+                          <dt>${translate(options.dictionary, "labels.diagnostics")}</dt>
+                          <dd>${options.diagnostic}</dd>
+                        </div>
+                      `
+                    : nothing}
+                  ${options.ambiguityRoles?.length
+                    ? html`
+                        <div class="technical-row">
+                          <dt>${translate(options.dictionary, "labels.configuration")}</dt>
+                          <dd>YAML · ${options.ambiguityRoles.join(", ")}</dd>
+                        </div>
+                      `
+                    : nothing}
+                </dl>
               </section>
             `
           : nothing}

@@ -12,7 +12,7 @@ if (!window.customCards.some((card) => card.type === CARD_TAG)) {
   window.customCards.push({
     type: CARD_TAG,
     name: "V2C Trydan Card",
-    description: "Elegant V2C Trydan EV charger control and energy-flow card.",
+    description: "Quiet Hardware V2C Trydan charger control and smart energy summary.",
     preview: true,
   });
 }

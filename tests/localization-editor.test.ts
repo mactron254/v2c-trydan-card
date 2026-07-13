@@ -19,6 +19,11 @@ describe("multilingual GUI editor", () => {
       expect(dictionary.states.charging).not.toBe("");
       expect(dictionary.editor.theme).not.toBe("");
       expect(dictionary.editor.modeUltra).not.toBe("");
+      expect(dictionary.labels.power).not.toBe("");
+      expect(dictionary.labels.energyFlow).not.toBe("");
+      expect(dictionary.flows.noFlow).not.toBe("");
+      expect(dictionary.flows.partialData).not.toBe("");
+      expect(dictionary.flows.noData).not.toBe("");
     }
   });
 
@@ -38,5 +43,6 @@ describe("multilingual GUI editor", () => {
     expect(editor.shadowRoot?.querySelector('select[data-field="display_mode"]')).toBeTruthy();
     expect(editor.shadowRoot?.querySelector('[data-role="grid_power"]')).toBeNull();
     expect(editor.shadowRoot?.textContent).toContain("Dimensione scheda");
+    expect(String((editor.constructor as typeof V2cTrydanCardEditor).styles)).not.toContain("#ff8001");
   });
 });
