@@ -149,8 +149,11 @@ applySelectParam("#language", "language");
 
 if (params.get("debug") === "1") {
   window.setTimeout(() => {
-    const surface = card.shadowRoot?.querySelector<HTMLElement>("ha-card");
-    document.body.dataset.cardWidth = String(surface?.clientWidth ?? 0);
-    document.body.dataset.cardScrollWidth = String(surface?.scrollWidth ?? 0);
+    document.body.dataset.cardWidth = String(Math.round(card.getBoundingClientRect().width));
+    document.body.dataset.cardScrollWidth = String(card.scrollWidth);
+    document.body.dataset.cardHeight = String(Math.ceil(card.getBoundingClientRect().height));
+    document.body.dataset.previewWidth = String(preview.clientWidth);
+    document.body.dataset.documentWidth = String(document.documentElement.clientWidth);
+    document.body.dataset.documentScrollWidth = String(document.documentElement.scrollWidth);
   }, 250);
 }

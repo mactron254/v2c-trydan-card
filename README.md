@@ -1,11 +1,11 @@
 # V2C Trydan Card
 
 Card Lovelace moderna para monitorizar y controlar cargadores **V2C Trydan** desde Home Assistant.
-Diseño Quiet Hardware: SVG Trydan protagonista, resumen energético inteligente, controles seguros y editor visual.
+Diseño Trydan Hero XL sobre Quiet Hardware: SVG de gran formato centrado, resumen energético inteligente, controles seguros y editor visual.
 
 > Proyecto independiente; no afiliado ni respaldado por V2C.
 
-![Quiet Hardware en tema oscuro](docs/screenshots/quiet-hardware-standard-dark.png)
+![Trydan Hero XL en tema oscuro](docs/screenshots/trydan-hero-xl-standard-dark.png)
 
 ## Características
 
@@ -16,7 +16,7 @@ Diseño Quiet Hardware: SVG Trydan protagonista, resumen energético inteligente
 - Editor GUI para entidad, título, ubicación, idioma, tema, densidad y visibilidad.
 - Opciones avanzadas en YAML: overrides, signos, presets, umbrales y estado externo.
 - Estado por capas: carga, inhibidores, conectividad y errores no se pisan.
-- 11 SVG Trydan locales como elemento principal; sus LED reales son el único acento cromático ordinario.
+- 11 SVG Trydan locales como Hero XL centrado de 170 a 360 px; sus LED reales son el único acento cromático ordinario.
 - Resumen energético inteligente: actividad, reposo, datos parciales o sin datos.
 - Descubrimiento por dispositivo y `translation_key`, resistente a idioma y renombrados.
 - Intensidad, pausa, bloqueo, temporizador, control dinámico, luces y modo de carga.
@@ -56,6 +56,8 @@ theme: auto                  # auto | light | dark
 display_mode: compact        # standard | compact | ultra_compact
 language: es                 # normalmente se detecta desde Home Assistant
 ```
+
+El SVG permanece centrado en las tres densidades y nunca desborda tarjetas estrechas. `show_charger: false` elimina el hero sin reservar espacio.
 
 Opciones principales también disponibles desde el editor del dashboard.
 Configuración completa: [docs/CONFIGURATION.md](docs/CONFIGURATION.md).

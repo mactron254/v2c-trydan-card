@@ -78,3 +78,38 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: el resultado podía ser `undefined` antes de la operación binaria.
 - **Resolución**: asserts explícitos y guard clause antes de comparar nodos.
 - **Prevención**: ejecutar typecheck además de Vitest; las pruebas podían pasar en runtime.
+
+## 2026-07-13 — URL con espacios en migración Node
+
+- **Síntoma**: la migración no encontró los SVG y buscó una ruta con `V2c%20dashboard`.
+- **Causa**: se usó `URL.pathname` directamente como ruta Windows.
+- **Resolución**: conversión con `fileURLToPath()` antes de combinar rutas.
+- **Prevención**: no convertir URL de archivo a ruta mediante recortes o decodificación manual.
+
+## 2026-07-13 — Interpolación accidental en migración Lit
+
+- **Síntoma**: el script lanzó `TypeError` al intentar leer `this.config`.
+- **Causa**: un template literal del migrador evaluó la interpolación destinada al componente Lit.
+- **Resolución**: segundo paso acotado con cadena literal y contextos exactos.
+- **Prevención**: usar cadenas entre comillas o escapar interpolaciones al generar plantillas Lit.
+
+## 2026-07-13 — URL de módulo transformada en Vitest
+
+- **Síntoma**: `fileURLToPath(import.meta.url)` falló en una prueba ejecutada por Vite.
+- **Causa**: el transformador sustituyó la URL de módulo por un identificador no `file:`.
+- **Resolución**: fuentes de prueba resueltas desde `process.cwd()`.
+- **Prevención**: no depender de `import.meta.url` para archivos del workspace dentro de Vitest/Vite.
+
+## 2026-07-13 — Demo visual retenía 520 px
+
+- **Síntoma**: capturas estrechas mostraban `style="width: 280px"`, pero el host seguía midiendo 520 px.
+- **Causa**: mínimo intrínseco del ítem Grid y transición de anchura congelada por el reloj virtual de Edge.
+- **Resolución**: `min-width: 0` en stage/preview, card al 100 % y transición desactivada solo en modo captura.
+- **Prevención**: medir `clientWidth` y `scrollWidth` en la matriz visual; no validar responsive únicamente por dimensiones del PNG.
+
+## 2026-07-13 — Dos puntos tras variable PowerShell
+
+- **Síntoma**: el comando de matriz no llegó a ejecutarse por una referencia de variable inválida.
+- **Causa**: PowerShell interpretó `$id:` como nombre con ámbito.
+- **Resolución**: delimitación explícita `${id}:`.
+- **Prevención**: delimitar variables interpoladas cuando van seguidas de `:`.
