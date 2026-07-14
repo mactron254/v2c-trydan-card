@@ -180,3 +180,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: el contrato anterior exigía únicamente el bundle JavaScript.
 - **Resolución**: smoke exige JS + SHA-256 y vuelve a calcular el hash antes de aprobar.
 - **Prevención**: validar el conjunto exacto de assets de release, no sólo su cantidad.
+
+## 2026-07-14 — Actions ejecutadas con runtime Node 20 obsoleto
+
+- **Síntoma**: CI era verde, pero GitHub advertía que forzaba tres Actions v4 a Node 24.
+- **Causa**: `checkout`, `setup-node` y `pnpm/action-setup` usaban majors con runtime Node 20.
+- **Resolución**: actualización a `checkout@v7`, `setup-node@v6` y `pnpm/action-setup@v6`.
+- **Prevención**: revisar avisos del runner y majors oficiales en cada release.
