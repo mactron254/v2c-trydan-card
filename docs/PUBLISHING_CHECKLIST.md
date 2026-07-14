@@ -12,7 +12,7 @@ Evidence date: 2026-07-14.
 - [x] Canonical bundle path is `dist/v2c-trydan-card.js` and matches repository name.
 - [x] README contains images, usage and HACS My link.
 - [x] HACS Action workflow exists with category `plugin` and no ignored checks.
-- [ ] HACS Action passes on the merged `main` commit.
+- [x] HACS Action passes on the merged `main` commit.
 
 ## Code quality
 
@@ -37,9 +37,9 @@ Evidence date: 2026-07-14.
 
 ## Release
 
-- [ ] PR merged into `main` with CI and HACS green.
-- [ ] `v0.4.2` tag points to the merged main commit.
-- [ ] Release contains `v2c-trydan-card.js` and SHA-256 checksum.
-- [ ] HACS/manual release asset download verified.
-- [ ] GitHub release URL recorded in handoff.
+- [x] PR merged into `main` with CI and HACS green.
+- [x] `v0.4.2` tag points to the merged main commit.
+- [x] Release contains `v2c-trydan-card.js` and SHA-256 checksum.
+- [x] HACS/manual release asset download verified.
+- [x] GitHub release URL recorded in handoff.
 - [x] Forum live publication is not applicable: approved scope is release plus drafts only.
