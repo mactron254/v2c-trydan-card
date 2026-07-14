@@ -3,7 +3,8 @@
 ## Current release
 
 - Target: `v0.4.2`.
-- Branch: `codex/personalization-i18n-density` until PR/merge.
+- Status: published from `main` on 2026-07-14.
+- Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.4.2
 - Stack: Lit 3, TypeScript 7, Vite 8, Node 20+ and pnpm 11.5.1.
 - Attribution: Codex first; Marco `@mactron254` second.
 
@@ -31,6 +32,16 @@ corepack pnpm@11.5.1 docs:capture
 ```
 
 ## Publishing
+
+Published evidence:
+
+- PR: https://github.com/mactron254/v2c-trydan-card/pull/3
+- Merge commit: `ecb656e1ec1803fd156ce16b64c123608ceac409`.
+- CI and official HACS Action: green on merged `main`.
+- Release assets downloaded and verified: 190192 bytes.
+- SHA-256: `c7fbd646612f2e6a208f8e1d060acea679552671b4aede8d18af79859c7cce5b`.
+
+Original procedure:
 
 1. Push branch and open PR to `main`.
 2. Require CI and HACS green.
