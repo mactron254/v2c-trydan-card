@@ -1,99 +1,83 @@
 # V2C Trydan Card
 
-Card Lovelace moderna para monitorizar y controlar cargadores **V2C Trydan** desde Home Assistant.
-Diseño Trydan Hero XL sobre Quiet Hardware: SVG de gran formato centrado, resumen energético inteligente, controles seguros y editor visual.
+[Español](README.es.md) · [Configuration](docs/CONFIGURATION.md) · [Visual guide](docs/VISUAL_GUIDE.md) · [FAQ](docs/FAQ.md)
 
-> Proyecto independiente; no afiliado ni respaldado por V2C.
+[![Release](https://img.shields.io/github/v/release/mactron254/v2c-trydan-card)](https://github.com/mactron254/v2c-trydan-card/releases/latest)
+[![CI](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml)
+[![HACS](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml)
+[![License](https://img.shields.io/github/license/mactron254/v2c-trydan-card)](LICENSE)
 
-![Trydan Hero XL en tema oscuro](docs/screenshots/v041/density-standard-dark.png)
+Modern Home Assistant Lovelace card for V2C Trydan EV chargers. Monitor charging, adjust current, control the charger and build a responsive EV dashboard through a translated visual editor.
 
-## Características
+> Independent community project. Not affiliated with or endorsed by V2C.
 
-- Tema `auto`, claro u oscuro. `auto` sigue Home Assistant y el sistema.
-- Responsive real para móvil, tablet y escritorio mediante container queries.
-- Cuatro densidades: XXL, estándar, compacta y ultracompacta.
-- 10 idiomas: English, Italiano, Deutsch, Français, Nederlands, Svenska, Dansk, Norsk, Română y Español.
-- Editor visual traducido para apariencia, color, densidad, layout, contenido, orden, entidades y opciones avanzadas.
-- Opciones avanzadas en YAML: overrides, signos, presets, umbrales y estado externo.
-- Estado por capas: carga, inhibidores, conectividad y errores no se pisan.
-- 11 SVG Trydan locales de 170 a 430 px, con Hero XXL claramente diferenciado; sus LED reales son el único acento cromático ordinario.
-- Resumen energético inteligente: actividad, reposo, datos parciales o sin datos.
-- Descubrimiento por dispositivo y `translation_key`, resistente a idioma y renombrados.
-- Intensidad, pausa, bloqueo, temporizador, control dinámico, luces y modo de carga.
-- Teclado, foco visible, texto semántico y movimiento reducido.
+![V2C Trydan Card in split dark layout](docs/screenshots/v042/layout-split-dark.png)
 
-## Instalación con HACS
+## Why use it?
 
-1. Abre HACS → menú de tres puntos → **Repositorios personalizados**.
-2. Añade `https://github.com/mactron254/v2c-trydan-card`.
-3. Selecciona categoría **Dashboard**.
-4. Instala **V2C Trydan Card** y recarga Home Assistant.
+- Visual editor translated into 10 languages.
+- Four densities: XXL, standard, compact and ultra compact.
+- Four responsive layouts: automatic, centered, split and inline.
+- 11 hardware-inspired charger states with localized LCD text.
+- Real power, current, voltage and session energy on the charger display.
+- Safe current, pause, lock, timer, dynamic control and lighting actions.
+- Device-registry discovery resilient to renamed or translated entities.
+- Optional energy-flow summary, disabled by default in v0.4.2.
+- Keyboard navigation, visible focus, reduced motion and 280–768 px support.
 
-HACS acepta el bundle `dist/v2c-trydan-card.js`; el nombre coincide con el repositorio.
+![Animated tour of V2C Trydan Card densities, layouts and editor](docs/media/trydan-card-tour.gif)
 
-## Instalación manual
+## Install with HACS
 
-1. Descarga `v2c-trydan-card.js` desde la última release.
-2. Cópialo a `/config/www/v2c-trydan-card.js`.
-3. Ajustes → Paneles → Recursos → añade `/local/v2c-trydan-card.js` como módulo JavaScript.
-4. Recarga el navegador.
+[![Open your Home Assistant instance and open V2C Trydan Card in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mactron254&repository=v2c-trydan-card&category=plugin)
 
-## Configuración mínima
+If needed, add `https://github.com/mactron254/v2c-trydan-card` as a custom **Dashboard** repository in HACS. Install it, reload the browser and add the card from the dashboard editor.
 
-```yaml
-type: custom:v2c-trydan-card
-entity: binary_sensor.garaje_v2c_cargador_conectado
-```
+## Manual installation
 
-La entidad semilla puede ser cualquier entidad del dispositivo V2C. La card descubre el resto mediante metadatos estables.
+1. Download `v2c-trydan-card.js` from the latest release.
+2. Copy it to `/config/www/v2c-trydan-card.js`.
+3. Add `/local/v2c-trydan-card.js` as a JavaScript module under Dashboard resources.
+4. Reload Home Assistant.
 
-## Tema y densidad
+## Minimal configuration
 
 ```yaml
 type: custom:v2c-trydan-card
-entity: binary_sensor.garaje_v2c_cargador_conectado
-theme: auto                  # auto | light | dark
-display_mode: standard       # xxl | standard | compact | ultra_compact
-layout: auto                 # auto | centered | split | inline
-language: auto               # config > HA locale > HA language > browser > en
-language: es                 # normalmente se detecta desde Home Assistant
+entity: binary_sensor.garage_v2c_charger_connected
 ```
 
-El SVG permanece centrado en las cuatro densidades y nunca desborda tarjetas estrechas. `show_charger: false` elimina el hero sin reservar espacio.
+Any entity belonging to the V2C device can be the seed. The card discovers supported entities from stable registry metadata.
 
-Editor agrupado para apariencia, contenido, orden, entidades y opciones avanzadas.
-Configuración completa: [docs/CONFIGURATION.md](docs/CONFIGURATION.md). Galería: [docs/VISUAL_GUIDE.md](docs/VISUAL_GUIDE.md).
+Enable the optional energy summary explicitly:
 
-![Editor visual en español](docs/screenshots/v041/editor-es.png)
+```yaml
+show_energy_flow: true
+```
 
-## Desarrollo
+Ultra compact mode intentionally hides the charger illustration while preserving `show_charger` for other densities.
 
-Requiere Node.js 20+ y **pnpm 11+**. Proyecto fijado a pnpm 11.5.1.
+## Documentation
+
+- [Complete configuration reference](docs/CONFIGURATION.md)
+- [Visual guide: 33 reproducible screenshots](docs/VISUAL_GUIDE.md)
+- [FAQ and troubleshooting](docs/FAQ.md)
+- [Changelog](CHANGELOG.md)
+- [Contribution guide](CONTRIBUTING.md)
+- [English forum draft](docs/FORUM_POST_EN.md) · [Spanish forum draft](docs/FORUM_POST_ES.md)
+
+## Development
+
+Requires Node.js 20+ and pnpm 11+. Repository is pinned to pnpm 11.5.1.
 
 ```powershell
 corepack pnpm@11.5.1 install
 corepack pnpm@11.5.1 check
-corepack pnpm@11.5.1 demo
 corepack pnpm@11.5.1 docs:capture
 ```
 
-## Estructura
+## Credits and license
 
-- `src/`: card, editor, dominio, servicios, traducciones y SVG.
-- `tests/`: estado, discovery, energía, servicios, localización, editor y DOM.
-- `demo/`: laboratorio visual responsive sin Home Assistant real.
-- `dist/`: bundle único instalable por HACS.
-- `docs/`: configuración, fallos resueltos y handoff.
-- `specs/`: especificación, contratos, plan y tareas Spec Kit.
+Technical collaboration: **Codex**, followed by product owner **Marco** ([@mactron254](https://github.com/mactron254)). See [CONTRIBUTORS.md](CONTRIBUTORS.md).
 
-## Créditos
-
-Inspiración funcional: [Lektrico Charger Card](https://github.com/naked-head/lektrico-charger-card).
-Entidades: integración oficial [Home Assistant V2C](https://github.com/home-assistant/core/tree/dev/homeassistant/components/v2c).
-
-Colaboración principal: **Codex**, seguido de **Marco** ([@mactron254](https://github.com/mactron254)).
-Consulta [CONTRIBUTORS.md](CONTRIBUTORS.md).
-
-## Licencia
-
-MIT. Consulta [LICENSE](LICENSE).
+MIT licensed. See [LICENSE](LICENSE).

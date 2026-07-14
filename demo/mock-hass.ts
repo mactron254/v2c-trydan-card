@@ -158,6 +158,12 @@ if (params.get("view") === "editor") {
   editor.setConfig({ ...config, language: (params.get("language") ?? "es") as NonNullable<V2cTrydanCardConfig["language"]>, color_scheme: "custom", accent_color: "#0067D9", card_radius: 24 });
   preview.replaceChildren(editor);
   preview.classList.add("editor-preview");
+  const editorSections = ["general","appearance","content","advanced","entities"];
+  const requestedSection = params.get("section");
+  void editor.updateComplete.then(() => {
+    const groups = [...(editor.shadowRoot?.querySelectorAll<HTMLDetailsElement>("details.group") ?? [])];
+    groups.forEach((group,index) => { group.open = !requestedSection || editorSections[index] === requestedSection; });
+  });
 }
 if (params.get("debug") === "1") {
   window.setTimeout(() => {

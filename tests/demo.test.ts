@@ -17,7 +17,7 @@ describe("responsive demo harness", () => {
     expect(html).toContain('<option value="xxl">XXL</option>');
     expect(html).toContain('<select id="layout">');
     expect(mock).toContain('params.get("view") === "editor"');
-    expect(capture).toContain("captured ${cases.length} documentation images");
+    expect(capture).toContain("captured ${cases.length} images, 2 GIFs and social preview");
     expect(capture).toContain('["auto","centered","split","inline"]');
   });
 });

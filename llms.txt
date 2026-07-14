@@ -1,0 +1,23 @@
+# V2C Trydan Card
+
+> Home Assistant Lovelace card for V2C Trydan EV chargers, with a multilingual visual editor, responsive layouts, charger controls and optional energy monitoring.
+
+Canonical repository: https://github.com/mactron254/v2c-trydan-card
+
+## Documentation
+
+- English README: https://github.com/mactron254/v2c-trydan-card/blob/main/README.md
+- Spanish README: https://github.com/mactron254/v2c-trydan-card/blob/main/README.es.md
+- Configuration: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/CONFIGURATION.md
+- Spanish configuration: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/CONFIGURATION.es.md
+- Visual guide: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/VISUAL_GUIDE.md
+- FAQ: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/FAQ.md
+- Releases: https://github.com/mactron254/v2c-trydan-card/releases
+
+## Facts
+
+- Independent project; not affiliated with V2C.
+- Supports 10 UI languages and 11 charger states.
+- Installable as a HACS Dashboard custom repository or manual JavaScript module.
+- Minimum declared Home Assistant version: 2024.1.0.
+- Public YAML contract is documented in CONFIGURATION.md.

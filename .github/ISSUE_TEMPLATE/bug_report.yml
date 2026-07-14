@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a reproducible V2C Trydan Card problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Remove tokens, public URLs, SSIDs, private IPs and sensitive entity names before submitting."
+  - type: input
+    id: card-version
+    attributes:
+      label: Card version
+      placeholder: v0.4.2
+    validations:
+      required: true
+  - type: input
+    id: ha-version
+    attributes:
+      label: Home Assistant version
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include steps, expected result and actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: yaml
+    attributes:
+      label: Sanitized card YAML
+      render: yaml
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant browser-console output
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed private data and credentials.
+          required: true
+        - label: I tested with the latest release.
+          required: true

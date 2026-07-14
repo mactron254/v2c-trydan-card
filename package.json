@@ -1,6 +1,6 @@
 {
   "name": "v2c-trydan-card",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Modern Home Assistant Lovelace card for V2C Trydan EV chargers",
   "type": "module",
   "main": "dist/v2c-trydan-card.js",
@@ -18,7 +18,10 @@
     "test:watch": "vitest",
     "smoke": "node scripts/smoke.mjs",
     "docs:capture": "node scripts/capture-docs.mjs",
-    "check": "tsc --noEmit && vitest run && vite build && node scripts/smoke.mjs"
+    "docs:media": "node scripts/capture-docs.mjs",
+    "docs:check": "node scripts/check-docs.mjs",
+    "checksum": "node scripts/checksum.mjs",
+    "check": "tsc --noEmit && vitest run && node scripts/check-docs.mjs && vite build && node scripts/checksum.mjs && node scripts/smoke.mjs"
   },
   "keywords": [
     "home-assistant",
@@ -26,7 +29,12 @@
     "custom-card",
     "v2c",
     "trydan",
-    "evse"
+    "evse",
+    "ev-charger",
+    "electric-vehicle",
+    "energy-monitoring",
+    "home-automation",
+    "dashboard"
   ],
   "author": "Codex",
   "contributors": [

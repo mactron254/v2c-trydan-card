@@ -138,3 +138,45 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: Node 24 rechazó el wrapper CMD sin intérprete.
 - **Resolución**: iniciar comando fijo mediante `ComSpec` y cerrar el árbol de procesos al terminar.
 - **Prevención**: probar el script de capturas completo antes de publicar.
+
+## 2026-07-14 — SVG con idioma y lecturas ficticias
+
+- **Síntoma**: las pantallas internas permanecían en español y mostraban 3.9 kW, 17 A, 233 V o 12.46 kWh estáticos.
+- **Causa**: cada SVG contenía dos nodos `<text>` y `aria-label` en español.
+- **Resolución**: SVG decorativos sin texto; LCD HTML localizada con valores reales y fallback traducido.
+- **Prevención**: prueba sobre los 11 SVG prohíbe texto, etiquetas de idioma y lecturas de muestra.
+
+## 2026-07-14 — Defaults y ultracompacto incoherentes
+
+- **Síntoma**: ultra seguía mostrando el cargador y el flujo energético aparecía sin solicitarlo.
+- **Causa**: render dependía solo de `show_charger`; `show_energy_flow` normalizaba a `true`.
+- **Resolución**: ultra fuerza arte oculto sin borrar YAML; flujo pasa a opt-in.
+- **Prevención**: contratos de normalización, DOM y editor cubren ambos comportamientos.
+
+## 2026-07-14 — Datos ausentes formateados como cero
+
+- **Síntoma**: valores `null` podían mostrarse como 0 kWh, 00:00, 0 A o 0 V.
+- **Causa**: `Number(null)` produce cero.
+- **Resolución**: guardas explícitas para nulo/vacío; LCD usa fallback.
+- **Prevención**: pruebas de formateo y LCD sin datos.
+
+## 2026-07-14 — Rechazo de discovery no controlado
+
+- **Síntoma**: un fallo de WebSocket del registro podía generar una promesa rechazada sin manejar.
+- **Causa**: `updated()` invocaba discovery con `void` sin captura interna.
+- **Resolución**: captura del fallo y reinicio de clave para permitir reintento.
+- **Prevención**: discovery nunca propaga errores de transporte al ciclo Lit.
+
+## 2026-07-14 — `apply_patch` bloqueado por ACL
+
+- **Síntoma**: helper falló incluso en la raíz visual permitida con `apply deny-read ACLs`.
+- **Causa**: ACL del sandbox Windows, no contenido del repositorio.
+- **Resolución**: reemplazos exactos con aborto por contexto y escritura UTF-8 sin BOM; typecheck tras cada bloque.
+- **Prevención**: mantener ediciones acotadas y validar diff/suite inmediatamente.
+
+## 2026-07-14 — Smoke rechazó el checksum de release
+
+- **Síntoma**: build y pruebas pasaban, pero smoke fallaba al encontrar dos artefactos en `dist`.
+- **Causa**: el contrato anterior exigía únicamente el bundle JavaScript.
+- **Resolución**: smoke exige JS + SHA-256 y vuelve a calcular el hash antes de aprobar.
+- **Prevención**: validar el conjunto exacto de assets de release, no sólo su cantidad.
