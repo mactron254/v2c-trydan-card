@@ -26,7 +26,7 @@ export const cardStyles = css`
     color: var(--v2c-text);
     background: var(--v2c-surface);
     border: 1px solid var(--v2c-border);
-    border-radius: var(--ha-card-border-radius, 20px);
+    border-radius: var(--v2c-radius, var(--ha-card-border-radius, 20px));
   }
 
   .shell { padding: clamp(20px, 4cqw, 30px); }
@@ -63,27 +63,33 @@ export const cardStyles = css`
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(28px, 5cqw, 38px);
+    gap: 0;
     align-items: center;
+    justify-items: center;
     margin-top: 18px;
   }
 
-  .device-column {
+  .hero-copy {
     display: flex;
     min-width: 0;
+    max-width: 100%;
+    margin-top: clamp(-36px, -7cqw, -26px);
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  .hero.without-charger .hero-copy { margin-top: 0; }
+
   .charger-stage {
     display: grid;
-    width: min(100%, clamp(260px, 68cqw, 360px));
+    width: min(100%, clamp(260px, 66cqw, 340px));
     aspect-ratio: 312 / 480;
     place-items: center;
   }
-
   .charger-art {
+    position: relative;
+    container-type: inline-size;
     width: 100%;
     height: 100%;
     filter: drop-shadow(0 18px 14px rgb(0 0 0 / 16%));
@@ -95,9 +101,32 @@ export const cardStyles = css`
     height: 100%;
   }
 
+  .charger-lcd {
+    position: absolute;
+    top: 40.6%;
+    left: 34.9%;
+    display: grid;
+    width: 30.1%;
+    height: 4.4%;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    color: #cde6ef;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 2.05cqi;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .charger-lcd span { display: block; max-width: 100%; overflow: hidden; text-overflow: clip; white-space: nowrap; }
+  .charger-lcd span + span { color: #9dc0cd; font-size: .92em; }
+  .charger-lcd.is-long { font-size: 1.72cqi; }
+  .charger-lcd.is-very-long { font-size: 1.48cqi; }
+
   .charger-status {
     max-width: 100%;
-    margin-top: 14px;
+    margin-top: 0;
     overflow-wrap: anywhere;
     color: var(--v2c-text);
     font-size: clamp(2rem, 7cqw, 2.5rem);
@@ -106,7 +135,6 @@ export const cardStyles = css`
     line-height: 1.05;
   }
 
-  .device-column.without-charger .charger-status { margin-top: 0; }
   .charger-status[data-severity="error"] { color: var(--v2c-danger); }
 
   .badges {
@@ -134,6 +162,8 @@ export const cardStyles = css`
     max-width: 760px;
     justify-self: center;
   }
+
+  .metrics-section { margin-top: 16px; }
 
   .primary-metrics {
     display: grid;
@@ -494,9 +524,11 @@ export const cardStyles = css`
   }
 
   ha-card[data-mode="compact"] .shell { padding: 18px; }
-  ha-card[data-mode="compact"] .hero { gap: 20px; margin-top: 12px; }
+  ha-card[data-mode="compact"] .hero { gap: 0; margin-top: 12px; }
+  ha-card[data-mode="compact"] .hero-copy { margin-top: clamp(-26px, -6cqw, -18px); }
   ha-card[data-mode="compact"] .charger-stage { width: min(100%, clamp(210px, 62cqw, 280px)); }
-  ha-card[data-mode="compact"] .charger-status { margin-top: 10px; font-size: clamp(1.65rem, 6cqw, 2rem); }
+  ha-card[data-mode="compact"] .charger-status { margin-top: 0; font-size: clamp(1.65rem, 6cqw, 2rem); }
+  ha-card[data-mode="compact"] .metrics-section { margin-top: 12px; }
   ha-card[data-mode="compact"] .metric { padding: 9px; }
   ha-card[data-mode="compact"] .session-controls,
   ha-card[data-mode="compact"] .energy-section { margin-top: 10px; padding-top: 10px; }
@@ -507,14 +539,15 @@ export const cardStyles = css`
   ha-card[data-mode="ultra_compact"] h2 { font-size: 0.86rem; }
   ha-card[data-mode="ultra_compact"] .hero {
     grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
+    gap: 0;
     margin-top: 10px;
     align-items: center;
   }
-  ha-card[data-mode="ultra_compact"] .charger-stage { width: min(100%, clamp(170px, 56cqw, 220px)); }
-  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 8px; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
+  ha-card[data-mode="ultra_compact"] .hero-copy { margin-top: 0; }
+  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 0; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
   ha-card[data-mode="ultra_compact"] .badges { margin-top: 6px; }
   ha-card[data-mode="ultra_compact"] .badge { padding: 3px 6px; font-size: 0.62rem; }
+  ha-card[data-mode="ultra_compact"] .metrics-section { margin-top: 12px; }
   ha-card[data-mode="ultra_compact"] .primary-metrics { grid-template-columns: 1fr; }
   ha-card[data-mode="ultra_compact"] .metric { display: none; padding: 9px; }
   ha-card[data-mode="ultra_compact"] .metric-power { display: block; }
@@ -534,6 +567,38 @@ export const cardStyles = css`
   ha-card[data-mode="ultra_compact"] details { margin-top: 9px; }
   ha-card[data-mode="ultra_compact"] summary { padding-top: 9px; }
 
+  ha-card[data-show-header="false"] .card-heading { display: none; }
+  ha-card[data-surface="transparent"] { background: transparent; }
+  ha-card[data-surface="tinted"] { background: color-mix(in srgb, var(--v2c-control) 8%, var(--v2c-surface)); }
+  .charger-stage { transform: scale(var(--v2c-hero-scale, 1)); transform-origin: center bottom; }
+
+  ha-card[data-mode="xxl"] .shell { padding: clamp(26px, 5cqw, 36px); }
+  ha-card[data-mode="xxl"] .hero { margin-top: 24px; }
+  ha-card[data-mode="xxl"] .charger-stage { width: min(100%, clamp(320px, 84cqw, 430px)); }
+  ha-card[data-mode="xxl"] .hero-copy { margin-top: clamp(-44px, -8cqw, -31px); }
+  ha-card[data-mode="xxl"] .charger-status { font-size: clamp(2.35rem, 8cqw, 3rem); }
+  ha-card[data-mode="xxl"] .metric { padding: 16px; }
+  ha-card[data-mode="xxl"] .metric-value { font-size: clamp(1.2rem, 4.8cqw, 1.7rem); }
+  ha-card[data-mode="xxl"] .metric-power .metric-value { font-size: clamp(1.5rem, 6cqw, 2.25rem); }
+  ha-card[data-mode="xxl"] .session-controls { margin-top: 18px; padding-top: 18px; }
+
+  @container (min-width: 400px) {
+    ha-card[data-layout="split"] .hero { grid-template-columns: minmax(150px, .9fr) minmax(0, 1.1fr); gap: clamp(16px, 4cqw, 30px); justify-items: stretch; }
+    ha-card[data-layout="split"] .charger-stage { width: min(100%, 280px); justify-self: end; }
+    ha-card[data-layout="split"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="split"] .badges { justify-content: flex-start; }
+    ha-card[data-layout="inline"] .hero { grid-template-columns: auto minmax(0, 1fr); gap: 14px; justify-items: stretch; }
+    ha-card[data-layout="inline"] .charger-stage { width: min(132px, 28cqw); }
+    ha-card[data-layout="inline"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="inline"] .charger-status { font-size: clamp(1.1rem, 4cqw, 1.6rem); }
+    ha-card[data-layout="inline"] .badges { justify-content: flex-start; }
+  }
+  @container (min-width: 520px) {
+    ha-card[data-layout="auto"] .hero { grid-template-columns: minmax(180px, .9fr) minmax(0, 1.1fr); gap: clamp(18px, 4cqw, 32px); justify-items: stretch; }
+    ha-card[data-layout="auto"] .charger-stage { width: min(100%, 300px); justify-self: end; }
+    ha-card[data-layout="auto"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="auto"] .badges { justify-content: flex-start; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

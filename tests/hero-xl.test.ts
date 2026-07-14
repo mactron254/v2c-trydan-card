@@ -59,10 +59,13 @@ describe("Trydan Hero XL contracts", () => {
 
   it("uses centered overflow-safe Hero XL bounds in every density", () => {
     const styles = String(V2cTrydanCard.styles);
-    expect(styles).toContain("width: min(100%, clamp(260px, 68cqw, 360px))");
+    expect(styles).toContain("width: min(100%, clamp(260px, 66cqw, 340px))");
+    expect(styles).toContain("width: min(100%, clamp(320px, 84cqw, 430px))");
     expect(styles).toContain("width: min(100%, clamp(210px, 62cqw, 280px))");
-    expect(styles).toContain("width: min(100%, clamp(170px, 56cqw, 220px))");
+    expect(styles).not.toContain('data-mode="ultra_compact"] .charger-stage');
     expect(styles).toContain("font-size: clamp(2rem, 7cqw, 2.5rem)");
+    expect(styles).toContain("@container (min-width: 400px)");
+    expect(styles).toContain('ha-card[data-layout="split"] .hero');
     expect(styles).not.toContain("minmax(180px, 0.44fr)");
   });
 
@@ -92,10 +95,10 @@ describe("Trydan Hero XL contracts", () => {
   it("reports stable 8, 6 and 4 row estimates", () => {
     const card = document.createElement("v2c-trydan-card") as V2cTrydanCard;
     card.setConfig({ ...baseConfig, display_mode: "standard", show_advanced: false });
-    expect(card.getCardSize()).toBe(8);
-    card.setConfig({ ...baseConfig, display_mode: "compact", show_advanced: false });
     expect(card.getCardSize()).toBe(6);
-    card.setConfig({ ...baseConfig, display_mode: "ultra_compact", show_advanced: false });
+    card.setConfig({ ...baseConfig, display_mode: "compact", show_advanced: false });
     expect(card.getCardSize()).toBe(4);
+    card.setConfig({ ...baseConfig, display_mode: "ultra_compact", show_advanced: false });
+    expect(card.getCardSize()).toBe(3);
   });
 });

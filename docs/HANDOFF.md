@@ -1,40 +1,43 @@
-# Continuación de proyecto
+# Project handoff
 
-## Estado actual
+## Current release
 
-- Versión `0.3.1` Trydan Hero XL lista en GitHub/HACS.
-- Rama estable: `main`.
-- Lit 3, TypeScript 7 estricto, Vite 8 y pnpm 11.5.1.
-- Los 11 SVG compilados y sus 11 fuentes usan `viewBox="24 0 312 480"`.
-- Hero centrado en estándar, compacto y ultracompacto; estado grande inmediatamente debajo.
-- Tamaños fluidos: 260–360 px, 210–280 px y 170–220 px, siempre limitados por el ancho disponible.
-- Tema automático, claro y oscuro; 10 idiomas; editor GUI y YAML compatibles con 0.3.0.
-- Bundle HACS único en `dist/v2c-trydan-card.js`.
+- Target: `v0.4.2`.
+- Branch: `codex/personalization-i18n-density` until PR/merge.
+- Stack: Lit 3, TypeScript 7, Vite 8, Node 20+ and pnpm 11.5.1.
+- Attribution: Codex first; Marco `@mactron254` second.
 
-## Decisiones clave
+## Delivered in v0.4.2
 
-- Identidad Quiet Hardware preservada: superficies neutras y color reservado al LED real y errores.
-- Un solo flujo vertical: SVG → estado → métricas → controles → energía → ajustes.
-- Se elimina el split lateral desde 520 px para priorizar logo y LCD también en tablet/escritorio.
-- `show_charger: false` elimina la etapa y su margen de estado; el texto accesible permanece.
-- `getCardSize()` estima 8/6/4 filas para estándar/compacto/ultra.
-- No hay opciones, entidades, servicios, dependencias o recursos remotos nuevos.
-- Atribución: Codex primero, Marco `@mactron254` después.
+- Ultra compact without charger artwork; configured value preserved.
+- Energy flow disabled by default and explicit opt-in retained.
+- Status/metric spacing corrected across densities.
+- Canonical text-free SVG collection under `src/assets/trydan`.
+- HTML LCD localized in 10 languages for 11 states, using real readings.
+- Runtime hardening for missing values, current steps and failed discovery.
+- English/Spanish README, configuration, visual guide, FAQ and forum drafts.
+- 33 screenshots, 2 GIFs and 1280×640 social preview.
+- Headless validation at 280, 320, 400, 520 and 768 px plus 200% zoom.
+- Reproducible SHA-256 generation and verification in the standard check.
+- HACS Action, issue forms, security policy, changelog and publishing checklist.
 
-## Verificación
+## Verification commands
 
 ```powershell
-corepack pnpm --version
-corepack pnpm install --frozen-lockfile
-corepack pnpm check
-corepack pnpm demo
+corepack pnpm@11.5.1 audit --audit-level moderate
+corepack pnpm@11.5.1 check
+corepack pnpm@11.5.1 docs:check
+corepack pnpm@11.5.1 docs:capture
 ```
 
-Capturas verificadas en `docs/screenshots/`: estándar oscuro, compacto claro, ultra oscuro y tablet.
+## Publishing
 
-## Continuación
+1. Push branch and open PR to `main`.
+2. Require CI and HACS green.
+3. Merge, tag merged commit as `v0.4.2` and attach JS + SHA-256.
+4. Update `docs/PUBLISHING_CHECKLIST.md` with release evidence.
+5. Forum drafts are ready but must not be posted automatically.
 
-1. Instalar release `0.3.1` desde HACS.
-2. Validar discovery, SVG y servicios con un Trydan real.
-3. Probar temas personalizados de Home Assistant y textos reales del usuario.
-4. Registrar cualquier fallo real en `docs/FAILURES.md` antes de corregirlo.
+## Privacy-safe real screenshot
+
+Optional future improvement: replace/add one demo image with a 560–720 px dark Home Assistant capture while charging. Remove private location, SSID, IP and entity identifiers.

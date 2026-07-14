@@ -29,11 +29,11 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 	let t = "";
 	for (let n of e.cssRules) t += n.cssText;
 	return a(t);
-})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: ee, getOwnPropertySymbols: te, getPrototypeOf: ne } = Object, f = globalThis, re = f.trustedTypes, ie = re ? re.emptyScript : "", ae = f.reactiveElementPolyfillSupport, p = (e, t) => e, m = {
+})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: p, getPrototypeOf: ee } = Object, m = globalThis, h = m.trustedTypes, g = h ? h.emptyScript : "", _ = m.reactiveElementPolyfillSupport, v = (e, t) => e, y = {
 	toAttribute(e, t) {
 		switch (t) {
 			case Boolean:
-				e = e ? ie : null;
+				e = e ? g : null;
 				break;
 			case Object:
 			case Array: e = e == null ? e : JSON.stringify(e);
@@ -58,23 +58,23 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 		}
 		return n;
 	}
-}, h = (e, t) => !l(e, t), oe = {
+}, b = (e, t) => !l(e, t), te = {
 	attribute: !0,
 	type: String,
-	converter: m,
+	converter: y,
 	reflect: !1,
 	useDefault: !1,
-	hasChanged: h
+	hasChanged: b
 };
-Symbol.metadata ??= Symbol("metadata"), f.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-var g = class extends HTMLElement {
+Symbol.metadata ??= Symbol("metadata"), m.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+var x = class extends HTMLElement {
 	static addInitializer(e) {
 		this._$Ei(), (this.l ??= []).push(e);
 	}
 	static get observedAttributes() {
 		return this.finalize(), this._$Eh && [...this._$Eh.keys()];
 	}
-	static createProperty(e, t = oe) {
+	static createProperty(e, t = te) {
 		if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
 			let n = Symbol(), r = this.getPropertyDescriptor(e, n, t);
 			r !== void 0 && u(this.prototype, e, r);
@@ -100,17 +100,17 @@ var g = class extends HTMLElement {
 		};
 	}
 	static getPropertyOptions(e) {
-		return this.elementProperties.get(e) ?? oe;
+		return this.elementProperties.get(e) ?? te;
 	}
 	static _$Ei() {
-		if (this.hasOwnProperty(p("elementProperties"))) return;
-		let e = ne(this);
+		if (this.hasOwnProperty(v("elementProperties"))) return;
+		let e = ee(this);
 		e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
 	}
 	static finalize() {
-		if (this.hasOwnProperty(p("finalized"))) return;
-		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(p("properties"))) {
-			let e = this.properties, t = [...ee(e), ...te(e)];
+		if (this.hasOwnProperty(v("finalized"))) return;
+		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(v("properties"))) {
+			let e = this.properties, t = [...f(e), ...p(e)];
 			for (let n of t) this.createProperty(n, e[n]);
 		}
 		let e = this[Symbol.metadata];
@@ -171,14 +171,14 @@ var g = class extends HTMLElement {
 	_$ET(e, t) {
 		let n = this.constructor.elementProperties.get(e), r = this.constructor._$Eu(e, n);
 		if (r !== void 0 && !0 === n.reflect) {
-			let i = (n.converter?.toAttribute === void 0 ? m : n.converter).toAttribute(t, n.type);
+			let i = (n.converter?.toAttribute === void 0 ? y : n.converter).toAttribute(t, n.type);
 			this._$Em = e, i == null ? this.removeAttribute(r) : this.setAttribute(r, i), this._$Em = null;
 		}
 	}
 	_$AK(e, t) {
 		let n = this.constructor, r = n._$Eh.get(e);
 		if (r !== void 0 && this._$Em !== r) {
-			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? m : e.converter;
+			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? y : e.converter;
 			this._$Em = r;
 			let a = i.fromAttribute(t, e.type);
 			this[r] = a ?? this._$Ej?.get(r) ?? a, this._$Em = null;
@@ -187,7 +187,7 @@ var g = class extends HTMLElement {
 	requestUpdate(e, t, n, r = !1, i) {
 		if (e !== void 0) {
 			let a = this.constructor;
-			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? h)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
+			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? b)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
 			this.C(e, t, n);
 		}
 		!1 === this.isUpdatePending && (this._$ES = this._$EP());
@@ -251,87 +251,87 @@ var g = class extends HTMLElement {
 	updated(e) {}
 	firstUpdated(e) {}
 };
-g.elementStyles = [], g.shadowRootOptions = { mode: "open" }, g[p("elementProperties")] = /* @__PURE__ */ new Map(), g[p("finalized")] = /* @__PURE__ */ new Map(), ae?.({ ReactiveElement: g }), (f.reactiveElementVersions ??= []).push("2.1.2");
+x.elementStyles = [], x.shadowRootOptions = { mode: "open" }, x[v("elementProperties")] = /* @__PURE__ */ new Map(), x[v("finalized")] = /* @__PURE__ */ new Map(), _?.({ ReactiveElement: x }), (m.reactiveElementVersions ??= []).push("2.1.2");
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/lit-html.js
-var _ = globalThis, se = (e) => e, v = _.trustedTypes, ce = v ? v.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, le = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, ue = "?" + y, de = `<${ue}>`, b = document, x = () => b.createComment(""), S = (e) => e === null || typeof e != "object" && typeof e != "function", C = Array.isArray, fe = (e) => C(e) || typeof e?.[Symbol.iterator] == "function", w = "[ 	\n\f\r]", T = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, pe = /-->/g, me = />/g, E = RegExp(`>|${w}(?:([^\\s"'>=/]+)(${w}*=${w}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), he = /'/g, ge = /"/g, _e = /^(?:script|style|textarea|title)$/i, D = ((e) => (t, ...n) => ({
+var S = globalThis, C = (e) => e, w = S.trustedTypes, ne = w ? w.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, re = "$lit$", T = `lit$${Math.random().toFixed(9).slice(2)}$`, ie = "?" + T, ae = `<${ie}>`, E = document, D = () => E.createComment(""), O = (e) => e === null || typeof e != "object" && typeof e != "function", oe = Array.isArray, se = (e) => oe(e) || typeof e?.[Symbol.iterator] == "function", ce = "[ 	\n\f\r]", k = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, le = /-->/g, ue = />/g, A = RegExp(`>|${ce}(?:([^\\s"'>=/]+)(${ce}*=${ce}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), de = /'/g, fe = /"/g, pe = /^(?:script|style|textarea|title)$/i, j = ((e) => (t, ...n) => ({
 	_$litType$: e,
 	strings: t,
 	values: n
-}))(1), O = Symbol.for("lit-noChange"), k = Symbol.for("lit-nothing"), ve = /* @__PURE__ */ new WeakMap(), A = b.createTreeWalker(b, 129);
-function ye(e, t) {
-	if (!C(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
-	return ce === void 0 ? t : ce.createHTML(t);
+}))(1), M = Symbol.for("lit-noChange"), N = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), P = E.createTreeWalker(E, 129);
+function he(e, t) {
+	if (!oe(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
+	return ne === void 0 ? t : ne.createHTML(t);
 }
-var be = (e, t) => {
-	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = T;
+var ge = (e, t) => {
+	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = k;
 	for (let t = 0; t < n; t++) {
 		let n = e[t], s, c, l = -1, u = 0;
-		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === T ? c[1] === "!--" ? o = pe : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = E) : (_e.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = E) : o = me : o === E ? c[0] === ">" ? (o = i ?? T, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? E : c[3] === "\"" ? ge : he) : o === ge || o === he ? o = E : o === pe || o === me ? o = T : (o = E, i = void 0);
-		let d = o === E && e[t + 1].startsWith("/>") ? " " : "";
-		a += o === T ? n + de : l >= 0 ? (r.push(s), n.slice(0, l) + le + n.slice(l) + y + d) : n + y + (l === -2 ? t : d);
+		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === k ? c[1] === "!--" ? o = le : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = A) : (pe.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = A) : o = ue : o === A ? c[0] === ">" ? (o = i ?? k, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? A : c[3] === "\"" ? fe : de) : o === fe || o === de ? o = A : o === le || o === ue ? o = k : (o = A, i = void 0);
+		let d = o === A && e[t + 1].startsWith("/>") ? " " : "";
+		a += o === k ? n + ae : l >= 0 ? (r.push(s), n.slice(0, l) + re + n.slice(l) + T + d) : n + T + (l === -2 ? t : d);
 	}
-	return [ye(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
-}, j = class e {
+	return [he(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
+}, F = class e {
 	constructor({ strings: t, _$litType$: n }, r) {
 		let i;
 		this.parts = [];
-		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = be(t, n);
-		if (this.el = e.createElement(l, r), A.currentNode = this.el.content, n === 2 || n === 3) {
+		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = ge(t, n);
+		if (this.el = e.createElement(l, r), P.currentNode = this.el.content, n === 2 || n === 3) {
 			let e = this.el.content.firstChild;
 			e.replaceWith(...e.childNodes);
 		}
-		for (; (i = A.nextNode()) !== null && c.length < s;) {
+		for (; (i = P.nextNode()) !== null && c.length < s;) {
 			if (i.nodeType === 1) {
-				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(le)) {
-					let t = u[o++], n = i.getAttribute(e).split(y), r = /([.?@])?(.*)/.exec(t);
+				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(re)) {
+					let t = u[o++], n = i.getAttribute(e).split(T), r = /([.?@])?(.*)/.exec(t);
 					c.push({
 						type: 1,
 						index: a,
 						name: r[2],
 						strings: n,
-						ctor: r[1] === "." ? Se : r[1] === "?" ? Ce : r[1] === "@" ? we : P
+						ctor: r[1] === "." ? ve : r[1] === "?" ? ye : r[1] === "@" ? be : R
 					}), i.removeAttribute(e);
-				} else e.startsWith(y) && (c.push({
+				} else e.startsWith(T) && (c.push({
 					type: 6,
 					index: a
 				}), i.removeAttribute(e));
-				if (_e.test(i.tagName)) {
-					let e = i.textContent.split(y), t = e.length - 1;
+				if (pe.test(i.tagName)) {
+					let e = i.textContent.split(T), t = e.length - 1;
 					if (t > 0) {
-						i.textContent = v ? v.emptyScript : "";
-						for (let n = 0; n < t; n++) i.append(e[n], x()), A.nextNode(), c.push({
+						i.textContent = w ? w.emptyScript : "";
+						for (let n = 0; n < t; n++) i.append(e[n], D()), P.nextNode(), c.push({
 							type: 2,
 							index: ++a
 						});
-						i.append(e[t], x());
+						i.append(e[t], D());
 					}
 				}
-			} else if (i.nodeType === 8) if (i.data === ue) c.push({
+			} else if (i.nodeType === 8) if (i.data === ie) c.push({
 				type: 2,
 				index: a
 			});
 			else {
 				let e = -1;
-				for (; (e = i.data.indexOf(y, e + 1)) !== -1;) c.push({
+				for (; (e = i.data.indexOf(T, e + 1)) !== -1;) c.push({
 					type: 7,
 					index: a
-				}), e += y.length - 1;
+				}), e += T.length - 1;
 			}
 			a++;
 		}
 	}
 	static createElement(e, t) {
-		let n = b.createElement("template");
+		let n = E.createElement("template");
 		return n.innerHTML = e, n;
 	}
 };
-function M(e, t, n = e, r) {
-	if (t === O) return t;
-	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = S(t) ? void 0 : t._$litDirective$;
-	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = M(e, i._$AS(e, t.values), i, r)), t;
+function I(e, t, n = e, r) {
+	if (t === M) return t;
+	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = O(t) ? void 0 : t._$litDirective$;
+	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = I(e, i._$AS(e, t.values), i, r)), t;
 }
-var xe = class {
+var _e = class {
 	constructor(e, t) {
 		this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
 	}
@@ -342,28 +342,28 @@ var xe = class {
 		return this._$AM._$AU;
 	}
 	u(e) {
-		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? b).importNode(t, !0);
-		A.currentNode = r;
-		let i = A.nextNode(), a = 0, o = 0, s = n[0];
+		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? E).importNode(t, !0);
+		P.currentNode = r;
+		let i = P.nextNode(), a = 0, o = 0, s = n[0];
 		for (; s !== void 0;) {
 			if (a === s.index) {
 				let t;
-				s.type === 2 ? t = new N(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Te(i, this, e)), this._$AV.push(t), s = n[++o];
+				s.type === 2 ? t = new L(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new xe(i, this, e)), this._$AV.push(t), s = n[++o];
 			}
-			a !== s?.index && (i = A.nextNode(), a++);
+			a !== s?.index && (i = P.nextNode(), a++);
 		}
-		return A.currentNode = b, r;
+		return P.currentNode = E, r;
 	}
 	p(e) {
 		let t = 0;
 		for (let n of this._$AV) n !== void 0 && (n.strings === void 0 ? n._$AI(e[t]) : (n._$AI(e, n, t), t += n.strings.length - 2)), t++;
 	}
-}, N = class e {
+}, L = class e {
 	get _$AU() {
 		return this._$AM?._$AU ?? this._$Cv;
 	}
 	constructor(e, t, n, r) {
-		this.type = 2, this._$AH = k, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
+		this.type = 2, this._$AH = N, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
 	}
 	get parentNode() {
 		let e = this._$AA.parentNode, t = this._$AM;
@@ -376,7 +376,7 @@ var xe = class {
 		return this._$AB;
 	}
 	_$AI(e, t = this) {
-		e = M(this, e, t), S(e) ? e === k || e == null || e === "" ? (this._$AH !== k && this._$AR(), this._$AH = k) : e !== this._$AH && e !== O && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? fe(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
+		e = I(this, e, t), O(e) ? e === N || e == null || e === "" ? (this._$AH !== N && this._$AR(), this._$AH = N) : e !== this._$AH && e !== M && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? se(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
 	}
 	O(e) {
 		return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -385,36 +385,36 @@ var xe = class {
 		this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
 	}
 	_(e) {
-		this._$AH !== k && S(this._$AH) ? this._$AA.nextSibling.data = e : this.T(b.createTextNode(e)), this._$AH = e;
+		this._$AH !== N && O(this._$AH) ? this._$AA.nextSibling.data = e : this.T(E.createTextNode(e)), this._$AH = e;
 	}
 	$(e) {
-		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = j.createElement(ye(n.h, n.h[0]), this.options)), n);
+		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = F.createElement(he(n.h, n.h[0]), this.options)), n);
 		if (this._$AH?._$AD === r) this._$AH.p(t);
 		else {
-			let e = new xe(r, this), n = e.u(this.options);
+			let e = new _e(r, this), n = e.u(this.options);
 			e.p(t), this.T(n), this._$AH = e;
 		}
 	}
 	_$AC(e) {
-		let t = ve.get(e.strings);
-		return t === void 0 && ve.set(e.strings, t = new j(e)), t;
+		let t = me.get(e.strings);
+		return t === void 0 && me.set(e.strings, t = new F(e)), t;
 	}
 	k(t) {
-		C(this._$AH) || (this._$AH = [], this._$AR());
+		oe(this._$AH) || (this._$AH = [], this._$AR());
 		let n = this._$AH, r, i = 0;
-		for (let a of t) i === n.length ? n.push(r = new e(this.O(x()), this.O(x()), this, this.options)) : r = n[i], r._$AI(a), i++;
+		for (let a of t) i === n.length ? n.push(r = new e(this.O(D()), this.O(D()), this, this.options)) : r = n[i], r._$AI(a), i++;
 		i < n.length && (this._$AR(r && r._$AB.nextSibling, i), n.length = i);
 	}
 	_$AR(e = this._$AA.nextSibling, t) {
 		for (this._$AP?.(!1, !0, t); e !== this._$AB;) {
-			let t = se(e).nextSibling;
-			se(e).remove(), e = t;
+			let t = C(e).nextSibling;
+			C(e).remove(), e = t;
 		}
 	}
 	setConnected(e) {
 		this._$AM === void 0 && (this._$Cv = e, this._$AP?.(e));
 	}
-}, P = class {
+}, R = class {
 	get tagName() {
 		return this.element.tagName;
 	}
@@ -422,47 +422,47 @@ var xe = class {
 		return this._$AM._$AU;
 	}
 	constructor(e, t, n, r, i) {
-		this.type = 1, this._$AH = k, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = k;
+		this.type = 1, this._$AH = N, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = N;
 	}
 	_$AI(e, t = this, n, r) {
 		let i = this.strings, a = !1;
-		if (i === void 0) e = M(this, e, t, 0), a = !S(e) || e !== this._$AH && e !== O, a && (this._$AH = e);
+		if (i === void 0) e = I(this, e, t, 0), a = !O(e) || e !== this._$AH && e !== M, a && (this._$AH = e);
 		else {
 			let r = e, o, s;
-			for (e = i[0], o = 0; o < i.length - 1; o++) s = M(this, r[n + o], t, o), s === O && (s = this._$AH[o]), a ||= !S(s) || s !== this._$AH[o], s === k ? e = k : e !== k && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
+			for (e = i[0], o = 0; o < i.length - 1; o++) s = I(this, r[n + o], t, o), s === M && (s = this._$AH[o]), a ||= !O(s) || s !== this._$AH[o], s === N ? e = N : e !== N && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
 		}
 		a && !r && this.j(e);
 	}
 	j(e) {
-		e === k ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
+		e === N ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
 	}
-}, Se = class extends P {
+}, ve = class extends R {
 	constructor() {
 		super(...arguments), this.type = 3;
 	}
 	j(e) {
-		this.element[this.name] = e === k ? void 0 : e;
+		this.element[this.name] = e === N ? void 0 : e;
 	}
-}, Ce = class extends P {
+}, ye = class extends R {
 	constructor() {
 		super(...arguments), this.type = 4;
 	}
 	j(e) {
-		this.element.toggleAttribute(this.name, !!e && e !== k);
+		this.element.toggleAttribute(this.name, !!e && e !== N);
 	}
-}, we = class extends P {
+}, be = class extends R {
 	constructor(e, t, n, r, i) {
 		super(e, t, n, r, i), this.type = 5;
 	}
 	_$AI(e, t = this) {
-		if ((e = M(this, e, t, 0) ?? k) === O) return;
-		let n = this._$AH, r = e === k && n !== k || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== k && (n === k || r);
+		if ((e = I(this, e, t, 0) ?? N) === M) return;
+		let n = this._$AH, r = e === N && n !== N || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== N && (n === N || r);
 		r && this.element.removeEventListener(this.name, this, n), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
 	}
 	handleEvent(e) {
 		typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, e) : this._$AH.handleEvent(e);
 	}
-}, Te = class {
+}, xe = class {
 	constructor(e, t, n) {
 		this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = n;
 	}
@@ -470,18 +470,18 @@ var xe = class {
 		return this._$AM._$AU;
 	}
 	_$AI(e) {
-		M(this, e);
+		I(this, e);
 	}
-}, Ee = _.litHtmlPolyfillSupport;
-Ee?.(j, N), (_.litHtmlVersions ??= []).push("3.3.3");
-var De = (e, t, n) => {
+}, Se = S.litHtmlPolyfillSupport;
+Se?.(F, L), (S.litHtmlVersions ??= []).push("3.3.3");
+var Ce = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
 		let e = n?.renderBefore ?? null;
-		r._$litPart$ = i = new N(t.insertBefore(x(), e), e, void 0, n ?? {});
+		r._$litPart$ = i = new L(t.insertBefore(D(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, F = globalThis, I = class extends g {
+}, we = globalThis, z = class extends x {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -491,7 +491,7 @@ var De = (e, t, n) => {
 	}
 	update(e) {
 		let t = this.render();
-		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = De(t, this.renderRoot, this.renderOptions);
+		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Ce(t, this.renderRoot, this.renderOptions);
 	}
 	connectedCallback() {
 		super.connectedCallback(), this._$Do?.setConnected(!0);
@@ -500,21 +500,21 @@ var De = (e, t, n) => {
 		super.disconnectedCallback(), this._$Do?.setConnected(!1);
 	}
 	render() {
-		return O;
+		return M;
 	}
 };
-I._$litElement$ = !0, I.finalized = !0, F.litElementHydrateSupport?.({ LitElement: I });
-var Oe = F.litElementPolyfillSupport;
-Oe?.({ LitElement: I }), (F.litElementVersions ??= []).push("4.2.2");
+z._$litElement$ = !0, z.finalized = !0, we.litElementHydrateSupport?.({ LitElement: z });
+var Te = we.litElementPolyfillSupport;
+Te?.({ LitElement: z }), (we.litElementVersions ??= []).push("4.2.2");
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/property.js
-var ke = {
+var Ee = {
 	attribute: !0,
 	type: String,
-	converter: m,
+	converter: y,
 	reflect: !1,
-	hasChanged: h
-}, Ae = (e = ke, t, n) => {
+	hasChanged: b
+}, De = (e = Ee, t, n) => {
 	let { kind: r, metadata: i } = n, a = globalThis.litPropertyMetadata.get(i);
 	if (a === void 0 && globalThis.litPropertyMetadata.set(i, a = /* @__PURE__ */ new Map()), r === "setter" && ((e = Object.create(e)).wrapped = !0), a.set(n.name, e), r === "accessor") {
 		let { name: r } = n;
@@ -537,16 +537,16 @@ var ke = {
 	}
 	throw Error("Unsupported decorator location: " + r);
 };
-function L(e) {
-	return (t, n) => typeof n == "object" ? Ae(e, t, n) : ((e, t, n) => {
+function Oe(e) {
+	return (t, n) => typeof n == "object" ? De(e, t, n) : ((e, t, n) => {
 		let r = t.hasOwnProperty(n);
 		return t.constructor.createProperty(n, e), r ? Object.getOwnPropertyDescriptor(t, n) : void 0;
 	})(e, t, n);
 }
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/state.js
-function R(e) {
-	return L({
+function B(e) {
+	return Oe({
 		...e,
 		state: !0,
 		attribute: !1
@@ -554,17 +554,17 @@ function R(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/directive.js
-var je = {
+var ke = {
 	ATTRIBUTE: 1,
 	CHILD: 2,
 	PROPERTY: 3,
 	BOOLEAN_ATTRIBUTE: 4,
 	EVENT: 5,
 	ELEMENT: 6
-}, Me = (e) => (...t) => ({
+}, Ae = (e) => (...t) => ({
 	_$litDirective$: e,
 	values: t
-}), Ne = class {
+}), je = class {
 	constructor(e) {}
 	get _$AU() {
 		return this._$AM._$AU;
@@ -578,13 +578,13 @@ var je = {
 	update(e, t) {
 		return this.render(...t);
 	}
-}, z = class extends Ne {
+}, Me = class extends je {
 	constructor(e) {
-		if (super(e), this.it = k, e.type !== je.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
+		if (super(e), this.it = N, e.type !== ke.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
 	}
 	render(e) {
-		if (e === k || e == null) return this._t = void 0, this.it = e;
-		if (e === O) return e;
+		if (e === N || e == null) return this._t = void 0, this.it = e;
+		if (e === M) return e;
 		if (typeof e != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
 		if (e === this.it) return this._t;
 		this.it = e;
@@ -596,24 +596,24 @@ var je = {
 		};
 	}
 };
-z.directiveName = "unsafeHTML", z.resultType = 1;
+Me.directiveName = "unsafeHTML", Me.resultType = 1;
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/directives/unsafe-svg.js
-var B = class extends z {};
-B.directiveName = "unsafeSVG", B.resultType = 2;
-var Pe = Me(B), Fe = {
-	disconnected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Sin vehiculo\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">CARGADOR LISTO</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">SIN VEHICULO</text>\n</g>\n</svg>",
-	charging: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Cargando\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-current\" transform=\"translate(107 104) scale(.92)\" fill=\"#123cc9\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">CARGANDO 3.9kW</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">17A   233V</text>\n</g>\n</svg>",
-	complete: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Carga completa\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">CARGA COMPLETA</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">12.46 kWh</text>\n</g>\n</svg>",
-	timer: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Temporizador\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#43dbe7\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">TEMPORIZADOR</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">CARGA PROGRAMADA</text>\n</g>\n</svg>",
-	updating: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Actualizando\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f050bd\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">ACTUALIZANDO</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">NO DESCONECTAR</text>\n</g>\n</svg>",
-	control_pilot: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Control Pilot\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#ffd43b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">ERROR CONTROL</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">PILOT / POTENCIA</text>\n</g>\n</svg>",
-	load_balancing: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Error balanceo\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#ff9dd8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">ERROR LOCAL</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">LOAD BALANCING</text>\n</g>\n</svg>",
-	error: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Error\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#ef3340\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">ERROR 23 006</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">FALLO CONEXION</text>\n</g>\n</svg>",
-	waiting_power: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Esperando potencia\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f28c28\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">ESPERANDO</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">POTENCIA</text>\n</g>\n</svg>",
-	wifi_connected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: WiFi conectado\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-once\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">WIFI CONECTADO</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">RED OK</text>\n</g>\n</svg>",
-	wifi_connecting: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\" role=\"img\" aria-label=\"V2C Trydan: Conectando WiFi\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-slow\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n  <text x=\"180\" y=\"204\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.6\" fill=\"#cde6ef\">CONECTANDO WIFI</text>\n  <text x=\"180\" y=\"212\" text-anchor=\"middle\" class=\"lcd\" font-size=\"6.3\" fill=\"#9dc0cd\">ESPERE...</text>\n</g>\n</svg>"
-}, Ie = [
+var Ne = class extends Me {};
+Ne.directiveName = "unsafeSVG", Ne.resultType = 2;
+var Pe = Ae(Ne), Fe = {
+	disconnected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	charging: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-current\" transform=\"translate(107 104) scale(.92)\" fill=\"#123cc9\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	complete: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	timer: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#43dbe7\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	updating: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f050bd\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	control_pilot: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#ffd43b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	load_balancing: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#ff9dd8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	error: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#ef3340\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	waiting_power: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f28c28\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	wifi_connected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-once\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
+	wifi_connecting: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-slow\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>"
+}, V = [
 	6,
 	10,
 	13,
@@ -621,27 +621,97 @@ var Pe = Me(B), Fe = {
 	20,
 	25,
 	32
+], Ie = [
+	"xxl",
+	"standard",
+	"compact",
+	"ultra_compact"
+], Le = [
+	"auto",
+	"centered",
+	"split",
+	"inline"
+], Re = [
+	"power",
+	"energy",
+	"time"
+], ze = [
+	"solar",
+	"grid",
+	"home",
+	"battery",
+	"charger"
+], Be = [
+	"hero",
+	"metrics",
+	"controls",
+	"energy",
+	"advanced"
 ];
-function Le(e) {
+function H(e, t, n) {
+	return typeof e == "string" && t.includes(e) ? e : n;
+}
+function Ve(e, t) {
+	return [...new Set(Array.isArray(e) ? e.filter((e) => typeof e == "string" && t.includes(e)) : t)];
+}
+function He(e, t) {
+	let n = Ve(e, t);
+	return [...n, ...t.filter((e) => !n.includes(e))];
+}
+function Ue(e) {
 	if (!e || typeof e != "object") throw Error("V2C Trydan Card: configuración no válida");
 	if (!e.entity || typeof e.entity != "string") throw Error("V2C Trydan Card: debes indicar una entidad V2C principal");
-	let t = [...new Set(e.current_presets ?? Ie)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t);
+	let t = Array.isArray(e.current_presets) ? e.current_presets : V, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = H(e.display_mode, Ie, "standard"), i = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
 	return {
 		...e,
 		type: "custom:v2c-trydan-card",
-		theme: e.theme ?? "auto",
-		display_mode: e.display_mode ?? "standard",
-		show_energy_flow: e.show_energy_flow ?? !0,
+		theme: H(e.theme, [
+			"auto",
+			"light",
+			"dark"
+		], "auto"),
+		display_mode: r,
+		language: e.language ?? "auto",
+		layout: H(e.layout, Le, "auto"),
+		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : H(e.color_scheme, [
+			"monochrome",
+			"v2c_blue",
+			"teal",
+			"green",
+			"violet",
+			"custom"
+		], "monochrome"),
+		accent_color: i,
+		surface_style: H(e.surface_style, [
+			"solid",
+			"tinted",
+			"transparent"
+		], "solid"),
+		hero_scale: Math.min(1.25, Math.max(.75, Number(e.hero_scale) || 1)),
+		card_radius: Number.isFinite(e.card_radius) ? Math.min(40, Math.max(0, Number(e.card_radius))) : void 0,
+		metrics: Ve(e.metrics, Re),
+		energy_sources: Ve(e.energy_sources, ze),
+		intensity_control: H(e.intensity_control, [
+			"slider",
+			"presets",
+			"both"
+		], "both"),
+		section_order: He(e.section_order, Be),
+		show_header: e.show_header ?? !0,
+		show_badges: e.show_badges ?? !0,
+		show_presets: e.show_presets ?? r !== "ultra_compact",
+		advanced_open: e.advanced_open ?? !1,
+		show_energy_flow: e.show_energy_flow ?? !1,
 		show_controls: e.show_controls ?? !0,
 		show_advanced: e.show_advanced ?? !0,
 		show_charger: e.show_charger ?? !0,
 		confirm_lock: e.confirm_lock ?? !0,
-		flow_threshold_w: Math.max(0, e.flow_threshold_w ?? 50),
-		current_presets: t,
-		entities: { ...e.entities ?? {} }
+		flow_threshold_w: Number.isFinite(e.flow_threshold_w) ? Math.max(0, Number(e.flow_threshold_w)) : 50,
+		current_presets: n,
+		entities: e.entities && typeof e.entities == "object" && !Array.isArray(e.entities) ? { ...e.entities } : {}
 	};
 }
-function Re(e) {
+function We(e) {
 	let t = Object.values(e?.entities ?? {}).find((e) => e.platform === "v2c" && e.translation_key === "connected"), n = Object.keys(e?.states ?? {}).find((e) => e.startsWith("binary_sensor.") && e.toLowerCase().includes("v2c"));
 	return {
 		type: "custom:v2c-trydan-card",
@@ -651,8 +721,912 @@ function Re(e) {
 	};
 }
 //#endregion
-//#region src/localization/en.ts
-var ze = {
+//#region src/localization/da.ts
+var Ge = {
+	states: {
+		disconnected: "Intet køretøj",
+		unavailable: "Ikke tilgængelig",
+		charging: "Oplader",
+		complete: "Opladning fuldført",
+		timer: "Planlagt opladning",
+		updating: "Opdaterer",
+		control_pilot: "Control Pilot-fejl",
+		load_balancing: "Belastningsbalanceringsfejl",
+		error: "Opladerfejl",
+		waiting_power: "Køretøj tilsluttet",
+		wifi_connected: "Wi-Fi tilsluttet",
+		wifi_connecting: "Tilslutter Wi-Fi"
+	},
+	details: {
+		disconnected: "Trydan klar",
+		unavailable: "Kontrollér hovedenheden",
+		charging: "Energi til køretøjet",
+		complete: "Du kan frakoble køretøjet",
+		timer: "Timeren er aktiv",
+		updating: "Frakobl ikke opladeren",
+		control_pilot: "Kontrollér kommunikationen med køretøjet",
+		load_balancing: "Kontrollér lokal belastningsbalancering",
+		error: "Kontrollér diagnosticeringen",
+		waiting_power: "Venter på start eller effekt",
+		wifi_connected: "Forbindelse genoprettet",
+		wifi_connecting: "Forsøger at oprette forbindelse"
+	},
+	badges: {
+		paused: "Sat på pause",
+		locked: "Låst",
+		timer: "Timer",
+		waiting_power: "Venter på effekt"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "nu",
+		session: "Session",
+		power: "Effekt",
+		energy: "Energi",
+		time: "Tid",
+		intensity: "Ladestrøm",
+		advanced: "Trydan-indstillinger",
+		chargingControls: "Opladning",
+		energyControls: "Dynamisk energi",
+		lightControls: "Belysning",
+		unavailableEntity: "Enheden er ikke tilgængelig",
+		actionPending: "Anvender ændring",
+		actionDone: "Ændring bekræftet",
+		actionFailed: "Ændringen kunne ikke anvendes",
+		additionalStatus: "Ekstra status",
+		energyFlow: "Energiflow",
+		voltage: "Spænding",
+		diagnostics: "Diagnostik",
+		configuration: "Konfiguration"
+	},
+	actions: {
+		pause: "Pause",
+		resume: "Fortsæt",
+		lock: "Lås EVSE",
+		unlock: "Lås EVSE op",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pauseDynamic: "Sæt dynamisk styring på pause",
+		logoLed: "Logo-LED",
+		lightLed: "Opladerlys",
+		chargeMode: "Opladningstilstand",
+		confirmLock: "Lås V2C-opladeren?"
+	},
+	flows: {
+		solar: "Sol",
+		grid: "Elnet",
+		home: "Hjem",
+		battery: "Batteri",
+		charger: "Bil",
+		import: "Import",
+		export: "Eksport",
+		charge: "Oplader",
+		discharge: "Aflader",
+		consume: "Forbrug",
+		produce: "Produktion",
+		idle: "Inaktiv",
+		unknown: "Ingen data",
+		activeFlow: "Aktivt energiflow",
+		noFlow: "Intet energiflow",
+		partialData: "Delvise energidata",
+		noData: "Ingen energidata"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Primær V2C-enhed",
+		name: "Navn",
+		location: "Placering",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Sprog",
+		theme: "Tema",
+		displayMode: "Kortstørrelse",
+		themeAuto: "System / Home Assistant",
+		themeLight: "Lys",
+		themeDark: "Mørk",
+		modeStandard: "Standard",
+		modeCompact: "Kompakt",
+		modeUltra: "Ultrakompakt",
+		showEnergyFlow: "Energiflow",
+		showControls: "Opladningskontroller",
+		showAdvanced: "Avancerede kontroller",
+		showCharger: "Trydan-illustration"
+	}
+}, Ke = {
+	states: {
+		disconnected: "Kein Fahrzeug",
+		unavailable: "Nicht verfügbar",
+		charging: "Laden",
+		complete: "Ladevorgang abgeschlossen",
+		timer: "Geplantes Laden",
+		updating: "Aktualisierung",
+		control_pilot: "Control-Pilot-Fehler",
+		load_balancing: "Lastverteilungsfehler",
+		error: "Ladegerätfehler",
+		waiting_power: "Fahrzeug verbunden",
+		wifi_connected: "WLAN verbunden",
+		wifi_connecting: "WLAN wird verbunden"
+	},
+	details: {
+		disconnected: "Trydan bereit",
+		unavailable: "Hauptentität prüfen",
+		charging: "Energie fließt zum Fahrzeug",
+		complete: "Fahrzeug kann getrennt werden",
+		timer: "Timer ist aktiv",
+		updating: "Ladegerät nicht trennen",
+		control_pilot: "Fahrzeugkommunikation prüfen",
+		load_balancing: "Lokale Lastverteilung prüfen",
+		error: "Diagnose prüfen",
+		waiting_power: "Warten auf Start oder Leistung",
+		wifi_connected: "Verbindung wiederhergestellt",
+		wifi_connecting: "Verbindungsversuch läuft"
+	},
+	badges: {
+		paused: "Pausiert",
+		locked: "Gesperrt",
+		timer: "Timer",
+		waiting_power: "Wartet auf Leistung"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "jetzt",
+		session: "Sitzung",
+		power: "Leistung",
+		energy: "Energie",
+		time: "Zeit",
+		intensity: "Ladestrom",
+		advanced: "Trydan-Einstellungen",
+		chargingControls: "Laden",
+		energyControls: "Dynamische Energie",
+		lightControls: "Beleuchtung",
+		unavailableEntity: "Entität nicht verfügbar",
+		actionPending: "Änderung wird angewendet",
+		actionDone: "Änderung bestätigt",
+		actionFailed: "Änderung konnte nicht angewendet werden",
+		additionalStatus: "Zusätzlicher Status",
+		energyFlow: "Energiefluss",
+		voltage: "Spannung",
+		diagnostics: "Diagnose",
+		configuration: "Konfiguration"
+	},
+	actions: {
+		pause: "Pausieren",
+		resume: "Fortsetzen",
+		lock: "EVSE sperren",
+		unlock: "EVSE entsperren",
+		timer: "Timer",
+		dynamic: "Dynamische Regelung",
+		pauseDynamic: "Dynamische Regelung pausieren",
+		logoLed: "Logo-LED",
+		lightLed: "Ladegerätlicht",
+		chargeMode: "Lademodus",
+		confirmLock: "V2C-Ladegerät sperren?"
+	},
+	flows: {
+		solar: "Solar",
+		grid: "Netz",
+		home: "Haus",
+		battery: "Batterie",
+		charger: "Auto",
+		import: "Bezug",
+		export: "Einspeisung",
+		charge: "Lädt",
+		discharge: "Entlädt",
+		consume: "Verbrauch",
+		produce: "Erzeugung",
+		idle: "Leerlauf",
+		unknown: "Keine Daten",
+		activeFlow: "Aktiver Energiefluss",
+		noFlow: "Kein Energiefluss",
+		partialData: "Teilweise Energiedaten",
+		noData: "Keine Energiedaten"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Haupt-V2C-Entität",
+		name: "Name",
+		location: "Standort",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Sprache",
+		theme: "Design",
+		displayMode: "Kartengröße",
+		themeAuto: "System / Home Assistant",
+		themeLight: "Hell",
+		themeDark: "Dunkel",
+		modeStandard: "Standard",
+		modeCompact: "Kompakt",
+		modeUltra: "Ultrakompakt",
+		showEnergyFlow: "Energiefluss",
+		showControls: "Ladesteuerung",
+		showAdvanced: "Erweiterte Steuerung",
+		showCharger: "Trydan-Abbildung"
+	}
+}, qe = {
+	states: {
+		disconnected: "Aucun véhicule",
+		unavailable: "Indisponible",
+		charging: "En charge",
+		complete: "Charge terminée",
+		timer: "Charge programmée",
+		updating: "Mise à jour",
+		control_pilot: "Erreur Control Pilot",
+		load_balancing: "Erreur d'équilibrage de charge",
+		error: "Erreur du chargeur",
+		waiting_power: "Véhicule connecté",
+		wifi_connected: "Wi-Fi connecté",
+		wifi_connecting: "Connexion Wi-Fi"
+	},
+	details: {
+		disconnected: "Trydan prêt",
+		unavailable: "Vérifiez l'entité principale",
+		charging: "Énergie vers le véhicule",
+		complete: "Vous pouvez débrancher le véhicule",
+		timer: "Le minuteur est actif",
+		updating: "Ne débranchez pas le chargeur",
+		control_pilot: "Vérifiez la communication avec le véhicule",
+		load_balancing: "Vérifiez l'équilibrage local",
+		error: "Vérifiez le diagnostic",
+		waiting_power: "En attente du démarrage ou de puissance",
+		wifi_connected: "Connexion rétablie",
+		wifi_connecting: "Tentative de connexion"
+	},
+	badges: {
+		paused: "En pause",
+		locked: "Verrouillé",
+		timer: "Minuteur",
+		waiting_power: "En attente de puissance"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "maintenant",
+		session: "Session",
+		power: "Puissance",
+		energy: "Énergie",
+		time: "Temps",
+		intensity: "Courant de charge",
+		advanced: "Réglages Trydan",
+		chargingControls: "Charge",
+		energyControls: "Énergie dynamique",
+		lightControls: "Éclairage",
+		unavailableEntity: "Entité indisponible",
+		actionPending: "Modification en cours",
+		actionDone: "Modification confirmée",
+		actionFailed: "Impossible d'appliquer la modification",
+		additionalStatus: "État supplémentaire",
+		energyFlow: "Flux d'énergie",
+		voltage: "Tension",
+		diagnostics: "Diagnostic",
+		configuration: "Configuration"
+	},
+	actions: {
+		pause: "Mettre en pause",
+		resume: "Reprendre",
+		lock: "Verrouiller l'EVSE",
+		unlock: "Déverrouiller l'EVSE",
+		timer: "Minuteur",
+		dynamic: "Modulation dynamique",
+		pauseDynamic: "Suspendre le contrôle dynamique",
+		logoLed: "LED du logo",
+		lightLed: "Éclairage du chargeur",
+		chargeMode: "Mode de charge",
+		confirmLock: "Verrouiller le chargeur V2C ?"
+	},
+	flows: {
+		solar: "Solaire",
+		grid: "Réseau",
+		home: "Maison",
+		battery: "Batterie",
+		charger: "Voiture",
+		import: "Importation",
+		export: "Exportation",
+		charge: "Charge",
+		discharge: "Décharge",
+		consume: "Consommation",
+		produce: "Production",
+		idle: "Au repos",
+		unknown: "Aucune donnée",
+		activeFlow: "Flux d'énergie actif",
+		noFlow: "Aucun flux d'énergie",
+		partialData: "Données énergétiques partielles",
+		noData: "Aucune donnée énergétique"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Entité V2C principale",
+		name: "Nom",
+		location: "Emplacement",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Langue",
+		theme: "Thème",
+		displayMode: "Taille de la carte",
+		themeAuto: "Système / Home Assistant",
+		themeLight: "Clair",
+		themeDark: "Sombre",
+		modeStandard: "Standard",
+		modeCompact: "Compact",
+		modeUltra: "Ultra compact",
+		showEnergyFlow: "Flux d'énergie",
+		showControls: "Commandes de charge",
+		showAdvanced: "Commandes avancées",
+		showCharger: "Illustration Trydan"
+	}
+}, Je = {
+	states: {
+		disconnected: "Nessun veicolo",
+		unavailable: "Non disponibile",
+		charging: "In carica",
+		complete: "Ricarica completata",
+		timer: "Ricarica programmata",
+		updating: "Aggiornamento",
+		control_pilot: "Errore Control Pilot",
+		load_balancing: "Errore Load Balancing",
+		error: "Errore del caricatore",
+		waiting_power: "Veicolo collegato",
+		wifi_connected: "Wi-Fi connesso",
+		wifi_connecting: "Connessione Wi-Fi"
+	},
+	details: {
+		disconnected: "Trydan pronto",
+		unavailable: "Controlla l'entità principale",
+		charging: "Energia verso il veicolo",
+		complete: "Puoi scollegare il veicolo",
+		timer: "Il timer è attivo",
+		updating: "Non scollegare il caricatore",
+		control_pilot: "Controlla la comunicazione con il veicolo",
+		load_balancing: "Controlla il bilanciamento locale",
+		error: "Controlla la diagnostica",
+		waiting_power: "In attesa dell'avvio o della potenza",
+		wifi_connected: "Connessione ripristinata",
+		wifi_connecting: "Tentativo di connessione"
+	},
+	badges: {
+		paused: "In pausa",
+		locked: "Bloccato",
+		timer: "Timer",
+		waiting_power: "In attesa di potenza"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "ora",
+		session: "Sessione",
+		power: "Potenza",
+		energy: "Energia",
+		time: "Tempo",
+		intensity: "Corrente di ricarica",
+		advanced: "Impostazioni Trydan",
+		chargingControls: "Ricarica",
+		energyControls: "Energia dinamica",
+		lightControls: "Illuminazione",
+		unavailableEntity: "Entità non disponibile",
+		actionPending: "Modifica in corso",
+		actionDone: "Modifica confermata",
+		actionFailed: "Impossibile applicare la modifica",
+		additionalStatus: "Stato aggiuntivo",
+		energyFlow: "Flusso energetico",
+		voltage: "Tensione",
+		diagnostics: "Diagnostica",
+		configuration: "Configurazione"
+	},
+	actions: {
+		pause: "Pausa",
+		resume: "Riprendi",
+		lock: "Blocca EVSE",
+		unlock: "Sblocca EVSE",
+		timer: "Timer",
+		dynamic: "Modulazione dinamica",
+		pauseDynamic: "Pausa controllo dinamico",
+		logoLed: "LED logo",
+		lightLed: "Luce caricatore",
+		chargeMode: "Modalità di ricarica",
+		confirmLock: "Bloccare il caricatore V2C?"
+	},
+	flows: {
+		solar: "Solare",
+		grid: "Rete",
+		home: "Casa",
+		battery: "Batteria",
+		charger: "Auto",
+		import: "Importazione",
+		export: "Esportazione",
+		charge: "Ricarica",
+		discharge: "Scarica",
+		consume: "Consumo",
+		produce: "Produzione",
+		idle: "Inattivo",
+		unknown: "Nessun dato",
+		activeFlow: "Flusso energetico attivo",
+		noFlow: "Nessun flusso energetico",
+		partialData: "Dati energetici parziali",
+		noData: "Nessun dato energetico"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Entità V2C principale",
+		name: "Nome",
+		location: "Posizione",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Lingua",
+		theme: "Tema",
+		displayMode: "Dimensione scheda",
+		themeAuto: "Sistema / Home Assistant",
+		themeLight: "Chiaro",
+		themeDark: "Scuro",
+		modeStandard: "Standard",
+		modeCompact: "Compatto",
+		modeUltra: "Ultra compatto",
+		showEnergyFlow: "Flusso di energia",
+		showControls: "Controlli di ricarica",
+		showAdvanced: "Controlli avanzati",
+		showCharger: "Illustrazione Trydan"
+	}
+}, Ye = {
+	states: {
+		disconnected: "Geen voertuig",
+		unavailable: "Niet beschikbaar",
+		charging: "Bezig met laden",
+		complete: "Laden voltooid",
+		timer: "Gepland laden",
+		updating: "Bijwerken",
+		control_pilot: "Control Pilot-fout",
+		load_balancing: "Load Balancing-fout",
+		error: "Laderfout",
+		waiting_power: "Voertuig verbonden",
+		wifi_connected: "Wi-Fi verbonden",
+		wifi_connecting: "Wi-Fi verbinden"
+	},
+	details: {
+		disconnected: "Trydan gereed",
+		unavailable: "Controleer de hoofdentiteit",
+		charging: "Energie naar het voertuig",
+		complete: "Je kunt het voertuig loskoppelen",
+		timer: "De timer is actief",
+		updating: "Koppel de lader niet los",
+		control_pilot: "Controleer de voertuigcommunicatie",
+		load_balancing: "Controleer lokale load balancing",
+		error: "Controleer de diagnose",
+		waiting_power: "Wachten op start of vermogen",
+		wifi_connected: "Verbinding hersteld",
+		wifi_connecting: "Verbinding wordt geprobeerd"
+	},
+	badges: {
+		paused: "Gepauzeerd",
+		locked: "Vergrendeld",
+		timer: "Timer",
+		waiting_power: "Wacht op vermogen"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "nu",
+		session: "Sessie",
+		power: "Vermogen",
+		energy: "Energie",
+		time: "Tijd",
+		intensity: "Laadstroom",
+		advanced: "Trydan-instellingen",
+		chargingControls: "Laden",
+		energyControls: "Dynamische energie",
+		lightControls: "Verlichting",
+		unavailableEntity: "Entiteit niet beschikbaar",
+		actionPending: "Wijziging toepassen",
+		actionDone: "Wijziging bevestigd",
+		actionFailed: "Wijziging kon niet worden toegepast",
+		additionalStatus: "Aanvullende status",
+		energyFlow: "Energiestroom",
+		voltage: "Spanning",
+		diagnostics: "Diagnostiek",
+		configuration: "Configuratie"
+	},
+	actions: {
+		pause: "Pauzeren",
+		resume: "Hervatten",
+		lock: "EVSE vergrendelen",
+		unlock: "EVSE ontgrendelen",
+		timer: "Timer",
+		dynamic: "Dynamische modulatie",
+		pauseDynamic: "Dynamische regeling pauzeren",
+		logoLed: "Logo-led",
+		lightLed: "Laderverlichting",
+		chargeMode: "Laadmodus",
+		confirmLock: "V2C-lader vergrendelen?"
+	},
+	flows: {
+		solar: "Zon",
+		grid: "Net",
+		home: "Huis",
+		battery: "Batterij",
+		charger: "Auto",
+		import: "Import",
+		export: "Export",
+		charge: "Laden",
+		discharge: "Ontladen",
+		consume: "Verbruik",
+		produce: "Productie",
+		idle: "In rust",
+		unknown: "Geen gegevens",
+		activeFlow: "Actieve energiestroom",
+		noFlow: "Geen energiestroom",
+		partialData: "Gedeeltelijke energiegegevens",
+		noData: "Geen energiegegevens"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Hoofd-V2C-entiteit",
+		name: "Naam",
+		location: "Locatie",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Taal",
+		theme: "Thema",
+		displayMode: "Kaartgrootte",
+		themeAuto: "Systeem / Home Assistant",
+		themeLight: "Licht",
+		themeDark: "Donker",
+		modeStandard: "Standaard",
+		modeCompact: "Compact",
+		modeUltra: "Ultracompact",
+		showEnergyFlow: "Energiestroom",
+		showControls: "Laadbediening",
+		showAdvanced: "Geavanceerde bediening",
+		showCharger: "Trydan-afbeelding"
+	}
+}, Xe = {
+	states: {
+		disconnected: "Ingen bil",
+		unavailable: "Ikke tilgjengelig",
+		charging: "Lader",
+		complete: "Lading fullført",
+		timer: "Planlagt lading",
+		updating: "Oppdaterer",
+		control_pilot: "Control Pilot-feil",
+		load_balancing: "Lastbalanseringsfeil",
+		error: "Laderfeil",
+		waiting_power: "Bil tilkoblet",
+		wifi_connected: "Wi-Fi tilkoblet",
+		wifi_connecting: "Kobler til Wi-Fi"
+	},
+	details: {
+		disconnected: "Trydan klar",
+		unavailable: "Kontroller hovedenheten",
+		charging: "Energi til bilen",
+		complete: "Du kan koble fra bilen",
+		timer: "Timeren er aktiv",
+		updating: "Ikke koble fra laderen",
+		control_pilot: "Kontroller kommunikasjonen med bilen",
+		load_balancing: "Kontroller lokal lastbalansering",
+		error: "Kontroller diagnostikken",
+		waiting_power: "Venter på start eller effekt",
+		wifi_connected: "Tilkobling gjenopprettet",
+		wifi_connecting: "Prøver å koble til"
+	},
+	badges: {
+		paused: "Pauset",
+		locked: "Låst",
+		timer: "Timer",
+		waiting_power: "Venter på effekt"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "nå",
+		session: "Økt",
+		power: "Effekt",
+		energy: "Energi",
+		time: "Tid",
+		intensity: "Ladestrøm",
+		advanced: "Trydan-innstillinger",
+		chargingControls: "Lading",
+		energyControls: "Dynamisk energi",
+		lightControls: "Belysning",
+		unavailableEntity: "Enheten er ikke tilgjengelig",
+		actionPending: "Bruker endring",
+		actionDone: "Endring bekreftet",
+		actionFailed: "Kunne ikke bruke endringen",
+		additionalStatus: "Ekstra status",
+		energyFlow: "Energiflyt",
+		voltage: "Spenning",
+		diagnostics: "Diagnostikk",
+		configuration: "Konfigurasjon"
+	},
+	actions: {
+		pause: "Pause",
+		resume: "Fortsett",
+		lock: "Lås EVSE",
+		unlock: "Lås opp EVSE",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pauseDynamic: "Sett dynamisk styring på pause",
+		logoLed: "Logo-LED",
+		lightLed: "Laderlys",
+		chargeMode: "Lademodus",
+		confirmLock: "Låse V2C-laderen?"
+	},
+	flows: {
+		solar: "Sol",
+		grid: "Strømnett",
+		home: "Hjem",
+		battery: "Batteri",
+		charger: "Bil",
+		import: "Import",
+		export: "Eksport",
+		charge: "Lader",
+		discharge: "Lader ut",
+		consume: "Forbruk",
+		produce: "Produksjon",
+		idle: "Inaktiv",
+		unknown: "Ingen data",
+		activeFlow: "Aktiv energiflyt",
+		noFlow: "Ingen energiflyt",
+		partialData: "Delvise energidata",
+		noData: "Ingen energidata"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Primær V2C-enhet",
+		name: "Navn",
+		location: "Plassering",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Språk",
+		theme: "Tema",
+		displayMode: "Kortstørrelse",
+		themeAuto: "System / Home Assistant",
+		themeLight: "Lys",
+		themeDark: "Mørk",
+		modeStandard: "Standard",
+		modeCompact: "Kompakt",
+		modeUltra: "Ultrakompakt",
+		showEnergyFlow: "Energiflyt",
+		showControls: "Ladekontroller",
+		showAdvanced: "Avanserte kontroller",
+		showCharger: "Trydan-illustrasjon"
+	}
+}, Ze = {
+	states: {
+		disconnected: "Niciun vehicul",
+		unavailable: "Indisponibil",
+		charging: "Se încarcă",
+		complete: "Încărcare finalizată",
+		timer: "Încărcare programată",
+		updating: "Se actualizează",
+		control_pilot: "Eroare Control Pilot",
+		load_balancing: "Eroare de echilibrare a sarcinii",
+		error: "Eroare încărcător",
+		waiting_power: "Vehicul conectat",
+		wifi_connected: "Wi-Fi conectat",
+		wifi_connecting: "Conectare Wi-Fi"
+	},
+	details: {
+		disconnected: "Trydan pregătit",
+		unavailable: "Verifică entitatea principală",
+		charging: "Energie către vehicul",
+		complete: "Poți deconecta vehiculul",
+		timer: "Temporizatorul este activ",
+		updating: "Nu deconecta încărcătorul",
+		control_pilot: "Verifică comunicarea cu vehiculul",
+		load_balancing: "Verifică echilibrarea locală",
+		error: "Verifică diagnosticul",
+		waiting_power: "Se așteaptă pornirea sau puterea",
+		wifi_connected: "Conexiune restabilită",
+		wifi_connecting: "Se încearcă conectarea"
+	},
+	badges: {
+		paused: "În pauză",
+		locked: "Blocat",
+		timer: "Temporizator",
+		waiting_power: "Așteaptă putere"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "acum",
+		session: "Sesiune",
+		power: "Putere",
+		energy: "Energie",
+		time: "Timp",
+		intensity: "Curent de încărcare",
+		advanced: "Setări Trydan",
+		chargingControls: "Încărcare",
+		energyControls: "Energie dinamică",
+		lightControls: "Iluminare",
+		unavailableEntity: "Entitate indisponibilă",
+		actionPending: "Se aplică modificarea",
+		actionDone: "Modificare confirmată",
+		actionFailed: "Modificarea nu a putut fi aplicată",
+		additionalStatus: "Stare suplimentară",
+		energyFlow: "Flux de energie",
+		voltage: "Tensiune",
+		diagnostics: "Diagnostic",
+		configuration: "Configurare"
+	},
+	actions: {
+		pause: "Pauză",
+		resume: "Continuă",
+		lock: "Blochează EVSE",
+		unlock: "Deblochează EVSE",
+		timer: "Temporizator",
+		dynamic: "Modulare dinamică",
+		pauseDynamic: "Întrerupe controlul dinamic",
+		logoLed: "LED siglă",
+		lightLed: "Lumină încărcător",
+		chargeMode: "Mod de încărcare",
+		confirmLock: "Blochezi încărcătorul V2C?"
+	},
+	flows: {
+		solar: "Solar",
+		grid: "Rețea",
+		home: "Casă",
+		battery: "Baterie",
+		charger: "Mașină",
+		import: "Import",
+		export: "Export",
+		charge: "Încărcare",
+		discharge: "Descărcare",
+		consume: "Consum",
+		produce: "Producție",
+		idle: "Repaus",
+		unknown: "Fără date",
+		activeFlow: "Flux de energie activ",
+		noFlow: "Fără flux de energie",
+		partialData: "Date energetice parțiale",
+		noData: "Fără date energetice"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Entitate V2C principală",
+		name: "Nume",
+		location: "Locație",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Limbă",
+		theme: "Temă",
+		displayMode: "Dimensiunea cardului",
+		themeAuto: "Sistem / Home Assistant",
+		themeLight: "Luminos",
+		themeDark: "Întunecat",
+		modeStandard: "Standard",
+		modeCompact: "Compact",
+		modeUltra: "Ultracompact",
+		showEnergyFlow: "Flux de energie",
+		showControls: "Comenzi de încărcare",
+		showAdvanced: "Comenzi avansate",
+		showCharger: "Ilustrație Trydan"
+	}
+}, Qe = {
+	states: {
+		disconnected: "Inget fordon",
+		unavailable: "Inte tillgänglig",
+		charging: "Laddar",
+		complete: "Laddning klar",
+		timer: "Schemalagd laddning",
+		updating: "Uppdaterar",
+		control_pilot: "Control Pilot-fel",
+		load_balancing: "Lastbalanseringsfel",
+		error: "Laddarfel",
+		waiting_power: "Fordon anslutet",
+		wifi_connected: "Wi-Fi anslutet",
+		wifi_connecting: "Ansluter Wi-Fi"
+	},
+	details: {
+		disconnected: "Trydan redo",
+		unavailable: "Kontrollera huvudenheten",
+		charging: "Energi till fordonet",
+		complete: "Du kan koppla från fordonet",
+		timer: "Timern är aktiv",
+		updating: "Koppla inte från laddaren",
+		control_pilot: "Kontrollera fordonskommunikationen",
+		load_balancing: "Kontrollera lokal lastbalansering",
+		error: "Kontrollera diagnostiken",
+		waiting_power: "Väntar på start eller effekt",
+		wifi_connected: "Anslutning återställd",
+		wifi_connecting: "Försöker ansluta"
+	},
+	badges: {
+		paused: "Pausad",
+		locked: "Låst",
+		timer: "Timer",
+		waiting_power: "Väntar på effekt"
+	},
+	labels: {
+		brand: "V2C · TRYDAN",
+		now: "nu",
+		session: "Session",
+		power: "Effekt",
+		energy: "Energi",
+		time: "Tid",
+		intensity: "Laddström",
+		advanced: "Trydan-inställningar",
+		chargingControls: "Laddning",
+		energyControls: "Dynamisk energi",
+		lightControls: "Belysning",
+		unavailableEntity: "Entiteten är inte tillgänglig",
+		actionPending: "Tillämpar ändring",
+		actionDone: "Ändring bekräftad",
+		actionFailed: "Ändringen kunde inte tillämpas",
+		additionalStatus: "Ytterligare status",
+		energyFlow: "Energiflöde",
+		voltage: "Spänning",
+		diagnostics: "Diagnostik",
+		configuration: "Konfiguration"
+	},
+	actions: {
+		pause: "Pausa",
+		resume: "Fortsätt",
+		lock: "Lås EVSE",
+		unlock: "Lås upp EVSE",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pauseDynamic: "Pausa dynamisk styrning",
+		logoLed: "Logotyp-LED",
+		lightLed: "Laddarbelysning",
+		chargeMode: "Laddningsläge",
+		confirmLock: "Låsa V2C-laddaren?"
+	},
+	flows: {
+		solar: "Sol",
+		grid: "Elnät",
+		home: "Hem",
+		battery: "Batteri",
+		charger: "Bil",
+		import: "Import",
+		export: "Export",
+		charge: "Laddar",
+		discharge: "Urladdning",
+		consume: "Förbrukning",
+		produce: "Produktion",
+		idle: "Viloläge",
+		unknown: "Ingen data",
+		activeFlow: "Aktivt energiflöde",
+		noFlow: "Inget energiflöde",
+		partialData: "Delvisa energidata",
+		noData: "Inga energidata"
+	},
+	editor: {
+		title: "V2C Trydan Card",
+		entity: "Primär V2C-entitet",
+		name: "Namn",
+		location: "Plats",
+		statusEntity: "Optional visual status",
+		gridPower: "Grid power",
+		solarPower: "Solar power",
+		batteryPower: "Battery power",
+		voltage: "Voltage",
+		language: "Språk",
+		theme: "Tema",
+		displayMode: "Kortstorlek",
+		themeAuto: "System / Home Assistant",
+		themeLight: "Ljust",
+		themeDark: "Mörkt",
+		modeStandard: "Standard",
+		modeCompact: "Kompakt",
+		modeUltra: "Ultrakompakt",
+		showEnergyFlow: "Energiflöde",
+		showControls: "Laddningskontroller",
+		showAdvanced: "Avancerade kontroller",
+		showCharger: "Trydan-illustration"
+	}
+}, $e = {
 	states: {
 		disconnected: "No vehicle",
 		unavailable: "Unavailable",
@@ -765,864 +1739,7 @@ var ze = {
 		showAdvanced: "Advanced controls",
 		showCharger: "Trydan artwork"
 	}
-};
-//#endregion
-//#region src/localization/catalog.ts
-function V(e) {
-	return Object.fromEntries(Object.entries(ze).map(([t, n]) => [t, {
-		...n,
-		...e[t] ?? {}
-	}]));
-}
-var Be = V({
-	states: {
-		disconnected: "Nessun veicolo",
-		unavailable: "Non disponibile",
-		charging: "In carica",
-		complete: "Ricarica completata",
-		timer: "Ricarica programmata",
-		updating: "Aggiornamento",
-		control_pilot: "Errore Control Pilot",
-		load_balancing: "Errore Load Balancing",
-		error: "Errore del caricatore",
-		waiting_power: "Veicolo collegato",
-		wifi_connected: "Wi-Fi connesso",
-		wifi_connecting: "Connessione Wi-Fi"
-	},
-	details: {
-		disconnected: "Trydan pronto",
-		unavailable: "Controlla l'entità principale",
-		charging: "Energia verso il veicolo",
-		complete: "Puoi scollegare il veicolo",
-		timer: "Il timer è attivo",
-		updating: "Non scollegare il caricatore",
-		control_pilot: "Controlla la comunicazione con il veicolo",
-		load_balancing: "Controlla il bilanciamento locale",
-		error: "Controlla la diagnostica",
-		waiting_power: "In attesa dell'avvio o della potenza",
-		wifi_connected: "Connessione ripristinata",
-		wifi_connecting: "Tentativo di connessione"
-	},
-	badges: {
-		paused: "In pausa",
-		locked: "Bloccato",
-		timer: "Timer",
-		waiting_power: "In attesa di potenza"
-	},
-	labels: {
-		now: "ora",
-		session: "Sessione",
-		energy: "Energia",
-		time: "Tempo",
-		intensity: "Corrente di ricarica",
-		advanced: "Impostazioni Trydan",
-		chargingControls: "Ricarica",
-		energyControls: "Energia dinamica",
-		lightControls: "Illuminazione",
-		unavailableEntity: "Entità non disponibile",
-		actionPending: "Modifica in corso",
-		actionDone: "Modifica confermata",
-		actionFailed: "Impossibile applicare la modifica",
-		additionalStatus: "Stato aggiuntivo",
-		power: "Potenza",
-		energyFlow: "Flusso energetico",
-		voltage: "Tensione",
-		diagnostics: "Diagnostica",
-		configuration: "Configurazione"
-	},
-	actions: {
-		pause: "Pausa",
-		resume: "Riprendi",
-		lock: "Blocca EVSE",
-		unlock: "Sblocca EVSE",
-		timer: "Timer",
-		dynamic: "Modulazione dinamica",
-		pauseDynamic: "Pausa controllo dinamico",
-		logoLed: "LED logo",
-		lightLed: "Luce caricatore",
-		chargeMode: "Modalità di ricarica",
-		confirmLock: "Bloccare il caricatore V2C?"
-	},
-	flows: {
-		solar: "Solare",
-		grid: "Rete",
-		home: "Casa",
-		battery: "Batteria",
-		charger: "Auto",
-		import: "Importazione",
-		export: "Esportazione",
-		charge: "Ricarica",
-		discharge: "Scarica",
-		consume: "Consumo",
-		produce: "Produzione",
-		idle: "Inattivo",
-		unknown: "Nessun dato",
-		activeFlow: "Flusso energetico attivo",
-		noFlow: "Nessun flusso energetico",
-		partialData: "Dati energetici parziali",
-		noData: "Nessun dato energetico"
-	},
-	editor: {
-		entity: "Entità V2C principale",
-		name: "Nome",
-		location: "Posizione",
-		language: "Lingua",
-		theme: "Tema",
-		displayMode: "Dimensione scheda",
-		themeAuto: "Sistema / Home Assistant",
-		themeLight: "Chiaro",
-		themeDark: "Scuro",
-		modeStandard: "Standard",
-		modeCompact: "Compatto",
-		modeUltra: "Ultra compatto",
-		showEnergyFlow: "Flusso di energia",
-		showControls: "Controlli di ricarica",
-		showAdvanced: "Controlli avanzati",
-		showCharger: "Illustrazione Trydan"
-	}
-}), Ve = V({
-	states: {
-		disconnected: "Kein Fahrzeug",
-		unavailable: "Nicht verfügbar",
-		charging: "Laden",
-		complete: "Ladevorgang abgeschlossen",
-		timer: "Geplantes Laden",
-		updating: "Aktualisierung",
-		control_pilot: "Control-Pilot-Fehler",
-		load_balancing: "Lastverteilungsfehler",
-		error: "Ladegerätfehler",
-		waiting_power: "Fahrzeug verbunden",
-		wifi_connected: "WLAN verbunden",
-		wifi_connecting: "WLAN wird verbunden"
-	},
-	details: {
-		disconnected: "Trydan bereit",
-		unavailable: "Hauptentität prüfen",
-		charging: "Energie fließt zum Fahrzeug",
-		complete: "Fahrzeug kann getrennt werden",
-		timer: "Timer ist aktiv",
-		updating: "Ladegerät nicht trennen",
-		control_pilot: "Fahrzeugkommunikation prüfen",
-		load_balancing: "Lokale Lastverteilung prüfen",
-		error: "Diagnose prüfen",
-		waiting_power: "Warten auf Start oder Leistung",
-		wifi_connected: "Verbindung wiederhergestellt",
-		wifi_connecting: "Verbindungsversuch läuft"
-	},
-	badges: {
-		paused: "Pausiert",
-		locked: "Gesperrt",
-		timer: "Timer",
-		waiting_power: "Wartet auf Leistung"
-	},
-	labels: {
-		now: "jetzt",
-		session: "Sitzung",
-		energy: "Energie",
-		time: "Zeit",
-		intensity: "Ladestrom",
-		advanced: "Trydan-Einstellungen",
-		chargingControls: "Laden",
-		energyControls: "Dynamische Energie",
-		lightControls: "Beleuchtung",
-		unavailableEntity: "Entität nicht verfügbar",
-		actionPending: "Änderung wird angewendet",
-		actionDone: "Änderung bestätigt",
-		actionFailed: "Änderung konnte nicht angewendet werden",
-		additionalStatus: "Zusätzlicher Status",
-		power: "Leistung",
-		energyFlow: "Energiefluss",
-		voltage: "Spannung",
-		diagnostics: "Diagnose",
-		configuration: "Konfiguration"
-	},
-	actions: {
-		pause: "Pausieren",
-		resume: "Fortsetzen",
-		lock: "EVSE sperren",
-		unlock: "EVSE entsperren",
-		timer: "Timer",
-		dynamic: "Dynamische Regelung",
-		pauseDynamic: "Dynamische Regelung pausieren",
-		logoLed: "Logo-LED",
-		lightLed: "Ladegerätlicht",
-		chargeMode: "Lademodus",
-		confirmLock: "V2C-Ladegerät sperren?"
-	},
-	flows: {
-		solar: "Solar",
-		grid: "Netz",
-		home: "Haus",
-		battery: "Batterie",
-		charger: "Auto",
-		import: "Bezug",
-		export: "Einspeisung",
-		charge: "Lädt",
-		discharge: "Entlädt",
-		consume: "Verbrauch",
-		produce: "Erzeugung",
-		idle: "Leerlauf",
-		unknown: "Keine Daten",
-		activeFlow: "Aktiver Energiefluss",
-		noFlow: "Kein Energiefluss",
-		partialData: "Teilweise Energiedaten",
-		noData: "Keine Energiedaten"
-	},
-	editor: {
-		entity: "Haupt-V2C-Entität",
-		name: "Name",
-		location: "Standort",
-		language: "Sprache",
-		theme: "Design",
-		displayMode: "Kartengröße",
-		themeAuto: "System / Home Assistant",
-		themeLight: "Hell",
-		themeDark: "Dunkel",
-		modeStandard: "Standard",
-		modeCompact: "Kompakt",
-		modeUltra: "Ultrakompakt",
-		showEnergyFlow: "Energiefluss",
-		showControls: "Ladesteuerung",
-		showAdvanced: "Erweiterte Steuerung",
-		showCharger: "Trydan-Abbildung"
-	}
-}), He = V({
-	states: {
-		disconnected: "Aucun véhicule",
-		unavailable: "Indisponible",
-		charging: "En charge",
-		complete: "Charge terminée",
-		timer: "Charge programmée",
-		updating: "Mise à jour",
-		control_pilot: "Erreur Control Pilot",
-		load_balancing: "Erreur d'équilibrage de charge",
-		error: "Erreur du chargeur",
-		waiting_power: "Véhicule connecté",
-		wifi_connected: "Wi-Fi connecté",
-		wifi_connecting: "Connexion Wi-Fi"
-	},
-	details: {
-		disconnected: "Trydan prêt",
-		unavailable: "Vérifiez l'entité principale",
-		charging: "Énergie vers le véhicule",
-		complete: "Vous pouvez débrancher le véhicule",
-		timer: "Le minuteur est actif",
-		updating: "Ne débranchez pas le chargeur",
-		control_pilot: "Vérifiez la communication avec le véhicule",
-		load_balancing: "Vérifiez l'équilibrage local",
-		error: "Vérifiez le diagnostic",
-		waiting_power: "En attente du démarrage ou de puissance",
-		wifi_connected: "Connexion rétablie",
-		wifi_connecting: "Tentative de connexion"
-	},
-	badges: {
-		paused: "En pause",
-		locked: "Verrouillé",
-		timer: "Minuteur",
-		waiting_power: "En attente de puissance"
-	},
-	labels: {
-		now: "maintenant",
-		session: "Session",
-		energy: "Énergie",
-		time: "Temps",
-		intensity: "Courant de charge",
-		advanced: "Réglages Trydan",
-		chargingControls: "Charge",
-		energyControls: "Énergie dynamique",
-		lightControls: "Éclairage",
-		unavailableEntity: "Entité indisponible",
-		actionPending: "Modification en cours",
-		actionDone: "Modification confirmée",
-		actionFailed: "Impossible d'appliquer la modification",
-		additionalStatus: "État supplémentaire",
-		power: "Puissance",
-		energyFlow: "Flux d'énergie",
-		voltage: "Tension",
-		diagnostics: "Diagnostic",
-		configuration: "Configuration"
-	},
-	actions: {
-		pause: "Mettre en pause",
-		resume: "Reprendre",
-		lock: "Verrouiller l'EVSE",
-		unlock: "Déverrouiller l'EVSE",
-		timer: "Minuteur",
-		dynamic: "Modulation dynamique",
-		pauseDynamic: "Suspendre le contrôle dynamique",
-		logoLed: "LED du logo",
-		lightLed: "Éclairage du chargeur",
-		chargeMode: "Mode de charge",
-		confirmLock: "Verrouiller le chargeur V2C ?"
-	},
-	flows: {
-		solar: "Solaire",
-		grid: "Réseau",
-		home: "Maison",
-		battery: "Batterie",
-		charger: "Voiture",
-		import: "Importation",
-		export: "Exportation",
-		charge: "Charge",
-		discharge: "Décharge",
-		consume: "Consommation",
-		produce: "Production",
-		idle: "Au repos",
-		unknown: "Aucune donnée",
-		activeFlow: "Flux d'énergie actif",
-		noFlow: "Aucun flux d'énergie",
-		partialData: "Données énergétiques partielles",
-		noData: "Aucune donnée énergétique"
-	},
-	editor: {
-		entity: "Entité V2C principale",
-		name: "Nom",
-		location: "Emplacement",
-		language: "Langue",
-		theme: "Thème",
-		displayMode: "Taille de la carte",
-		themeAuto: "Système / Home Assistant",
-		themeLight: "Clair",
-		themeDark: "Sombre",
-		modeStandard: "Standard",
-		modeCompact: "Compact",
-		modeUltra: "Ultra compact",
-		showEnergyFlow: "Flux d'énergie",
-		showControls: "Commandes de charge",
-		showAdvanced: "Commandes avancées",
-		showCharger: "Illustration Trydan"
-	}
-}), Ue = V({
-	states: {
-		disconnected: "Geen voertuig",
-		unavailable: "Niet beschikbaar",
-		charging: "Bezig met laden",
-		complete: "Laden voltooid",
-		timer: "Gepland laden",
-		updating: "Bijwerken",
-		control_pilot: "Control Pilot-fout",
-		load_balancing: "Load Balancing-fout",
-		error: "Laderfout",
-		waiting_power: "Voertuig verbonden",
-		wifi_connected: "Wi-Fi verbonden",
-		wifi_connecting: "Wi-Fi verbinden"
-	},
-	details: {
-		disconnected: "Trydan gereed",
-		unavailable: "Controleer de hoofdentiteit",
-		charging: "Energie naar het voertuig",
-		complete: "Je kunt het voertuig loskoppelen",
-		timer: "De timer is actief",
-		updating: "Koppel de lader niet los",
-		control_pilot: "Controleer de voertuigcommunicatie",
-		load_balancing: "Controleer lokale load balancing",
-		error: "Controleer de diagnose",
-		waiting_power: "Wachten op start of vermogen",
-		wifi_connected: "Verbinding hersteld",
-		wifi_connecting: "Verbinding wordt geprobeerd"
-	},
-	badges: {
-		paused: "Gepauzeerd",
-		locked: "Vergrendeld",
-		timer: "Timer",
-		waiting_power: "Wacht op vermogen"
-	},
-	labels: {
-		now: "nu",
-		session: "Sessie",
-		energy: "Energie",
-		time: "Tijd",
-		intensity: "Laadstroom",
-		advanced: "Trydan-instellingen",
-		chargingControls: "Laden",
-		energyControls: "Dynamische energie",
-		lightControls: "Verlichting",
-		unavailableEntity: "Entiteit niet beschikbaar",
-		actionPending: "Wijziging toepassen",
-		actionDone: "Wijziging bevestigd",
-		actionFailed: "Wijziging kon niet worden toegepast",
-		additionalStatus: "Aanvullende status",
-		power: "Vermogen",
-		energyFlow: "Energiestroom",
-		voltage: "Spanning",
-		diagnostics: "Diagnostiek",
-		configuration: "Configuratie"
-	},
-	actions: {
-		pause: "Pauzeren",
-		resume: "Hervatten",
-		lock: "EVSE vergrendelen",
-		unlock: "EVSE ontgrendelen",
-		timer: "Timer",
-		dynamic: "Dynamische modulatie",
-		pauseDynamic: "Dynamische regeling pauzeren",
-		logoLed: "Logo-led",
-		lightLed: "Laderverlichting",
-		chargeMode: "Laadmodus",
-		confirmLock: "V2C-lader vergrendelen?"
-	},
-	flows: {
-		solar: "Zon",
-		grid: "Net",
-		home: "Huis",
-		battery: "Batterij",
-		charger: "Auto",
-		import: "Import",
-		export: "Export",
-		charge: "Laden",
-		discharge: "Ontladen",
-		consume: "Verbruik",
-		produce: "Productie",
-		idle: "In rust",
-		unknown: "Geen gegevens",
-		activeFlow: "Actieve energiestroom",
-		noFlow: "Geen energiestroom",
-		partialData: "Gedeeltelijke energiegegevens",
-		noData: "Geen energiegegevens"
-	},
-	editor: {
-		entity: "Hoofd-V2C-entiteit",
-		name: "Naam",
-		location: "Locatie",
-		language: "Taal",
-		theme: "Thema",
-		displayMode: "Kaartgrootte",
-		themeAuto: "Systeem / Home Assistant",
-		themeLight: "Licht",
-		themeDark: "Donker",
-		modeStandard: "Standaard",
-		modeCompact: "Compact",
-		modeUltra: "Ultracompact",
-		showEnergyFlow: "Energiestroom",
-		showControls: "Laadbediening",
-		showAdvanced: "Geavanceerde bediening",
-		showCharger: "Trydan-afbeelding"
-	}
-}), We = V({
-	states: {
-		disconnected: "Inget fordon",
-		unavailable: "Inte tillgänglig",
-		charging: "Laddar",
-		complete: "Laddning klar",
-		timer: "Schemalagd laddning",
-		updating: "Uppdaterar",
-		control_pilot: "Control Pilot-fel",
-		load_balancing: "Lastbalanseringsfel",
-		error: "Laddarfel",
-		waiting_power: "Fordon anslutet",
-		wifi_connected: "Wi-Fi anslutet",
-		wifi_connecting: "Ansluter Wi-Fi"
-	},
-	details: {
-		disconnected: "Trydan redo",
-		unavailable: "Kontrollera huvudenheten",
-		charging: "Energi till fordonet",
-		complete: "Du kan koppla från fordonet",
-		timer: "Timern är aktiv",
-		updating: "Koppla inte från laddaren",
-		control_pilot: "Kontrollera fordonskommunikationen",
-		load_balancing: "Kontrollera lokal lastbalansering",
-		error: "Kontrollera diagnostiken",
-		waiting_power: "Väntar på start eller effekt",
-		wifi_connected: "Anslutning återställd",
-		wifi_connecting: "Försöker ansluta"
-	},
-	badges: {
-		paused: "Pausad",
-		locked: "Låst",
-		timer: "Timer",
-		waiting_power: "Väntar på effekt"
-	},
-	labels: {
-		now: "nu",
-		session: "Session",
-		energy: "Energi",
-		time: "Tid",
-		intensity: "Laddström",
-		advanced: "Trydan-inställningar",
-		chargingControls: "Laddning",
-		energyControls: "Dynamisk energi",
-		lightControls: "Belysning",
-		unavailableEntity: "Entiteten är inte tillgänglig",
-		actionPending: "Tillämpar ändring",
-		actionDone: "Ändring bekräftad",
-		actionFailed: "Ändringen kunde inte tillämpas",
-		additionalStatus: "Ytterligare status",
-		power: "Effekt",
-		energyFlow: "Energiflöde",
-		voltage: "Spänning",
-		diagnostics: "Diagnostik",
-		configuration: "Konfiguration"
-	},
-	actions: {
-		pause: "Pausa",
-		resume: "Fortsätt",
-		lock: "Lås EVSE",
-		unlock: "Lås upp EVSE",
-		timer: "Timer",
-		dynamic: "Dynamisk modulering",
-		pauseDynamic: "Pausa dynamisk styrning",
-		logoLed: "Logotyp-LED",
-		lightLed: "Laddarbelysning",
-		chargeMode: "Laddningsläge",
-		confirmLock: "Låsa V2C-laddaren?"
-	},
-	flows: {
-		solar: "Sol",
-		grid: "Elnät",
-		home: "Hem",
-		battery: "Batteri",
-		charger: "Bil",
-		import: "Import",
-		export: "Export",
-		charge: "Laddar",
-		discharge: "Urladdning",
-		consume: "Förbrukning",
-		produce: "Produktion",
-		idle: "Viloläge",
-		unknown: "Ingen data",
-		activeFlow: "Aktivt energiflöde",
-		noFlow: "Inget energiflöde",
-		partialData: "Delvisa energidata",
-		noData: "Inga energidata"
-	},
-	editor: {
-		entity: "Primär V2C-entitet",
-		name: "Namn",
-		location: "Plats",
-		language: "Språk",
-		theme: "Tema",
-		displayMode: "Kortstorlek",
-		themeAuto: "System / Home Assistant",
-		themeLight: "Ljust",
-		themeDark: "Mörkt",
-		modeStandard: "Standard",
-		modeCompact: "Kompakt",
-		modeUltra: "Ultrakompakt",
-		showEnergyFlow: "Energiflöde",
-		showControls: "Laddningskontroller",
-		showAdvanced: "Avancerade kontroller",
-		showCharger: "Trydan-illustration"
-	}
-}), Ge = V({
-	states: {
-		disconnected: "Intet køretøj",
-		unavailable: "Ikke tilgængelig",
-		charging: "Oplader",
-		complete: "Opladning fuldført",
-		timer: "Planlagt opladning",
-		updating: "Opdaterer",
-		control_pilot: "Control Pilot-fejl",
-		load_balancing: "Belastningsbalanceringsfejl",
-		error: "Opladerfejl",
-		waiting_power: "Køretøj tilsluttet",
-		wifi_connected: "Wi-Fi tilsluttet",
-		wifi_connecting: "Tilslutter Wi-Fi"
-	},
-	details: {
-		disconnected: "Trydan klar",
-		unavailable: "Kontrollér hovedenheden",
-		charging: "Energi til køretøjet",
-		complete: "Du kan frakoble køretøjet",
-		timer: "Timeren er aktiv",
-		updating: "Frakobl ikke opladeren",
-		control_pilot: "Kontrollér kommunikationen med køretøjet",
-		load_balancing: "Kontrollér lokal belastningsbalancering",
-		error: "Kontrollér diagnosticeringen",
-		waiting_power: "Venter på start eller effekt",
-		wifi_connected: "Forbindelse genoprettet",
-		wifi_connecting: "Forsøger at oprette forbindelse"
-	},
-	badges: {
-		paused: "Sat på pause",
-		locked: "Låst",
-		timer: "Timer",
-		waiting_power: "Venter på effekt"
-	},
-	labels: {
-		now: "nu",
-		session: "Session",
-		energy: "Energi",
-		time: "Tid",
-		intensity: "Ladestrøm",
-		advanced: "Trydan-indstillinger",
-		chargingControls: "Opladning",
-		energyControls: "Dynamisk energi",
-		lightControls: "Belysning",
-		unavailableEntity: "Enheden er ikke tilgængelig",
-		actionPending: "Anvender ændring",
-		actionDone: "Ændring bekræftet",
-		actionFailed: "Ændringen kunne ikke anvendes",
-		additionalStatus: "Ekstra status",
-		power: "Effekt",
-		energyFlow: "Energiflow",
-		voltage: "Spænding",
-		diagnostics: "Diagnostik",
-		configuration: "Konfiguration"
-	},
-	actions: {
-		pause: "Pause",
-		resume: "Fortsæt",
-		lock: "Lås EVSE",
-		unlock: "Lås EVSE op",
-		timer: "Timer",
-		dynamic: "Dynamisk modulering",
-		pauseDynamic: "Sæt dynamisk styring på pause",
-		logoLed: "Logo-LED",
-		lightLed: "Opladerlys",
-		chargeMode: "Opladningstilstand",
-		confirmLock: "Lås V2C-opladeren?"
-	},
-	flows: {
-		solar: "Sol",
-		grid: "Elnet",
-		home: "Hjem",
-		battery: "Batteri",
-		charger: "Bil",
-		import: "Import",
-		export: "Eksport",
-		charge: "Oplader",
-		discharge: "Aflader",
-		consume: "Forbrug",
-		produce: "Produktion",
-		idle: "Inaktiv",
-		unknown: "Ingen data",
-		activeFlow: "Aktivt energiflow",
-		noFlow: "Intet energiflow",
-		partialData: "Delvise energidata",
-		noData: "Ingen energidata"
-	},
-	editor: {
-		entity: "Primær V2C-enhed",
-		name: "Navn",
-		location: "Placering",
-		language: "Sprog",
-		theme: "Tema",
-		displayMode: "Kortstørrelse",
-		themeAuto: "System / Home Assistant",
-		themeLight: "Lys",
-		themeDark: "Mørk",
-		modeStandard: "Standard",
-		modeCompact: "Kompakt",
-		modeUltra: "Ultrakompakt",
-		showEnergyFlow: "Energiflow",
-		showControls: "Opladningskontroller",
-		showAdvanced: "Avancerede kontroller",
-		showCharger: "Trydan-illustration"
-	}
-}), Ke = V({
-	states: {
-		disconnected: "Ingen bil",
-		unavailable: "Ikke tilgjengelig",
-		charging: "Lader",
-		complete: "Lading fullført",
-		timer: "Planlagt lading",
-		updating: "Oppdaterer",
-		control_pilot: "Control Pilot-feil",
-		load_balancing: "Lastbalanseringsfeil",
-		error: "Laderfeil",
-		waiting_power: "Bil tilkoblet",
-		wifi_connected: "Wi-Fi tilkoblet",
-		wifi_connecting: "Kobler til Wi-Fi"
-	},
-	details: {
-		disconnected: "Trydan klar",
-		unavailable: "Kontroller hovedenheten",
-		charging: "Energi til bilen",
-		complete: "Du kan koble fra bilen",
-		timer: "Timeren er aktiv",
-		updating: "Ikke koble fra laderen",
-		control_pilot: "Kontroller kommunikasjonen med bilen",
-		load_balancing: "Kontroller lokal lastbalansering",
-		error: "Kontroller diagnostikken",
-		waiting_power: "Venter på start eller effekt",
-		wifi_connected: "Tilkobling gjenopprettet",
-		wifi_connecting: "Prøver å koble til"
-	},
-	badges: {
-		paused: "Pauset",
-		locked: "Låst",
-		timer: "Timer",
-		waiting_power: "Venter på effekt"
-	},
-	labels: {
-		now: "nå",
-		session: "Økt",
-		energy: "Energi",
-		time: "Tid",
-		intensity: "Ladestrøm",
-		advanced: "Trydan-innstillinger",
-		chargingControls: "Lading",
-		energyControls: "Dynamisk energi",
-		lightControls: "Belysning",
-		unavailableEntity: "Enheten er ikke tilgjengelig",
-		actionPending: "Bruker endring",
-		actionDone: "Endring bekreftet",
-		actionFailed: "Kunne ikke bruke endringen",
-		additionalStatus: "Ekstra status",
-		power: "Effekt",
-		energyFlow: "Energiflyt",
-		voltage: "Spenning",
-		diagnostics: "Diagnostikk",
-		configuration: "Konfigurasjon"
-	},
-	actions: {
-		pause: "Pause",
-		resume: "Fortsett",
-		lock: "Lås EVSE",
-		unlock: "Lås opp EVSE",
-		timer: "Timer",
-		dynamic: "Dynamisk modulering",
-		pauseDynamic: "Sett dynamisk styring på pause",
-		logoLed: "Logo-LED",
-		lightLed: "Laderlys",
-		chargeMode: "Lademodus",
-		confirmLock: "Låse V2C-laderen?"
-	},
-	flows: {
-		solar: "Sol",
-		grid: "Strømnett",
-		home: "Hjem",
-		battery: "Batteri",
-		charger: "Bil",
-		import: "Import",
-		export: "Eksport",
-		charge: "Lader",
-		discharge: "Lader ut",
-		consume: "Forbruk",
-		produce: "Produksjon",
-		idle: "Inaktiv",
-		unknown: "Ingen data",
-		activeFlow: "Aktiv energiflyt",
-		noFlow: "Ingen energiflyt",
-		partialData: "Delvise energidata",
-		noData: "Ingen energidata"
-	},
-	editor: {
-		entity: "Primær V2C-enhet",
-		name: "Navn",
-		location: "Plassering",
-		language: "Språk",
-		theme: "Tema",
-		displayMode: "Kortstørrelse",
-		themeAuto: "System / Home Assistant",
-		themeLight: "Lys",
-		themeDark: "Mørk",
-		modeStandard: "Standard",
-		modeCompact: "Kompakt",
-		modeUltra: "Ultrakompakt",
-		showEnergyFlow: "Energiflyt",
-		showControls: "Ladekontroller",
-		showAdvanced: "Avanserte kontroller",
-		showCharger: "Trydan-illustrasjon"
-	}
-}), qe = V({
-	states: {
-		disconnected: "Niciun vehicul",
-		unavailable: "Indisponibil",
-		charging: "Se încarcă",
-		complete: "Încărcare finalizată",
-		timer: "Încărcare programată",
-		updating: "Se actualizează",
-		control_pilot: "Eroare Control Pilot",
-		load_balancing: "Eroare de echilibrare a sarcinii",
-		error: "Eroare încărcător",
-		waiting_power: "Vehicul conectat",
-		wifi_connected: "Wi-Fi conectat",
-		wifi_connecting: "Conectare Wi-Fi"
-	},
-	details: {
-		disconnected: "Trydan pregătit",
-		unavailable: "Verifică entitatea principală",
-		charging: "Energie către vehicul",
-		complete: "Poți deconecta vehiculul",
-		timer: "Temporizatorul este activ",
-		updating: "Nu deconecta încărcătorul",
-		control_pilot: "Verifică comunicarea cu vehiculul",
-		load_balancing: "Verifică echilibrarea locală",
-		error: "Verifică diagnosticul",
-		waiting_power: "Se așteaptă pornirea sau puterea",
-		wifi_connected: "Conexiune restabilită",
-		wifi_connecting: "Se încearcă conectarea"
-	},
-	badges: {
-		paused: "În pauză",
-		locked: "Blocat",
-		timer: "Temporizator",
-		waiting_power: "Așteaptă putere"
-	},
-	labels: {
-		now: "acum",
-		session: "Sesiune",
-		energy: "Energie",
-		time: "Timp",
-		intensity: "Curent de încărcare",
-		advanced: "Setări Trydan",
-		chargingControls: "Încărcare",
-		energyControls: "Energie dinamică",
-		lightControls: "Iluminare",
-		unavailableEntity: "Entitate indisponibilă",
-		actionPending: "Se aplică modificarea",
-		actionDone: "Modificare confirmată",
-		actionFailed: "Modificarea nu a putut fi aplicată",
-		additionalStatus: "Stare suplimentară",
-		power: "Putere",
-		energyFlow: "Flux de energie",
-		voltage: "Tensiune",
-		diagnostics: "Diagnostic",
-		configuration: "Configurare"
-	},
-	actions: {
-		pause: "Pauză",
-		resume: "Continuă",
-		lock: "Blochează EVSE",
-		unlock: "Deblochează EVSE",
-		timer: "Temporizator",
-		dynamic: "Modulare dinamică",
-		pauseDynamic: "Întrerupe controlul dinamic",
-		logoLed: "LED siglă",
-		lightLed: "Lumină încărcător",
-		chargeMode: "Mod de încărcare",
-		confirmLock: "Blochezi încărcătorul V2C?"
-	},
-	flows: {
-		solar: "Solar",
-		grid: "Rețea",
-		home: "Casă",
-		battery: "Baterie",
-		charger: "Mașină",
-		import: "Import",
-		export: "Export",
-		charge: "Încărcare",
-		discharge: "Descărcare",
-		consume: "Consum",
-		produce: "Producție",
-		idle: "Repaus",
-		unknown: "Fără date",
-		activeFlow: "Flux de energie activ",
-		noFlow: "Fără flux de energie",
-		partialData: "Date energetice parțiale",
-		noData: "Fără date energetice"
-	},
-	editor: {
-		entity: "Entitate V2C principală",
-		name: "Nume",
-		location: "Locație",
-		language: "Limbă",
-		theme: "Temă",
-		displayMode: "Dimensiunea cardului",
-		themeAuto: "Sistem / Home Assistant",
-		themeLight: "Luminos",
-		themeDark: "Întunecat",
-		modeStandard: "Standard",
-		modeCompact: "Compact",
-		modeUltra: "Ultracompact",
-		showEnergyFlow: "Flux de energie",
-		showControls: "Comenzi de încărcare",
-		showAdvanced: "Comenzi avansate",
-		showCharger: "Ilustrație Trydan"
-	}
-}), Je = {
+}, et = {
 	states: {
 		disconnected: "Sin vehículo",
 		unavailable: "No disponible",
@@ -1735,7 +1852,7 @@ var Be = V({
 		showAdvanced: "Controles avanzados",
 		showCharger: "Ilustración Trydan"
 	}
-}, Ye = [
+}, tt = [
 	"en",
 	"it",
 	"de",
@@ -1746,24 +1863,24 @@ var Be = V({
 	"no",
 	"ro",
 	"es"
-], Xe = {
-	en: ze,
-	it: Be,
-	de: Ve,
-	fr: He,
-	nl: Ue,
-	sv: We,
+], nt = {
+	en: $e,
+	it: Je,
+	de: Ke,
+	fr: qe,
+	nl: Ye,
+	sv: Qe,
 	da: Ge,
-	no: Ke,
-	ro: qe,
-	es: Je
+	no: Xe,
+	ro: Ze,
+	es: et
 };
-function H(e) {
-	let t = e?.toLowerCase().split(/[-_]/)[0] ?? "en", n = t === "nb" || t === "nn" ? "no" : t;
-	return Ye.includes(n) ? n : "en";
+function rt(e, t) {
+	let n = (e === "auto" ? t : e)?.toLowerCase().split(/[-_]/)[0] ?? "en", r = n === "nb" || n === "nn" ? "no" : n;
+	return tt.includes(r) ? r : "en";
 }
 function U(e) {
-	return Xe[H(e)];
+	return nt[rt(e)];
 }
 function W(e, t) {
 	let n = t.split(".").reduce((e, t) => {
@@ -1772,53 +1889,47 @@ function W(e, t) {
 	return typeof n == "string" ? n : t;
 }
 //#endregion
+//#region src/localization/lcd-copy.ts
+function it(e, t, n = {}) {
+	let r = U(e), i = t === "disconnected" ? {
+		primary: W(r, "details.disconnected"),
+		secondary: W(r, "states.disconnected")
+	} : {
+		primary: W(r, `states.${t}`),
+		secondary: W(r, `details.${t}`)
+	};
+	return t === "charging" ? {
+		primary: n.power && n.power !== "—" ? `${i.primary} ${n.power}` : i.primary,
+		secondary: [n.current, n.voltage].filter(Boolean).join(" · ") || i.secondary
+	} : t === "complete" && n.energy && n.energy !== "—" ? {
+		...i,
+		secondary: n.energy
+	} : i;
+}
+//#endregion
 //#region src/services/actions.ts
-async function Ze(e, t, n) {
+async function at(e, t, n) {
 	return e.callService("number", "set_value", {
 		entity_id: t,
 		value: n
 	});
 }
-async function Qe(e, t, n) {
+async function ot(e, t, n) {
 	return e.callService("switch", n ? "turn_on" : "turn_off", { entity_id: t });
 }
-async function $e(e, t, n) {
+async function st(e, t, n) {
 	return e.callService("select", "select_option", {
 		entity_id: t,
 		option: n
 	});
 }
-async function et(e, t, n, r) {
+async function ct(e, t, n, r) {
 	let i = { entity_id: t };
 	return n && r !== void 0 && (i.brightness = r), e.callService("light", n ? "turn_on" : "turn_off", i);
 }
 //#endregion
 //#region src/models/types.ts
-var tt = [
-	"connected",
-	"charging",
-	"ready",
-	"charge_power",
-	"charge_energy",
-	"charge_time",
-	"house_power",
-	"fv_power",
-	"battery_power",
-	"grid_power",
-	"voltage",
-	"intensity",
-	"min_intensity",
-	"max_intensity",
-	"meter_error",
-	"paused",
-	"locked",
-	"timer",
-	"dynamic",
-	"pause_dynamic",
-	"logo_led",
-	"light_led",
-	"charge_mode"
-], nt = [
+var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), lt = [
 	"disconnected",
 	"charging",
 	"complete",
@@ -1830,7 +1941,7 @@ var tt = [
 	"waiting_power",
 	"wifi_connected",
 	"wifi_connecting"
-], rt = {
+], ut = {
 	connected: "connected",
 	charging: "charging",
 	ready: "ready",
@@ -1845,6 +1956,9 @@ var tt = [
 	min_intensity: "min_intensity",
 	max_intensity: "max_intensity",
 	meter_error: "meter_error",
+	ssid: "ssid",
+	ip_address: "ip_address",
+	signal_status: "signal_status",
 	paused: "paused",
 	locked: "locked",
 	timer: "timer",
@@ -1853,7 +1967,7 @@ var tt = [
 	logo_led: "logo_led",
 	light_led: "light_led",
 	charge_mode: "charge_mode"
-}, it = {
+}, dt = {
 	connected: ["_connected", "_conectado"],
 	charging: ["_charging", "_cargando"],
 	ready: ["_ready", "_listo"],
@@ -1873,6 +1987,9 @@ var tt = [
 	min_intensity: ["_min_intensity", "_intensidad_minima"],
 	max_intensity: ["_max_intensity", "_intensidad_maxima"],
 	meter_error: ["_meter_error", "_error_del_medidor"],
+	ssid: ["_ssid"],
+	ip_address: ["_ip_address", "_ip"],
+	signal_status: ["_signal_status", "_signal"],
 	paused: ["_paused", "_pausar_sesion"],
 	locked: ["_locked", "_bloquear_evse"],
 	timer: ["_timer", "_temporizador_de_punto_de_recarga"],
@@ -1881,45 +1998,81 @@ var tt = [
 	logo_led: ["_logo_led"],
 	light_led: ["_light_led", "_luz_led"],
 	charge_mode: ["_charge_mode", "_modo_de_carga"]
+}, ft = {
+	connected: ["binary_sensor"],
+	charging: ["binary_sensor"],
+	ready: ["binary_sensor"],
+	charge_power: ["sensor"],
+	charge_energy: ["sensor"],
+	charge_time: ["sensor"],
+	house_power: ["sensor"],
+	fv_power: ["sensor"],
+	battery_power: ["sensor"],
+	grid_power: ["sensor"],
+	voltage: ["sensor"],
+	intensity: ["number"],
+	min_intensity: ["number"],
+	max_intensity: ["number"],
+	meter_error: ["sensor", "binary_sensor"],
+	ssid: ["sensor"],
+	ip_address: ["sensor"],
+	signal_status: ["sensor"],
+	paused: ["switch"],
+	locked: ["switch"],
+	timer: ["switch"],
+	dynamic: ["switch"],
+	pause_dynamic: ["switch"],
+	logo_led: ["light"],
+	light_led: ["light"],
+	charge_mode: ["select"]
 };
-function at(e, t) {
-	return it[t]?.some((t) => e.endsWith(t)) ?? !1;
+function pt(e, t) {
+	let n = t.split(".", 1)[0] ?? "";
+	return ft[e]?.includes(n) ?? !0;
 }
-function ot(e, t) {
+function mt(e, t) {
+	return dt[t]?.some((t) => e.endsWith(t)) ?? !1;
+}
+function ht(e, t) {
 	if (t.length === 1) return t[0];
 	if (e === "voltage") {
 		let e = t.filter((e) => e.startsWith("sensor."));
 		if (e.length === 1) return e[0];
 	}
 }
-function st(e, t, n = {}) {
-	let r = { ...n }, i = {}, a = e.find((e) => e.entity_id === t), o = a?.device_id ?? void 0, s = o ? e.filter((e) => e.device_id === o && e.disabled_by == null) : e.filter((e) => e.disabled_by == null);
-	for (let e of tt) {
+function gt(e, t, n = {}) {
+	let r = {}, i = {}, a = {}, o = e.find((e) => e.entity_id === t), s = o?.device_id ?? void 0, c = s ? e.filter((e) => e.device_id === s && e.disabled_by == null) : e.filter((e) => e.disabled_by == null);
+	for (let t of G) {
+		let a = n[t];
+		a && (pt(t, a) && (!s || c.some((e) => e.entity_id === a) || !e.some((e) => e.entity_id === a)) ? (r[t] = a, i[t] = "manual") : i[t] = "invalid");
+	}
+	for (let e of G) {
 		if (r[e]) continue;
-		let t = s.filter((t) => rt[t.translation_key ?? ""] === e).map((e) => e.entity_id), n = ot(e, t);
+		let t = c.filter((t) => ut[t.translation_key ?? ""] === e).map((e) => e.entity_id), n = ht(e, t);
 		if (n) {
-			r[e] = n;
+			r[e] = n, i[e] = "automatic";
 			continue;
 		}
 		if (t.length > 1) {
-			i[e] = t;
+			a[e] = t, i[e] = "ambiguous";
 			continue;
 		}
-		let a = s.filter((t) => at(t.entity_id, e)).map((e) => e.entity_id), o = ot(e, a);
-		o ? r[e] = o : a.length > 1 && (i[e] = a);
+		let o = c.filter((t) => mt(t.entity_id, e)).map((e) => e.entity_id), s = ht(e, o);
+		s ? (r[e] = s, i[e] = "automatic") : o.length > 1 && (a[e] = o, i[e] = "ambiguous");
 	}
-	if (a?.translation_key) {
-		let e = rt[a.translation_key];
-		e && !r[e] && (r[e] = t);
+	if (o?.translation_key) {
+		let e = ut[o.translation_key];
+		e && !r[e] && (r[e] = t, i[e] = "automatic");
 	}
 	return {
 		entities: r,
-		ambiguities: i,
-		missing: tt.filter((e) => !r[e]),
-		deviceId: o
+		ambiguities: a,
+		missing: G.filter((e) => !r[e]),
+		deviceId: s,
+		statuses: Object.fromEntries(G.map((e) => [e, i[e] ?? "missing"]))
 	};
 }
-var ct = class {
+var _t = class {
 	#e = 0;
 	#t = /* @__PURE__ */ new Map();
 	invalidate() {
@@ -1927,23 +2080,23 @@ var ct = class {
 	}
 	async discover(e, t, n = {}) {
 		let r = ++this.#e, i = this.#t.get(t);
-		return i || (i = Object.values(e.entities ?? {}), i.length === 0 && e.callWS && (i = await e.callWS({ type: "config/entity_registry/list" })), this.#t.set(t, i)), r === this.#e ? st(i, t, n) : null;
+		return i || (i = Object.values(e.entities ?? {}), i.length === 0 && e.callWS && (i = await e.callWS({ type: "config/entity_registry/list" })), this.#t.set(t, i)), r === this.#e ? gt(i, t, n) : null;
 	}
 };
 //#endregion
 //#region src/services/energy.ts
-function lt(e) {
+function vt(e) {
 	if (!e || e.state === "unknown" || e.state === "unavailable") return null;
 	let t = Number(e.state);
 	if (!Number.isFinite(t)) return null;
 	let n = e.attributes.unit_of_measurement?.toLowerCase();
 	return n === "kw" ? t * 1e3 : n === "mw" ? t * 1e6 : t;
 }
-function ut(e, t, n) {
+function yt(e, t, n) {
 	return Math.abs(t) < n ? "idle" : e === "grid" ? t > 0 ? "import" : "export" : e === "battery" ? t > 0 ? "discharge" : "charge" : e === "solar" ? t > 0 ? "produce" : "unknown" : t > 0 ? "consume" : "export";
 }
-function dt(e, t, n = {}) {
-	let r = lt(t);
+function bt(e, t, n = {}) {
+	let r = vt(t);
 	if (r === null) return {
 		role: e,
 		watts: null,
@@ -1954,30 +2107,52 @@ function dt(e, t, n = {}) {
 	return {
 		role: e,
 		watts: i,
-		direction: ut(e, i, n.thresholdW ?? 50),
+		direction: yt(e, i, n.thresholdW ?? 50),
 		available: !0
 	};
 }
 //#endregion
 //#region src/services/format.ts
-function ft(e, t = "es") {
+var xt = {
+	en: "en-US",
+	it: "it-IT",
+	de: "de-DE",
+	fr: "fr-FR",
+	nl: "nl-NL",
+	sv: "sv-SE",
+	da: "da-DK",
+	no: "no-NO",
+	ro: "ro-RO",
+	es: "es-ES"
+};
+function K(e) {
+	return xt[e ?? "es"] ?? "en-US";
+}
+function St(e, t = "es") {
 	if (e === null || !Number.isFinite(e)) return "—";
-	let n = t === "en" ? "en-GB" : "es-ES", r = Math.abs(e);
-	return r >= 1e3 ? `${new Intl.NumberFormat(n, { maximumFractionDigits: 1 }).format(r / 1e3)} kW` : `${new Intl.NumberFormat(n, { maximumFractionDigits: 0 }).format(r)} W`;
+	let n = Math.abs(e);
+	return n >= 1e3 ? `${new Intl.NumberFormat(K(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(K(t), { maximumFractionDigits: 0 }).format(n)} W`;
 }
-function pt(e, t = "es") {
+function Ct(e, t = "es") {
+	if (e === null || e === "") return "—";
 	let n = Number(e);
-	return Number.isFinite(n) ? `${new Intl.NumberFormat(t === "en" ? "en-GB" : "es-ES", { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
+	return Number.isFinite(n) ? `${new Intl.NumberFormat(K(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
 }
-function mt(e) {
+function wt(e) {
+	if (e === null || e === "") return "—";
 	let t = Number(e);
 	if (!Number.isFinite(t) || t < 0) return "—";
 	let n = Math.floor(t / 3600), r = Math.floor(t % 3600 / 60);
 	return `${String(n).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
 }
+function Tt(e, t, n = "es") {
+	if (e === null || e === "") return;
+	let r = Number(e);
+	if (Number.isFinite(r)) return `${new Intl.NumberFormat(K(n), { maximumFractionDigits: 1 }).format(r)} ${t}`;
+}
 //#endregion
 //#region src/services/state.ts
-var ht = {
+var Et = {
 	sin_vehiculo: "disconnected",
 	desconectado: "disconnected",
 	cargando: "charging",
@@ -1994,7 +2169,7 @@ var ht = {
 	esperando_potencia: "waiting_power",
 	wifi_conectado: "wifi_connected",
 	conectando_wifi: "wifi_connecting"
-}, gt = {
+}, Dt = {
 	disconnected: "neutral",
 	charging: "info",
 	complete: "success",
@@ -2007,16 +2182,16 @@ var ht = {
 	wifi_connected: "success",
 	wifi_connecting: "info"
 };
-function _t(e) {
+function Ot(e) {
 	return e.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 }
-function vt(e) {
+function kt(e) {
 	if (!e) return;
-	let t = _t(e);
-	return nt.includes(t) ? t : ht[t];
+	let t = Ot(e);
+	return lt.includes(t) ? t : Et[t];
 }
-function yt(e) {
-	let t = vt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
+function At(e) {
+	let t = kt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
 	r = e.charging === !0 ? "charging" : e.ready === !0 ? "complete" : e.connected === !0 ? "connected" : n || e.seedAvailable === !1 ? "unavailable" : "disconnected";
 	let i = [];
 	e.paused === !0 && i.push("paused"), e.locked === !0 && i.push("locked"), e.timer === !0 && i.push("timer");
@@ -2033,26 +2208,26 @@ function yt(e) {
 		diagnostic: l ? c : void 0
 	};
 }
-function G(e, t, n = !1) {
+function q(e, t, n = !1) {
 	return {
 		key: e,
 		labelKey: n ? "states.unavailable" : `states.${e}`,
 		detailKey: n ? "details.unavailable" : `details.${e}`,
-		severity: gt[e],
+		severity: Dt[e],
 		badges: t.inhibitors,
 		diagnostic: t.diagnostic,
 		unavailable: n
 	};
 }
-function bt(e) {
-	return e.externalStatus ? G(e.externalStatus, e) : e.fault === "control_pilot" ? G("control_pilot", e) : e.fault === "load_balancing" ? G("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? G("error", e) : e.maintenance === "updating" ? G("updating", e) : e.phase === "charging" ? G("charging", e) : e.phase === "complete" ? G("complete", e) : e.inhibitors.includes("timer") ? G("timer", e) : e.connectivity === "wifi_connecting" ? G("wifi_connecting", e) : e.connectivity === "wifi_connected" ? G("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? G("waiting_power", e) : G("disconnected", e, e.phase === "unavailable");
+function jt(e) {
+	return e.externalStatus ? q(e.externalStatus, e) : e.fault === "control_pilot" ? q("control_pilot", e) : e.fault === "load_balancing" ? q("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? q("error", e) : e.maintenance === "updating" ? q("updating", e) : e.phase === "charging" ? q("charging", e) : e.phase === "complete" ? q("complete", e) : e.inhibitors.includes("timer") ? q("timer", e) : e.connectivity === "wifi_connecting" ? q("wifi_connecting", e) : e.connectivity === "wifi_connected" ? q("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? q("waiting_power", e) : q("disconnected", e, e.phase === "unavailable");
 }
-function K(e) {
+function J(e) {
 	return e === "on" || e === "true" ? !0 : e === "off" || e === "false" ? !1 : "unknown";
 }
 //#endregion
 //#region src/card/advanced-controls.ts
-var xt = [
+var Mt = [
 	{
 		role: "locked",
 		label: "actions.lock"
@@ -2070,14 +2245,14 @@ var xt = [
 		label: "actions.pauseDynamic"
 	}
 ];
-function q(e) {
+function Nt(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function J(e, t, n) {
+function Pt(e, t, n) {
 	let r = e.entities[t];
-	if (!r) return k;
+	if (!r) return N;
 	let i = e.hass.states[r], a = i?.state === "on";
-	return D`
+	return j`
     <div class="toggle-row">
       <span>${t === "locked" && a ? W(e.dictionary, "actions.unlock") : W(e.dictionary, n)}</span>
       <button
@@ -2086,48 +2261,48 @@ function J(e, t, n) {
         aria-checked=${String(a)}
         aria-pressed=${String(a)}
         aria-busy=${String(e.pending.includes(t))}
-        ?disabled=${!q(i) || e.pending.includes(t)}
+        ?disabled=${!Nt(i) || e.pending.includes(t)}
         @click=${() => e.onToggle(t)}
       >${a ? "ON" : "OFF"}</button>
     </div>
   `;
 }
-function St(e) {
-	let t = xt.map(({ role: t, label: n }) => J(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
-	return !t.some((e) => e !== k) && !n && !i && !o && !s ? k : D`
-    <details>
+function Ft(e) {
+	let t = Mt.map(({ role: t, label: n }) => Pt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
+	return !t.some((e) => e !== N) && !n && !i && !o && !s ? N : j`
+    <details ?open=${e.advancedOpen === !0}>
       <summary>${W(e.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
-        ${t.slice(0, 2).some((e) => e !== k) || n ? D`
+        ${t.slice(0, 2).some((e) => e !== N) || n ? j`
               <section class="control-group">
                 <h3>${W(e.dictionary, "labels.chargingControls")}</h3>
                 ${t.slice(0, 2)}
-                ${n ? D`
+                ${n ? j`
                       <label class="select-row">
                         <span>${W(e.dictionary, "actions.chargeMode")}</span>
                         <select
                           data-role="charge_mode"
                           .value=${r?.state ?? ""}
-                          ?disabled=${!q(r) || e.pending.includes("charge_mode")}
+                          ?disabled=${!Nt(r) || e.pending.includes("charge_mode")}
                           @change=${(t) => e.onSelect(t.target.value)}
                         >
-                          ${(r?.attributes.options ?? []).map((e) => D`<option .value=${String(e)}>${String(e)}</option>`)}
+                          ${(r?.attributes.options ?? []).map((e) => j`<option .value=${String(e)}>${String(e)}</option>`)}
                         </select>
                       </label>
-                    ` : k}
+                    ` : N}
               </section>
-            ` : k}
-        ${t.slice(2).some((e) => e !== k) ? D`
+            ` : N}
+        ${t.slice(2).some((e) => e !== N) ? j`
               <section class="control-group">
                 <h3>${W(e.dictionary, "labels.energyControls")}</h3>
                 ${t.slice(2)}
               </section>
-            ` : k}
-        ${i || o ? D`
+            ` : N}
+        ${i || o ? j`
               <section class="control-group">
                 <h3>${W(e.dictionary, "labels.lightControls")}</h3>
-                ${J(e, "logo_led", "actions.logoLed")}
-                ${i && q(a) ? D`
+                ${Pt(e, "logo_led", "actions.logoLed")}
+                ${i && Nt(a) ? j`
                       <label class="range-head" for="v2c-logo-brightness">
                         <span>${W(e.dictionary, "actions.logoLed")}</span>
                         <output>${Math.round((Number(a?.attributes.brightness ?? 0) || 0) / 255 * 100)}%</output>
@@ -2140,65 +2315,65 @@ function St(e) {
                         .value=${String(a?.attributes.brightness ?? 128)}
                         @change=${(t) => e.onBrightness(Number(t.target.value))}
                       />
-                    ` : k}
-                ${J(e, "light_led", "actions.lightLed")}
+                    ` : N}
+                ${Pt(e, "light_led", "actions.lightLed")}
               </section>
-            ` : k}
-        ${s ? D`
+            ` : N}
+        ${s ? j`
               <section class="control-group">
                 <h3>${W(e.dictionary, "labels.diagnostics")}</h3>
                 <dl class="technical-list">
-                  ${e.voltage ? D`
+                  ${e.voltage ? j`
                         <div class="technical-row">
                           <dt>${W(e.dictionary, "labels.voltage")}</dt>
                           <dd>${e.voltage.state} ${e.voltage.attributes.unit_of_measurement ?? "V"}</dd>
                         </div>
-                      ` : k}
-                  ${e.diagnostic ? D`
+                      ` : N}
+                  ${e.diagnostic ? j`
                         <div class="technical-row" data-severity="error">
                           <dt>${W(e.dictionary, "labels.diagnostics")}</dt>
                           <dd>${e.diagnostic}</dd>
                         </div>
-                      ` : k}
-                  ${e.ambiguityRoles?.length ? D`
+                      ` : N}
+                  ${e.ambiguityRoles?.length ? j`
                         <div class="technical-row">
                           <dt>${W(e.dictionary, "labels.configuration")}</dt>
                           <dd>YAML · ${e.ambiguityRoles.join(", ")}</dd>
                         </div>
-                      ` : k}
+                      ` : N}
                 </dl>
               </section>
-            ` : k}
+            ` : N}
       </div>
     </details>
   `;
 }
 //#endregion
 //#region src/card/energy-flow.ts
-var Ct = {
+var It = {
 	solar: "mdi:solar-power",
 	grid: "mdi:transmission-tower",
 	home: "mdi:home-lightning-bolt",
 	battery: "mdi:home-battery",
 	charger: "mdi:ev-station"
 };
-function wt(e, t, n) {
-	if (e.length === 0) return k;
+function Lt(e, t, n) {
+	if (e.length === 0) return N;
 	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${W(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
-	return D`
+	return j`
     <section class="energy-section" aria-label=${W(t, "labels.energyFlow")}>
       <div class="energy-summary" data-kind=${o}>
         <p class="energy-summary-title">
           <ha-icon icon="mdi:lightning-bolt-outline" aria-hidden="true"></ha-icon>
           <span>${s}</span>
         </p>
-        ${a.length ? D`
+        ${a.length ? j`
               <div class="energy-nodes">
                 ${a.map((e) => {
-		let r = W(t, `flows.${e.role}`), i = W(t, `flows.${e.direction}`), a = ft(e.watts, n);
-		return D`
+		let r = W(t, `flows.${e.role}`), i = W(t, `flows.${e.direction}`), a = St(e.watts, n);
+		return j`
                     <div class="flow-node" aria-label=${`${r}: ${a}, ${i}`}>
-                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${Ct[e.role]}></ha-icon></span>
+                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${It[e.role]}></ha-icon></span>
                       <span class="flow-name-text">${r}</span>
                       <strong class="flow-value">${a}</strong>
                       <span class="flow-direction">${i}</span>
@@ -2206,8 +2381,8 @@ function wt(e, t, n) {
                   `;
 	})}
               </div>
-            ` : k}
-        ${a.length && i ? D`<p class="energy-note">${W(t, "flows.partialData")}</p>` : k}
+            ` : N}
+        ${a.length && i ? j`<p class="energy-note">${W(t, "flows.partialData")}</p>` : N}
       </div>
     </section>
   `;
@@ -2217,61 +2392,24 @@ function wt(e, t, n) {
 function Y(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function Tt(e) {
+function Rt(e) {
 	let t = e.entities.intensity, n = e.entities.paused, r = t ? e.hass.states[t] : void 0, i = n ? e.hass.states[n] : void 0;
-	if (!t && !n) return k;
-	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on";
-	return D`
+	if (!t && !n) return N;
+	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on", f = e.intensityControl !== "presets", p = e.showPresets !== !1 && e.intensityControl !== "slider";
+	return j`
     <section class="session-controls" aria-label=${W(e.dictionary, "labels.chargingControls")}>
-      ${t ? D`
-            <div class="range-control">
-              <label class="range-head" for="v2c-intensity">
-                <span>${W(e.dictionary, "labels.intensity")}</span>
-                <output>${Math.round(l)} A</output>
-              </label>
-              <input
-                id="v2c-intensity"
-                data-role="intensity"
-                type="range"
-                .min=${String(a)}
-                .max=${String(o)}
-                .step=${String(s)}
-                .value=${String(l)}
-                ?disabled=${!Y(r) || e.pending.includes("intensity")}
-                aria-busy=${String(e.pending.includes("intensity"))}
-                @input=${(t) => e.onSliderInput(Number(t.target.value))}
-                @change=${(t) => e.onIntensity(Number(t.target.value))}
-              />
-              <div class="presets" aria-label=${W(e.dictionary, "labels.intensity")}>
-                ${u.map((t) => D`
-                    <button
-                      class="preset"
-                      aria-pressed=${String(Math.round(l) === t)}
-                      ?disabled=${!Y(r) || e.pending.includes("intensity")}
-                      @click=${() => e.onIntensity(t)}
-                    >${t} A</button>
-                  `)}
-              </div>
-            </div>
-          ` : k}
-      ${n ? D`
-            <button
-              class="primary-action"
-              data-role="paused"
-              aria-busy=${String(e.pending.includes("paused"))}
-              ?disabled=${!Y(i) || e.pending.includes("paused")}
-              title=${Y(i) ? "" : W(e.dictionary, "labels.unavailableEntity")}
-              @click=${e.onPause}
-            >
-              ${W(e.dictionary, d ? "actions.resume" : "actions.pause")}
-            </button>
-          ` : k}
+      ${t ? j`<div class="range-control">
+        ${f ? j`<label class="range-head" for="v2c-intensity"><span>${W(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
+        <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!Y(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : N}
+        ${p ? j`<div class="presets" aria-label=${W(e.dictionary, "labels.intensity")}>${u.map((t) => j`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!Y(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : N}
+      </div>` : N}
+      ${n ? j`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!Y(i) || e.pending.includes("paused")} title=${Y(i) ? "" : W(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${W(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : N}
     </section>
   `;
 }
 //#endregion
 //#region src/card/styles.ts
-var Et = o`
+var zt = o`
   :host {
     --v2c-surface: var(--ha-card-background, var(--card-background-color, light-dark(#ffffff, #181b1e)));
     --v2c-surface-soft: var(--secondary-background-color, light-dark(#f4f5f6, #202428));
@@ -2297,7 +2435,7 @@ var Et = o`
     color: var(--v2c-text);
     background: var(--v2c-surface);
     border: 1px solid var(--v2c-border);
-    border-radius: var(--ha-card-border-radius, 20px);
+    border-radius: var(--v2c-radius, var(--ha-card-border-radius, 20px));
   }
 
   .shell { padding: clamp(20px, 4cqw, 30px); }
@@ -2334,27 +2472,33 @@ var Et = o`
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(28px, 5cqw, 38px);
+    gap: 0;
     align-items: center;
+    justify-items: center;
     margin-top: 18px;
   }
 
-  .device-column {
+  .hero-copy {
     display: flex;
     min-width: 0;
+    max-width: 100%;
+    margin-top: clamp(-36px, -7cqw, -26px);
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  .hero.without-charger .hero-copy { margin-top: 0; }
+
   .charger-stage {
     display: grid;
-    width: min(100%, clamp(260px, 68cqw, 360px));
+    width: min(100%, clamp(260px, 66cqw, 340px));
     aspect-ratio: 312 / 480;
     place-items: center;
   }
-
   .charger-art {
+    position: relative;
+    container-type: inline-size;
     width: 100%;
     height: 100%;
     filter: drop-shadow(0 18px 14px rgb(0 0 0 / 16%));
@@ -2366,9 +2510,32 @@ var Et = o`
     height: 100%;
   }
 
+  .charger-lcd {
+    position: absolute;
+    top: 40.6%;
+    left: 34.9%;
+    display: grid;
+    width: 30.1%;
+    height: 4.4%;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    color: #cde6ef;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 2.05cqi;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .charger-lcd span { display: block; max-width: 100%; overflow: hidden; text-overflow: clip; white-space: nowrap; }
+  .charger-lcd span + span { color: #9dc0cd; font-size: .92em; }
+  .charger-lcd.is-long { font-size: 1.72cqi; }
+  .charger-lcd.is-very-long { font-size: 1.48cqi; }
+
   .charger-status {
     max-width: 100%;
-    margin-top: 14px;
+    margin-top: 0;
     overflow-wrap: anywhere;
     color: var(--v2c-text);
     font-size: clamp(2rem, 7cqw, 2.5rem);
@@ -2377,7 +2544,6 @@ var Et = o`
     line-height: 1.05;
   }
 
-  .device-column.without-charger .charger-status { margin-top: 0; }
   .charger-status[data-severity="error"] { color: var(--v2c-danger); }
 
   .badges {
@@ -2405,6 +2571,8 @@ var Et = o`
     max-width: 760px;
     justify-self: center;
   }
+
+  .metrics-section { margin-top: 16px; }
 
   .primary-metrics {
     display: grid;
@@ -2765,9 +2933,11 @@ var Et = o`
   }
 
   ha-card[data-mode="compact"] .shell { padding: 18px; }
-  ha-card[data-mode="compact"] .hero { gap: 20px; margin-top: 12px; }
+  ha-card[data-mode="compact"] .hero { gap: 0; margin-top: 12px; }
+  ha-card[data-mode="compact"] .hero-copy { margin-top: clamp(-26px, -6cqw, -18px); }
   ha-card[data-mode="compact"] .charger-stage { width: min(100%, clamp(210px, 62cqw, 280px)); }
-  ha-card[data-mode="compact"] .charger-status { margin-top: 10px; font-size: clamp(1.65rem, 6cqw, 2rem); }
+  ha-card[data-mode="compact"] .charger-status { margin-top: 0; font-size: clamp(1.65rem, 6cqw, 2rem); }
+  ha-card[data-mode="compact"] .metrics-section { margin-top: 12px; }
   ha-card[data-mode="compact"] .metric { padding: 9px; }
   ha-card[data-mode="compact"] .session-controls,
   ha-card[data-mode="compact"] .energy-section { margin-top: 10px; padding-top: 10px; }
@@ -2778,14 +2948,15 @@ var Et = o`
   ha-card[data-mode="ultra_compact"] h2 { font-size: 0.86rem; }
   ha-card[data-mode="ultra_compact"] .hero {
     grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
+    gap: 0;
     margin-top: 10px;
     align-items: center;
   }
-  ha-card[data-mode="ultra_compact"] .charger-stage { width: min(100%, clamp(170px, 56cqw, 220px)); }
-  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 8px; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
+  ha-card[data-mode="ultra_compact"] .hero-copy { margin-top: 0; }
+  ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 0; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
   ha-card[data-mode="ultra_compact"] .badges { margin-top: 6px; }
   ha-card[data-mode="ultra_compact"] .badge { padding: 3px 6px; font-size: 0.62rem; }
+  ha-card[data-mode="ultra_compact"] .metrics-section { margin-top: 12px; }
   ha-card[data-mode="ultra_compact"] .primary-metrics { grid-template-columns: 1fr; }
   ha-card[data-mode="ultra_compact"] .metric { display: none; padding: 9px; }
   ha-card[data-mode="ultra_compact"] .metric-power { display: block; }
@@ -2805,6 +2976,38 @@ var Et = o`
   ha-card[data-mode="ultra_compact"] details { margin-top: 9px; }
   ha-card[data-mode="ultra_compact"] summary { padding-top: 9px; }
 
+  ha-card[data-show-header="false"] .card-heading { display: none; }
+  ha-card[data-surface="transparent"] { background: transparent; }
+  ha-card[data-surface="tinted"] { background: color-mix(in srgb, var(--v2c-control) 8%, var(--v2c-surface)); }
+  .charger-stage { transform: scale(var(--v2c-hero-scale, 1)); transform-origin: center bottom; }
+
+  ha-card[data-mode="xxl"] .shell { padding: clamp(26px, 5cqw, 36px); }
+  ha-card[data-mode="xxl"] .hero { margin-top: 24px; }
+  ha-card[data-mode="xxl"] .charger-stage { width: min(100%, clamp(320px, 84cqw, 430px)); }
+  ha-card[data-mode="xxl"] .hero-copy { margin-top: clamp(-44px, -8cqw, -31px); }
+  ha-card[data-mode="xxl"] .charger-status { font-size: clamp(2.35rem, 8cqw, 3rem); }
+  ha-card[data-mode="xxl"] .metric { padding: 16px; }
+  ha-card[data-mode="xxl"] .metric-value { font-size: clamp(1.2rem, 4.8cqw, 1.7rem); }
+  ha-card[data-mode="xxl"] .metric-power .metric-value { font-size: clamp(1.5rem, 6cqw, 2.25rem); }
+  ha-card[data-mode="xxl"] .session-controls { margin-top: 18px; padding-top: 18px; }
+
+  @container (min-width: 400px) {
+    ha-card[data-layout="split"] .hero { grid-template-columns: minmax(150px, .9fr) minmax(0, 1.1fr); gap: clamp(16px, 4cqw, 30px); justify-items: stretch; }
+    ha-card[data-layout="split"] .charger-stage { width: min(100%, 280px); justify-self: end; }
+    ha-card[data-layout="split"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="split"] .badges { justify-content: flex-start; }
+    ha-card[data-layout="inline"] .hero { grid-template-columns: auto minmax(0, 1fr); gap: 14px; justify-items: stretch; }
+    ha-card[data-layout="inline"] .charger-stage { width: min(132px, 28cqw); }
+    ha-card[data-layout="inline"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="inline"] .charger-status { font-size: clamp(1.1rem, 4cqw, 1.6rem); }
+    ha-card[data-layout="inline"] .badges { justify-content: flex-start; }
+  }
+  @container (min-width: 520px) {
+    ha-card[data-layout="auto"] .hero { grid-template-columns: minmax(180px, .9fr) minmax(0, 1.1fr); gap: clamp(18px, 4cqw, 32px); justify-items: stretch; }
+    ha-card[data-layout="auto"] .charger-stage { width: min(100%, 300px); justify-self: end; }
+    ha-card[data-layout="auto"] .hero-copy { margin-top: 0; align-items: flex-start; text-align: left; }
+    ha-card[data-layout="auto"] .badges { justify-content: flex-start; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -2826,12 +3029,12 @@ function X(e, t, n, r) {
 }
 //#endregion
 //#region src/card/v2c-trydan-card.ts
-var Z = class extends I {
+var Z = class extends z {
 	constructor(...e) {
-		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = new ct(), this.#t = /* @__PURE__ */ new Map(), this.#n = "";
+		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = new _t(), this.#t = /* @__PURE__ */ new Map(), this.#n = "";
 	}
 	static {
-		this.styles = Et;
+		this.styles = zt;
 	}
 	#e;
 	#t;
@@ -2840,14 +3043,14 @@ var Z = class extends I {
 		return document.createElement("v2c-trydan-card-editor");
 	}
 	static getStubConfig(e) {
-		return Re(e);
+		return We(e);
 	}
 	setConfig(e) {
 		let t = this.config?.entity;
-		this.config = Le(e), this.resolvedEntities = { ...this.config.entities ?? {} }, this.sliderValue = void 0, this.#n = "", t && t !== this.config.entity && this.#e.invalidate();
+		this.config = Ue(e), this.resolvedEntities = gt(Object.values(this.hass?.entities ?? {}), this.config.entity, this.config.entities).entities, this.sliderValue = void 0, this.#n = "", t && t !== this.config.entity && this.#e.invalidate();
 	}
 	getCardSize() {
-		return this.config?.display_mode === "ultra_compact" ? 4 : this.config?.display_mode === "compact" ? 6 : 8;
+		return this.config?.display_mode === "ultra_compact" ? 3 : this.config?.display_mode === "compact" ? 4 : this.config?.display_mode === "standard" ? 6 : 8;
 	}
 	disconnectedCallback() {
 		super.disconnectedCallback();
@@ -2855,95 +3058,110 @@ var Z = class extends I {
 		this.#t.clear();
 	}
 	updated(e) {
-		(e.has("hass") || this.#n === "") && (this.#r(), this.#c());
+		(e.has("hass") || this.#n === "") && (this.#r(), this.#l());
 	}
 	async #r() {
 		if (!this.hass || !this.config) return;
 		let e = Object.keys(this.hass.entities ?? {}).length, t = `${this.config.entity}|${JSON.stringify(this.config.entities ?? {})}|${e}`;
-		if (t === this.#n) return;
-		this.#n = t;
-		let n = await this.#e.discover(this.hass, this.config.entity, this.config.entities);
-		!n || !this.isConnected || t !== this.#n || (this.resolvedEntities = n.entities, this.ambiguities = n.ambiguities);
+		if (t !== this.#n) {
+			this.#n = t;
+			try {
+				let e = await this.#e.discover(this.hass, this.config.entity, this.config.entities);
+				if (!e || !this.isConnected || t !== this.#n) return;
+				this.resolvedEntities = e.entities, this.ambiguities = e.ambiguities;
+			} catch {
+				t === this.#n && (this.#n = "");
+			}
+		}
 	}
 	#i(e) {
 		let t = this.resolvedEntities[e];
 		return t && this.hass ? this.hass.states[t] : void 0;
 	}
 	#a() {
-		return H(this.config?.language ?? this.hass?.locale?.language ?? this.hass?.language);
+		let e = this.config?.color_scheme === "custom" ? this.config.accent_color : {
+			v2c_blue: "#0067D9",
+			teal: "#007F86",
+			green: "#2E7D32",
+			violet: "#6750A4"
+		}[this.config?.color_scheme ?? ""], t = e && parseInt(e.slice(1, 3), 16) * .299 + parseInt(e.slice(3, 5), 16) * .587 + parseInt(e.slice(5, 7), 16) * .114 > 150 ? "#000" : "#fff";
+		return (e ? `--v2c-control:${e};--v2c-on-control:${t};` : "") + (this.config?.card_radius === void 0 ? "" : `--v2c-radius:${this.config.card_radius}px;`) + `--v2c-hero-scale:${this.config?.hero_scale ?? 1};`;
 	}
-	#o(e, t) {
-		this.#t.set(e, t), this.pendingRoles = [...this.#t.keys()];
+	#o() {
+		return rt(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
 	}
 	#s(e, t) {
+		this.#t.set(e, t), this.pendingRoles = [...this.#t.keys()];
+	}
+	#c(e, t) {
 		let n = this.#t.get(e);
 		n?.timer && clearTimeout(n.timer), this.#t.delete(e), this.pendingRoles = [...this.#t.keys()];
-		let r = U(this.#a());
+		let r = U(this.#o());
 		this.actionMessage = W(r, t ? "labels.actionDone" : "labels.actionFailed");
 	}
-	#c() {
-		if (this.hass) for (let [e, t] of this.#t) t.matches(this.hass.states[t.entityId]) && this.#s(e, !0);
+	#l() {
+		if (this.hass) for (let [e, t] of this.#t) t.matches(this.hass.states[t.entityId]) && this.#c(e, !0);
 	}
-	async #l(e, t, n, r) {
+	async #u(e, t, n, r) {
 		if (this.#t.has(e)) return;
-		let i = U(this.#a());
+		let i = U(this.#o());
 		this.actionMessage = W(i, "labels.actionPending");
 		let a = {
 			entityId: t,
 			matches: n
 		};
-		this.#o(e, a);
+		this.#s(e, a);
 		try {
 			if (await r(), n(this.hass?.states[t])) {
-				this.#s(e, !0);
+				this.#c(e, !0);
 				return;
 			}
-			a.timer = setTimeout(() => this.#s(e, !1), 6e3);
+			a.timer = setTimeout(() => this.#c(e, !1), 6e3);
 		} catch {
-			this.#s(e, !1);
+			this.#c(e, !1);
 		}
 	}
-	#u(e) {
+	#d(e) {
 		let t = this.resolvedEntities.intensity, n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
-		let r = Number(n.attributes.min ?? 6), i = Number(n.attributes.max ?? 32), a = Number(n.attributes.step ?? 1), o = Math.min(i, Math.max(r, Math.round(e / a) * a));
-		this.sliderValue = o, this.#l("intensity", t, (e) => Number(e?.state) === o, () => Ze(this.hass, t, o));
-	}
-	#d(e) {
-		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
-		if (!this.hass || !t || !n) return;
-		let r = n.state !== "on";
-		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(W(U(this.#a()), "actions.confirmLock")) || this.#l(e, t, (e) => e?.state === (r ? "on" : "off"), () => Qe(this.hass, t, r));
+		let r = Number(n.attributes.min ?? 6), i = Number(n.attributes.max ?? 32), a = Number(n.attributes.step ?? 1), o = Number.isFinite(a) && a > 0 ? a : 1, s = Math.min(i, Math.max(r, Math.round((e - r) / o) * o + r));
+		this.sliderValue = s, this.#u("intensity", t, (e) => Number(e?.state) === s, () => at(this.hass, t, s));
 	}
 	#f(e) {
-		let t = this.resolvedEntities.charge_mode;
-		!this.hass || !t || this.#l("charge_mode", t, (t) => t?.state === e, () => $e(this.hass, t, e));
-	}
-	#p(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		this.#l(e, t, (e) => e?.state === (r ? "on" : "off"), () => et(this.hass, t, r));
+		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(W(U(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ot(this.hass, t, r));
+	}
+	#p(e) {
+		let t = this.resolvedEntities.charge_mode;
+		!this.hass || !t || this.#u("charge_mode", t, (t) => t?.state === e, () => st(this.hass, t, e));
 	}
 	#m(e) {
+		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
+		if (!this.hass || !t || !n) return;
+		let r = n.state !== "on";
+		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ct(this.hass, t, r));
+	}
+	#h(e) {
 		let t = this.resolvedEntities.logo_led;
-		!this.hass || !t || this.#l("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => et(this.hass, t, !0, e));
+		!this.hass || !t || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => ct(this.hass, t, !0, e));
 	}
 	render() {
-		if (!this.config || !this.hass) return D`<ha-card><div class="empty">V2C Trydan Card · configuración pendiente</div></ha-card>`;
-		let e = this.#a(), t = U(e), n = this.hass.states[this.config.entity], r = dt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = bt(yt({
+		if (!this.config || !this.hass) return j`<ha-card><div class="empty">V2C Trydan Card · configuración pendiente</div></ha-card>`;
+		let e = this.#o(), t = U(e), n = this.hass.states[this.config.entity], r = bt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = jt(At({
 			seedAvailable: !!(n && n.state !== "unknown" && n.state !== "unavailable"),
-			connected: K(this.#i("connected")?.state),
-			charging: K(this.#i("charging")?.state),
-			ready: K(this.#i("ready")?.state),
-			paused: K(this.#i("paused")?.state),
-			locked: K(this.#i("locked")?.state),
-			timer: K(this.#i("timer")?.state),
-			dynamic: K(this.#i("dynamic")?.state),
+			connected: J(this.#i("connected")?.state),
+			charging: J(this.#i("charging")?.state),
+			ready: J(this.#i("ready")?.state),
+			paused: J(this.#i("paused")?.state),
+			locked: J(this.#i("locked")?.state),
+			timer: J(this.#i("timer")?.state),
+			dynamic: J(this.#i("dynamic")?.state),
 			meterError: this.#i("meter_error")?.state,
 			externalStatus: this.config.status_entity ? this.hass.states[this.config.status_entity]?.state : void 0,
 			chargePowerW: r.watts
-		})), a = this.config.name ?? "V2C Trydan", o = this.#i("charge_energy"), s = this.#i("charge_time"), c = [
+		})), a = this.config.name ?? "V2C Trydan", o = this.#i("charge_energy"), s = this.#i("charge_time"), c = this.#i("intensity"), l = this.#i("voltage"), u = [
 			[
 				"solar",
 				"fv_power",
@@ -2969,88 +3187,938 @@ var Z = class extends I {
 				"charge_power",
 				!1
 			]
-		].filter(([, e]) => !!this.resolvedEntities[e]).map(([e, t, n]) => dt(e, this.#i(t), {
+		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => bt(e, this.#i(t), {
 			invert: n,
 			thresholdW: this.config?.flow_threshold_w
-		})), l = Object.keys(this.ambiguities), u = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0;
-		return D`
-      <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"}>
-        <div class="shell">
-          <header class="card-heading">
-            <h2>${a}</h2>
-            ${this.config.location ? D`<span class="location">${this.config.location}</span>` : k}
-          </header>
-
-          <section class="hero">
-            <div class="device-column ${this.config.show_charger ? "has-charger" : "without-charger"}">
-              ${this.config.show_charger ? D`
-                    <div class="charger-stage">
-                      <div class="charger-art" aria-hidden="true">${Pe(Fe[i.key])}</div>
-                    </div>
-                  ` : k}
-              <div class="charger-status" data-severity=${i.severity} role="status">
-                ${W(t, i.labelKey)}
-              </div>
-              ${i.badges.length ? D`
-                    <div class="badges" aria-label=${W(t, "labels.additionalStatus")}>
-                      ${i.badges.map((e) => D`<span class="badge">${W(t, `badges.${e}`)}</span>`)}
-                    </div>
-                  ` : k}
-            </div>
-
-            <div class="overview">
-              <div class="primary-metrics">
-                <div class="metric metric-power">
-                  <span class="metric-label">${W(t, "labels.power")}</span>
-                  <strong class="metric-value">${ft(r.watts, e)}</strong>
-                </div>
-                <div class="metric">
-                  <span class="metric-label">${W(t, "labels.energy")}</span>
-                  <strong class="metric-value">${pt(o?.state ?? null, e)}</strong>
-                </div>
-                <div class="metric">
-                  <span class="metric-label">${W(t, "labels.time")}</span>
-                  <strong class="metric-value">${mt(s?.state ?? null)}</strong>
-                </div>
-              </div>
-
-              ${this.config.show_controls ? Tt({
+		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? j`<div class="metric metric-power"><span class="metric-label">${W(t, "labels.power")}</span><strong class="metric-value">${St(r.watts, e)}</strong></div>` : n === "energy" ? j`<div class="metric"><span class="metric-label">${W(t, "labels.energy")}</span><strong class="metric-value">${Ct(o?.state ?? null, e)}</strong></div>` : j`<div class="metric"><span class="metric-label">${W(t, "labels.time")}</span><strong class="metric-value">${wt(s?.state ?? null)}</strong></div>`), ee = Object.keys(this.ambiguities), m = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, h = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", g = it(e, i.key, {
+			power: St(r.watts, e),
+			current: Tt(c?.state ?? null, "A", e),
+			voltage: Tt(l?.state ?? null, "V", e),
+			energy: Ct(o?.state ?? null, e)
+		}), _ = Math.max(g.primary.length, g.secondary.length), v = j`
+      <section class="hero ${h ? "has-charger" : "without-charger"}" data-section="hero">
+        ${h ? j`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${Pe(Fe[i.key])}<div class="charger-lcd ${_ > 24 ? "is-very-long" : _ > 18 ? "is-long" : ""}"><span>${g.primary}</span><span>${g.secondary}</span></div></div></div>` : N}
+        <div class="hero-copy">
+          <div class="charger-status" data-severity=${i.severity} role="status">${W(t, i.labelKey)}</div>
+          ${this.config.show_badges !== !1 && i.badges.length ? j`<div class="badges" aria-label=${W(t, "labels.additionalStatus")}>${i.badges.map((e) => j`<span class="badge">${W(t, `badges.${e}`)}</span>`)}</div>` : N}
+        </div>
+      </section>`, y = p.length ? j`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : N, b = this.config.show_controls ? j`<div data-section="controls">${Rt({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
 			presets: this.config.current_presets ?? [],
+			intensityControl: this.config.intensity_control,
+			showPresets: this.config.show_presets,
 			pending: this.pendingRoles,
 			sliderValue: this.sliderValue,
 			onSliderInput: (e) => this.sliderValue = e,
-			onIntensity: (e) => this.#u(e),
-			onPause: () => this.#d("paused")
-		}) : k}
-            </div>
-          </section>
-
-          ${this.config.show_energy_flow ? wt(c, t, e) : k}
-          ${this.config.show_advanced ? St({
+			onIntensity: (e) => this.#d(e),
+			onPause: () => this.#f("paused")
+		})}</div>` : N, te = this.config.show_energy_flow ? j`<div data-section="energy">${Lt(f, t, e)}</div>` : N, x = this.config.show_advanced ? j`<div data-section="advanced">${Ft({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
 			pending: this.pendingRoles,
 			voltage: this.#i("voltage"),
-			diagnostic: u,
-			ambiguityRoles: l,
-			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#p(e) : this.#d(e),
-			onSelect: (e) => this.#f(e),
-			onBrightness: (e) => this.#m(e)
-		}) : k}
+			diagnostic: m,
+			ambiguityRoles: ee,
+			advancedOpen: this.config.advanced_open,
+			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#m(e) : this.#f(e),
+			onSelect: (e) => this.#p(e),
+			onBrightness: (e) => this.#h(e)
+		})}</div>` : N, S = (e) => {
+			switch (e) {
+				case "hero": return v;
+				case "metrics": return y;
+				case "controls": return b;
+				case "energy": return te;
+				default: return x;
+			}
+		}, C = this.config.section_order ?? [
+			"hero",
+			"metrics",
+			"controls",
+			"energy",
+			"advanced"
+		];
+		return j`
+      <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== !1)} style=${this.#a()}>
+        <div class="shell">
+          ${this.config.show_header === !1 ? N : j`<header class="card-heading"><h2>${a}</h2>${this.config.location ? j`<span class="location">${this.config.location}</span>` : N}</header>`}
+          <div class="content-sections">${C.map(S)}</div>
           <p class="live-region" aria-live="polite">${this.actionMessage}</p>
         </div>
-      </ha-card>
-    `;
+      </ha-card>`;
 	}
 };
-X([L({ attribute: !1 })], Z.prototype, "hass", void 0), X([R()], Z.prototype, "config", void 0), X([R()], Z.prototype, "resolvedEntities", void 0), X([R()], Z.prototype, "ambiguities", void 0), X([R()], Z.prototype, "sliderValue", void 0), X([R()], Z.prototype, "pendingRoles", void 0), X([R()], Z.prototype, "actionMessage", void 0);
+X([Oe({ attribute: !1 })], Z.prototype, "hass", void 0), X([B()], Z.prototype, "config", void 0), X([B()], Z.prototype, "resolvedEntities", void 0), X([B()], Z.prototype, "ambiguities", void 0), X([B()], Z.prototype, "sliderValue", void 0), X([B()], Z.prototype, "pendingRoles", void 0), X([B()], Z.prototype, "actionMessage", void 0);
+//#endregion
+//#region src/localization/editor-copy.ts
+var Bt = {
+	en: {
+		general: "General",
+		appearance: "Appearance",
+		contentOrder: "Content and order",
+		advanced: "Advanced",
+		entities: "Entities",
+		automatic: "Automatic",
+		modeXxl: "XXL showcase",
+		layout: "Layout",
+		centered: "Centered",
+		split: "Split",
+		inline: "Inline",
+		colorScheme: "Color scheme",
+		monochrome: "Monochrome",
+		v2cBlue: "V2C blue",
+		teal: "Teal",
+		green: "Green",
+		violet: "Violet",
+		custom: "Custom",
+		accentColor: "Custom accent",
+		accentHelp: "Choose a color or enter a six-digit HEX value.",
+		invalidHex: "Use format #RRGGBB.",
+		surface: "Surface",
+		solid: "Solid",
+		tinted: "Tinted",
+		transparent: "Transparent",
+		heroScale: "Charger scale",
+		cardRadius: "Card corner radius",
+		metrics: "Metrics",
+		energySources: "Energy sources",
+		sectionOrder: "Section order",
+		moveUp: "Move up",
+		moveDown: "Move down",
+		resetOrder: "Restore default order",
+		header: "Header",
+		badges: "Status badges",
+		presets: "Current presets",
+		intensityControl: "Current control",
+		slider: "Slider",
+		both: "Slider and presets",
+		flowThreshold: "Idle threshold (W)",
+		currentPresets: "Preset amperages",
+		addPreset: "Add amperage",
+		removePreset: "Remove",
+		amps: "amps",
+		openAdvanced: "Open Trydan settings",
+		confirmLock: "Confirm before locking",
+		invertGrid: "Invert grid power",
+		invertBattery: "Invert battery power",
+		invertSolar: "Invert solar power",
+		entityOverrides: "Manual entity overrides",
+		statusAutomatic: "Automatic",
+		statusManual: "Manual",
+		statusAmbiguous: "Ambiguous",
+		statusInvalid: "Invalid",
+		statusMissing: "Not found"
+	},
+	es: {
+		general: "General",
+		appearance: "Apariencia",
+		contentOrder: "Contenido y orden",
+		advanced: "Avanzado",
+		entities: "Entidades",
+		automatic: "Automático",
+		modeXxl: "XXL escaparate",
+		layout: "Distribución",
+		centered: "Centrada",
+		split: "Dividida",
+		inline: "En línea",
+		colorScheme: "Paleta de color",
+		monochrome: "Monocromo",
+		v2cBlue: "Azul V2C",
+		teal: "Turquesa",
+		green: "Verde",
+		violet: "Violeta",
+		custom: "Personalizado",
+		accentColor: "Color personalizado",
+		accentHelp: "Elige un color o escribe un valor HEX de seis dígitos.",
+		invalidHex: "Usa el formato #RRGGBB.",
+		surface: "Superficie",
+		solid: "Sólida",
+		tinted: "Tintada",
+		transparent: "Transparente",
+		heroScale: "Escala del cargador",
+		cardRadius: "Radio de las esquinas",
+		metrics: "Métricas",
+		energySources: "Fuentes de energía",
+		sectionOrder: "Orden de secciones",
+		moveUp: "Subir",
+		moveDown: "Bajar",
+		resetOrder: "Restaurar orden",
+		header: "Cabecera",
+		badges: "Insignias de estado",
+		presets: "Presets de intensidad",
+		intensityControl: "Control de intensidad",
+		slider: "Deslizador",
+		both: "Deslizador y presets",
+		flowThreshold: "Umbral de reposo (W)",
+		currentPresets: "Intensidades rápidas",
+		addPreset: "Añadir amperaje",
+		removePreset: "Eliminar",
+		amps: "amperios",
+		openAdvanced: "Abrir ajustes Trydan",
+		confirmLock: "Confirmar antes de bloquear",
+		invertGrid: "Invertir potencia de red",
+		invertBattery: "Invertir potencia de batería",
+		invertSolar: "Invertir potencia solar",
+		entityOverrides: "Entidades manuales",
+		statusAutomatic: "Automática",
+		statusManual: "Manual",
+		statusAmbiguous: "Ambigua",
+		statusInvalid: "Inválida",
+		statusMissing: "No encontrada"
+	},
+	it: {
+		general: "Generale",
+		appearance: "Aspetto",
+		contentOrder: "Contenuto e ordine",
+		advanced: "Avanzate",
+		entities: "Entità",
+		automatic: "Automatico",
+		modeXxl: "Vetrina XXL",
+		layout: "Layout",
+		centered: "Centrato",
+		split: "Diviso",
+		inline: "In linea",
+		colorScheme: "Schema colori",
+		monochrome: "Monocromatico",
+		v2cBlue: "Blu V2C",
+		teal: "Turchese",
+		green: "Verde",
+		violet: "Viola",
+		custom: "Personalizzato",
+		accentColor: "Colore personalizzato",
+		accentHelp: "Scegli un colore o inserisci un valore HEX di sei cifre.",
+		invalidHex: "Usa il formato #RRGGBB.",
+		surface: "Superficie",
+		solid: "Solida",
+		tinted: "Colorata",
+		transparent: "Trasparente",
+		heroScale: "Scala caricatore",
+		cardRadius: "Raggio angoli",
+		metrics: "Metriche",
+		energySources: "Fonti energetiche",
+		sectionOrder: "Ordine sezioni",
+		moveUp: "Sposta su",
+		moveDown: "Sposta giù",
+		resetOrder: "Ripristina ordine",
+		header: "Intestazione",
+		badges: "Badge di stato",
+		presets: "Preset di corrente",
+		intensityControl: "Controllo corrente",
+		slider: "Cursore",
+		both: "Cursore e preset",
+		flowThreshold: "Soglia inattività (W)",
+		currentPresets: "Amperaggi rapidi",
+		addPreset: "Aggiungi amperaggio",
+		removePreset: "Rimuovi",
+		amps: "ampere",
+		openAdvanced: "Apri impostazioni Trydan",
+		confirmLock: "Conferma prima del blocco",
+		invertGrid: "Inverti potenza rete",
+		invertBattery: "Inverti potenza batteria",
+		invertSolar: "Inverti potenza solare",
+		entityOverrides: "Entità manuali",
+		statusAutomatic: "Automatica",
+		statusManual: "Manuale",
+		statusAmbiguous: "Ambigua",
+		statusInvalid: "Non valida",
+		statusMissing: "Non trovata"
+	},
+	de: {
+		general: "Allgemein",
+		appearance: "Darstellung",
+		contentOrder: "Inhalt und Reihenfolge",
+		advanced: "Erweitert",
+		entities: "Entitäten",
+		automatic: "Automatisch",
+		modeXxl: "XXL-Präsentation",
+		layout: "Layout",
+		centered: "Zentriert",
+		split: "Geteilt",
+		inline: "In einer Reihe",
+		colorScheme: "Farbschema",
+		monochrome: "Monochrom",
+		v2cBlue: "V2C-Blau",
+		teal: "Türkis",
+		green: "Grün",
+		violet: "Violett",
+		custom: "Benutzerdefiniert",
+		accentColor: "Eigene Akzentfarbe",
+		accentHelp: "Farbe wählen oder sechsstelligen HEX-Wert eingeben.",
+		invalidHex: "Format #RRGGBB verwenden.",
+		surface: "Oberfläche",
+		solid: "Einfarbig",
+		tinted: "Getönt",
+		transparent: "Transparent",
+		heroScale: "Lader-Skalierung",
+		cardRadius: "Eckenradius",
+		metrics: "Messwerte",
+		energySources: "Energiequellen",
+		sectionOrder: "Abschnittsreihenfolge",
+		moveUp: "Nach oben",
+		moveDown: "Nach unten",
+		resetOrder: "Reihenfolge zurücksetzen",
+		header: "Kopfzeile",
+		badges: "Statusmarken",
+		presets: "Stromvorgaben",
+		intensityControl: "Stromsteuerung",
+		slider: "Regler",
+		both: "Regler und Vorgaben",
+		flowThreshold: "Leerlaufschwelle (W)",
+		currentPresets: "Schnelle Stromwerte",
+		addPreset: "Stromwert hinzufügen",
+		removePreset: "Entfernen",
+		amps: "Ampere",
+		openAdvanced: "Trydan-Einstellungen öffnen",
+		confirmLock: "Vor Sperren bestätigen",
+		invertGrid: "Netzleistung umkehren",
+		invertBattery: "Batterieleistung umkehren",
+		invertSolar: "Solarleistung umkehren",
+		entityOverrides: "Manuelle Entitäten",
+		statusAutomatic: "Automatisch",
+		statusManual: "Manuell",
+		statusAmbiguous: "Mehrdeutig",
+		statusInvalid: "Ungültig",
+		statusMissing: "Nicht gefunden"
+	},
+	fr: {
+		general: "Général",
+		appearance: "Apparence",
+		contentOrder: "Contenu et ordre",
+		advanced: "Avancé",
+		entities: "Entités",
+		automatic: "Automatique",
+		modeXxl: "Vitrine XXL",
+		layout: "Disposition",
+		centered: "Centrée",
+		split: "Divisée",
+		inline: "En ligne",
+		colorScheme: "Palette de couleurs",
+		monochrome: "Monochrome",
+		v2cBlue: "Bleu V2C",
+		teal: "Turquoise",
+		green: "Vert",
+		violet: "Violet",
+		custom: "Personnalisé",
+		accentColor: "Couleur personnalisée",
+		accentHelp: "Choisissez une couleur ou saisissez une valeur HEX à six chiffres.",
+		invalidHex: "Utilisez le format #RRGGBB.",
+		surface: "Surface",
+		solid: "Solide",
+		tinted: "Teintée",
+		transparent: "Transparente",
+		heroScale: "Échelle du chargeur",
+		cardRadius: "Rayon des angles",
+		metrics: "Mesures",
+		energySources: "Sources d'énergie",
+		sectionOrder: "Ordre des sections",
+		moveUp: "Monter",
+		moveDown: "Descendre",
+		resetOrder: "Rétablir l'ordre",
+		header: "En-tête",
+		badges: "Badges d'état",
+		presets: "Préréglages de courant",
+		intensityControl: "Contrôle du courant",
+		slider: "Curseur",
+		both: "Curseur et préréglages",
+		flowThreshold: "Seuil de repos (W)",
+		currentPresets: "Intensités rapides",
+		addPreset: "Ajouter une intensité",
+		removePreset: "Supprimer",
+		amps: "ampères",
+		openAdvanced: "Ouvrir les réglages Trydan",
+		confirmLock: "Confirmer avant verrouillage",
+		invertGrid: "Inverser puissance réseau",
+		invertBattery: "Inverser puissance batterie",
+		invertSolar: "Inverser puissance solaire",
+		entityOverrides: "Entités manuelles",
+		statusAutomatic: "Automatique",
+		statusManual: "Manuelle",
+		statusAmbiguous: "Ambiguë",
+		statusInvalid: "Invalide",
+		statusMissing: "Introuvable"
+	},
+	nl: {
+		general: "Algemeen",
+		appearance: "Uiterlijk",
+		contentOrder: "Inhoud en volgorde",
+		advanced: "Geavanceerd",
+		entities: "Entiteiten",
+		automatic: "Automatisch",
+		modeXxl: "XXL-weergave",
+		layout: "Indeling",
+		centered: "Gecentreerd",
+		split: "Gesplitst",
+		inline: "Naast elkaar",
+		colorScheme: "Kleurenschema",
+		monochrome: "Monochroom",
+		v2cBlue: "V2C-blauw",
+		teal: "Turkoois",
+		green: "Groen",
+		violet: "Violet",
+		custom: "Aangepast",
+		accentColor: "Aangepaste accentkleur",
+		accentHelp: "Kies een kleur of voer een zescijferige HEX-waarde in.",
+		invalidHex: "Gebruik formaat #RRGGBB.",
+		surface: "Oppervlak",
+		solid: "Effen",
+		tinted: "Getint",
+		transparent: "Transparant",
+		heroScale: "Schaal van lader",
+		cardRadius: "Hoekradius",
+		metrics: "Meetwaarden",
+		energySources: "Energiebronnen",
+		sectionOrder: "Volgorde secties",
+		moveUp: "Omhoog",
+		moveDown: "Omlaag",
+		resetOrder: "Standaardvolgorde",
+		header: "Koptekst",
+		badges: "Statusbadges",
+		presets: "Stroompresets",
+		intensityControl: "Stroomregeling",
+		slider: "Schuifregelaar",
+		both: "Schuifregelaar en presets",
+		flowThreshold: "Rustdrempel (W)",
+		currentPresets: "Snelle stroomwaarden",
+		addPreset: "Stroomwaarde toevoegen",
+		removePreset: "Verwijderen",
+		amps: "ampère",
+		openAdvanced: "Trydan-instellingen openen",
+		confirmLock: "Bevestigen voor vergrendelen",
+		invertGrid: "Netvermogen omkeren",
+		invertBattery: "Batterijvermogen omkeren",
+		invertSolar: "Zonnevermogen omkeren",
+		entityOverrides: "Handmatige entiteiten",
+		statusAutomatic: "Automatisch",
+		statusManual: "Handmatig",
+		statusAmbiguous: "Dubbelzinnig",
+		statusInvalid: "Ongeldig",
+		statusMissing: "Niet gevonden"
+	},
+	sv: {
+		general: "Allmänt",
+		appearance: "Utseende",
+		contentOrder: "Innehåll och ordning",
+		advanced: "Avancerat",
+		entities: "Entiteter",
+		automatic: "Automatiskt",
+		modeXxl: "XXL-visning",
+		layout: "Layout",
+		centered: "Centrerad",
+		split: "Delad",
+		inline: "I rad",
+		colorScheme: "Färgschema",
+		monochrome: "Monokrom",
+		v2cBlue: "V2C-blå",
+		teal: "Turkos",
+		green: "Grön",
+		violet: "Violett",
+		custom: "Anpassad",
+		accentColor: "Egen accentfärg",
+		accentHelp: "Välj en färg eller ange ett sexsiffrigt HEX-värde.",
+		invalidHex: "Använd formatet #RRGGBB.",
+		surface: "Yta",
+		solid: "Enfärgad",
+		tinted: "Tonad",
+		transparent: "Genomskinlig",
+		heroScale: "Laddarens skala",
+		cardRadius: "Hörnradie",
+		metrics: "Mätvärden",
+		energySources: "Energikällor",
+		sectionOrder: "Sektionsordning",
+		moveUp: "Flytta upp",
+		moveDown: "Flytta ned",
+		resetOrder: "Återställ ordning",
+		header: "Rubrik",
+		badges: "Statusmärken",
+		presets: "Strömförval",
+		intensityControl: "Strömstyrning",
+		slider: "Reglage",
+		both: "Reglage och förval",
+		flowThreshold: "Vilotröskel (W)",
+		currentPresets: "Snabba strömvärden",
+		addPreset: "Lägg till strömvärde",
+		removePreset: "Ta bort",
+		amps: "ampere",
+		openAdvanced: "Öppna Trydan-inställningar",
+		confirmLock: "Bekräfta före låsning",
+		invertGrid: "Invertera nätkraft",
+		invertBattery: "Invertera batterikraft",
+		invertSolar: "Invertera solkraft",
+		entityOverrides: "Manuella entiteter",
+		statusAutomatic: "Automatisk",
+		statusManual: "Manuell",
+		statusAmbiguous: "Tvetydig",
+		statusInvalid: "Ogiltig",
+		statusMissing: "Hittades inte"
+	},
+	da: {
+		general: "Generelt",
+		appearance: "Udseende",
+		contentOrder: "Indhold og rækkefølge",
+		advanced: "Avanceret",
+		entities: "Entiteter",
+		automatic: "Automatisk",
+		modeXxl: "XXL-visning",
+		layout: "Layout",
+		centered: "Centreret",
+		split: "Delt",
+		inline: "På linje",
+		colorScheme: "Farveskema",
+		monochrome: "Monokrom",
+		v2cBlue: "V2C-blå",
+		teal: "Turkis",
+		green: "Grøn",
+		violet: "Violet",
+		custom: "Brugerdefineret",
+		accentColor: "Egen accentfarve",
+		accentHelp: "Vælg en farve eller indtast en sekscifret HEX-værdi.",
+		invalidHex: "Brug formatet #RRGGBB.",
+		surface: "Overflade",
+		solid: "Ensfarvet",
+		tinted: "Tonet",
+		transparent: "Gennemsigtig",
+		heroScale: "Laderens skala",
+		cardRadius: "Hjørneradius",
+		metrics: "Målinger",
+		energySources: "Energikilder",
+		sectionOrder: "Sektionsrækkefølge",
+		moveUp: "Flyt op",
+		moveDown: "Flyt ned",
+		resetOrder: "Gendan rækkefølge",
+		header: "Overskrift",
+		badges: "Statusmærker",
+		presets: "Strømforvalg",
+		intensityControl: "Strømstyring",
+		slider: "Skyder",
+		both: "Skyder og forvalg",
+		flowThreshold: "Hviletærskel (W)",
+		currentPresets: "Hurtige strømværdier",
+		addPreset: "Tilføj strømværdi",
+		removePreset: "Fjern",
+		amps: "ampere",
+		openAdvanced: "Åbn Trydan-indstillinger",
+		confirmLock: "Bekræft før låsning",
+		invertGrid: "Vend neteffekt",
+		invertBattery: "Vend batterieffekt",
+		invertSolar: "Vend solenergi",
+		entityOverrides: "Manuelle entiteter",
+		statusAutomatic: "Automatisk",
+		statusManual: "Manuel",
+		statusAmbiguous: "Tvetydig",
+		statusInvalid: "Ugyldig",
+		statusMissing: "Ikke fundet"
+	},
+	no: {
+		general: "Generelt",
+		appearance: "Utseende",
+		contentOrder: "Innhold og rekkefølge",
+		advanced: "Avansert",
+		entities: "Entiteter",
+		automatic: "Automatisk",
+		modeXxl: "XXL-visning",
+		layout: "Layout",
+		centered: "Sentrert",
+		split: "Delt",
+		inline: "På linje",
+		colorScheme: "Fargeskjema",
+		monochrome: "Monokrom",
+		v2cBlue: "V2C-blå",
+		teal: "Turkis",
+		green: "Grønn",
+		violet: "Fiolett",
+		custom: "Egendefinert",
+		accentColor: "Egen aksentfarge",
+		accentHelp: "Velg en farge eller skriv inn en sekssifret HEX-verdi.",
+		invalidHex: "Bruk formatet #RRGGBB.",
+		surface: "Overflate",
+		solid: "Ensfarget",
+		tinted: "Tonet",
+		transparent: "Gjennomsiktig",
+		heroScale: "Laderens skala",
+		cardRadius: "Hjørneradius",
+		metrics: "Målinger",
+		energySources: "Energikilder",
+		sectionOrder: "Seksjonsrekkefølge",
+		moveUp: "Flytt opp",
+		moveDown: "Flytt ned",
+		resetOrder: "Gjenopprett rekkefølge",
+		header: "Topptekst",
+		badges: "Statusmerker",
+		presets: "Strømforvalg",
+		intensityControl: "Strømstyring",
+		slider: "Glidebryter",
+		both: "Glidebryter og forvalg",
+		flowThreshold: "Hvileterskel (W)",
+		currentPresets: "Raske strømverdier",
+		addPreset: "Legg til strømverdi",
+		removePreset: "Fjern",
+		amps: "ampere",
+		openAdvanced: "Åpne Trydan-innstillinger",
+		confirmLock: "Bekreft før låsing",
+		invertGrid: "Snu netteffekt",
+		invertBattery: "Snu batterieffekt",
+		invertSolar: "Snu solkraft",
+		entityOverrides: "Manuelle entiteter",
+		statusAutomatic: "Automatisk",
+		statusManual: "Manuell",
+		statusAmbiguous: "Tvetydig",
+		statusInvalid: "Ugyldig",
+		statusMissing: "Ikke funnet"
+	},
+	ro: {
+		general: "General",
+		appearance: "Aspect",
+		contentOrder: "Conținut și ordine",
+		advanced: "Avansat",
+		entities: "Entități",
+		automatic: "Automat",
+		modeXxl: "Prezentare XXL",
+		layout: "Dispunere",
+		centered: "Centrat",
+		split: "Împărțit",
+		inline: "În linie",
+		colorScheme: "Schemă de culori",
+		monochrome: "Monocrom",
+		v2cBlue: "Albastru V2C",
+		teal: "Turcoaz",
+		green: "Verde",
+		violet: "Violet",
+		custom: "Personalizat",
+		accentColor: "Culoare personalizată",
+		accentHelp: "Alege o culoare sau introdu o valoare HEX de șase cifre.",
+		invalidHex: "Folosește formatul #RRGGBB.",
+		surface: "Suprafață",
+		solid: "Solidă",
+		tinted: "Nuanțată",
+		transparent: "Transparentă",
+		heroScale: "Scara încărcătorului",
+		cardRadius: "Raza colțurilor",
+		metrics: "Indicatori",
+		energySources: "Surse de energie",
+		sectionOrder: "Ordinea secțiunilor",
+		moveUp: "Mută sus",
+		moveDown: "Mută jos",
+		resetOrder: "Restabilește ordinea",
+		header: "Antet",
+		badges: "Insigne de stare",
+		presets: "Presetări de curent",
+		intensityControl: "Controlul curentului",
+		slider: "Glisor",
+		both: "Glisor și presetări",
+		flowThreshold: "Prag de repaus (W)",
+		currentPresets: "Intensități rapide",
+		addPreset: "Adaugă intensitate",
+		removePreset: "Elimină",
+		amps: "amperi",
+		openAdvanced: "Deschide setările Trydan",
+		confirmLock: "Confirmă înainte de blocare",
+		invertGrid: "Inversează puterea rețelei",
+		invertBattery: "Inversează puterea bateriei",
+		invertSolar: "Inversează puterea solară",
+		entityOverrides: "Entități manuale",
+		statusAutomatic: "Automată",
+		statusManual: "Manuală",
+		statusAmbiguous: "Ambiguă",
+		statusInvalid: "Invalidă",
+		statusMissing: "Negăsită"
+	}
+}, Vt = {
+	en: {
+		connected: "Vehicle connected",
+		charging: "Charging",
+		ready: "Ready",
+		charge_power: "Charge power",
+		charge_energy: "Charge energy",
+		charge_time: "Charge time",
+		house_power: "Home power",
+		fv_power: "Solar power",
+		battery_power: "Battery power",
+		grid_power: "Grid power",
+		voltage: "Voltage",
+		intensity: "Charging current",
+		min_intensity: "Minimum current",
+		max_intensity: "Maximum current",
+		meter_error: "Meter error",
+		ssid: "Wi-Fi network",
+		ip_address: "IP address",
+		signal_status: "Signal status",
+		paused: "Pause",
+		locked: "EVSE lock",
+		timer: "Timer",
+		dynamic: "Dynamic modulation",
+		pause_dynamic: "Pause dynamic control",
+		logo_led: "Logo LED",
+		light_led: "Charger light",
+		charge_mode: "Charge mode"
+	},
+	es: {
+		connected: "Vehículo conectado",
+		charging: "Cargando",
+		ready: "Preparado",
+		charge_power: "Potencia de carga",
+		charge_energy: "Energía de carga",
+		charge_time: "Tiempo de carga",
+		house_power: "Potencia de casa",
+		fv_power: "Potencia solar",
+		battery_power: "Potencia de batería",
+		grid_power: "Potencia de red",
+		voltage: "Voltaje",
+		intensity: "Intensidad de carga",
+		min_intensity: "Intensidad mínima",
+		max_intensity: "Intensidad máxima",
+		meter_error: "Error del medidor",
+		ssid: "Red Wi-Fi",
+		ip_address: "Dirección IP",
+		signal_status: "Estado de señal",
+		paused: "Pausa",
+		locked: "Bloqueo EVSE",
+		timer: "Temporizador",
+		dynamic: "Modulación dinámica",
+		pause_dynamic: "Pausa de control dinámico",
+		logo_led: "LED del logo",
+		light_led: "Luz del cargador",
+		charge_mode: "Modo de carga"
+	},
+	it: {
+		connected: "Veicolo collegato",
+		charging: "Ricarica",
+		ready: "Pronto",
+		charge_power: "Potenza di ricarica",
+		charge_energy: "Energia di ricarica",
+		charge_time: "Tempo di ricarica",
+		house_power: "Potenza casa",
+		fv_power: "Potenza solare",
+		battery_power: "Potenza batteria",
+		grid_power: "Potenza rete",
+		voltage: "Tensione",
+		intensity: "Corrente di ricarica",
+		min_intensity: "Corrente minima",
+		max_intensity: "Corrente massima",
+		meter_error: "Errore contatore",
+		ssid: "Rete Wi-Fi",
+		ip_address: "Indirizzo IP",
+		signal_status: "Stato segnale",
+		paused: "Pausa",
+		locked: "Blocco EVSE",
+		timer: "Timer",
+		dynamic: "Modulazione dinamica",
+		pause_dynamic: "Pausa controllo dinamico",
+		logo_led: "LED logo",
+		light_led: "Luce caricatore",
+		charge_mode: "Modalità di ricarica"
+	},
+	de: {
+		connected: "Fahrzeug verbunden",
+		charging: "Ladevorgang",
+		ready: "Bereit",
+		charge_power: "Ladeleistung",
+		charge_energy: "Ladeenergie",
+		charge_time: "Ladezeit",
+		house_power: "Hausleistung",
+		fv_power: "Solarleistung",
+		battery_power: "Batterieleistung",
+		grid_power: "Netzleistung",
+		voltage: "Spannung",
+		intensity: "Ladestrom",
+		min_intensity: "Mindeststrom",
+		max_intensity: "Höchststrom",
+		meter_error: "Zählerfehler",
+		ssid: "WLAN-Netz",
+		ip_address: "IP-Adresse",
+		signal_status: "Signalstatus",
+		paused: "Pause",
+		locked: "EVSE-Sperre",
+		timer: "Timer",
+		dynamic: "Dynamische Modulation",
+		pause_dynamic: "Dynamische Steuerung pausieren",
+		logo_led: "Logo-LED",
+		light_led: "Laderlicht",
+		charge_mode: "Lademodus"
+	},
+	fr: {
+		connected: "Véhicule connecté",
+		charging: "Recharge",
+		ready: "Prêt",
+		charge_power: "Puissance de charge",
+		charge_energy: "Énergie de charge",
+		charge_time: "Temps de charge",
+		house_power: "Puissance maison",
+		fv_power: "Puissance solaire",
+		battery_power: "Puissance batterie",
+		grid_power: "Puissance réseau",
+		voltage: "Tension",
+		intensity: "Courant de charge",
+		min_intensity: "Courant minimal",
+		max_intensity: "Courant maximal",
+		meter_error: "Erreur compteur",
+		ssid: "Réseau Wi-Fi",
+		ip_address: "Adresse IP",
+		signal_status: "État du signal",
+		paused: "Pause",
+		locked: "Verrou EVSE",
+		timer: "Minuterie",
+		dynamic: "Modulation dynamique",
+		pause_dynamic: "Pause du contrôle dynamique",
+		logo_led: "LED du logo",
+		light_led: "Éclairage du chargeur",
+		charge_mode: "Mode de charge"
+	},
+	nl: {
+		connected: "Voertuig verbonden",
+		charging: "Laden",
+		ready: "Gereed",
+		charge_power: "Laadvermogen",
+		charge_energy: "Laadenergie",
+		charge_time: "Laadtijd",
+		house_power: "Huisvermogen",
+		fv_power: "Zonnevermogen",
+		battery_power: "Batterijvermogen",
+		grid_power: "Netvermogen",
+		voltage: "Spanning",
+		intensity: "Laadstroom",
+		min_intensity: "Minimale stroom",
+		max_intensity: "Maximale stroom",
+		meter_error: "Meterfout",
+		ssid: "Wi-Fi-netwerk",
+		ip_address: "IP-adres",
+		signal_status: "Signaalstatus",
+		paused: "Pauze",
+		locked: "EVSE-vergrendeling",
+		timer: "Timer",
+		dynamic: "Dynamische modulatie",
+		pause_dynamic: "Dynamische regeling pauzeren",
+		logo_led: "Logo-LED",
+		light_led: "Laderlicht",
+		charge_mode: "Laadmodus"
+	},
+	sv: {
+		connected: "Fordon anslutet",
+		charging: "Laddning",
+		ready: "Redo",
+		charge_power: "Laddeffekt",
+		charge_energy: "Laddenergi",
+		charge_time: "Laddtid",
+		house_power: "Huseffekt",
+		fv_power: "Soleffekt",
+		battery_power: "Batterieffekt",
+		grid_power: "Näteffekt",
+		voltage: "Spänning",
+		intensity: "Laddström",
+		min_intensity: "Minsta ström",
+		max_intensity: "Högsta ström",
+		meter_error: "Mätarfel",
+		ssid: "Wi-Fi-nätverk",
+		ip_address: "IP-adress",
+		signal_status: "Signalstatus",
+		paused: "Paus",
+		locked: "EVSE-lås",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pause_dynamic: "Pausa dynamisk styrning",
+		logo_led: "Logo-LED",
+		light_led: "Laddarljus",
+		charge_mode: "Laddläge"
+	},
+	da: {
+		connected: "Køretøj tilsluttet",
+		charging: "Opladning",
+		ready: "Klar",
+		charge_power: "Ladeeffekt",
+		charge_energy: "Ladeenergi",
+		charge_time: "Ladetid",
+		house_power: "Huseffekt",
+		fv_power: "Soleffekt",
+		battery_power: "Batterieffekt",
+		grid_power: "Neteffekt",
+		voltage: "Spænding",
+		intensity: "Ladestrøm",
+		min_intensity: "Minimumstrøm",
+		max_intensity: "Maksimumstrøm",
+		meter_error: "Målerfejl",
+		ssid: "Wi-Fi-netværk",
+		ip_address: "IP-adresse",
+		signal_status: "Signalstatus",
+		paused: "Pause",
+		locked: "EVSE-lås",
+		timer: "Timer",
+		dynamic: "Dynamisk modulering",
+		pause_dynamic: "Pause dynamisk styring",
+		logo_led: "Logo-LED",
+		light_led: "Laderlys",
+		charge_mode: "Ladetilstand"
+	},
+	no: {
+		connected: "Kjøretøy tilkoblet",
+		charging: "Lading",
+		ready: "Klar",
+		charge_power: "Ladeeffekt",
+		charge_energy: "Ladeenergi",
+		charge_time: "Ladetid",
+		house_power: "Huseffekt",
+		fv_power: "Soleffekt",
+		battery_power: "Batterieffekt",
+		grid_power: "Netteffekt",
+		voltage: "Spenning",
+		intensity: "Ladestrøm",
+		min_intensity: "Minimumsstrøm",
+		max_intensity: "Maksimumsstrøm",
+		meter_error: "Målerfeil",
+		ssid: "Wi-Fi-nettverk",
+		ip_address: "IP-adresse",
+		signal_status: "Signalstatus",
+		paused: "Pause",
+		locked: "EVSE-lås",
+		timer: "Tidsur",
+		dynamic: "Dynamisk modulering",
+		pause_dynamic: "Pause dynamisk styring",
+		logo_led: "Logo-LED",
+		light_led: "Laderlys",
+		charge_mode: "Lademodus"
+	},
+	ro: {
+		connected: "Vehicul conectat",
+		charging: "Încărcare",
+		ready: "Pregătit",
+		charge_power: "Putere de încărcare",
+		charge_energy: "Energie de încărcare",
+		charge_time: "Timp de încărcare",
+		house_power: "Puterea casei",
+		fv_power: "Putere solară",
+		battery_power: "Puterea bateriei",
+		grid_power: "Puterea rețelei",
+		voltage: "Tensiune",
+		intensity: "Curent de încărcare",
+		min_intensity: "Curent minim",
+		max_intensity: "Curent maxim",
+		meter_error: "Eroare contor",
+		ssid: "Rețea Wi-Fi",
+		ip_address: "Adresă IP",
+		signal_status: "Starea semnalului",
+		paused: "Pauză",
+		locked: "Blocare EVSE",
+		timer: "Temporizator",
+		dynamic: "Modulare dinamică",
+		pause_dynamic: "Pauză control dinamic",
+		logo_led: "LED logo",
+		light_led: "Lumina încărcătorului",
+		charge_mode: "Mod de încărcare"
+	}
+};
+function Ht(e) {
+	return Bt[e];
+}
+function Ut(e, t) {
+	return Vt[e][t];
+}
+function Wt(e, t) {
+	return e[`status${t[0].toUpperCase()}${t.slice(1)}`];
+}
 //#endregion
 //#region src/editor/v2c-trydan-card-editor.ts
-var Dt = {
+var Gt = {
 	en: "English",
 	it: "Italiano",
 	de: "Deutsch",
@@ -3061,41 +4129,108 @@ var Dt = {
 	no: "Norsk",
 	ro: "Română",
 	es: "Español"
-}, Ot = [
+}, Kt = {
+	en: "Ultra compact mode always hides the charger artwork. Your setting is preserved for other sizes.",
+	es: "El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaños.",
+	it: "La modalità ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
+	de: "Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt für andere Größen erhalten.",
+	fr: "Le mode ultra compact masque toujours le chargeur. Le réglage reste conservé pour les autres tailles.",
+	nl: "Ultracompact verbergt de lader altijd. De instelling blijft bewaard voor andere formaten.",
+	sv: "Ultrakompakt döljer alltid laddaren. Inställningen sparas för andra storlekar.",
+	da: "Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre størrelser.",
+	no: "Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre størrelser.",
+	ro: "Modul ultra compact ascunde mereu încărcătorul. Setarea rămâne salvată pentru alte dimensiuni."
+}, qt = [
+	"power",
+	"energy",
+	"time"
+], Jt = [
+	"solar",
+	"grid",
+	"home",
+	"battery",
+	"charger"
+], Yt = [
+	"hero",
+	"metrics",
+	"controls",
+	"energy",
+	"advanced"
+], Xt = [
 	["show_energy_flow", "editor.showEnergyFlow"],
 	["show_controls", "editor.showControls"],
 	["show_advanced", "editor.showAdvanced"],
 	["show_charger", "editor.showCharger"]
-], Q = class extends I {
+], Q = class extends z {
+	constructor(...e) {
+		super(...e), this.accentDraft = "#0067D9", this.presetDraft = "";
+	}
 	static {
 		this.styles = o`
-    :host { display: block; color: var(--primary-text-color); }
-    .editor { display: grid; gap: 14px; padding: 8px 0; }
-    h3 { margin: 0; font-size: 1rem; }
-    label { display: grid; gap: 5px; color: var(--secondary-text-color); font-size: 0.8rem; }
-    input, select {
-      width: 100%; min-height: 40px; padding: 8px 10px; box-sizing: border-box;
-      border: 1px solid var(--divider-color, #7775); border-radius: 8px;
-      color: var(--primary-text-color); background: var(--card-background-color);
-    }
-    input:focus-visible, select:focus-visible { outline: 3px solid var(--primary-color, #0067d9); outline-offset: 2px; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
-    .checks label { display: flex; align-items: center; gap: 7px; min-height: 32px; }
-    .checks input { width: auto; min-height: auto; accent-color: var(--primary-text-color, #202326); }
-    .yaml-note {
-      margin: 0; padding: 9px 11px; border-left: 3px solid var(--primary-text-color, #202326);
-      color: var(--secondary-text-color); background: var(--secondary-background-color, #f4f5f6);
-      font-size: 0.73rem; line-height: 1.4;
-    }
-    @media (max-width: 500px) { .grid, .checks { grid-template-columns: 1fr; } }
+    :host { display:block; color:var(--primary-text-color); }
+    * { box-sizing:border-box; }
+    .editor { display:grid; gap:12px; padding:8px 0; }
+    .group { border:1px solid var(--divider-color,#7775); border-radius:14px; background:var(--card-background-color); overflow:hidden; }
+    .group > summary { display:flex; min-height:48px; padding:12px 14px; align-items:center; gap:8px; cursor:pointer; color:var(--primary-text-color); font-size:.92rem; font-weight:700; list-style:none; }
+    .group > summary::-webkit-details-marker { display:none; }
+    .group > summary::after { content:"+"; margin-left:auto; color:var(--secondary-text-color); font-size:1.15rem; }
+    .group[open] > summary::after { content:"−"; }
+    .group-body { display:grid; gap:14px; padding:0 14px 16px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    label,.field { display:grid; gap:6px; color:var(--secondary-text-color); font-size:.78rem; }
+    .field-title { color:var(--primary-text-color); font-weight:650; }
+    input,select,button { font:inherit; }
+    input:not([type="checkbox"]):not([type="color"]),select { width:100%; min-height:42px; padding:8px 10px; border:1px solid var(--divider-color,#7775); border-radius:9px; color:var(--primary-text-color); background:var(--card-background-color); }
+    input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid var(--primary-color,#0067d9); outline-offset:2px; }
+    .choices { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+    .choice { display:grid; min-height:66px; padding:8px 5px; place-items:center; gap:5px; border:1px solid var(--divider-color,#7775); border-radius:10px; color:var(--secondary-text-color); background:transparent; cursor:pointer; font-size:.68rem; text-align:center; }
+    .choice[aria-pressed="true"] { border-color:var(--primary-color,#0067d9); color:var(--primary-text-color); background:color-mix(in srgb,var(--primary-color,#0067d9) 10%,transparent); box-shadow:inset 0 0 0 1px var(--primary-color,#0067d9); }
+    .layout-icon { display:grid; width:34px; height:22px; padding:3px; border:1px solid currentColor; border-radius:4px; gap:2px; opacity:.9; }
+    .layout-icon::before,.layout-icon::after { content:""; display:block; border-radius:2px; background:currentColor; opacity:.7; }
+    .layout-icon[data-kind="split"],.layout-icon[data-kind="inline"] { grid-template-columns:1fr 1fr; }
+    .layout-icon[data-kind="centered"]::before { width:55%; justify-self:center; }
+    .layout-icon[data-kind="auto"]::after { width:70%; justify-self:center; }
+    .chips { display:flex; flex-wrap:wrap; gap:7px; }
+    .chip { min-height:36px; padding:6px 11px; border:1px solid var(--divider-color,#7775); border-radius:999px; color:var(--secondary-text-color); background:transparent; cursor:pointer; }
+    .chip[aria-pressed="true"] { color:var(--primary-text-color); border-color:var(--primary-color,#0067d9); background:color-mix(in srgb,var(--primary-color,#0067d9) 12%,transparent); }
+    .swatches { display:grid; grid-template-columns:repeat(6,minmax(38px,1fr)); gap:7px; }
+    .swatch { min-height:44px; padding:4px; border:1px solid var(--divider-color,#7775); border-radius:9px; color:var(--primary-text-color); background:transparent; cursor:pointer; }
+    .swatch::before { content:""; display:block; width:22px; height:22px; margin:auto; border:1px solid #7777; border-radius:50%; background:var(--swatch); }
+    .swatch[aria-pressed="true"] { border-color:var(--primary-color,#0067d9); box-shadow:inset 0 0 0 1px var(--primary-color,#0067d9); }
+    .color-row { display:grid; grid-template-columns:52px minmax(0,1fr); gap:9px; align-items:end; }
+    input[type="color"] { width:52px; height:42px; padding:3px; border:1px solid var(--divider-color,#7775); border-radius:9px; background:transparent; cursor:pointer; }
+    .help,.error { margin:0; font-size:.7rem; line-height:1.4; }
+    .help { color:var(--secondary-text-color); } .error { color:var(--error-color,#b42335); }
+    .range-row { display:grid; grid-template-columns:minmax(0,1fr) 64px; gap:10px; align-items:center; }
+    input[type="range"] { width:100%; accent-color:var(--primary-color,#0067d9); }
+    output { color:var(--primary-text-color); font-variant-numeric:tabular-nums; font-weight:700; text-align:right; }
+    .order-list { display:grid; gap:6px; margin:0; padding:0; list-style:none; }
+    .order-item { display:grid; grid-template-columns:28px minmax(0,1fr) 34px 34px; min-height:42px; align-items:center; gap:5px; padding:5px 6px; border:1px solid var(--divider-color,#7775); border-radius:9px; }
+    .order-index { display:grid; width:24px; height:24px; place-items:center; border-radius:50%; color:var(--secondary-text-color); background:var(--secondary-background-color,#7772); font-size:.7rem; }
+    .icon-button { min-width:32px; min-height:32px; border:1px solid var(--divider-color,#7775); border-radius:8px; color:var(--primary-text-color); background:transparent; cursor:pointer; }
+    .icon-button:disabled { opacity:.35; cursor:not-allowed; }
+    .reset { justify-self:start; min-height:36px; padding:6px 10px; border:1px solid var(--divider-color,#7775); border-radius:8px; color:var(--primary-text-color); background:transparent; cursor:pointer; }
+    .checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px 12px; }
+    .checks label { display:flex; min-height:34px; align-items:center; gap:8px; }
+    .checks input { width:auto; accent-color:var(--primary-color,#0067d9); }
+    .checks input:disabled + span,.checks label:has(input:disabled) { opacity:.6; }
+    .preset-editor { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; }
+    .preset-editor button { min-height:42px; padding:8px 12px; border:0; border-radius:9px; color:var(--text-primary-color,#fff); background:var(--primary-color,#0067d9); cursor:pointer; font-weight:700; }
+    .preset-list { display:flex; flex-wrap:wrap; gap:6px; }
+    .preset-token { display:flex; align-items:center; gap:5px; padding:5px 6px 5px 10px; border:1px solid var(--divider-color,#7775); border-radius:999px; color:var(--primary-text-color); font-size:.75rem; }
+    .preset-token button { width:25px; height:25px; padding:0; border:0; border-radius:50%; color:inherit; background:var(--secondary-background-color,#7773); cursor:pointer; }
+    .entity-status { font-size:.7rem; font-weight:650; }
+    .entity-status[data-status="automatic"] { color:var(--success-color,#2e7d32); }
+    .entity-status[data-status="manual"] { color:var(--primary-color,#0067d9); }
+    .entity-status[data-status="invalid"],.entity-status[data-status="ambiguous"] { color:var(--error-color,#b42335); }
+    @media (max-width:500px) { .grid,.checks { grid-template-columns:1fr; } .choices { grid-template-columns:repeat(2,minmax(0,1fr)); } .swatches { grid-template-columns:repeat(3,1fr); } }
   `;
 	}
 	setConfig(e) {
 		this.config = {
 			...e,
 			entities: { ...e.entities ?? {} }
-		};
+		}, this.accentDraft = /^#[0-9a-f]{6}$/i.test(e.accent_color ?? "") ? e.accent_color.toUpperCase() : "#0067D9";
 	}
 	#e(e) {
 		this.config = e, this.dispatchEvent(new CustomEvent("config-changed", {
@@ -3109,94 +4244,226 @@ var Dt = {
 		let n = { ...this.config };
 		typeof t == "string" && t.trim() === "" && e !== "entity" ? delete n[e] : Object.assign(n, { [e]: t }), this.#e(n);
 	}
+	#n(e) {
+		return this.config ? e === "show_energy_flow" ? this.config.show_energy_flow === !0 : this.config[e] !== !1 : !1;
+	}
+	#r(e, t) {
+		if (!this.config) return;
+		let n = Number(t);
+		Number.isFinite(n) && this.#e({
+			...this.config,
+			[e]: n
+		});
+	}
+	#i(e) {
+		if (!this.config) return;
+		let t = this.config.metrics ?? [...qt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		this.#e({
+			...this.config,
+			metrics: n
+		});
+	}
+	#a(e) {
+		if (!this.config) return;
+		let t = this.config.energy_sources ?? [...Jt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		this.#e({
+			...this.config,
+			energy_sources: n
+		});
+	}
+	#o() {
+		let e = (this.config?.section_order ?? []).filter((e) => Yt.includes(e));
+		return [.../* @__PURE__ */ new Set([...e, ...Yt])];
+	}
+	#s(e, t) {
+		if (!this.config) return;
+		let n = this.#o(), r = e + t;
+		r < 0 || r >= n.length || ([n[e], n[r]] = [n[r], n[e]], this.#e({
+			...this.config,
+			section_order: n
+		}));
+	}
+	#c() {
+		if (!this.config) return;
+		let e = { ...this.config };
+		delete e.section_order, this.#e(e);
+	}
+	#l(e) {
+		if (!this.config) return;
+		let t = e === "custom" ? this.config.accent_color ?? "#0067D9" : this.config.accent_color;
+		e === "custom" && (this.accentDraft = t), this.#e({
+			...this.config,
+			color_scheme: e,
+			accent_color: t
+		});
+	}
+	#u(e) {
+		this.accentDraft = e.toUpperCase(), !(!this.config || !/^#[0-9A-F]{6}$/.test(this.accentDraft)) && this.#e({
+			...this.config,
+			color_scheme: "custom",
+			accent_color: this.accentDraft
+		});
+	}
+	#d() {
+		if (!this.config) return;
+		let e = Number(this.presetDraft);
+		if (!Number.isInteger(e) || e <= 0 || e > 80) return;
+		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? V, e])].sort((e, t) => e - t);
+		this.presetDraft = "", this.#e({
+			...this.config,
+			current_presets: t
+		});
+	}
+	#f(e) {
+		this.config && this.#e({
+			...this.config,
+			current_presets: (this.config.current_presets ?? V).filter((t) => t !== e)
+		});
+	}
+	#p(e, t) {
+		if (!this.config) return;
+		let n = { ...this.config.entities ?? {} };
+		t.trim() ? n[e] = t : delete n[e], this.#e({
+			...this.config,
+			entities: n
+		});
+	}
 	render() {
-		if (!this.config) return k;
-		let e = H(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = U(e), n = Object.keys(this.hass?.states ?? {});
-		return D`
+		if (!this.config) return N;
+		let e = rt(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = U(e), n = Ht(e), r = Object.keys(this.hass?.states ?? {}), i = this.hass ? gt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities) : void 0, a = this.#o(), o = this.config.metrics ?? [...qt], s = this.config.energy_sources ?? [...Jt], c = this.config.current_presets ?? V, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
+			hero: W(t, "editor.showCharger"),
+			metrics: n.metrics,
+			controls: W(t, "editor.showControls"),
+			energy: W(t, "editor.showEnergyFlow"),
+			advanced: W(t, "editor.showAdvanced")
+		}, f = {
+			power: W(t, "labels.power"),
+			energy: W(t, "labels.energy"),
+			time: W(t, "labels.time")
+		}, p = {
+			solar: W(t, "flows.solar"),
+			grid: W(t, "flows.grid"),
+			home: W(t, "flows.home"),
+			battery: W(t, "flows.battery"),
+			charger: W(t, "flows.charger")
+		};
+		return j`
       <div class="editor">
-        <h3>${W(t, "editor.title")}</h3>
-        <label>
-          <span>${W(t, "editor.entity")}</span>
-          <input
-            data-field="entity"
-            list="v2c-entities"
-            .value=${this.config.entity}
-            @change=${(e) => this.#t("entity", e.target.value)}
-          />
-        </label>
-        <div class="grid">
-          ${["name", "location"].map((e) => D`
-              <label>
-                <span>${W(t, `editor.${e}`)}</span>
-                <input
-                  data-field=${e}
-                  .value=${this.config?.[e] ?? ""}
-                  @change=${(t) => this.#t(e, t.target.value)}
-                />
-              </label>
-            `)}
-          <label>
-            <span>${W(t, "editor.language")}</span>
-            <select
-              data-field="language"
-              .value=${this.config.language ?? e}
-              @change=${(e) => this.#t("language", e.target.value)}
-            >
-              ${Ye.map((e) => D`<option .value=${e}>${Dt[e]}</option>`)}
-            </select>
-          </label>
-          <label>
-            <span>${W(t, "editor.theme")}</span>
-            <select
-              data-field="theme"
-              .value=${this.config.theme ?? "auto"}
-              @change=${(e) => this.#t("theme", e.target.value)}
-            >
-              <option value="auto">${W(t, "editor.themeAuto")}</option>
-              <option value="light">${W(t, "editor.themeLight")}</option>
-              <option value="dark">${W(t, "editor.themeDark")}</option>
-            </select>
-          </label>
-          <label>
-            <span>${W(t, "editor.displayMode")}</span>
-            <select
-              data-field="display_mode"
-              .value=${this.config.display_mode ?? "standard"}
-              @change=${(e) => this.#t("display_mode", e.target.value)}
-            >
-              <option value="standard">${W(t, "editor.modeStandard")}</option>
-              <option value="compact">${W(t, "editor.modeCompact")}</option>
-              <option value="ultra_compact">${W(t, "editor.modeUltra")}</option>
-            </select>
-          </label>
-        </div>
-        <div class="checks">
-          ${Ot.map(([e, n]) => D`
-              <label>
-                <input
-                  data-field=${e}
-                  type="checkbox"
-                  .checked=${this.config?.[e] !== !1}
-                  @change=${(t) => this.#t(e, t.target.checked)}
-                />
-                ${W(t, n)}
-              </label>
-            `)}
-        </div>
-        <p class="yaml-note"><code>YAML | status_entity | entities | invert_*_power | current_presets | flow_threshold_w</code></p>
-        <datalist id="v2c-entities">${n.map((e) => D`<option value=${e}></option>`)}</datalist>
-      </div>
-    `;
+        <details class="group" open>
+          <summary>${n.general}</summary><div class="group-body">
+            <label><span>${W(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
+            <div class="grid">
+              <label><span>${W(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
+              <label><span>${W(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
+              <label><span>${W(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${tt.map((e) => j`<option .value=${e}>${Gt[e]}</option>`)}</select></label>
+              <label><span>${W(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${W(t, "editor.themeAuto")}</option><option value="light">${W(t, "editor.themeLight")}</option><option value="dark">${W(t, "editor.themeDark")}</option></select></label>
+            </div>
+            <div class="field"><span class="field-title">${W(t, "editor.displayMode")}</span><div class="choices">${[
+			["xxl", n.modeXxl],
+			["standard", W(t, "editor.modeStandard")],
+			["compact", W(t, "editor.modeCompact")],
+			["ultra_compact", W(t, "editor.modeUltra")]
+		].map(([e, t]) => j`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
+          </div>
+        </details>
+
+        <details class="group" open>
+          <summary>${n.appearance}</summary><div class="group-body">
+            <div class="field"><span class="field-title">${n.layout}</span><div class="choices">${[
+			["auto", n.automatic],
+			["centered", n.centered],
+			["split", n.split],
+			["inline", n.inline]
+		].map(([e, t]) => j`<button type="button" class="choice" data-field="layout" data-value=${e} aria-pressed=${String((this.config?.layout ?? "auto") === e)} @click=${() => this.#t("layout", e)}><span class="layout-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.colorScheme}</span><div class="swatches">${[
+			[
+				"monochrome",
+				n.monochrome,
+				"#808080"
+			],
+			[
+				"v2c_blue",
+				n.v2cBlue,
+				"#0067D9"
+			],
+			[
+				"teal",
+				n.teal,
+				"#00897B"
+			],
+			[
+				"green",
+				n.green,
+				"#2E7D32"
+			],
+			[
+				"violet",
+				n.violet,
+				"#6A4BBC"
+			],
+			[
+				"custom",
+				n.custom,
+				this.config.accent_color ?? "#0067D9"
+			]
+		].map(([e, t, n]) => j`<button type="button" class="swatch" style=${`--swatch:${n}`} title=${t} aria-label=${t} aria-pressed=${String((this.config?.color_scheme ?? "monochrome") === e)} @click=${() => this.#l(e)}></button>`)}</div></div>
+            ${this.config.color_scheme === "custom" ? j`<div class="field"><span class="field-title">${n.accentColor}</span><div class="color-row"><input data-field="accent_picker" type="color" .value=${/^#[0-9A-F]{6}$/.test(this.accentDraft) ? this.accentDraft : "#0067D9"} @input=${(e) => this.#u(e.target.value)} /><input data-field="accent_color" inputmode="text" .value=${this.accentDraft} @input=${(e) => this.#u(e.target.value)} /></div><p class="help">${n.accentHelp}</p>${l ? j`<p class="error" role="alert">${n.invalidHex}</p>` : N}</div>` : N}
+            <div class="field"><span class="field-title">${n.surface}</span><div class="chips">${[
+			["solid", n.solid],
+			["tinted", n.tinted],
+			["transparent", n.transparent]
+		].map(([e, t]) => j`<button type="button" class="chip" aria-pressed=${String((this.config?.surface_style ?? "solid") === e)} @click=${() => this.#t("surface_style", e)}>${t}</button>`)}</div></div>
+            <div class="grid">
+              <label><span class="field-title">${n.heroScale}</span><div class="range-row"><input data-field="hero_scale" type="range" min="0.75" max="1.25" step="0.05" .value=${String(this.config.hero_scale ?? 1)} @input=${(e) => this.#r("hero_scale", e.target.value)} /><output>${Math.round((this.config.hero_scale ?? 1) * 100)}%</output></div></label>
+              <label><span class="field-title">${n.cardRadius}</span><div class="range-row"><input data-field="card_radius" type="range" min="0" max="40" step="1" .value=${String(this.config.card_radius ?? 20)} @input=${(e) => this.#r("card_radius", e.target.value)} /><output>${this.config.card_radius ?? 20}px</output></div></label>
+            </div>
+          </div>
+        </details>
+
+        <details class="group" open>
+          <summary>${n.contentOrder}</summary><div class="group-body">
+            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${qt.map((e) => j`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${Jt.map((e) => j`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => j`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>↑</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>↓</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
+            <div class="checks">${Xt.map(([e, n]) => j`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${W(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
+            ${u ? j`<p class="help" data-help="ultra-artwork">${Kt[e]}</p>` : N}
+          </div>
+        </details>
+
+        <details class="group">
+          <summary>${n.advanced}</summary><div class="group-body">
+            <div class="field"><span class="field-title">${n.intensityControl}</span><div class="chips">${[
+			["slider", n.slider],
+			["presets", n.presets],
+			["both", n.both]
+		].map(([e, t]) => j`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
+            <label><span class="field-title">${n.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e) => this.#r("flow_threshold_w", e.target.value)} /></label>
+            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => j`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>×</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
+			e.key === "Enter" && (e.preventDefault(), this.#d());
+		}} /><button type="button" @click=${() => this.#d()}>${n.addPreset}</button></div></div>
+            <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />${n.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />${n.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />${n.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />${n.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />${n.invertSolar}</label></div>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p><div class="grid">${G.map((t) => {
+			let r = i?.statuses[t] ?? "missing";
+			return j`<label><span>${Ut(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${Wt(n, r)}</small></label>`;
+		})}</div></div>
+        </details>
+        <datalist id="v2c-entities">${r.map((e) => j`<option value=${e}></option>`)}</datalist>
+      </div>`;
 	}
 };
-X([L({ attribute: !1 })], Q.prototype, "hass", void 0), X([R()], Q.prototype, "config", void 0);
+X([Oe({ attribute: !1 })], Q.prototype, "hass", void 0), X([B()], Q.prototype, "config", void 0), X([B()], Q.prototype, "accentDraft", void 0), X([B()], Q.prototype, "presetDraft", void 0);
 //#endregion
 //#region src/index.ts
-var $ = "v2c-trydan-card", kt = "v2c-trydan-card-editor";
-customElements.get($) || customElements.define($, Z), customElements.get(kt) || customElements.define(kt, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
+var $ = "v2c-trydan-card", Zt = "v2c-trydan-card-editor";
+customElements.get($) || customElements.define($, Z), customElements.get(Zt) || customElements.define(Zt, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
 	type: $,
 	name: "V2C Trydan Card",
-	description: "Quiet Hardware V2C Trydan charger control and smart energy summary.",
+	description: "Home Assistant V2C Trydan EV charger card with visual editor, controls and energy monitoring.",
+	documentationURL: "https://github.com/mactron254/v2c-trydan-card#readme",
 	preview: !0
 });
 //#endregion

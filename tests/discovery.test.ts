@@ -23,6 +23,17 @@ describe("entity discovery", () => {
     expect(result.entities.charge_power).toBe("sensor.manual");
   });
 
+  it("rejects manual overrides with an incompatible Home Assistant domain", () => {
+    const result = resolveRegistryRoles(entries, "binary_sensor.trydan_connected", { charge_power: "switch.not_a_power_sensor" });
+    expect(result.entities.charge_power).toBe("sensor.trydan_power");
+    expect(result.statuses.charge_power).toBe("automatic");
+  });
+
+  it("rejects known manual entities from another device", () => {
+    const result = resolveRegistryRoles(entries, "binary_sensor.trydan_connected", { charge_power: "sensor.other_power" });
+    expect(result.entities.charge_power).toBe("sensor.trydan_power");
+    expect(result.statuses.charge_power).toBe("automatic");
+  });
   it("reports ambiguity instead of silently selecting a suffix", () => {
     const result = resolveRegistryRoles(
       [

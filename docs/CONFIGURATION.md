@@ -1,104 +1,144 @@
-# Configuración
+# V2C Trydan Card configuration
 
-## Opciones principales
+[Español](CONFIGURATION.es.md) · [Visual guide](VISUAL_GUIDE.md) · [FAQ](FAQ.md)
 
-| Opción | Tipo | Default | GUI | Descripción |
-|---|---|---|---|---|
-| `entity` | string | requerida | Sí | Entidad semilla del dispositivo V2C |
-| `name` | string | V2C Trydan | Sí | Título |
-| `location` | string | — | Sí | Ubicación secundaria |
-| `language` | código | idioma HA | Sí | Idioma de interfaz |
-| `theme` | `auto`/`light`/`dark` | `auto` | Sí | Tema automático o forzado |
-| `display_mode` | `standard`/`compact`/`ultra_compact` | `standard` | Sí | Densidad visual |
-| `show_energy_flow` | boolean | `true` | Sí | Resumen energético inteligente |
-| `show_controls` | boolean | `true` | Sí | Intensidad y pausa |
-| `show_advanced` | boolean | `true` | Sí | Ajustes plegados |
-| `show_charger` | boolean | `true` | Sí | Ilustración Trydan |
+## General
 
-Idiomas: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`.
-Los locales `nb-NO` y `nn-NO` se asignan a noruego. Idiomas no soportados usan inglés.
+| Key | Type | Default | Visual editor | Purpose |
+|---|---|---:|:---:|---|
+| `entity` | entity ID | required | Yes | Seed entity belonging to the V2C device |
+| `name` | string | `V2C Trydan` | Yes | Card title |
+| `location` | string | empty | Yes | Secondary location label |
+| `language` | `auto` or supported code | `auto` | Yes | Card and editor language |
+| `theme` | `auto`, `light`, `dark` | `auto` | Yes | Color theme |
+| `display_mode` | density | `standard` | Yes | Card density |
+| `layout` | layout | `auto` | Yes | Hero arrangement |
 
-## Opciones avanzadas YAML
+Languages: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`. Norwegian `nb` and `nn` locales map to `no`.
 
-| Opción | Tipo | Default | Descripción |
-|---|---|---|---|
-| `status_entity` | string | — | Sensor opcional con uno de los 11 estados visuales |
-| `confirm_lock` | boolean | `true` | Confirmación antes de bloquear |
-| `current_presets` | number[] | 6,10,13,16,20,25,32 | Atajos de amperios |
-| `flow_threshold_w` | number | 50 | Umbral de reposo |
-| `invert_grid_power` | boolean | `false` | Invierte signo de red |
-| `invert_battery_power` | boolean | `false` | Invierte signo de batería |
-| `invert_solar_power` | boolean | `false` | Invierte signo solar |
-| `entities` | object | `{}` | Overrides explícitos de entidades |
+## Appearance
 
-## Ejemplos de densidad
+| Key | Values | Default | Notes |
+|---|---|---:|---|
+| `color_scheme` | `monochrome`, `v2c_blue`, `teal`, `green`, `violet`, `custom` | `monochrome` | Control accent |
+| `accent_color` | `#RRGGBB` | `#0067D9` in editor | Used only with `custom` |
+| `surface_style` | `solid`, `tinted`, `transparent` | `solid` | Card surface |
+| `hero_scale` | `0.75`–`1.25` | `1` | Charger scale |
+| `card_radius` | `0`–`40` | HA theme | Outer radius and clipping |
+| `show_header` | boolean | `true` | Title and location |
+| `show_badges` | boolean | `true` | Secondary state badges |
+| `show_charger` | boolean | `true` | Charger artwork; always hidden in ultra compact |
+
+Densities:
+
+- `xxl`: 320–430 px artwork, largest type and spacing.
+- `standard`: 260–340 px artwork and three metrics.
+- `compact`: 210–280 px artwork and tighter controls.
+- `ultra_compact`: no artwork, power-first metrics and essential controls.
+
+Layouts:
+
+- `centered`: vertical composition.
+- `split`: artwork left, status right from 400 px.
+- `inline`: reduced horizontal Hero from 400 px.
+- `auto`: centered when narrow and split from 520 px.
+
+## Content and order
+
+| Key | Type/default | Purpose |
+|---|---|---|
+| `metrics` | `power, energy, time` | Visible metric chips and order |
+| `energy_sources` | `solar, grid, home, battery, charger` | Sources used by energy flow |
+| `section_order` | `hero, metrics, controls, energy, advanced` | Real DOM section order |
+| `show_energy_flow` | `false` | Optional energy summary; opt in with `true` |
+| `show_controls` | `true` | Current and pause controls |
+| `show_advanced` | `true` | Folded Trydan settings |
+| `show_presets` | true except ultra | Current preset buttons |
+| `advanced_open` | `false` | Start advanced details expanded |
+| `intensity_control` | `both` | `slider`, `presets` or `both` |
 
 ```yaml
-# Completa: Hero XL de 260–360 px, tres métricas, energía y controles
-display_mode: standard
-
-# Hero XL de 210–280 px; conserva estado, métricas y controles
-display_mode: compact
-
-# Hero XL de 170–220 px, estado, potencia y controles esenciales
-display_mode: ultra_compact
+metrics: [power, time]
+energy_sources: [solar, grid, charger]
+section_order: [hero, metrics, energy, controls, advanced]
+show_energy_flow: true
 ```
 
-Las tres densidades usan composición vertical centrada y límites fluidos seguros a 280 px. El modo ultracompacto mantiene la ilustración, el estado, la potencia, la intensidad y pausa; oculta presets y condensa el flujo. `show_charger: false` elimina la ilustración y su espacio, mientras el estado textual permanece visible.
+## Current and energy options
 
-## Overrides de entidad
+| Key | Default | Purpose |
+|---|---:|---|
+| `current_presets` | `[6,10,13,16,20,25,32]` | Positive integer amp shortcuts |
+| `flow_threshold_w` | `50` | Values below threshold are idle |
+| `invert_grid_power` | `false` | Reverse grid sign |
+| `invert_battery_power` | `false` | Reverse battery sign |
+| `invert_solar_power` | `false` | Reverse solar sign |
+| `confirm_lock` | `true` | Confirm before locking EVSE |
+| `status_entity` | empty | Optional entity exposing one visual state |
+
+Power conventions: positive grid = import, positive battery = discharge, positive solar = production and positive home = consumption. `unknown` and `unavailable` stay unknown.
+
+## Entities
+
+Manual overrides win over automatic discovery. Invalid domain/device matches never enable a service. Ambiguous matches are shown instead of guessed.
 
 ```yaml
 entities:
-  connected: binary_sensor.garaje_v2c_cargador_conectado
-  charging: binary_sensor.garaje_v2c_cargador_cargando
-  ready: binary_sensor.garaje_v2c_cargador_listo
-  charge_power: sensor.garaje_v2c_cargador_potencia_de_carga
-  charge_energy: sensor.garaje_v2c_cargador_energia_de_carga
-  charge_time: sensor.garaje_v2c_cargador_tiempo_de_carga
-  house_power: sensor.garaje_v2c_cargador_energia_de_la_casa
-  fv_power: sensor.garaje_v2c_cargador_energia_fotovoltaica
-  battery_power: sensor.v2c_trydan_battery_power
-  grid_power: sensor.v2c_trydan_grid_power
-  voltage: sensor.v2c_trydan_voltage
-  intensity: number.garaje_v2c_cargador_intensidad
-  paused: switch.garaje_v2c_cargador_pausar_sesion
-  locked: switch.garaje_v2c_cargador_bloquear_evse
-  timer: switch.garaje_v2c_cargador_temporizador_de_punto_de_recarga
-  dynamic: switch.garaje_v2c_cargador_modulacion_de_intensidad_dinamica
-  pause_dynamic: switch.garaje_v2c_cargador_pausar_la_modulacion_de_control_dinamico
-  logo_led: light.garaje_v2c_cargador_logo_led
-  light_led: light.garaje_v2c_cargador_luz_led
-  charge_mode: select.garaje_v2c_cargador_modo_de_carga
+  connected: binary_sensor.garage_v2c_connected
+  charging: binary_sensor.garage_v2c_charging
+  ready: binary_sensor.garage_v2c_ready
+  charge_power: sensor.garage_v2c_charge_power
+  charge_energy: sensor.garage_v2c_charge_energy
+  charge_time: sensor.garage_v2c_charge_time
+  house_power: sensor.garage_v2c_house_power
+  fv_power: sensor.garage_v2c_solar_power
+  battery_power: sensor.garage_v2c_battery_power
+  grid_power: sensor.garage_v2c_grid_power
+  voltage: sensor.garage_v2c_voltage
+  intensity: number.garage_v2c_intensity
+  paused: switch.garage_v2c_pause
+  locked: switch.garage_v2c_lock
+  timer: switch.garage_v2c_timer
+  dynamic: switch.garage_v2c_dynamic
+  pause_dynamic: switch.garage_v2c_pause_dynamic
+  logo_led: light.garage_v2c_logo
+  light_led: light.garage_v2c_light
+  charge_mode: select.garage_v2c_charge_mode
 ```
 
-Override manual siempre gana. Si discovery encuentra varios candidatos, no elige silenciosamente: muestra el rol ambiguo.
+Additional diagnostic roles available in the editor: `min_intensity`, `max_intensity`, `meter_error`, `ssid`, `ip_address`, `signal_status`.
 
-## Estados visuales externos
+## External visual states
 
-Valores: `disconnected`, `charging`, `complete`, `timer`, `updating`, `control_pilot`,
-`load_balancing`, `error`, `waiting_power`, `wifi_connected`, `wifi_connecting`.
+`disconnected`, `charging`, `complete`, `timer`, `updating`, `control_pilot`, `load_balancing`, `error`, `waiting_power`, `wifi_connected`, `wifi_connecting`.
 
-## Convenciones de potencia
+The LCD uses the selected language. Charging uses real power/current/voltage; completion uses real session energy. Missing data produces translated fallback copy, never sample readings.
 
-- Red positiva = importación.
-- Batería positiva = descarga.
-- Solar positiva = producción.
-- Casa positiva = consumo.
+## Complete example
 
 ```yaml
-invert_grid_power: true
-invert_battery_power: true
-invert_solar_power: false
+type: custom:v2c-trydan-card
+entity: binary_sensor.garage_v2c_connected
+name: Trydan
+location: Garage
+language: auto
+theme: auto
+display_mode: standard
+layout: auto
+color_scheme: v2c_blue
+surface_style: solid
+hero_scale: 1
+card_radius: 20
+metrics: [power, energy, time]
+show_energy_flow: true
+energy_sources: [solar, grid, home, battery, charger]
+intensity_control: both
+current_presets: [6, 10, 16, 20, 25, 32]
 ```
 
-`W` y `kW` se normalizan. `unknown` y `unavailable` nunca se interpretan como cero.
+## Migrating to v0.4.2
 
-## Resolución de problemas
+No public key was removed. Two intentional behavior changes apply:
 
-- **No aparecen controles**: asocia entidades bajo `entities:`.
-- **Flecha invertida**: activa el `invert_*_power` correspondiente.
-- **Tema no coincide**: usa `theme: auto`; Home Assistant debe exponer sus variables de tema.
-- **Card demasiado alta**: usa `display_mode: compact` o `ultra_compact`.
-- **Estado inesperado**: revisa `status_entity`.
-- **Card no carga**: confirma recurso tipo módulo y limpia caché del navegador.
+1. `show_energy_flow` now defaults to `false`; add `true` to retain it.
+2. `ultra_compact` always hides artwork, while preserving `show_charger` for other densities.

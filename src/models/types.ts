@@ -64,6 +64,9 @@ export const ENTITY_ROLES = [
   "min_intensity",
   "max_intensity",
   "meter_error",
+  "ssid",
+  "ip_address",
+  "signal_status",
   "paused",
   "locked",
   "timer",
@@ -145,9 +148,23 @@ export interface V2cTrydanCardConfig {
   entity: string;
   name?: string;
   location?: string;
-  language?: "es" | "en" | "it" | "de" | "fr" | "nl" | "sv" | "da" | "no" | "ro";
+  language?: "auto" | "es" | "en" | "it" | "de" | "fr" | "nl" | "sv" | "da" | "no" | "ro";
   theme?: "auto" | "light" | "dark";
-  display_mode?: "standard" | "compact" | "ultra_compact";
+  display_mode?: "xxl" | "standard" | "compact" | "ultra_compact";
+  layout?: "auto" | "centered" | "split" | "inline";
+  color_scheme?: "monochrome" | "v2c_blue" | "teal" | "green" | "violet" | "custom";
+  accent_color?: string;
+  surface_style?: "solid" | "tinted" | "transparent";
+  hero_scale?: number;
+  card_radius?: number;
+  metrics?: Array<"power" | "energy" | "time">;
+  energy_sources?: Array<"solar" | "grid" | "home" | "battery" | "charger">;
+  intensity_control?: "slider" | "presets" | "both";
+  section_order?: Array<"hero" | "metrics" | "controls" | "energy" | "advanced">;
+  show_header?: boolean;
+  show_badges?: boolean;
+  show_presets?: boolean;
+  advanced_open?: boolean;
   status_entity?: string;
   entities?: EntityMap;
   show_energy_flow?: boolean;
@@ -180,11 +197,14 @@ export interface EnergyFlow {
   available: boolean;
 }
 
+export type ResolutionStatus = "automatic" | "manual" | "ambiguous" | "invalid" | "missing";
+
 export interface DiscoveryResult {
   entities: EntityMap;
   ambiguities: Partial<Record<EntityRole, string[]>>;
   missing: EntityRole[];
   deviceId?: string;
+  statuses: Partial<Record<EntityRole, ResolutionStatus>>;
 }
 
 declare global {
@@ -194,6 +214,7 @@ declare global {
       name: string;
       description: string;
       preview?: boolean;
+      documentationURL?: string;
     }>;
   }
 }
