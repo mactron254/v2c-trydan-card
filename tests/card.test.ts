@@ -123,6 +123,16 @@ describe("v2c-trydan-card", () => {
     });
   });
 
+  it("aligns current steps to the entity minimum", async () => {
+    const hass = mockHass();
+    const intensity=hass.states["number.trydan_intensity"]!;
+    intensity.attributes.min=7; intensity.attributes.max=32; intensity.attributes.step=5;
+    const card=await renderCard(hass);
+    const slider=card.shadowRoot?.querySelector<HTMLInputElement>('input[data-role="intensity"]')!;
+    slider.value="11";slider.dispatchEvent(new Event("change",{ bubbles:true,composed:true }));
+    await new Promise((resolve)=>setTimeout(resolve,0));
+    expect(hass.callService).toHaveBeenCalledWith("number","set_value",{ entity_id:"number.trydan_intensity",value:12 });
+  });
   it("pauses a session once and exposes busy state", async () => {
     const hass = mockHass();
     const card = await renderCard(hass);
@@ -161,18 +171,19 @@ describe("v2c-trydan-card", () => {
     expect(Boolean(art.compareDocumentPosition(status) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
   });
 
-  it("keeps the Trydan artwork visible in compact and ultra compact modes", async () => {
-    for (const display_mode of ["compact", "ultra_compact"] as const) {
-      const card = await renderCard(mockHass(), { ...config, display_mode });
-      expect(card.shadowRoot?.querySelector(".charger-art")).toBeTruthy();
-      expect(card.shadowRoot?.querySelector(".charger-status")?.textContent).toContain("Cargando");
-      card.remove();
-    }
+  it("keeps artwork in compact and removes it in ultra compact", async () => {
+    const compact = await renderCard(mockHass(), { ...config, display_mode:"compact" });
+    expect(compact.shadowRoot?.querySelector(".charger-art")).toBeTruthy();
+    compact.remove();
+    const ultra = await renderCard(mockHass(), { ...config, display_mode:"ultra_compact", show_charger:true });
+    expect(ultra.shadowRoot?.querySelector(".charger-art")).toBeNull();
+    expect(ultra.shadowRoot?.querySelector(".charger-status")?.textContent).toContain("Cargando");
   });
 
   it("shows only active energy sources", async () => {
     const card = await renderCard(mockHass({ "sensor.trydan_solar": "1800" }), {
       ...config,
+      show_energy_flow:true,
       entities: { ...config.entities, fv_power: "sensor.trydan_solar" },
     });
     const summary = card.shadowRoot?.querySelector('.energy-summary[data-kind="active"]');
@@ -184,6 +195,7 @@ describe("v2c-trydan-card", () => {
   it("summarizes idle, partial and unavailable energy data", async () => {
     const flowConfig: V2cTrydanCardConfig = {
       ...config,
+      show_energy_flow:true,
       entities: { ...config.entities, fv_power: "sensor.trydan_solar" },
     };
     const idle = await renderCard(mockHass({
@@ -208,6 +220,7 @@ describe("v2c-trydan-card", () => {
   it("aplica section_order al orden real de las secciones", async () => {
     const card = await renderCard(mockHass(), {
       ...config,
+      show_energy_flow:true,
       section_order: ["advanced", "energy", "controls", "metrics", "hero"],
     });
     const order = Array.from(card.shadowRoot?.querySelectorAll<HTMLElement>("[data-section]") ?? [])

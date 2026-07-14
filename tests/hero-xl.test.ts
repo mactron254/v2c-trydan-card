@@ -62,7 +62,7 @@ describe("Trydan Hero XL contracts", () => {
     expect(styles).toContain("width: min(100%, clamp(260px, 66cqw, 340px))");
     expect(styles).toContain("width: min(100%, clamp(320px, 84cqw, 430px))");
     expect(styles).toContain("width: min(100%, clamp(210px, 62cqw, 280px))");
-    expect(styles).toContain("width: min(100%, clamp(170px, 56cqw, 220px))");
+    expect(styles).not.toContain('data-mode="ultra_compact"] .charger-stage');
     expect(styles).toContain("font-size: clamp(2rem, 7cqw, 2.5rem)");
     expect(styles).toContain("@container (min-width: 400px)");
     expect(styles).toContain('ha-card[data-layout="split"] .hero');

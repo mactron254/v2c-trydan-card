@@ -1,7 +1,7 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { DEFAULT_PRESETS } from "../config";
-import { getDictionary, getLanguage, SUPPORTED_LANGUAGES, translate } from "../localization";
+import { getDictionary, getLanguage, SUPPORTED_LANGUAGES, translate, type Language } from "../localization";
 import { getEditorCopy, getEntityRoleLabel, getResolutionLabel } from "../localization/editor-copy";
 import { ENTITY_ROLES, type EntityRole, type HomeAssistant, type V2cTrydanCardConfig } from "../models/types";
 import { resolveRegistryRoles } from "../services/discovery";
@@ -9,6 +9,19 @@ import { resolveRegistryRoles } from "../services/discovery";
 const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = {
   en: "English", it: "Italiano", de: "Deutsch", fr: "Français", nl: "Nederlands",
   sv: "Svenska", da: "Dansk", no: "Norsk", ro: "Română", es: "Español",
+};
+
+const ULTRA_ARTWORK_HELP: Record<Language, string> = {
+  en:"Ultra compact mode always hides the charger artwork. Your setting is preserved for other sizes.",
+  es:"El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaños.",
+  it:"La modalità ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
+  de:"Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt für andere Größen erhalten.",
+  fr:"Le mode ultra compact masque toujours le chargeur. Le réglage reste conservé pour les autres tailles.",
+  nl:"Ultracompact verbergt de lader altijd. De instelling blijft bewaard voor andere formaten.",
+  sv:"Ultrakompakt döljer alltid laddaren. Inställningen sparas för andra storlekar.",
+  da:"Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre størrelser.",
+  no:"Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre størrelser.",
+  ro:"Modul ultra compact ascunde mereu încărcătorul. Setarea rămâne salvată pentru alte dimensiuni.",
 };
 const METRICS = ["power", "energy", "time"] as const;
 const SOURCES = ["solar", "grid", "home", "battery", "charger"] as const;
@@ -66,6 +79,7 @@ export class V2cTrydanCardEditor extends LitElement {
     .checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px 12px; }
     .checks label { display:flex; min-height:34px; align-items:center; gap:8px; }
     .checks input { width:auto; accent-color:var(--primary-color,#0067d9); }
+    .checks input:disabled + span,.checks label:has(input:disabled) { opacity:.6; }
     .preset-editor { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; }
     .preset-editor button { min-height:42px; padding:8px 12px; border:0; border-radius:9px; color:var(--text-primary-color,#fff); background:var(--primary-color,#0067d9); cursor:pointer; font-weight:700; }
     .preset-list { display:flex; flex-wrap:wrap; gap:6px; }
@@ -101,6 +115,10 @@ export class V2cTrydanCardEditor extends LitElement {
     this.#emit(next);
   }
 
+  #visibilityChecked(field: (typeof VISIBILITY_FIELDS)[number][0]): boolean {
+    if (!this.config) return false;
+    return field === "show_energy_flow" ? this.config.show_energy_flow === true : this.config[field] !== false;
+  }
   #updateNumber(field: "hero_scale" | "card_radius" | "flow_threshold_w", value: string): void {
     if (!this.config) return;
     const number = Number(value);
@@ -189,6 +207,7 @@ export class V2cTrydanCardEditor extends LitElement {
     const selectedSources = this.config.energy_sources ?? [...SOURCES];
     const presets = this.config.current_presets ?? DEFAULT_PRESETS;
     const invalidAccent = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft);
+    const ultraArtworkHidden = (this.config.display_mode ?? "standard") === "ultra_compact";
     const sectionLabels: Record<(typeof SECTIONS)[number],string> = {
       hero:translate(dictionary,"editor.showCharger"), metrics:copy.metrics,
       controls:translate(dictionary,"editor.showControls"), energy:translate(dictionary,"editor.showEnergyFlow"),
@@ -231,7 +250,8 @@ export class V2cTrydanCardEditor extends LitElement {
             <div class="field"><span class="field-title">${copy.metrics}</span><div class="chips">${METRICS.map((value) => html`<button type="button" class="chip" data-metric=${value} aria-pressed=${String(selectedMetrics.includes(value))} @click=${() => this.#toggleMetric(value)}>${metricLabels[value]}</button>`)}</div></div>
             <div class="field"><span class="field-title">${copy.energySources}</span><div class="chips">${SOURCES.map((value) => html`<button type="button" class="chip" data-source=${value} aria-pressed=${String(selectedSources.includes(value))} @click=${() => this.#toggleSource(value)}>${sourceLabels[value]}</button>`)}</div></div>
             <div class="field"><span class="field-title">${copy.sectionOrder}</span><ol class="order-list">${order.map((section,index) => html`<li class="order-item" data-order=${section}><span class="order-index">${index+1}</span><span>${sectionLabels[section]}</span><button type="button" class="icon-button" aria-label=${`${copy.moveUp}: ${sectionLabels[section]}`} ?disabled=${index===0} @click=${() => this.#moveSection(index,-1)}>↑</button><button type="button" class="icon-button" aria-label=${`${copy.moveDown}: ${sectionLabels[section]}`} ?disabled=${index===order.length-1} @click=${() => this.#moveSection(index,1)}>↓</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#resetOrder()}>${copy.resetOrder}</button></div>
-            <div class="checks">${VISIBILITY_FIELDS.map(([field,key]) => html`<label><input data-field=${field} type="checkbox" .checked=${this.config?.[field] !== false} @change=${(e:Event) => this.#updateField(field,(e.target as HTMLInputElement).checked)} />${translate(dictionary,key)}</label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== false} @change=${(e:Event) => this.#updateField("show_header",(e.target as HTMLInputElement).checked)} />${copy.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== false} @change=${(e:Event) => this.#updateField("show_badges",(e.target as HTMLInputElement).checked)} />${copy.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== false} @change=${(e:Event) => this.#updateField("show_presets",(e.target as HTMLInputElement).checked)} />${copy.presets}</label></div>
+            <div class="checks">${VISIBILITY_FIELDS.map(([field,key]) => html`<label><input data-field=${field} type="checkbox" .checked=${this.#visibilityChecked(field)} ?disabled=${field === "show_charger" && ultraArtworkHidden} @change=${(e:Event) => this.#updateField(field,(e.target as HTMLInputElement).checked)} /><span>${translate(dictionary,key)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== false} @change=${(e:Event) => this.#updateField("show_header",(e.target as HTMLInputElement).checked)} />${copy.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== false} @change=${(e:Event) => this.#updateField("show_badges",(e.target as HTMLInputElement).checked)} />${copy.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== false} @change=${(e:Event) => this.#updateField("show_presets",(e.target as HTMLInputElement).checked)} />${copy.presets}</label></div>
+            ${ultraArtworkHidden ? html`<p class="help" data-help="ultra-artwork">${ULTRA_ARTWORK_HELP[language]}</p>` : nothing}
           </div>
         </details>
 

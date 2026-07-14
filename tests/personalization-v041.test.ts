@@ -41,6 +41,6 @@ describe("v0.4.1 visual personalization", () => {
     expect(art).toBeTruthy(); expect(copy).toBeTruthy();
     if (!art || !copy) return;
     expect(Boolean(art.compareDocumentPosition(copy) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
-    expect(String(V2cTrydanCard.styles)).toContain("margin-top: -18px");
+    expect(String(V2cTrydanCard.styles)).toContain("margin-top: clamp(-36px, -7cqw, -26px)");
   });
 });

@@ -15,7 +15,8 @@ export function normalizeConfig(config: V2cTrydanCardConfig): V2cTrydanCardConfi
   if (!config.entity || typeof config.entity !== "string") {
     throw new Error("V2C Trydan Card: debes indicar una entidad V2C principal");
   }
-  const presets = [...new Set(config.current_presets ?? DEFAULT_PRESETS)]
+  const presetSource = Array.isArray(config.current_presets) ? config.current_presets : DEFAULT_PRESETS;
+  const presets = [...new Set(presetSource)]
     .map(Number)
     .filter((value) => Number.isFinite(value) && value > 0)
     .sort((a, b) => a - b);
@@ -24,7 +25,7 @@ export function normalizeConfig(config: V2cTrydanCardConfig): V2cTrydanCardConfi
   return {
     ...config,
     type: "custom:v2c-trydan-card",
-    theme: config.theme ?? "auto",
+    theme: pick(config.theme, ["auto", "light", "dark"] as const, "auto"),
     display_mode: mode,
     language: config.language ?? "auto",
     layout: pick(config.layout, LAYOUTS, "auto"),
@@ -41,14 +42,14 @@ export function normalizeConfig(config: V2cTrydanCardConfig): V2cTrydanCardConfi
     show_badges: config.show_badges ?? true,
     show_presets: config.show_presets ?? mode !== "ultra_compact",
     advanced_open: config.advanced_open ?? false,
-    show_energy_flow: config.show_energy_flow ?? true,
+    show_energy_flow: config.show_energy_flow ?? false,
     show_controls: config.show_controls ?? true,
     show_advanced: config.show_advanced ?? true,
     show_charger: config.show_charger ?? true,
     confirm_lock: config.confirm_lock ?? true,
-    flow_threshold_w: Math.max(0, config.flow_threshold_w ?? 50),
+    flow_threshold_w: Number.isFinite(config.flow_threshold_w) ? Math.max(0, Number(config.flow_threshold_w)) : 50,
     current_presets: presets,
-    entities: { ...(config.entities ?? {}) },
+    entities: config.entities && typeof config.entities === "object" && !Array.isArray(config.entities) ? { ...config.entities } : {},
   };
 }
 

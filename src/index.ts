@@ -12,7 +12,8 @@ if (!window.customCards.some((card) => card.type === CARD_TAG)) {
   window.customCards.push({
     type: CARD_TAG,
     name: "V2C Trydan Card",
-    description: "Quiet Hardware V2C Trydan charger control and smart energy summary.",
+    description: "Home Assistant V2C Trydan EV charger card with visual editor, controls and energy monitoring.",
+    documentationURL: "https://github.com/mactron254/v2c-trydan-card#readme",
     preview: true,
   });
 }

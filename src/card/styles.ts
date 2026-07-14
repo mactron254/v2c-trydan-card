@@ -73,7 +73,7 @@ export const cardStyles = css`
     display: flex;
     min-width: 0;
     max-width: 100%;
-    margin-top: -18px;
+    margin-top: clamp(-36px, -7cqw, -26px);
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -88,6 +88,8 @@ export const cardStyles = css`
     place-items: center;
   }
   .charger-art {
+    position: relative;
+    container-type: inline-size;
     width: 100%;
     height: 100%;
     filter: drop-shadow(0 18px 14px rgb(0 0 0 / 16%));
@@ -98,6 +100,29 @@ export const cardStyles = css`
     width: 100%;
     height: 100%;
   }
+
+  .charger-lcd {
+    position: absolute;
+    top: 40.6%;
+    left: 34.9%;
+    display: grid;
+    width: 30.1%;
+    height: 4.4%;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    color: #cde6ef;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 2.05cqi;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .charger-lcd span { display: block; max-width: 100%; overflow: hidden; text-overflow: clip; white-space: nowrap; }
+  .charger-lcd span + span { color: #9dc0cd; font-size: .92em; }
+  .charger-lcd.is-long { font-size: 1.72cqi; }
+  .charger-lcd.is-very-long { font-size: 1.48cqi; }
 
   .charger-status {
     max-width: 100%;
@@ -137,6 +162,8 @@ export const cardStyles = css`
     max-width: 760px;
     justify-self: center;
   }
+
+  .metrics-section { margin-top: 16px; }
 
   .primary-metrics {
     display: grid;
@@ -498,9 +525,10 @@ export const cardStyles = css`
 
   ha-card[data-mode="compact"] .shell { padding: 18px; }
   ha-card[data-mode="compact"] .hero { gap: 0; margin-top: 12px; }
-  ha-card[data-mode="compact"] .hero-copy { margin-top: -14px; }
+  ha-card[data-mode="compact"] .hero-copy { margin-top: clamp(-26px, -6cqw, -18px); }
   ha-card[data-mode="compact"] .charger-stage { width: min(100%, clamp(210px, 62cqw, 280px)); }
   ha-card[data-mode="compact"] .charger-status { margin-top: 0; font-size: clamp(1.65rem, 6cqw, 2rem); }
+  ha-card[data-mode="compact"] .metrics-section { margin-top: 12px; }
   ha-card[data-mode="compact"] .metric { padding: 9px; }
   ha-card[data-mode="compact"] .session-controls,
   ha-card[data-mode="compact"] .energy-section { margin-top: 10px; padding-top: 10px; }
@@ -515,11 +543,11 @@ export const cardStyles = css`
     margin-top: 10px;
     align-items: center;
   }
-  ha-card[data-mode="ultra_compact"] .charger-stage { width: min(100%, clamp(170px, 56cqw, 220px)); }
-  ha-card[data-mode="ultra_compact"] .hero-copy { margin-top: -10px; }
+  ha-card[data-mode="ultra_compact"] .hero-copy { margin-top: 0; }
   ha-card[data-mode="ultra_compact"] .charger-status { margin-top: 0; font-size: clamp(1.35rem, 5.5cqw, 1.65rem); }
   ha-card[data-mode="ultra_compact"] .badges { margin-top: 6px; }
   ha-card[data-mode="ultra_compact"] .badge { padding: 3px 6px; font-size: 0.62rem; }
+  ha-card[data-mode="ultra_compact"] .metrics-section { margin-top: 12px; }
   ha-card[data-mode="ultra_compact"] .primary-metrics { grid-template-columns: 1fr; }
   ha-card[data-mode="ultra_compact"] .metric { display: none; padding: 9px; }
   ha-card[data-mode="ultra_compact"] .metric-power { display: block; }
@@ -547,7 +575,7 @@ export const cardStyles = css`
   ha-card[data-mode="xxl"] .shell { padding: clamp(26px, 5cqw, 36px); }
   ha-card[data-mode="xxl"] .hero { margin-top: 24px; }
   ha-card[data-mode="xxl"] .charger-stage { width: min(100%, clamp(320px, 84cqw, 430px)); }
-  ha-card[data-mode="xxl"] .hero-copy { margin-top: -22px; }
+  ha-card[data-mode="xxl"] .hero-copy { margin-top: clamp(-44px, -8cqw, -31px); }
   ha-card[data-mode="xxl"] .charger-status { font-size: clamp(2.35rem, 8cqw, 3rem); }
   ha-card[data-mode="xxl"] .metric { padding: 16px; }
   ha-card[data-mode="xxl"] .metric-value { font-size: clamp(1.2rem, 4.8cqw, 1.7rem); }

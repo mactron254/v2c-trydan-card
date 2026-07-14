@@ -4,6 +4,7 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import { TRYDAN_ASSETS } from "../assets/trydan";
 import { normalizeConfig, stubConfig } from "../config";
 import { getDictionary, getLanguage, translate, type Language } from "../localization";
+import { getLcdCopy } from "../localization/lcd-copy";
 import type {
   EntityMap,
   EntityRole,
@@ -14,7 +15,7 @@ import type {
 import { setLight, setNumber, setSelect, setSwitch } from "../services/actions";
 import { EntityDiscovery, resolveRegistryRoles } from "../services/discovery";
 import { normalizeEnergyFlow } from "../services/energy";
-import { formatDuration, formatEnergy, formatPower } from "../services/format";
+import { formatDuration, formatEnergy, formatMeasure, formatPower } from "../services/format";
 import { entityBoolean, resolveSnapshot, resolveVisualState } from "../services/state";
 import { renderAdvancedControls } from "./advanced-controls";
 import { renderEnergyFlow } from "./energy-flow";
@@ -87,10 +88,14 @@ export class V2cTrydanCard extends LitElement {
     const key = `${this.config.entity}|${JSON.stringify(this.config.entities ?? {})}|${metadataCount}`;
     if (key === this.#discoveryKey) return;
     this.#discoveryKey = key;
-    const result = await this.#discovery.discover(this.hass, this.config.entity, this.config.entities);
-    if (!result || !this.isConnected || key !== this.#discoveryKey) return;
-    this.resolvedEntities = result.entities;
-    this.ambiguities = result.ambiguities;
+    try {
+      const result = await this.#discovery.discover(this.hass, this.config.entity, this.config.entities);
+      if (!result || !this.isConnected || key !== this.#discoveryKey) return;
+      this.resolvedEntities = result.entities;
+      this.ambiguities = result.ambiguities;
+    } catch {
+      if (key === this.#discoveryKey) this.#discoveryKey = "";
+    }
   }
 
   #entity(role: EntityRole): HassEntity | undefined {
@@ -160,7 +165,8 @@ export class V2cTrydanCard extends LitElement {
     const min = Number(entity.attributes.min ?? 6);
     const max = Number(entity.attributes.max ?? 32);
     const step = Number(entity.attributes.step ?? 1);
-    const clamped = Math.min(max, Math.max(min, Math.round(value / step) * step));
+    const safeStep = Number.isFinite(step) && step > 0 ? step : 1;
+    const clamped = Math.min(max, Math.max(min, Math.round((value - min) / safeStep) * safeStep + min));
     this.sliderValue = clamped;
     void this.#runAction(
       "intensity",
@@ -256,6 +262,8 @@ export class V2cTrydanCard extends LitElement {
     const title = this.config.name ?? "V2C Trydan";
     const energy = this.#entity("charge_energy");
     const time = this.#entity("charge_time");
+    const intensity = this.#entity("intensity");
+    const voltage = this.#entity("voltage");
     const flows = [
       ["solar", "fv_power", this.config.invert_solar_power],
       ["grid", "grid_power", this.config.invert_grid_power],
@@ -278,9 +286,17 @@ export class V2cTrydanCard extends LitElement {
       ? visual.diagnostic.replaceAll("_", " ")
       : undefined;
 
+    const showArtwork = this.config.show_charger !== false && this.config.display_mode !== "ultra_compact";
+    const lcd = getLcdCopy(language,visual.key,{
+      power:formatPower(chargePower.watts,language),
+      current:formatMeasure(intensity?.state ?? null,"A",language),
+      voltage:formatMeasure(voltage?.state ?? null,"V",language),
+      energy:formatEnergy(energy?.state ?? null,language),
+    });
+    const lcdLength = Math.max(lcd.primary.length,lcd.secondary.length);
     const heroSection = html`
-      <section class="hero ${this.config.show_charger ? "has-charger" : "without-charger"}" data-section="hero">
-        ${this.config.show_charger ? html`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}</div></div>` : nothing}
+      <section class="hero ${showArtwork ? "has-charger" : "without-charger"}" data-section="hero">
+        ${showArtwork ? html`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}<div class="charger-lcd ${lcdLength > 24 ? "is-very-long" : lcdLength > 18 ? "is-long" : ""}"><span>${lcd.primary}</span><span>${lcd.secondary}</span></div></div></div>` : nothing}
         <div class="hero-copy">
           <div class="charger-status" data-severity=${visual.severity} role="status">${translate(dictionary, visual.labelKey)}</div>
           ${this.config.show_badges !== false && visual.badges.length ? html`<div class="badges" aria-label=${translate(dictionary, "labels.additionalStatus")}>${visual.badges.map((badge) => html`<span class="badge">${translate(dictionary, `badges.${badge}`)}</span>`)}</div>` : nothing}

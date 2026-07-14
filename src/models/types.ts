@@ -214,6 +214,7 @@ declare global {
       name: string;
       description: string;
       preview?: boolean;
+      documentationURL?: string;
     }>;
   }
 }

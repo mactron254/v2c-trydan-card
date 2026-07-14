@@ -22,6 +22,7 @@ describe("accessible Quiet Hardware contract", () => {
     card.setConfig({
       type: "custom:v2c-trydan-card",
       entity: "binary_sensor.connected",
+      show_energy_flow:true,
       entities: {
         connected: "binary_sensor.connected",
         charge_power: "sensor.power",
