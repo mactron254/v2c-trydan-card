@@ -10,7 +10,8 @@
 
 ## Post-release documentation refresh
 
-Branch: codex/docs-visual-refresh.
+Status: merged into main through PR #6 on 2026-07-15.
+Merge commit: 4097d1af0a07b426c77534cc1d1eb3bd73d913a7.
 
 Scope is documentation and capture tooling only. It does not change card behavior, public YAML, the production bundle, package version, tag or v0.4.2 release assets.
 
@@ -49,6 +50,6 @@ Visual review must include density comparisons, split layout, Entities editor an
 
 ## Publishing boundary
 
-Merge the documentation PR after CI and HACS are green. Do not create v0.4.3, a new tag or release, and do not replace v0.4.2 assets. Forum posts remain drafts and must not be published automatically.
+PR #6 was merged only after Validate and HACS were green on both the PR and merged main commit. No v0.4.3, new tag or release was created, and v0.4.2 assets remain unchanged. Forum posts remain drafts and must not be published automatically.
 
 Published v0.4.2 evidence remains in docs/PUBLISHING_CHECKLIST.md.
