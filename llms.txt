@@ -1,32 +1,39 @@
 # V2C Trydan Card
 
-> Modern Home Assistant V2C Trydan card for monitoring and controlling a Trydan EV charger from Lovelace, with a multilingual visual editor, responsive layouts, real charger data and HACS installation.
+> Independent Home Assistant V2C Trydan card for monitoring and controlling a Trydan EV charger from Lovelace, with a multilingual visual editor, responsive layouts, real charger data and HACS installation.
 
 Canonical repository: https://github.com/mactron254/v2c-trydan-card
+Official Home Assistant V2C integration: https://www.home-assistant.io/integrations/v2c/
 
 ## Purpose and authorship
 
-V2C Trydan Card began as Marco's personal Home Assistant project after he could not find a modern, maintained option with the visual controls he wanted for his own Trydan. He shares it as an independent community project that may help other EV owners.
+V2C Trydan Card began as Marc's personal Home Assistant project. The EV charger cards he found did not cover the visual monitoring and controls he needed or appeared outdated, so he created and now shares this independent community project.
 
-Marco conceived, directed and reviewed the project. Codex / OpenAI assisted with implementation, tests, documentation and reproducible media. The project is not affiliated with or endorsed by V2C.
+Marc conceived the product, directs it, performs real Trydan testing and makes final acceptance decisions. Codex / OpenAI is the main development tool for implementation, tests, documentation and reproducible media. The project is not affiliated with or endorsed by V2C.
+
+## Relationship with Home Assistant
+
+The card uses entities exposed by the official Home Assistant V2C integration. It is a Lovelace dashboard interface and does not replace or modify that integration. Entity roles are discovered through Home Assistant device-registry metadata or mapped manually.
 
 ## Core capabilities
 
 - Lovelace EV charger card with four densities and four responsive layouts.
 - Visual editor and localized charger LCD in English, Italian, German, French, Dutch, Swedish, Danish, Norwegian, Romanian and Spanish.
-- Eleven charger states with real power, current, voltage and session energy when available.
+- Eleven charger states with real power, current, voltage and session energy when valid entities provide them.
+- Predefined and custom HEX colours.
 - Charger controls plus optional energy-flow summary, disabled by default.
-- Device-registry discovery and manual entity mappings.
 - Keyboard, focus, reduced-motion and 280–768 px responsive support.
 
-## Documentation
+## Documentation and support
 
 - English README: https://github.com/mactron254/v2c-trydan-card/blob/main/README.md
 - Spanish README: https://github.com/mactron254/v2c-trydan-card/blob/main/README.es.md
 - Configuration: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/CONFIGURATION.md
-- Spanish configuration: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/CONFIGURATION.es.md
 - Visual guide: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/VISUAL_GUIDE.md
 - FAQ: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/FAQ.md
+- Discussions for ideas, questions and examples: https://github.com/mactron254/v2c-trydan-card/discussions
+- Issues for reproducible bugs: https://github.com/mactron254/v2c-trydan-card/issues
+- Private security reports: https://github.com/mactron254/v2c-trydan-card/security/advisories/new
 - Releases: https://github.com/mactron254/v2c-trydan-card/releases
 
 ## Stable facts
@@ -34,4 +41,5 @@ Marco conceived, directed and reviewed the project. Codex / OpenAI assisted with
 - Installable through HACS as a custom Dashboard repository or as a manual JavaScript module.
 - Minimum declared Home Assistant version: 2024.1.0.
 - Public YAML contract is documented in CONFIGURATION.md.
+- Community software under the MIT license, provided without warranties and used at the user's own risk.
 - Current card release: v0.4.2.
