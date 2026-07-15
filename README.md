@@ -6,29 +6,29 @@
 [![CI](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml)
 [![HACS validation](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml)
 [![MIT license](https://img.shields.io/github/license/mactron254/v2c-trydan-card)](LICENSE)
-[![AI-assisted project](https://img.shields.io/badge/AI_assisted-Codex%20%2F%20OpenAI-412991)](#-made-with-ai)
+[![AI-assisted project](https://img.shields.io/badge/AI_assisted-Codex%20%2F%20OpenAI-412991)](#-project-made-with-ai)
 
-A modern **Home Assistant V2C Trydan card** for monitoring and controlling a Trydan EV charger from Lovelace. It uses entities exposed by the [official Home Assistant V2C integration](https://www.home-assistant.io/integrations/v2c/) and combines a translated visual editor, responsive controls and real charger readings in one clear **EV charger dashboard**. Install it through **HACS** or manually as a Lovelace EV charger card.
+A modern card for viewing and controlling a **V2C Trydan** charger from the Home Assistant dashboard. It uses entities from the [official Home Assistant V2C integration](https://www.home-assistant.io/integrations/v2c/), with a translated editor, visual controls and real-time data in one card. Install it through **HACS** or manually as a Lovelace EV charger card.
 
-> This is an independent community project. It is not affiliated with or endorsed by V2C, and it does not replace the official Home Assistant integration.
+> Personal project shared with the community. It is not affiliated with or endorsed by V2C, and it does not replace the official integration.
 >
-> ⚠️ **Use at your own risk.** This community software is provided without warranties. Review every entity mapping and test charger controls safely before relying on them. To the extent permitted by law, the authors and contributors are not liable for damage, loss, interruption or unexpected behaviour. See the [MIT license](LICENSE).
+> ⚠️ Use it responsibly: review your entities and test controls safely before relying on them. See the [MIT license](LICENSE).
 
 ![V2C Trydan Card showing the split layout in a dark Home Assistant dashboard](docs/screenshots/v042/layout-split-dark.png)
 
 ## ✨ Features
 
 - 🎛️ Monitor charging and control current, pause, lock, timer, dynamic power and lighting.
-- 🌍 Use the visual editor and localized charger LCD in 10 languages.
-- 📐 Choose XXL, standard, compact or ultra compact density.
-- 🖥️ Switch between automatic, centered, split and inline responsive layouts.
-- ⚡ Show real power, current, voltage and session energy when valid entities provide those readings.
-- ☀️ Enable the optional energy-flow summary when needed; it is off by default.
-- 🔎 Discover entities through Home Assistant device-registry metadata, even after friendly-name changes.
-- 🎨 Select predefined colour schemes or define a synchronized custom HEX colour.
+- 🌍 Visual editor and charger LCD available in 10 languages.
+- 📐 Choose XXL, standard, compact or ultra compact size.
+- 🖥️ Switch between automatic, centered, split and inline layouts.
+- ⚡ Show power, current, voltage and session energy when valid entities are available.
+- ☀️ Energy flow can be shown; it is off by default.
+- 🔎 Discover charger entities automatically through the device registry, even when their visible names differ.
+- 🎨 Personalize charger colour with predefined options or any colour you choose.
 - ♿ Navigate by keyboard with visible focus, reduced motion and support from 280 to 768 px.
 
-## 📐 Four densities
+## 📐 4 available sizes
 
 <table>
   <tr>
@@ -45,9 +45,9 @@ A modern **Home Assistant V2C Trydan card** for monitoring and controlling a Try
   </tr>
 </table>
 
-Ultra compact keeps status, readings and essential controls but intentionally hides the charger artwork. See every light/dark comparison in the [visual guide](docs/VISUAL_GUIDE.md#densities).
+Ultra compact keeps status, readings and essential controls, but intentionally hides the charger image. Compare light and dark modes in the [visual guide](docs/VISUAL_GUIDE.md#densities).
 
-## 🚗 From no vehicle to charging
+## 🚗 GIF: from no vehicle to charging
 
 ![Animated V2C Trydan charger changing from no vehicle to vehicle connected and charging in English](docs/media/vehicle-connection-en.gif)
 
@@ -55,21 +55,23 @@ The localized LCD follows the real sequence: **No vehicle → Vehicle connected 
 
 ## 🌍 Languages
 
-🇬🇧 English · 🇮🇹 Italiano · 🇩🇪 Deutsch · 🇫🇷 Français · 🇳🇱 Nederlands · 🇸🇪 Svenska · 🇩🇰 Dansk · 🇳🇴 Norsk · 🇷🇴 Română · 🇪🇸 Español
+Available in: 🇬🇧 English · 🇮🇹 Italiano · 🇩🇪 Deutsch · 🇫🇷 Français · 🇳🇱 Nederlands · 🇸🇪 Svenska · 🇩🇰 Dansk · 🇳🇴 Norsk · 🇷🇴 Română · 🇪🇸 Español
 
-## 💡 Why this project exists
+## 💡 Why I created this project
 
-I created V2C Trydan Card as a personal Home Assistant project. When I looked for a generic EV charger card for my own Trydan, the options I found either did not cover the visual monitoring and controls I needed or appeared to be outdated. With AI assistance, I built a card for my dashboard that lets me monitor and control the charger clearly. Now that it works in my setup, I am sharing it in case it helps other EV owners too.
+I created this V2C Trydan card for Home Assistant. When I looked for a generic EV charger card, the options I found did not cover what I needed or looked outdated. So, with AI help, I decided to create my own card for the V2C Trydan: a card that lets me monitor and control the charger.
+
+I made it for my dashboard and, now that it works, I want to share it with the community in case it helps other EV owners too.
 
 — Marc ([@mactron254](https://github.com/mactron254))
 
-## 🤖 Made with AI
+## 🤖 Project made with AI
 
-This project is transparent about how it was made:
+I want to explain transparently how it was made:
 
-- **Marc** conceived the project, set its direction, tested it on a real Trydan installation and makes the final acceptance decisions.
-- **Codex / OpenAI** has been the main development tool, turning Marc's requirements into implementation, tests, documentation and reproducible media.
-- The product remains human-directed: AI assistance is documented rather than hidden.
+- I came up with the project, set the direction and tested the results on a real Trydan installation.
+- **Codex / OpenAI** helped with development, tests, documentation and reproducible media.
+- Product decisions and final acceptance remain human-led; AI has been an important help throughout the project.
 
 See the contributor record in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 
@@ -117,7 +119,7 @@ Existing v0.4.0 YAML remains compatible. Ultra compact preserves <code>show_char
 - Open an [Issue](https://github.com/mactron254/v2c-trydan-card/issues/new?template=bug_report.yml) for a reproducible bug. Mature ideas from Discussions can later become Issues.
 - Report vulnerabilities privately through [GitHub Security Advisories](https://github.com/mactron254/v2c-trydan-card/security/advisories/new).
 
-Feedback, feature suggestions and corrections are welcome. Remove entity IDs, locations, SSIDs, private IP addresses, tokens and other personal data before sharing logs or screenshots.
+I would love to hear your feedback, feature ideas and corrections. Before sharing logs or screenshots, remove entity IDs, locations, SSIDs, private IP addresses, tokens and any personal data.
 
 ## 📚 Documentation
 

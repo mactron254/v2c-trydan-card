@@ -6,29 +6,29 @@
 [![CI](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml)
 [![Validación HACS](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml)
 [![Licencia MIT](https://img.shields.io/github/license/mactron254/v2c-trydan-card)](LICENSE)
-[![Proyecto asistido con IA](https://img.shields.io/badge/IA_asistida-Codex%20%2F%20OpenAI-412991)](#-hecha-con-ia)
+[![Proyecto asistido con IA](https://img.shields.io/badge/IA_asistida-Codex%20%2F%20OpenAI-412991)](#-proyecto-hecho-con-ia)
 
-Una **Home Assistant V2C Trydan card** moderna para visualizar y controlar un cargador Trydan desde Lovelace. Utiliza las entidades expuestas por la [integración oficial V2C de Home Assistant](https://www.home-assistant.io/integrations/v2c/) y reúne un editor visual traducido, controles adaptables y lecturas reales en un **EV charger dashboard** claro. Puede instalarse mediante **HACS** o manualmente como Lovelace EV charger card.
+Una tarjeta moderna para visualizar y controlar el cargador **V2C Trydan** desde el dashboard de Home Assistant. Usa las entidades de la [integración oficial V2C de Home Assistant](https://www.home-assistant.io/integrations/v2c/), tiene un editor traducido, controles visuales y datos en tiempo real en una sola card. Puedes instalarla mediante **HACS** o manualmente como Lovelace EV charger card.
 
-> Este es un proyecto comunitario independiente. No está afiliado ni respaldado por V2C y no sustituye la integración oficial de Home Assistant.
+> Proyecto personal compartido con la comunidad; no está afiliado ni respaldado por V2C y no sustituye la integración oficial.
 >
-> ⚠️ **Uso bajo tu responsabilidad.** Este software comunitario se proporciona sin garantías. Revisa cada asociación de entidades y prueba los controles del cargador con seguridad antes de confiar en ellos. Dentro de lo permitido por la ley, los autores y colaboradores no asumen responsabilidad por daños, pérdidas, interrupciones o comportamientos inesperados. Consulta la [licencia MIT](LICENSE).
+> ⚠️ Úsala con responsabilidad: revisa las entidades y prueba los controles con seguridad antes de depender de ellos. Consulta la [licencia MIT](LICENSE).
 
 ![V2C Trydan Card mostrando el layout dividido en un dashboard oscuro de Home Assistant](docs/screenshots/v042/layout-split-dark.png)
 
 ## ✨ Características
 
 - 🎛️ Monitoriza la carga y controla intensidad, pausa, bloqueo, temporizador, potencia dinámica y luces.
-- 🌍 Usa el editor visual y la LCD localizada del cargador en 10 idiomas.
-- 📐 Elige densidad XXL, estándar, compacta o ultracompacta.
-- 🖥️ Cambia entre layouts automático, centrado, dividido y en línea.
-- ⚡ Muestra potencia, intensidad, voltaje y energía de sesión reales cuando existen entidades válidas.
-- ☀️ Activa el resumen de flujo energético sólo si lo necesitas; viene desactivado.
-- 🔎 Descubre entidades mediante metadatos del registro de dispositivos de Home Assistant, aunque cambien sus nombres visibles.
-- 🎨 Elige colores predefinidos o define un color HEX personalizado y sincronizado.
+- 🌍 Tiene un editor visual y la pantalla LCD del cargador está disponible en 10 idiomas.
+- 📐 Elige tamaño XXL, estándar, compacto o ultracompacto.
+- 🖥️ Cambia entre layouts: automático, centrado, dividido y en línea.
+- ⚡ Muestra potencia, intensidad, voltaje y energía de la sesión cuando existen entidades válidas.
+- ☀️ Puedes mostrar el flujo energético; viene desactivado por defecto.
+- 🔎 Descubre automáticamente las entidades del cargador mediante el registro de dispositivos, aunque sus nombres visibles sean distintos.
+- 🎨 Personaliza el color del cargador con opciones predefinidas o con el color que tú quieras.
 - ♿ Navega con teclado, foco visible, movimiento reducido y soporte de 280 a 768 px.
 
-## 📐 Cuatro densidades
+## 📐 4 modos de tamaño disponibles
 
 <table>
   <tr>
@@ -45,9 +45,9 @@ Una **Home Assistant V2C Trydan card** moderna para visualizar y controlar un ca
   </tr>
 </table>
 
-Ultracompacta conserva estado, lecturas y controles esenciales, pero oculta intencionadamente la ilustración del cargador. Compara todos los modos claros y oscuros en la [guía visual](docs/VISUAL_GUIDE.es.md#densidades).
+Ultracompacta conserva estado, lecturas y controles esenciales, pero oculta intencionadamente la imagen del cargador. Puedes comparar los modos claro y oscuro en la [guía visual](docs/VISUAL_GUIDE.es.md#densidades).
 
-## 🚗 De vehículo desconectado a cargando
+## 🚗 GIF: de sin vehículo a cargando
 
 ![Animación del cargador V2C Trydan cambiando de sin vehículo a vehículo conectado y cargando en español](docs/media/vehicle-connection-es.gif)
 
@@ -55,21 +55,23 @@ La LCD localizada sigue la secuencia real: **Sin vehículo → Vehículo conecta
 
 ## 🌍 Idiomas
 
-🇬🇧 Inglés · 🇮🇹 Italiano · 🇩🇪 Alemán · 🇫🇷 Francés · 🇳🇱 Neerlandés · 🇸🇪 Sueco · 🇩🇰 Danés · 🇳🇴 Noruego · 🇷🇴 Rumano · 🇪🇸 Español
+Disponible en: 🇬🇧 Inglés · 🇮🇹 Italiano · 🇩🇪 Alemán · 🇫🇷 Francés · 🇳🇱 Neerlandés · 🇸🇪 Sueco · 🇩🇰 Danés · 🇳🇴 Noruego · 🇷🇴 Rumano · 🇪🇸 Español
 
-## 💡 Por qué nació este proyecto
+## 💡 El porqué de este proyecto
 
-Creé V2C Trydan Card como proyecto personal para Home Assistant. Cuando busqué una tarjeta genérica para el cargador de mi propio Trydan, las opciones que encontré no cubrían la monitorización visual y los controles que necesitaba o parecían desactualizadas. Con ayuda de IA construí una tarjeta para mi dashboard que me permite monitorizar y controlar el cargador con claridad. Ahora que funciona en mi instalación, la comparto por si también ayuda a otros usuarios de vehículo eléctrico.
+Creé esta card de V2C Trydan para Home Assistant. Al buscar una tarjeta genérica para cargadores de vehículos eléctricos, las opciones que encontré no cubrían lo que necesitaba o parecían desactualizadas. Entonces decidí, con ayuda de IA, crear la mía propia para el cargador V2C Trydan: una card con la que puedo monitorizar y controlar el cargador.
+
+La hice para mi dashboard y ahora que funciona quiero compartirla con la comunidad, por si también ayuda a otros usuarios de vehículo eléctrico.
 
 — Marc ([@mactron254](https://github.com/mactron254))
 
-## 🤖 Hecha con IA
+## 🤖 Proyecto hecho con IA
 
-Este proyecto explica de forma transparente cómo se ha creado:
+Quiero explicar de forma transparente cómo se ha creado:
 
-- **Marc** concibió el proyecto, marcó su dirección, lo probó con una instalación Trydan real y toma las decisiones de aceptación final.
-- **Codex / OpenAI** ha sido la principal herramienta de desarrollo, transformando los requisitos de Marc en implementación, pruebas, documentación y material reproducible.
-- El producto sigue bajo dirección humana: la ayuda de IA se documenta, no se oculta.
+- Pensé el proyecto, indiqué la dirección y he probado los resultados con una instalación Trydan real.
+- **Codex / OpenAI** ayudó con el desarrollo, las pruebas, la documentación y el material reproducible.
+- Las decisiones de producto y la aceptación final siguen bajo dirección humana; la IA ha sido una ayuda importante durante el proyecto.
 
 Consulta el registro de autoría en [CONTRIBUTORS.md](CONTRIBUTORS.md).
 
@@ -117,7 +119,7 @@ El YAML existente desde v0.4.0 sigue siendo compatible. Ultracompacta conserva <
 - Abre una [Issue](https://github.com/mactron254/v2c-trydan-card/issues/new?template=bug_report.yml) para un error reproducible. Las ideas maduras de Discussions podrán convertirse después en Issues.
 - Informa de vulnerabilidades de forma privada mediante [GitHub Security Advisories](https://github.com/mactron254/v2c-trydan-card/security/advisories/new).
 
-Se agradecen el feedback, las propuestas de funciones y las correcciones. Elimina identificadores de entidad, ubicaciones, SSID, direcciones IP privadas, tokens y cualquier otro dato personal antes de compartir registros o capturas.
+Me encantará leer tu feedback, propuestas de funciones y correcciones. Antes de compartir registros o capturas, elimina identificadores de entidad, ubicaciones, SSID, direcciones IP privadas, tokens y cualquier dato personal.
 
 ## 📚 Documentación
 

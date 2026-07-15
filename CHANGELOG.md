@@ -7,6 +7,7 @@ All notable changes are documented here. Versions follow semantic versioning.
 ### Documentation
 
 - Polish both README files with complete bilingual parity, the official Home Assistant V2C integration relationship and natural search terminology.
+- Restore Marc's first-person project story and human tone in both README files while preserving accurate links and support guidance.
 - Add a visible no-warranty notice, expanded bilingual FAQ and clear routes for Discussions, reproducible Issues and private security reports.
 - Correct the project owner name to Marc across every tracked document and metadata file.
 - Enable GitHub Discussions with the six default community categories and a bilingual welcome announcement.

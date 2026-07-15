@@ -26,6 +26,11 @@ Delivered:
 - English and Spanish README files now include compact density tables, localized GIFs, ten languages, first-person origin story and transparent AI attribution.
 - Visual guides, forum drafts, llms.txt, changelog and failure log match the refreshed media.
 
+## Human README voice refresh
+
+- The README now follows Marc’s first-person story: it began with his own Trydan, his dashboard needs and a wish to share a useful card with the community.
+- English mirrors that personal voice idiomatically instead of using generic marketing copy.
+- Technical facts, official-integration link, support routes, visual assets and safety reminder remain intact.
 ## README, authorship and community refresh
 
 - English and Spanish README files have full semantic parity, accurate official-integration context and natural Home Assistant/HACS search terminology.

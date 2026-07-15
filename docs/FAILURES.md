@@ -207,3 +207,9 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: un editor enriquecido transformó Markdown ya enlazado al copiarlo.
 - **Resolución**: integrar las ideas sobre la estructura existente, reconstruir los enlaces y mantener paridad bilingüe con afirmaciones verificables.
 - **Prevención**: no pegar Markdown transformado directamente; ejecutar <code>docs:check</code>, revisar el diff renderizado y comprobar enlaces y textos alternativos.
+## 2026-07-15 — Voz personal diluida al pulir el README
+
+- **Síntoma**: el README correcto en términos técnicos sonaba demasiado genérico y no reflejaba suficientemente la historia personal de Marc.
+- **Causa**: la revisión priorizó formulación editorial y SEO sobre el texto fuente y el tono en primera persona.
+- **Resolución**: tomar el texto personal de Marc como base, corregir únicamente claridad, idioma y enlaces rotos, y traducir esa voz al inglés.
+- **Prevención**: en textos de autor, conservar la primera persona y validar el tono con el propietario antes de publicar.
