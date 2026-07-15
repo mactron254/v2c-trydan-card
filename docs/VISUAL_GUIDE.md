@@ -4,7 +4,15 @@
 
 All images are generated locally with `corepack pnpm@11.5.1 docs:capture`. They use the demo, bundled SVGs and mock data; no Home Assistant credentials or private entities are captured.
 
+Every PNG is cropped automatically against its real row background. Shadows are preserved, isolated pixels are ignored and the final lower margin is at most 16 px. Exact dimensions are recorded in the reproducible capture manifest.
+
 ![Animated tour showing card densities, layouts and editor sections](media/trydan-card-tour.gif)
+
+## Vehicle connection cycle
+
+![V2C Trydan charger changing from no vehicle to vehicle connected and charging](media/vehicle-connection-en.gif)
+
+The three frames use the real visual states: **No vehicle → Vehicle connected → Charging**.
 
 ## Densities
 

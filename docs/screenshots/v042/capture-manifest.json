@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "paddingBottom": 16,
+  "captures": [
+    {
+      "name": "density-compact-dark.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 832,
+      "contentBottom": 815,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-compact-light.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 832,
+      "contentBottom": 815,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-standard-dark.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-standard-light.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-ultra_compact-dark.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 359,
+      "contentBottom": 342,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-ultra_compact-light.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 359,
+      "contentBottom": 342,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-xxl-dark.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 1118,
+      "contentBottom": 1101,
+      "bottomMargin": 16
+    },
+    {
+      "name": "density-xxl-light.png",
+      "width": 560,
+      "rawHeight": 1400,
+      "height": 1118,
+      "contentBottom": 1101,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-en-advanced.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 754,
+      "contentBottom": 737,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-en-appearance.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 789,
+      "contentBottom": 772,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-en-content.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 990,
+      "contentBottom": 973,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-en-entities.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 1400,
+      "contentBottom": 1395,
+      "bottomMargin": 4
+    },
+    {
+      "name": "editor-en-general.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 685,
+      "contentBottom": 668,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-es-advanced.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 754,
+      "contentBottom": 737,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-es-appearance.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 789,
+      "contentBottom": 772,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-es-content.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 990,
+      "contentBottom": 973,
+      "bottomMargin": 16
+    },
+    {
+      "name": "editor-es-entities.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 1400,
+      "contentBottom": 1395,
+      "bottomMargin": 4
+    },
+    {
+      "name": "editor-es-general.png",
+      "width": 800,
+      "rawHeight": 1400,
+      "height": 685,
+      "contentBottom": 668,
+      "bottomMargin": 16
+    },
+    {
+      "name": "layout-auto-dark.png",
+      "width": 680,
+      "rawHeight": 1200,
+      "height": 767,
+      "contentBottom": 750,
+      "bottomMargin": 16
+    },
+    {
+      "name": "layout-centered-dark.png",
+      "width": 680,
+      "rawHeight": 1200,
+      "height": 906,
+      "contentBottom": 889,
+      "bottomMargin": 16
+    },
+    {
+      "name": "layout-inline-dark.png",
+      "width": 680,
+      "rawHeight": 1200,
+      "height": 580,
+      "contentBottom": 563,
+      "bottomMargin": 16
+    },
+    {
+      "name": "layout-split-dark.png",
+      "width": 680,
+      "rawHeight": 1200,
+      "height": 767,
+      "contentBottom": 750,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-charging-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-complete-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-control_pilot-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-disconnected-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-error-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-load_balancing-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-timer-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-updating-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-waiting_power-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-wifi_connected-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    },
+    {
+      "name": "state-wifi_connecting-dark.png",
+      "width": 560,
+      "rawHeight": 1300,
+      "height": 932,
+      "contentBottom": 915,
+      "bottomMargin": 16
+    }
+  ]
+}

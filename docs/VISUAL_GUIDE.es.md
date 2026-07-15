@@ -4,7 +4,15 @@
 
 Todas las imágenes se generan con `corepack pnpm@11.5.1 docs:capture`. Usan la demo, SVG locales y datos simulados; no capturan credenciales ni entidades privadas.
 
+Cada PNG se recorta automáticamente comparando el fondo real de cada fila. Conserva sombras, ignora píxeles aislados y deja como máximo 16 px tras el último contenido. El manifiesto de capturas registra las dimensiones exactas.
+
 ![Recorrido animado por densidades, layouts y apartados del editor](media/trydan-card-tour.gif)
+
+## Ciclo de conexión del vehículo
+
+![Cargador V2C Trydan cambiando de sin vehículo a vehículo conectado y cargando](media/vehicle-connection-es.gif)
+
+Los tres fotogramas usan estados visuales reales: **Sin vehículo → Vehículo conectado → Cargando**.
 
 ## Densidades
 

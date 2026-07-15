@@ -187,3 +187,16 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: `checkout`, `setup-node` y `pnpm/action-setup` usaban majors con runtime Node 20.
 - **Resolución**: actualización a `checkout@v7`, `setup-node@v6` y `pnpm/action-setup@v6`.
 - **Prevención**: revisar avisos del runner y majors oficiales en cada release.
+
+## 2026-07-15 — Capturas con fondo sobrante
+
+- **Síntoma**: las 33 capturas conservaban lienzos fijos de 1200, 1300 o 1400 px, dejando grandes áreas negras o blancas tras la tarjeta.
+- **Causa**: el modo de captura forzaba una altura mínima de viewport y el generador guardaba el PNG completo; en tema claro, Chrome podía pintar el área exterior con un segundo fondo oscuro.
+- **Resolución**: eliminar la altura mínima sólo en captura, medir contenido por diferencia RGB contra el fondo de cada fila, ignorar píxeles aislados, conservar sombras y recortar con 16 px finales.
+- **Prevención**: manifiesto reproducible para 33 PNG y pruebas sintéticas de fondos claros/oscuros, sombras, artefactos aislados y margen máximo.
+## 2026-07-15 — Test documental fijado a dos GIF
+
+- **Síntoma**: la suite rechazó el generador correcto porque esperaba literalmente dos GIF.
+- **Causa**: el contrato de la demo no se actualizó al añadir las dos secuencias localizadas.
+- **Resolución**: actualizar la expectativa al total exacto de cuatro GIF; el validador comprueba además sus nombres, ancho y peso.
+- **Prevención**: mantener cantidad y nombres en una única revisión cuando cambie la matriz multimedia.

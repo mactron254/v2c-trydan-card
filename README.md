@@ -1,83 +1,132 @@
-# V2C Trydan Card
+# ⚡ V2C Trydan Card
 
 [Español](README.es.md) · [Configuration](docs/CONFIGURATION.md) · [Visual guide](docs/VISUAL_GUIDE.md) · [FAQ](docs/FAQ.md)
 
-[![Release](https://img.shields.io/github/v/release/mactron254/v2c-trydan-card)](https://github.com/mactron254/v2c-trydan-card/releases/latest)
+[![Latest release](https://img.shields.io/github/v/release/mactron254/v2c-trydan-card?label=release)](https://github.com/mactron254/v2c-trydan-card/releases/latest)
 [![CI](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/ci.yml)
-[![HACS](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml)
-[![License](https://img.shields.io/github/license/mactron254/v2c-trydan-card)](LICENSE)
+[![HACS validation](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/mactron254/v2c-trydan-card/actions/workflows/hacs.yml)
+[![MIT license](https://img.shields.io/github/license/mactron254/v2c-trydan-card)](LICENSE)
+[![AI-assisted project](https://img.shields.io/badge/AI_assisted-Codex%20%2F%20OpenAI-412991)](#-made-with-ai)
 
-Modern Home Assistant Lovelace card for V2C Trydan EV chargers. Monitor charging, adjust current, control the charger and build a responsive EV dashboard through a translated visual editor.
+A modern **Home Assistant V2C Trydan card** for monitoring and controlling an EV charger from Lovelace. It combines a translated visual editor, responsive controls and real charger data in one clear **EV charger dashboard**. Install it through **HACS** or manually as a Lovelace EV charger card.
 
 > Independent community project. Not affiliated with or endorsed by V2C.
 
-![V2C Trydan Card in split dark layout](docs/screenshots/v042/layout-split-dark.png)
+![V2C Trydan Card showing the split layout in a dark Home Assistant dashboard](docs/screenshots/v042/layout-split-dark.png)
 
-## Why use it?
+## ✨ Features
 
-- Visual editor translated into 10 languages.
-- Four densities: XXL, standard, compact and ultra compact.
-- Four responsive layouts: automatic, centered, split and inline.
-- 11 hardware-inspired charger states with localized LCD text.
-- Real power, current, voltage and session energy on the charger display.
-- Safe current, pause, lock, timer, dynamic control and lighting actions.
-- Device-registry discovery resilient to renamed or translated entities.
-- Optional energy-flow summary, disabled by default in v0.4.2.
-- Keyboard navigation, visible focus, reduced motion and 280–768 px support.
+- 🎛️ Monitor charging and control current, pause, lock, timer, dynamic power and lighting.
+- 🌍 Use the visual editor and charger LCD in 10 languages.
+- 📐 Choose XXL, standard, compact or ultra compact density.
+- 🖥️ Switch between automatic, centered, split and inline responsive layouts.
+- ⚡ See real power, current, voltage and session energy without invented fallback values.
+- ☀️ Enable the optional energy-flow summary when you need it; it is off by default.
+- 🔎 Discover entities from Home Assistant device-registry metadata, even after friendly-name changes.
+- ♿ Navigate by keyboard with visible focus, reduced motion and support from 280 to 768 px.
 
-![Animated tour of V2C Trydan Card densities, layouts and editor](docs/media/trydan-card-tour.gif)
+## 📐 Four densities
 
-## Install with HACS
+<table>
+  <tr>
+    <th>XXL</th>
+    <th>Standard</th>
+    <th>Compact</th>
+    <th>Ultra compact</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/v042/density-xxl-dark.png" width="180" alt="XXL V2C Trydan Card density in dark theme"></td>
+    <td><img src="docs/screenshots/v042/density-standard-dark.png" width="180" alt="Standard V2C Trydan Card density in dark theme"></td>
+    <td><img src="docs/screenshots/v042/density-compact-dark.png" width="180" alt="Compact V2C Trydan Card density in dark theme"></td>
+    <td><img src="docs/screenshots/v042/density-ultra_compact-dark.png" width="180" alt="Ultra compact V2C Trydan Card density without charger artwork"></td>
+  </tr>
+</table>
 
-[![Open your Home Assistant instance and open V2C Trydan Card in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mactron254&repository=v2c-trydan-card&category=plugin)
+Ultra compact keeps the status, readings and essential controls but intentionally hides the charger artwork. See every light/dark comparison in the [visual guide](docs/VISUAL_GUIDE.md#densities).
 
-If needed, add `https://github.com/mactron254/v2c-trydan-card` as a custom **Dashboard** repository in HACS. Install it, reload the browser and add the card from the dashboard editor.
+## 🚗 From no vehicle to charging
 
-## Manual installation
+![Animated V2C Trydan charger changing from no vehicle to vehicle connected and charging in English](docs/media/vehicle-connection-en.gif)
 
-1. Download `v2c-trydan-card.js` from the latest release.
-2. Copy it to `/config/www/v2c-trydan-card.js`.
-3. Add `/local/v2c-trydan-card.js` as a JavaScript module under Dashboard resources.
+The localized LCD follows the real sequence: **No vehicle → Vehicle connected → Charging**.
+
+## 🌍 Languages
+
+🇬🇧 English · 🇮🇹 Italiano · 🇩🇪 Deutsch · 🇫🇷 Français · 🇳🇱 Nederlands · 🇸🇪 Svenska · 🇩🇰 Dansk · 🇳🇴 Norsk · 🇷🇴 Română · 🇪🇸 Español
+
+## 💡 Why this project exists
+
+I created V2C Trydan Card as a personal Home Assistant project. While looking for a card for my own Trydan, I could not find a modern, maintained option that gave me the visual monitoring and controls I wanted. I built it for my dashboard and now share it in case it helps other EV owners too.
+
+— Marco ([@mactron254](https://github.com/mactron254))
+
+## 🤖 Made with AI
+
+This project is transparent about how it was made:
+
+- **Marco** conceived the project, set its direction and reviewed the results on a real Trydan setup.
+- **Codex / OpenAI** assisted with implementation, tests, documentation and reproducible media.
+- Product decisions and final acceptance remain human-directed; AI assistance is documented, not hidden.
+
+See the contributor record in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+## 📦 Install with HACS
+
+[![Open your Home Assistant instance and add V2C Trydan Card through HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mactron254&repository=v2c-trydan-card&category=plugin)
+
+If the repository is not listed yet, add <code>https://github.com/mactron254/v2c-trydan-card</code> as a custom **Dashboard** repository in HACS. Install it, reload the browser and add the card from the dashboard editor.
+
+### Manual installation
+
+1. Download <code>v2c-trydan-card.js</code> from the [latest release](https://github.com/mactron254/v2c-trydan-card/releases/latest).
+2. Copy it to <code>/config/www/v2c-trydan-card.js</code>.
+3. Add <code>/local/v2c-trydan-card.js</code> as a JavaScript module under Dashboard resources.
 4. Reload Home Assistant.
 
-## Minimal configuration
+## ⚙️ Configuration
 
-```yaml
+Start with any entity that belongs to the V2C device; the card discovers the supported entities from stable registry metadata.
+
+~~~yaml
 type: custom:v2c-trydan-card
 entity: binary_sensor.garage_v2c_charger_connected
-```
+~~~
 
-Any entity belonging to the V2C device can be the seed. The card discovers supported entities from stable registry metadata.
+The visual editor covers:
 
-Enable the optional energy summary explicitly:
+- **General:** device, language and primary behavior.
+- **Appearance:** theme, density, layout, accent, scale and card radius.
+- **Content and order:** visible metrics, data sources and section order.
+- **Entities:** automatic discovery or explicit manual mappings.
+- **Advanced:** amperage presets, services and optional energy flow.
 
-```yaml
+Enable the energy summary only when wanted:
+
+~~~yaml
 show_energy_flow: true
-```
+~~~
 
-Ultra compact mode intentionally hides the charger illustration while preserving `show_charger` for other densities.
+Existing v0.4.0 YAML remains compatible. Ultra compact preserves <code>show_charger</code> so the illustration returns when another density is selected.
 
-## Documentation
+## 📚 Documentation
 
 - [Complete configuration reference](docs/CONFIGURATION.md)
-- [Visual guide: 33 reproducible screenshots](docs/VISUAL_GUIDE.md)
+- [Visual guide with 33 reproducible screenshots and four GIFs](docs/VISUAL_GUIDE.md)
 - [FAQ and troubleshooting](docs/FAQ.md)
 - [Changelog](CHANGELOG.md)
 - [Contribution guide](CONTRIBUTING.md)
 - [English forum draft](docs/FORUM_POST_EN.md) · [Spanish forum draft](docs/FORUM_POST_ES.md)
 
-## Development
+## 🧰 Development
 
-Requires Node.js 20+ and pnpm 11+. Repository is pinned to pnpm 11.5.1.
+Requires Node.js 20+ and pnpm 11+. The repository is pinned to pnpm 11.5.1.
 
-```powershell
+~~~powershell
 corepack pnpm@11.5.1 install
 corepack pnpm@11.5.1 check
 corepack pnpm@11.5.1 docs:capture
-```
+~~~
 
-## Credits and license
+## 📄 Credits and license
 
-Technical collaboration: **Codex**, followed by product owner **Marco** ([@mactron254](https://github.com/mactron254)). See [CONTRIBUTORS.md](CONTRIBUTORS.md).
-
-MIT licensed. See [LICENSE](LICENSE).
+Technical collaboration is credited to **Codex**, followed by product owner **Marco** ([@mactron254](https://github.com/mactron254)). Released under the [MIT license](LICENSE).
