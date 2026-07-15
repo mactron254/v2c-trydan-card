@@ -31,4 +31,4 @@ Convertir el SVG en el centro visual mediante un lienzo recortado y un layout ve
 - [x] Estado accesible independiente del SVG y del color.
 - [x] Sin roturas de YAML, GUI, temas, idiomas o servicios.
 - [x] Pruebas de contrato antes de implementación.
-- [x] Autoría Codex primero y Marco `@mactron254` después.
+- [x] Autoría Codex primero y Marc `@mactron254` después.

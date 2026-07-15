@@ -200,3 +200,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: el contrato de la demo no se actualizó al añadir las dos secuencias localizadas.
 - **Resolución**: actualizar la expectativa al total exacto de cuatro GIF; el validador comprueba además sus nombres, ancho y peso.
 - **Prevención**: mantener cantidad y nombres en una única revisión cuando cambie la matriz multimedia.
+
+## 2026-07-15 — Markdown enriquecido copiado con enlaces rotos
+
+- **Síntoma**: el borrador español contenía enlaces anidados, URL convertidas dos veces y afirmaciones ambiguas sobre SVG, datos y descubrimiento.
+- **Causa**: un editor enriquecido transformó Markdown ya enlazado al copiarlo.
+- **Resolución**: integrar las ideas sobre la estructura existente, reconstruir los enlaces y mantener paridad bilingüe con afirmaciones verificables.
+- **Prevención**: no pegar Markdown transformado directamente; ejecutar <code>docs:check</code>, revisar el diff renderizado y comprobar enlaces y textos alternativos.

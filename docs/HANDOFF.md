@@ -6,7 +6,7 @@
 - Status: published from main on 2026-07-14.
 - Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.4.2
 - Stack: Lit 3, TypeScript 7, Vite 8, Node 20+ and pnpm 11.5.1.
-- Attribution order: Codex first; Marco @mactron254 second.
+- Attribution order: Codex first; Marc @mactron254 second.
 
 ## Post-release documentation refresh
 
@@ -25,6 +25,15 @@ Delivered:
 - Social preview is regenerated from a cropped source at 1280×640.
 - English and Spanish README files now include compact density tables, localized GIFs, ten languages, first-person origin story and transparent AI attribution.
 - Visual guides, forum drafts, llms.txt, changelog and failure log match the refreshed media.
+
+## README, authorship and community refresh
+
+- English and Spanish README files have full semantic parity, accurate official-integration context and natural Home Assistant/HACS search terminology.
+- Marc is the project owner name in all tracked documentation and metadata; future commits use <code>Marc &lt;119014979+mactron254@users.noreply.github.com&gt;</code> as co-author.
+- Codex / OpenAI is documented as the main development tool; Marc retains conception, direction, real-device testing and final acceptance.
+- README and FAQ include the MIT no-warranty notice, safe-control guidance and routes for Discussions, reproducible Issues and private Security Advisories.
+- GitHub Discussions uses the six default categories and a bilingual welcome announcement.
+- Card version, bundle, YAML, tag and v0.4.2 release assets remain unchanged.
 
 ## Delivered in v0.4.2
 

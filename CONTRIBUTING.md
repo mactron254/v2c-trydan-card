@@ -30,4 +30,4 @@ Run `corepack pnpm@11.5.1 docs:capture` after visual/editor changes. It requires
 - `docs/`: configuration, media, release and support material.
 - `specs/`: product specifications and implementation records.
 
-Technical attribution order used by this repository: Codex first, Marco `@mactron254` second.
+Technical attribution order used by this repository: Codex first, Marc `@mactron254` second.

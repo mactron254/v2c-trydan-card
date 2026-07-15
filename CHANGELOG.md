@@ -6,6 +6,10 @@ All notable changes are documented here. Versions follow semantic versioning.
 
 ### Documentation
 
+- Polish both README files with complete bilingual parity, the official Home Assistant V2C integration relationship and natural search terminology.
+- Add a visible no-warranty notice, expanded bilingual FAQ and clear routes for Discussions, reproducible Issues and private security reports.
+- Correct the project owner name to Marc across every tracked document and metadata file.
+- Enable GitHub Discussions with the six default community categories and a bilingual welcome announcement.
 - Automatically crop all 33 screenshots while preserving shadows and a maximum 16 px lower margin.
 - Add a deterministic capture manifest and synthetic light/dark crop checks.
 - Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
