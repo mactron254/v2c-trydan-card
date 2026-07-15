@@ -33,9 +33,11 @@
       .preview.editor-preview { width: min(720px, 100%); padding: 12px; border-radius: 16px; background: var(--card-background-color); }
       v2c-trydan-card-editor { display: block; width: 100%; }
       v2c-trydan-card { display: block; width: 100%; min-width: 0; }
+      body.capture, body.capture main { min-height: 0; }
       body.capture main { display: block; }
       body.capture aside { display: none; }
-      body.capture .stage { min-height: 100vh; padding: 12px; place-items: start; }
+      body.capture .stage { min-height: 0; padding: 12px; place-items: start; overflow: visible; }
+      body.capture .editor-preview { align-self: start; }
       body.capture .preview { max-width: 100%; transition: none; }
       .service-log {
         max-height: 170px; overflow: auto; margin-top: 18px; padding: 10px;
