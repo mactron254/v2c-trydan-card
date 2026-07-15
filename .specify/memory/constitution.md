@@ -60,7 +60,7 @@ decisions and next steps so a new chat can continue without reconstructing work.
 3. Run `pnpm typecheck`, `pnpm test`, `pnpm build` and smoke validation before completion.
 4. Update README, failure log and handoff whenever behavior or setup changes.
 5. GitHub publication, commits, pushes and collaborator changes require explicit
-   user scope; when publishing, attribution MUST name Codex first and Marco after.
+   user scope; when publishing, attribution MUST name Codex first and Marc after.
 
 ## Governance
 

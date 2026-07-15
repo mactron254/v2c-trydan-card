@@ -24,4 +24,4 @@ Reordenar la plantilla Lit alrededor del SVG, sustituir Carbon Flow por tokens m
 - [x] Estado comprensible sin color o SVG.
 - [x] Contratos YAML y servicios sin roturas.
 - [x] Pruebas antes de implementación y documentación durable.
-- [x] Autoría Codex y contribución Marco preservadas.
+- [x] Autoría Codex y contribución Marc preservadas.
