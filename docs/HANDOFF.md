@@ -2,53 +2,53 @@
 
 ## Current release
 
-- Target: `v0.4.2`.
-- Status: published from `main` on 2026-07-14.
+- Target and published release: v0.4.2.
+- Status: published from main on 2026-07-14.
 - Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.4.2
 - Stack: Lit 3, TypeScript 7, Vite 8, Node 20+ and pnpm 11.5.1.
-- Attribution: Codex first; Marco `@mactron254` second.
+- Attribution order: Codex first; Marco @mactron254 second.
+
+## Post-release documentation refresh
+
+Branch: codex/docs-visual-refresh.
+
+Scope is documentation and capture tooling only. It does not change card behavior, public YAML, the production bundle, package version, tag or v0.4.2 release assets.
+
+Delivered:
+
+- Capture-only layout no longer forces a full viewport height.
+- All 33 PNGs are measured by row background and cropped with at most 16 px after meaningful content.
+- Shadows remain visible and isolated pixels do not extend an image.
+- A deterministic capture manifest records raw/final dimensions and lower margin.
+- Existing tour/state GIFs remain; localized English and Spanish vehicle-cycle GIFs were added.
+- Social preview is regenerated from a cropped source at 1280×640.
+- English and Spanish README files now include compact density tables, localized GIFs, ten languages, first-person origin story and transparent AI attribution.
+- Visual guides, forum drafts, llms.txt, changelog and failure log match the refreshed media.
 
 ## Delivered in v0.4.2
 
 - Ultra compact without charger artwork; configured value preserved.
 - Energy flow disabled by default and explicit opt-in retained.
 - Status/metric spacing corrected across densities.
-- Canonical text-free SVG collection under `src/assets/trydan`.
-- HTML LCD localized in 10 languages for 11 states, using real readings.
-- Runtime hardening for missing values, current steps and failed discovery.
-- English/Spanish README, configuration, visual guide, FAQ and forum drafts.
-- 33 screenshots, 2 GIFs and 1280×640 social preview.
-- Headless validation at 280, 320, 400, 520 and 768 px plus 200% zoom.
-- Reproducible SHA-256 generation and verification in the standard check.
-- HACS Action, issue forms, security policy, changelog and publishing checklist.
+- Canonical text-free SVG collection and HTML LCD localized in 10 languages for 11 states.
+- Real readings with safe missing-value fallbacks.
+- Runtime hardening for current steps and failed discovery.
+- English/Spanish configuration, FAQ, visual guide and forum drafts.
+- HACS validation, issue forms, security policy and release checksum.
 
 ## Verification commands
 
-```powershell
-corepack pnpm@11.5.1 audit --audit-level moderate
-corepack pnpm@11.5.1 check
-corepack pnpm@11.5.1 docs:check
+~~~powershell
 corepack pnpm@11.5.1 docs:capture
-```
+corepack pnpm@11.5.1 docs:check
+corepack pnpm@11.5.1 check
+git diff --check
+~~~
 
-## Publishing
+Visual review must include density comparisons, split layout, Entities editor and both localized vehicle GIFs.
 
-Published evidence:
+## Publishing boundary
 
-- PR: https://github.com/mactron254/v2c-trydan-card/pull/3
-- Merge commit: `ecb656e1ec1803fd156ce16b64c123608ceac409`.
-- CI and official HACS Action: green on merged `main`.
-- Release assets downloaded and verified: 190192 bytes.
-- SHA-256: `c7fbd646612f2e6a208f8e1d060acea679552671b4aede8d18af79859c7cce5b`.
+Merge the documentation PR after CI and HACS are green. Do not create v0.4.3, a new tag or release, and do not replace v0.4.2 assets. Forum posts remain drafts and must not be published automatically.
 
-Original procedure:
-
-1. Push branch and open PR to `main`.
-2. Require CI and HACS green.
-3. Merge, tag merged commit as `v0.4.2` and attach JS + SHA-256.
-4. Update `docs/PUBLISHING_CHECKLIST.md` with release evidence.
-5. Forum drafts are ready but must not be posted automatically.
-
-## Privacy-safe real screenshot
-
-Optional future improvement: replace/add one demo image with a 560–720 px dark Home Assistant capture while charging. Remove private location, SSID, IP and entity identifiers.
+Published v0.4.2 evidence remains in docs/PUBLISHING_CHECKLIST.md.

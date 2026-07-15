@@ -2,6 +2,15 @@
 
 All notable changes are documented here. Versions follow semantic versioning.
 
+## [Unreleased]
+
+### Documentation
+
+- Automatically crop all 33 screenshots while preserving shadows and a maximum 16 px lower margin.
+- Add a deterministic capture manifest and synthetic light/dark crop checks.
+- Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
+- Redesign both README files with compact density comparisons, localized media, ten-language list, project story and transparent AI attribution.
+- Refresh visual guides, forum drafts, machine-readable project context, failure log and handoff.
 ## [0.4.2] - 2026-07-14
 
 ### Fixed
