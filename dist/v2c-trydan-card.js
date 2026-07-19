@@ -3244,7 +3244,7 @@ var X = class extends I {
 		!this.hass || !t || !n || !Number.isFinite(e) || e < 0 || e > 255 || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => ut(this.hass, t, !0, e));
 	}
 	render() {
-		if (!this.config || !this.hass) return k`<ha-card><div class="empty">V2C Trydan Card Ã‚Â· configuraciÃƒÂ³n pendiente</div></ha-card>`;
+		if (!this.config || !this.hass) return k`<ha-card><div class="empty">V2C Trydan Card �· configuraciÒ³n pendiente</div></ha-card>`;
 		let e = this.#o(), t = V(e), n = this.hass.states[this.config.entity], r = xt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = Pt(Nt({
 			seedAvailable: !!(n && n.state !== "unknown" && n.state !== "unavailable"),
 			connected: q(this.#i("connected")?.state),
@@ -4219,24 +4219,24 @@ var Jt = {
 	en: "English",
 	it: "Italiano",
 	de: "Deutsch",
-	fr: "FranÃƒÂ§ais",
+	fr: "FranÒ§ais",
 	nl: "Nederlands",
 	sv: "Svenska",
 	da: "Dansk",
 	no: "Norsk",
-	ro: "RomÃƒÂ¢nÃ„Æ’",
-	es: "EspaÃƒÂ±ol"
+	ro: "RomÒ¢n��",
+	es: "EspaÒ±ol"
 }, Yt = {
 	en: "Ultra compact mode always hides the charger artwork. Your setting is preserved for other sizes.",
-	es: "El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaÃƒÂ±os.",
-	it: "La modalitÃƒÂ\xA0 ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
-	de: "Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt fÃƒÂ¼r andere GrÃƒÂ¶ÃƒÅ¸en erhalten.",
-	fr: "Le mode ultra compact masque toujours le chargeur. Le rÃƒÂ©glage reste conservÃƒÂ© pour les autres tailles.",
+	es: "El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaÒ±os.",
+	it: "La modalitÒ\xA0 ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
+	de: "Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt fÒ¼r andere GrÒ¶ÒŸen erhalten.",
+	fr: "Le mode ultra compact masque toujours le chargeur. Le rÒ©glage reste conservÒ© pour les autres tailles.",
 	nl: "Ultracompact verbergt de lader altijd. De instelling blijft bewaard voor andere formaten.",
-	sv: "Ultrakompakt dÃƒÂ¶ljer alltid laddaren. InstÃƒÂ¤llningen sparas fÃƒÂ¶r andra storlekar.",
-	da: "Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre stÃƒÂ¸rrelser.",
-	no: "Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre stÃƒÂ¸rrelser.",
-	ro: "Modul ultra compact ascunde mereu ÃƒÂ®ncÃ„Æ’rcÃ„Æ’torul. Setarea rÃ„Æ’mÃƒÂ¢ne salvatÃ„Æ’ pentru alte dimensiuni."
+	sv: "Ultrakompakt dÒ¶ljer alltid laddaren. InstÒ¤llningen sparas fÒ¶r andra storlekar.",
+	da: "Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre stÒ¸rrelser.",
+	no: "Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre stÒ¸rrelser.",
+	ro: "Modul ultra compact ascunde mereu Ò®nc��rc��torul. Setarea r��mÒ¢ne salvat�� pentru alte dimensiuni."
 }, Xt = [
 	"power",
 	"energy",
@@ -4271,7 +4271,7 @@ var Jt = {
     .group > summary { display:flex; min-height:48px; padding:12px 14px; align-items:center; gap:8px; cursor:pointer; color:var(--primary-text-color); font-size:.92rem; font-weight:700; list-style:none; }
     .group > summary::-webkit-details-marker { display:none; }
     .group > summary::after { content:"+"; margin-left:auto; color:var(--secondary-text-color); font-size:1.15rem; }
-    .group[open] > summary::after { content:"Ã¢Ë†â€™"; }
+    .group[open] > summary::after { content:"�� �""; }
     .group-body { display:grid; gap:14px; padding:0 14px 16px; }
     .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
     label,.field { display:grid; gap:6px; color:var(--secondary-text-color); font-size:.78rem; }
@@ -4526,7 +4526,7 @@ var Jt = {
           <summary>${n.contentOrder}</summary><div class="group-body">
             <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${Xt.map((e) => k`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
             <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${Z.map((e) => k`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => k`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>Ã¢â€ â€˜</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>Ã¢â€ â€œ</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
+            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => k`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>� ��</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>� �S</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
             <div class="checks">${Qt.map(([e, n]) => k`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${H(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
             ${u ? k`<p class="help" data-help="ultra-artwork">${Yt[e]}</p>` : j}
           </div>
@@ -4540,7 +4540,7 @@ var Jt = {
 			["both", n.both]
 		].map(([e, t]) => k`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
             <label><span class="field-title">${n.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e) => this.#r("flow_threshold_w", e.target.value)} /></label>
-            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => k`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>Ãƒâ€”</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
+            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => k`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>Ò�</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
 			e.key === "Enter" && (e.preventDefault(), this.#d());
 		}} /><button type="button" data-action="add-preset" @click=${() => this.#d()}>${n.addPreset}</button></div></div>
             <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />${n.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />${n.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />${n.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />${n.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />${n.invertSolar}</label></div>

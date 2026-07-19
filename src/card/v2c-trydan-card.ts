@@ -262,7 +262,7 @@ export class V2cTrydanCard extends LitElement {
 
   protected override render() {
     if (!this.config || !this.hass) {
-      return html`<ha-card><div class="empty">V2C Trydan Card Ã‚Â· configuraciÃƒÂ³n pendiente</div></ha-card>`;
+      return html`<ha-card><div class="empty">V2C Trydan Card �· configuraciÒ³n pendiente</div></ha-card>`;
     }
 
     const language = this.#language();

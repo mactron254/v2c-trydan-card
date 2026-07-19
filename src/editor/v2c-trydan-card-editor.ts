@@ -7,21 +7,21 @@ import { ENTITY_ROLES, type EntityRole, type HomeAssistant, type V2cTrydanCardCo
 import { resolveRegistryRoles } from "../services/discovery";
 
 const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = {
-  en: "English", it: "Italiano", de: "Deutsch", fr: "FranÃƒÂ§ais", nl: "Nederlands",
-  sv: "Svenska", da: "Dansk", no: "Norsk", ro: "RomÃƒÂ¢nÃ„Æ’", es: "EspaÃƒÂ±ol",
+  en: "English", it: "Italiano", de: "Deutsch", fr: "FranÒ§ais", nl: "Nederlands",
+  sv: "Svenska", da: "Dansk", no: "Norsk", ro: "RomÒ¢n��", es: "EspaÒ±ol",
 };
 
 const ULTRA_ARTWORK_HELP: Record<Language, string> = {
   en:"Ultra compact mode always hides the charger artwork. Your setting is preserved for other sizes.",
-  es:"El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaÃƒÂ±os.",
-  it:"La modalitÃƒÂ  ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
-  de:"Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt fÃƒÂ¼r andere GrÃƒÂ¶ÃƒÅ¸en erhalten.",
-  fr:"Le mode ultra compact masque toujours le chargeur. Le rÃƒÂ©glage reste conservÃƒÂ© pour les autres tailles.",
+  es:"El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaÒ±os.",
+  it:"La modalitÒ  ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
+  de:"Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt fÒ¼r andere GrÒ¶ÒŸen erhalten.",
+  fr:"Le mode ultra compact masque toujours le chargeur. Le rÒ©glage reste conservÒ© pour les autres tailles.",
   nl:"Ultracompact verbergt de lader altijd. De instelling blijft bewaard voor andere formaten.",
-  sv:"Ultrakompakt dÃƒÂ¶ljer alltid laddaren. InstÃƒÂ¤llningen sparas fÃƒÂ¶r andra storlekar.",
-  da:"Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre stÃƒÂ¸rrelser.",
-  no:"Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre stÃƒÂ¸rrelser.",
-  ro:"Modul ultra compact ascunde mereu ÃƒÂ®ncÃ„Æ’rcÃ„Æ’torul. Setarea rÃ„Æ’mÃƒÂ¢ne salvatÃ„Æ’ pentru alte dimensiuni.",
+  sv:"Ultrakompakt dÒ¶ljer alltid laddaren. InstÒ¤llningen sparas fÒ¶r andra storlekar.",
+  da:"Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre stÒ¸rrelser.",
+  no:"Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre stÒ¸rrelser.",
+  ro:"Modul ultra compact ascunde mereu Ò®nc��rc��torul. Setarea r��mÒ¢ne salvat�� pentru alte dimensiuni.",
 };
 const METRICS = ["power", "energy", "time"] as const;
 const SOURCES = ["solar", "grid", "home", "battery", "charger"] as const;
@@ -40,7 +40,7 @@ export class V2cTrydanCardEditor extends LitElement {
     .group > summary { display:flex; min-height:48px; padding:12px 14px; align-items:center; gap:8px; cursor:pointer; color:var(--primary-text-color); font-size:.92rem; font-weight:700; list-style:none; }
     .group > summary::-webkit-details-marker { display:none; }
     .group > summary::after { content:"+"; margin-left:auto; color:var(--secondary-text-color); font-size:1.15rem; }
-    .group[open] > summary::after { content:"Ã¢Ë†â€™"; }
+    .group[open] > summary::after { content:"�� �""; }
     .group-body { display:grid; gap:14px; padding:0 14px 16px; }
     .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
     label,.field { display:grid; gap:6px; color:var(--secondary-text-color); font-size:.78rem; }
@@ -254,7 +254,7 @@ export class V2cTrydanCardEditor extends LitElement {
           <summary>${copy.contentOrder}</summary><div class="group-body">
             <div class="field"><span class="field-title">${copy.metrics}</span><div class="chips">${METRICS.map((value) => html`<button type="button" class="chip" data-metric=${value} aria-pressed=${String(selectedMetrics.includes(value))} @click=${() => this.#toggleMetric(value)}>${metricLabels[value]}</button>`)}</div></div>
             <div class="field"><span class="field-title">${copy.energySources}</span><div class="chips">${SOURCES.map((value) => html`<button type="button" class="chip" data-source=${value} aria-pressed=${String(selectedSources.includes(value))} @click=${() => this.#toggleSource(value)}>${sourceLabels[value]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${copy.sectionOrder}</span><ol class="order-list">${order.map((section,index) => html`<li class="order-item" data-order=${section}><span class="order-index">${index+1}</span><span>${sectionLabels[section]}</span><button type="button" class="icon-button" aria-label=${`${copy.moveUp}: ${sectionLabels[section]}`} ?disabled=${index===0} @click=${() => this.#moveSection(index,-1)}>Ã¢â€ â€˜</button><button type="button" class="icon-button" aria-label=${`${copy.moveDown}: ${sectionLabels[section]}`} ?disabled=${index===order.length-1} @click=${() => this.#moveSection(index,1)}>Ã¢â€ â€œ</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#resetOrder()}>${copy.resetOrder}</button></div>
+            <div class="field"><span class="field-title">${copy.sectionOrder}</span><ol class="order-list">${order.map((section,index) => html`<li class="order-item" data-order=${section}><span class="order-index">${index+1}</span><span>${sectionLabels[section]}</span><button type="button" class="icon-button" aria-label=${`${copy.moveUp}: ${sectionLabels[section]}`} ?disabled=${index===0} @click=${() => this.#moveSection(index,-1)}>� ��</button><button type="button" class="icon-button" aria-label=${`${copy.moveDown}: ${sectionLabels[section]}`} ?disabled=${index===order.length-1} @click=${() => this.#moveSection(index,1)}>� �S</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#resetOrder()}>${copy.resetOrder}</button></div>
             <div class="checks">${VISIBILITY_FIELDS.map(([field,key]) => html`<label><input data-field=${field} type="checkbox" .checked=${this.#visibilityChecked(field)} ?disabled=${field === "show_charger" && ultraArtworkHidden} @change=${(e:Event) => this.#updateField(field,(e.target as HTMLInputElement).checked)} /><span>${translate(dictionary,key)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== false} @change=${(e:Event) => this.#updateField("show_header",(e.target as HTMLInputElement).checked)} />${copy.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== false} @change=${(e:Event) => this.#updateField("show_badges",(e.target as HTMLInputElement).checked)} />${copy.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== false} @change=${(e:Event) => this.#updateField("show_presets",(e.target as HTMLInputElement).checked)} />${copy.presets}</label></div>
             ${ultraArtworkHidden ? html`<p class="help" data-help="ultra-artwork">${ULTRA_ARTWORK_HELP[language]}</p>` : nothing}
           </div>
@@ -264,7 +264,7 @@ export class V2cTrydanCardEditor extends LitElement {
           <summary>${copy.advanced}</summary><div class="group-body">
             <div class="field"><span class="field-title">${copy.intensityControl}</span><div class="chips">${([ ["slider",copy.slider],["presets",copy.presets],["both",copy.both] ] as const).map(([value,label]) => html`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === value)} @click=${() => this.#updateField("intensity_control",value)}>${label}</button>`)}</div></div>
             <label><span class="field-title">${copy.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e:Event) => this.#updateNumber("flow_threshold_w",(e.target as HTMLInputElement).value)} /></label>
-            <div class="field"><span class="field-title">${copy.currentPresets}</span><div class="preset-list">${presets.map((value) => html`<span class="preset-token">${value} A<button type="button" aria-label=${`${copy.removePreset} ${value} A`} @click=${() => this.#removePreset(value)}>Ãƒâ€”</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${copy.amps} .value=${this.presetDraft} @input=${(e:Event) => this.presetDraft=(e.target as HTMLInputElement).value} @keydown=${(e:KeyboardEvent) => { if(e.key === "Enter"){ e.preventDefault(); this.#addPreset(); } }} /><button type="button" data-action="add-preset" @click=${() => this.#addPreset()}>${copy.addPreset}</button></div></div>
+            <div class="field"><span class="field-title">${copy.currentPresets}</span><div class="preset-list">${presets.map((value) => html`<span class="preset-token">${value} A<button type="button" aria-label=${`${copy.removePreset} ${value} A`} @click=${() => this.#removePreset(value)}>Ò�</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${copy.amps} .value=${this.presetDraft} @input=${(e:Event) => this.presetDraft=(e.target as HTMLInputElement).value} @keydown=${(e:KeyboardEvent) => { if(e.key === "Enter"){ e.preventDefault(); this.#addPreset(); } }} /><button type="button" data-action="add-preset" @click=${() => this.#addPreset()}>${copy.addPreset}</button></div></div>
             <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === true} @change=${(e:Event) => this.#updateField("advanced_open",(e.target as HTMLInputElement).checked)} />${copy.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== false} @change=${(e:Event) => this.#updateField("confirm_lock",(e.target as HTMLInputElement).checked)} />${copy.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === true} @change=${(e:Event) => this.#updateField("invert_grid_power",(e.target as HTMLInputElement).checked)} />${copy.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === true} @change=${(e:Event) => this.#updateField("invert_battery_power",(e.target as HTMLInputElement).checked)} />${copy.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === true} @change=${(e:Event) => this.#updateField("invert_solar_power",(e.target as HTMLInputElement).checked)} />${copy.invertSolar}</label></div>
           </div>
         </details>
