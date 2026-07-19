@@ -213,3 +213,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: la revisión priorizó formulación editorial y SEO sobre el texto fuente y el tono en primera persona.
 - **Resolución**: tomar el texto personal de Marc como base, corregir únicamente claridad, idioma y enlaces rotos, y traducir esa voz al inglés.
 - **Prevención**: en textos de autor, conservar la primera persona y validar el tono con el propietario antes de publicar.
+
+## 2026-07-19 - Descubrimiento global y cache de metadata
+
+- **Sintoma**: una card podia considerar entidades de otro cargador tras cambios de registro con el mismo numero de entidades.
+- **Causa**: cache mutable por semilla y fallback de escaneo global.
+- **Resolucion**: resolver puro limitado al device_id V2C, con estado vivo desde hass.states y ambiguedad explicita.
+- **Prevencion**: no usar cantidad de registros como clave de invalidacion ni lanzar callWS desde la card.

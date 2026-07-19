@@ -67,3 +67,11 @@ Visual review must include density comparisons, split layout, Entities editor an
 PR #6 was merged only after Validate and HACS were green on both the PR and merged main commit. No v0.4.3, new tag or release was created, and v0.4.2 assets remain unchanged. Forum posts remain drafts and must not be published automatically.
 
 Published v0.4.2 evidence remains in docs/PUBLISHING_CHECKLIST.md.
+
+## Beta 0.5.0-beta.1 - 2026-07-19
+
+- Rama: codex/trydan-resilient-discovery-beta.
+- El descubrimiento es puro, por device_id V2C, sin callWS ni cache de metadatos.
+- Estados: hass.states; acciones: revalidacion V2C antes del servicio; SVG: locales.
+- Validado: corepack pnpm typecheck y corepack pnpm test (59/59).
+- Publicacion prevista: prerelease v0.5.0-beta.1 y PR borrador a main.

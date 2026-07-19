@@ -15,26 +15,15 @@ export interface HassEntity {
 
 export interface HassEntityRegistryEntry {
   entity_id: string;
-  device_id?: string | null;
+  device_id?: string;
   platform?: string;
   translation_key?: string | null;
-  unique_id?: string;
-  original_device_class?: string | null;
-  disabled_by?: string | null;
-}
-
-export interface HassDeviceRegistryEntry {
-  id: string;
-  name?: string;
-  name_by_user?: string | null;
-  manufacturer?: string;
-  model?: string;
+  entity_category?: "config" | "diagnostic";
 }
 
 export interface HomeAssistant {
   states: Record<string, HassEntity>;
   entities?: Record<string, HassEntityRegistryEntry>;
-  devices?: Record<string, HassDeviceRegistryEntry>;
   language?: string;
   locale?: { language?: string };
   callService(
@@ -43,7 +32,6 @@ export interface HomeAssistant {
     serviceData?: Record<string, unknown>,
     target?: Record<string, unknown>,
   ): Promise<unknown>;
-  callWS?<T>(message: Record<string, unknown>): Promise<T>;
 }
 
 export type TriState = true | false | "unknown";
@@ -215,6 +203,10 @@ declare global {
       description: string;
       preview?: boolean;
       documentationURL?: string;
+      getEntitySuggestion?: (
+        hass: HomeAssistant,
+        entityId: string,
+      ) => { config: V2cTrydanCardConfig } | null;
     }>;
   }
 }

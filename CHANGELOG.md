@@ -16,6 +16,22 @@ All notable changes are documented here. Versions follow semantic versioning.
 - Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
 - Redesign both README files with compact density comparisons, localized media, ten-language list, project story and transparent AI attribution.
 - Refresh visual guides, forum drafts, machine-readable project context, failure log and handoff.
+## [0.5.0-beta.1] - 2026-07-19
+
+### Changed
+
+- Replace global, cache-based entity discovery with a pure registry resolver scoped to the selected V2C device.
+- Render only when watched live entity states or relevant registry/localization references change.
+
+### Added
+
+- Validated external energy overrides, translation-key preference, ambiguity reporting, local SVG asset policy and safe action target checks.
+- Home Assistant grid-size hint and V2C-only entity suggestion metadata.
+
+### Security
+
+- Writable entities are revalidated against the current V2C registry entry immediately before a service call.
+
 ## [0.4.2] - 2026-07-14
 
 ### Fixed

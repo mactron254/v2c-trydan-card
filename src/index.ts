@@ -15,6 +15,12 @@ if (!window.customCards.some((card) => card.type === CARD_TAG)) {
     description: "Home Assistant V2C Trydan EV charger card with visual editor, controls and energy monitoring.",
     documentationURL: "https://github.com/mactron254/v2c-trydan-card#readme",
     preview: true,
+    getEntitySuggestion: (hass, entityId) => {
+      const entry = hass.entities?.[entityId];
+      return entry?.platform === "v2c" && entry.device_id
+        ? { config: { type: "custom:v2c-trydan-card", entity: entityId } }
+        : null;
+    },
   });
 }
 

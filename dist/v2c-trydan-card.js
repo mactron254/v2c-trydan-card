@@ -29,7 +29,7 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 	let t = "";
 	for (let n of e.cssRules) t += n.cssText;
 	return a(t);
-})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: p, getPrototypeOf: ee } = Object, m = globalThis, h = m.trustedTypes, g = h ? h.emptyScript : "", _ = m.reactiveElementPolyfillSupport, v = (e, t) => e, y = {
+})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: p, getPrototypeOf: ee } = Object, m = globalThis, h = m.trustedTypes, g = h ? h.emptyScript : "", te = m.reactiveElementPolyfillSupport, _ = (e, t) => e, v = {
 	toAttribute(e, t) {
 		switch (t) {
 			case Boolean:
@@ -58,23 +58,23 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 		}
 		return n;
 	}
-}, b = (e, t) => !l(e, t), te = {
+}, y = (e, t) => !l(e, t), ne = {
 	attribute: !0,
 	type: String,
-	converter: y,
+	converter: v,
 	reflect: !1,
 	useDefault: !1,
-	hasChanged: b
+	hasChanged: y
 };
 Symbol.metadata ??= Symbol("metadata"), m.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-var x = class extends HTMLElement {
+var b = class extends HTMLElement {
 	static addInitializer(e) {
 		this._$Ei(), (this.l ??= []).push(e);
 	}
 	static get observedAttributes() {
 		return this.finalize(), this._$Eh && [...this._$Eh.keys()];
 	}
-	static createProperty(e, t = te) {
+	static createProperty(e, t = ne) {
 		if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
 			let n = Symbol(), r = this.getPropertyDescriptor(e, n, t);
 			r !== void 0 && u(this.prototype, e, r);
@@ -100,16 +100,16 @@ var x = class extends HTMLElement {
 		};
 	}
 	static getPropertyOptions(e) {
-		return this.elementProperties.get(e) ?? te;
+		return this.elementProperties.get(e) ?? ne;
 	}
 	static _$Ei() {
-		if (this.hasOwnProperty(v("elementProperties"))) return;
+		if (this.hasOwnProperty(_("elementProperties"))) return;
 		let e = ee(this);
 		e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
 	}
 	static finalize() {
-		if (this.hasOwnProperty(v("finalized"))) return;
-		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(v("properties"))) {
+		if (this.hasOwnProperty(_("finalized"))) return;
+		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(_("properties"))) {
 			let e = this.properties, t = [...f(e), ...p(e)];
 			for (let n of t) this.createProperty(n, e[n]);
 		}
@@ -171,14 +171,14 @@ var x = class extends HTMLElement {
 	_$ET(e, t) {
 		let n = this.constructor.elementProperties.get(e), r = this.constructor._$Eu(e, n);
 		if (r !== void 0 && !0 === n.reflect) {
-			let i = (n.converter?.toAttribute === void 0 ? y : n.converter).toAttribute(t, n.type);
+			let i = (n.converter?.toAttribute === void 0 ? v : n.converter).toAttribute(t, n.type);
 			this._$Em = e, i == null ? this.removeAttribute(r) : this.setAttribute(r, i), this._$Em = null;
 		}
 	}
 	_$AK(e, t) {
 		let n = this.constructor, r = n._$Eh.get(e);
 		if (r !== void 0 && this._$Em !== r) {
-			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? y : e.converter;
+			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? v : e.converter;
 			this._$Em = r;
 			let a = i.fromAttribute(t, e.type);
 			this[r] = a ?? this._$Ej?.get(r) ?? a, this._$Em = null;
@@ -187,7 +187,7 @@ var x = class extends HTMLElement {
 	requestUpdate(e, t, n, r = !1, i) {
 		if (e !== void 0) {
 			let a = this.constructor;
-			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? b)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
+			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? y)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
 			this.C(e, t, n);
 		}
 		!1 === this.isUpdatePending && (this._$ES = this._$EP());
@@ -251,17 +251,17 @@ var x = class extends HTMLElement {
 	updated(e) {}
 	firstUpdated(e) {}
 };
-x.elementStyles = [], x.shadowRootOptions = { mode: "open" }, x[v("elementProperties")] = /* @__PURE__ */ new Map(), x[v("finalized")] = /* @__PURE__ */ new Map(), _?.({ ReactiveElement: x }), (m.reactiveElementVersions ??= []).push("2.1.2");
+b.elementStyles = [], b.shadowRootOptions = { mode: "open" }, b[_("elementProperties")] = /* @__PURE__ */ new Map(), b[_("finalized")] = /* @__PURE__ */ new Map(), te?.({ ReactiveElement: b }), (m.reactiveElementVersions ??= []).push("2.1.2");
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/lit-html.js
-var S = globalThis, C = (e) => e, w = S.trustedTypes, ne = w ? w.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, re = "$lit$", T = `lit$${Math.random().toFixed(9).slice(2)}$`, ie = "?" + T, ae = `<${ie}>`, E = document, D = () => E.createComment(""), O = (e) => e === null || typeof e != "object" && typeof e != "function", oe = Array.isArray, se = (e) => oe(e) || typeof e?.[Symbol.iterator] == "function", ce = "[ 	\n\f\r]", k = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, le = /-->/g, ue = />/g, A = RegExp(`>|${ce}(?:([^\\s"'>=/]+)(${ce}*=${ce}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), de = /'/g, fe = /"/g, pe = /^(?:script|style|textarea|title)$/i, j = ((e) => (t, ...n) => ({
+var x = globalThis, re = (e) => e, S = x.trustedTypes, ie = S ? S.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, ae = "$lit$", C = `lit$${Math.random().toFixed(9).slice(2)}$`, oe = "?" + C, se = `<${oe}>`, w = document, T = () => w.createComment(""), E = (e) => e === null || typeof e != "object" && typeof e != "function", D = Array.isArray, ce = (e) => D(e) || typeof e?.[Symbol.iterator] == "function", O = "[ 	\n\f\r]", k = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, le = /-->/g, ue = />/g, A = RegExp(`>|${O}(?:([^\\s"'>=/]+)(${O}*=${O}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), de = /'/g, fe = /"/g, pe = /^(?:script|style|textarea|title)$/i, j = ((e) => (t, ...n) => ({
 	_$litType$: e,
 	strings: t,
 	values: n
-}))(1), M = Symbol.for("lit-noChange"), N = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), P = E.createTreeWalker(E, 129);
+}))(1), M = Symbol.for("lit-noChange"), N = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), P = w.createTreeWalker(w, 129);
 function he(e, t) {
-	if (!oe(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
-	return ne === void 0 ? t : ne.createHTML(t);
+	if (!D(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
+	return ie === void 0 ? t : ie.createHTML(t);
 }
 var ge = (e, t) => {
 	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = k;
@@ -269,10 +269,10 @@ var ge = (e, t) => {
 		let n = e[t], s, c, l = -1, u = 0;
 		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === k ? c[1] === "!--" ? o = le : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = A) : (pe.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = A) : o = ue : o === A ? c[0] === ">" ? (o = i ?? k, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? A : c[3] === "\"" ? fe : de) : o === fe || o === de ? o = A : o === le || o === ue ? o = k : (o = A, i = void 0);
 		let d = o === A && e[t + 1].startsWith("/>") ? " " : "";
-		a += o === k ? n + ae : l >= 0 ? (r.push(s), n.slice(0, l) + re + n.slice(l) + T + d) : n + T + (l === -2 ? t : d);
+		a += o === k ? n + se : l >= 0 ? (r.push(s), n.slice(0, l) + ae + n.slice(l) + C + d) : n + C + (l === -2 ? t : d);
 	}
 	return [he(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
-}, F = class e {
+}, _e = class e {
 	constructor({ strings: t, _$litType$: n }, r) {
 		let i;
 		this.parts = [];
@@ -283,55 +283,55 @@ var ge = (e, t) => {
 		}
 		for (; (i = P.nextNode()) !== null && c.length < s;) {
 			if (i.nodeType === 1) {
-				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(re)) {
-					let t = u[o++], n = i.getAttribute(e).split(T), r = /([.?@])?(.*)/.exec(t);
+				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(ae)) {
+					let t = u[o++], n = i.getAttribute(e).split(C), r = /([.?@])?(.*)/.exec(t);
 					c.push({
 						type: 1,
 						index: a,
 						name: r[2],
 						strings: n,
-						ctor: r[1] === "." ? ve : r[1] === "?" ? ye : r[1] === "@" ? be : R
+						ctor: r[1] === "." ? be : r[1] === "?" ? xe : r[1] === "@" ? Se : I
 					}), i.removeAttribute(e);
-				} else e.startsWith(T) && (c.push({
+				} else e.startsWith(C) && (c.push({
 					type: 6,
 					index: a
 				}), i.removeAttribute(e));
 				if (pe.test(i.tagName)) {
-					let e = i.textContent.split(T), t = e.length - 1;
+					let e = i.textContent.split(C), t = e.length - 1;
 					if (t > 0) {
-						i.textContent = w ? w.emptyScript : "";
-						for (let n = 0; n < t; n++) i.append(e[n], D()), P.nextNode(), c.push({
+						i.textContent = S ? S.emptyScript : "";
+						for (let n = 0; n < t; n++) i.append(e[n], T()), P.nextNode(), c.push({
 							type: 2,
 							index: ++a
 						});
-						i.append(e[t], D());
+						i.append(e[t], T());
 					}
 				}
-			} else if (i.nodeType === 8) if (i.data === ie) c.push({
+			} else if (i.nodeType === 8) if (i.data === oe) c.push({
 				type: 2,
 				index: a
 			});
 			else {
 				let e = -1;
-				for (; (e = i.data.indexOf(T, e + 1)) !== -1;) c.push({
+				for (; (e = i.data.indexOf(C, e + 1)) !== -1;) c.push({
 					type: 7,
 					index: a
-				}), e += T.length - 1;
+				}), e += C.length - 1;
 			}
 			a++;
 		}
 	}
 	static createElement(e, t) {
-		let n = E.createElement("template");
+		let n = w.createElement("template");
 		return n.innerHTML = e, n;
 	}
 };
-function I(e, t, n = e, r) {
+function F(e, t, n = e, r) {
 	if (t === M) return t;
-	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = O(t) ? void 0 : t._$litDirective$;
-	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = I(e, i._$AS(e, t.values), i, r)), t;
+	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = E(t) ? void 0 : t._$litDirective$;
+	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = F(e, i._$AS(e, t.values), i, r)), t;
 }
-var _e = class {
+var ve = class {
 	constructor(e, t) {
 		this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
 	}
@@ -342,23 +342,23 @@ var _e = class {
 		return this._$AM._$AU;
 	}
 	u(e) {
-		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? E).importNode(t, !0);
+		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? w).importNode(t, !0);
 		P.currentNode = r;
 		let i = P.nextNode(), a = 0, o = 0, s = n[0];
 		for (; s !== void 0;) {
 			if (a === s.index) {
 				let t;
-				s.type === 2 ? t = new L(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new xe(i, this, e)), this._$AV.push(t), s = n[++o];
+				s.type === 2 ? t = new ye(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Ce(i, this, e)), this._$AV.push(t), s = n[++o];
 			}
 			a !== s?.index && (i = P.nextNode(), a++);
 		}
-		return P.currentNode = E, r;
+		return P.currentNode = w, r;
 	}
 	p(e) {
 		let t = 0;
 		for (let n of this._$AV) n !== void 0 && (n.strings === void 0 ? n._$AI(e[t]) : (n._$AI(e, n, t), t += n.strings.length - 2)), t++;
 	}
-}, L = class e {
+}, ye = class e {
 	get _$AU() {
 		return this._$AM?._$AU ?? this._$Cv;
 	}
@@ -376,7 +376,7 @@ var _e = class {
 		return this._$AB;
 	}
 	_$AI(e, t = this) {
-		e = I(this, e, t), O(e) ? e === N || e == null || e === "" ? (this._$AH !== N && this._$AR(), this._$AH = N) : e !== this._$AH && e !== M && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? se(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
+		e = F(this, e, t), E(e) ? e === N || e == null || e === "" ? (this._$AH !== N && this._$AR(), this._$AH = N) : e !== this._$AH && e !== M && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? ce(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
 	}
 	O(e) {
 		return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -385,36 +385,36 @@ var _e = class {
 		this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
 	}
 	_(e) {
-		this._$AH !== N && O(this._$AH) ? this._$AA.nextSibling.data = e : this.T(E.createTextNode(e)), this._$AH = e;
+		this._$AH !== N && E(this._$AH) ? this._$AA.nextSibling.data = e : this.T(w.createTextNode(e)), this._$AH = e;
 	}
 	$(e) {
-		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = F.createElement(he(n.h, n.h[0]), this.options)), n);
+		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = _e.createElement(he(n.h, n.h[0]), this.options)), n);
 		if (this._$AH?._$AD === r) this._$AH.p(t);
 		else {
-			let e = new _e(r, this), n = e.u(this.options);
+			let e = new ve(r, this), n = e.u(this.options);
 			e.p(t), this.T(n), this._$AH = e;
 		}
 	}
 	_$AC(e) {
 		let t = me.get(e.strings);
-		return t === void 0 && me.set(e.strings, t = new F(e)), t;
+		return t === void 0 && me.set(e.strings, t = new _e(e)), t;
 	}
 	k(t) {
-		oe(this._$AH) || (this._$AH = [], this._$AR());
+		D(this._$AH) || (this._$AH = [], this._$AR());
 		let n = this._$AH, r, i = 0;
-		for (let a of t) i === n.length ? n.push(r = new e(this.O(D()), this.O(D()), this, this.options)) : r = n[i], r._$AI(a), i++;
+		for (let a of t) i === n.length ? n.push(r = new e(this.O(T()), this.O(T()), this, this.options)) : r = n[i], r._$AI(a), i++;
 		i < n.length && (this._$AR(r && r._$AB.nextSibling, i), n.length = i);
 	}
 	_$AR(e = this._$AA.nextSibling, t) {
 		for (this._$AP?.(!1, !0, t); e !== this._$AB;) {
-			let t = C(e).nextSibling;
-			C(e).remove(), e = t;
+			let t = re(e).nextSibling;
+			re(e).remove(), e = t;
 		}
 	}
 	setConnected(e) {
 		this._$AM === void 0 && (this._$Cv = e, this._$AP?.(e));
 	}
-}, R = class {
+}, I = class {
 	get tagName() {
 		return this.element.tagName;
 	}
@@ -426,43 +426,43 @@ var _e = class {
 	}
 	_$AI(e, t = this, n, r) {
 		let i = this.strings, a = !1;
-		if (i === void 0) e = I(this, e, t, 0), a = !O(e) || e !== this._$AH && e !== M, a && (this._$AH = e);
+		if (i === void 0) e = F(this, e, t, 0), a = !E(e) || e !== this._$AH && e !== M, a && (this._$AH = e);
 		else {
 			let r = e, o, s;
-			for (e = i[0], o = 0; o < i.length - 1; o++) s = I(this, r[n + o], t, o), s === M && (s = this._$AH[o]), a ||= !O(s) || s !== this._$AH[o], s === N ? e = N : e !== N && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
+			for (e = i[0], o = 0; o < i.length - 1; o++) s = F(this, r[n + o], t, o), s === M && (s = this._$AH[o]), a ||= !E(s) || s !== this._$AH[o], s === N ? e = N : e !== N && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
 		}
 		a && !r && this.j(e);
 	}
 	j(e) {
 		e === N ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
 	}
-}, ve = class extends R {
+}, be = class extends I {
 	constructor() {
 		super(...arguments), this.type = 3;
 	}
 	j(e) {
 		this.element[this.name] = e === N ? void 0 : e;
 	}
-}, ye = class extends R {
+}, xe = class extends I {
 	constructor() {
 		super(...arguments), this.type = 4;
 	}
 	j(e) {
 		this.element.toggleAttribute(this.name, !!e && e !== N);
 	}
-}, be = class extends R {
+}, Se = class extends I {
 	constructor(e, t, n, r, i) {
 		super(e, t, n, r, i), this.type = 5;
 	}
 	_$AI(e, t = this) {
-		if ((e = I(this, e, t, 0) ?? N) === M) return;
+		if ((e = F(this, e, t, 0) ?? N) === M) return;
 		let n = this._$AH, r = e === N && n !== N || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== N && (n === N || r);
 		r && this.element.removeEventListener(this.name, this, n), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
 	}
 	handleEvent(e) {
 		typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, e) : this._$AH.handleEvent(e);
 	}
-}, xe = class {
+}, Ce = class {
 	constructor(e, t, n) {
 		this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = n;
 	}
@@ -470,18 +470,18 @@ var _e = class {
 		return this._$AM._$AU;
 	}
 	_$AI(e) {
-		I(this, e);
+		F(this, e);
 	}
-}, Se = S.litHtmlPolyfillSupport;
-Se?.(F, L), (S.litHtmlVersions ??= []).push("3.3.3");
-var Ce = (e, t, n) => {
+}, we = x.litHtmlPolyfillSupport;
+we?.(_e, ye), (x.litHtmlVersions ??= []).push("3.3.3");
+var Te = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
 		let e = n?.renderBefore ?? null;
-		r._$litPart$ = i = new L(t.insertBefore(D(), e), e, void 0, n ?? {});
+		r._$litPart$ = i = new ye(t.insertBefore(T(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, we = globalThis, z = class extends x {
+}, Ee = globalThis, L = class extends b {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -491,7 +491,7 @@ var Ce = (e, t, n) => {
 	}
 	update(e) {
 		let t = this.render();
-		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Ce(t, this.renderRoot, this.renderOptions);
+		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Te(t, this.renderRoot, this.renderOptions);
 	}
 	connectedCallback() {
 		super.connectedCallback(), this._$Do?.setConnected(!0);
@@ -503,18 +503,18 @@ var Ce = (e, t, n) => {
 		return M;
 	}
 };
-z._$litElement$ = !0, z.finalized = !0, we.litElementHydrateSupport?.({ LitElement: z });
-var Te = we.litElementPolyfillSupport;
-Te?.({ LitElement: z }), (we.litElementVersions ??= []).push("4.2.2");
+L._$litElement$ = !0, L.finalized = !0, Ee.litElementHydrateSupport?.({ LitElement: L });
+var De = Ee.litElementPolyfillSupport;
+De?.({ LitElement: L }), (Ee.litElementVersions ??= []).push("4.2.2");
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/property.js
-var Ee = {
+var Oe = {
 	attribute: !0,
 	type: String,
-	converter: y,
+	converter: v,
 	reflect: !1,
-	hasChanged: b
-}, De = (e = Ee, t, n) => {
+	hasChanged: y
+}, ke = (e = Oe, t, n) => {
 	let { kind: r, metadata: i } = n, a = globalThis.litPropertyMetadata.get(i);
 	if (a === void 0 && globalThis.litPropertyMetadata.set(i, a = /* @__PURE__ */ new Map()), r === "setter" && ((e = Object.create(e)).wrapped = !0), a.set(n.name, e), r === "accessor") {
 		let { name: r } = n;
@@ -537,16 +537,16 @@ var Ee = {
 	}
 	throw Error("Unsupported decorator location: " + r);
 };
-function Oe(e) {
-	return (t, n) => typeof n == "object" ? De(e, t, n) : ((e, t, n) => {
+function R(e) {
+	return (t, n) => typeof n == "object" ? ke(e, t, n) : ((e, t, n) => {
 		let r = t.hasOwnProperty(n);
 		return t.constructor.createProperty(n, e), r ? Object.getOwnPropertyDescriptor(t, n) : void 0;
 	})(e, t, n);
 }
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/state.js
-function B(e) {
-	return Oe({
+function z(e) {
+	return R({
 		...e,
 		state: !0,
 		attribute: !1
@@ -554,17 +554,17 @@ function B(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/directive.js
-var ke = {
+var Ae = {
 	ATTRIBUTE: 1,
 	CHILD: 2,
 	PROPERTY: 3,
 	BOOLEAN_ATTRIBUTE: 4,
 	EVENT: 5,
 	ELEMENT: 6
-}, Ae = (e) => (...t) => ({
+}, je = (e) => (...t) => ({
 	_$litDirective$: e,
 	values: t
-}), je = class {
+}), Me = class {
 	constructor(e) {}
 	get _$AU() {
 		return this._$AM._$AU;
@@ -578,9 +578,9 @@ var ke = {
 	update(e, t) {
 		return this.render(...t);
 	}
-}, Me = class extends je {
+}, Ne = class extends Me {
 	constructor(e) {
-		if (super(e), this.it = N, e.type !== ke.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
+		if (super(e), this.it = N, e.type !== Ae.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
 	}
 	render(e) {
 		if (e === N || e == null) return this._t = void 0, this.it = e;
@@ -596,12 +596,12 @@ var ke = {
 		};
 	}
 };
-Me.directiveName = "unsafeHTML", Me.resultType = 1;
+Ne.directiveName = "unsafeHTML", Ne.resultType = 1;
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/directives/unsafe-svg.js
-var Ne = class extends Me {};
-Ne.directiveName = "unsafeSVG", Ne.resultType = 2;
-var Pe = Ae(Ne), Fe = {
+var Pe = class extends Ne {};
+Pe.directiveName = "unsafeSVG", Pe.resultType = 2;
+var Fe = je(Pe), Ie = {
 	disconnected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
 	charging: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-current\" transform=\"translate(107 104) scale(.92)\" fill=\"#123cc9\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
 	complete: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
@@ -613,7 +613,7 @@ var Pe = Ae(Ne), Fe = {
 	waiting_power: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"\" transform=\"translate(107 104) scale(.92)\" fill=\"#f28c28\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
 	wifi_connected: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-once\" transform=\"translate(107 104) scale(.92)\" fill=\"#3fce6b\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>",
 	wifi_connecting: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n  <style>\n    @keyframes slow{0%,46%{opacity:1}50%,100%{opacity:.18}}\n    @keyframes current{0%,38%{opacity:1}45%,100%{opacity:.18}}\n    @keyframes once{0%,20%{opacity:.15}45%,72%{opacity:1}100%{opacity:.45}}\n    .blink-slow{animation:slow 1.35s steps(1,end) infinite}\n    .blink-current{animation:current .65s steps(1,end) infinite}\n    .blink-once{animation:once 1s ease-out 1}\n    .lcd{font-family:monospace;font-weight:700;letter-spacing:.4px}\n  </style>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <g class=\"blink-slow\" transform=\"translate(107 104) scale(.92)\" fill=\"#f4f6f8\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>"
-}, V = [
+}, B = [
 	6,
 	10,
 	13,
@@ -621,59 +621,59 @@ var Pe = Ae(Ne), Fe = {
 	20,
 	25,
 	32
-], Ie = [
+], Le = [
 	"xxl",
 	"standard",
 	"compact",
 	"ultra_compact"
-], Le = [
+], Re = [
 	"auto",
 	"centered",
 	"split",
 	"inline"
-], Re = [
+], ze = [
 	"power",
 	"energy",
 	"time"
-], ze = [
+], Be = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], Be = [
+], Ve = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
 ];
-function H(e, t, n) {
+function V(e, t, n) {
 	return typeof e == "string" && t.includes(e) ? e : n;
 }
-function Ve(e, t) {
+function He(e, t) {
 	return [...new Set(Array.isArray(e) ? e.filter((e) => typeof e == "string" && t.includes(e)) : t)];
 }
-function He(e, t) {
-	let n = Ve(e, t);
+function Ue(e, t) {
+	let n = He(e, t);
 	return [...n, ...t.filter((e) => !n.includes(e))];
 }
-function Ue(e) {
+function We(e) {
 	if (!e || typeof e != "object") throw Error("V2C Trydan Card: configuración no válida");
 	if (!e.entity || typeof e.entity != "string") throw Error("V2C Trydan Card: debes indicar una entidad V2C principal");
-	let t = Array.isArray(e.current_presets) ? e.current_presets : V, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = H(e.display_mode, Ie, "standard"), i = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
+	let t = Array.isArray(e.current_presets) ? e.current_presets : B, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = V(e.display_mode, Le, "standard"), i = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
 	return {
 		...e,
 		type: "custom:v2c-trydan-card",
-		theme: H(e.theme, [
+		theme: V(e.theme, [
 			"auto",
 			"light",
 			"dark"
 		], "auto"),
 		display_mode: r,
 		language: e.language ?? "auto",
-		layout: H(e.layout, Le, "auto"),
-		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : H(e.color_scheme, [
+		layout: V(e.layout, Re, "auto"),
+		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : V(e.color_scheme, [
 			"monochrome",
 			"v2c_blue",
 			"teal",
@@ -682,21 +682,21 @@ function Ue(e) {
 			"custom"
 		], "monochrome"),
 		accent_color: i,
-		surface_style: H(e.surface_style, [
+		surface_style: V(e.surface_style, [
 			"solid",
 			"tinted",
 			"transparent"
 		], "solid"),
 		hero_scale: Math.min(1.25, Math.max(.75, Number(e.hero_scale) || 1)),
 		card_radius: Number.isFinite(e.card_radius) ? Math.min(40, Math.max(0, Number(e.card_radius))) : void 0,
-		metrics: Ve(e.metrics, Re),
-		energy_sources: Ve(e.energy_sources, ze),
-		intensity_control: H(e.intensity_control, [
+		metrics: He(e.metrics, ze),
+		energy_sources: He(e.energy_sources, Be),
+		intensity_control: V(e.intensity_control, [
 			"slider",
 			"presets",
 			"both"
 		], "both"),
-		section_order: He(e.section_order, Be),
+		section_order: Ue(e.section_order, Ve),
 		show_header: e.show_header ?? !0,
 		show_badges: e.show_badges ?? !0,
 		show_presets: e.show_presets ?? r !== "ultra_compact",
@@ -711,7 +711,7 @@ function Ue(e) {
 		entities: e.entities && typeof e.entities == "object" && !Array.isArray(e.entities) ? { ...e.entities } : {}
 	};
 }
-function We(e) {
+function Ge(e) {
 	let t = Object.values(e?.entities ?? {}).find((e) => e.platform === "v2c" && e.translation_key === "connected"), n = Object.keys(e?.states ?? {}).find((e) => e.startsWith("binary_sensor.") && e.toLowerCase().includes("v2c"));
 	return {
 		type: "custom:v2c-trydan-card",
@@ -722,7 +722,7 @@ function We(e) {
 }
 //#endregion
 //#region src/localization/da.ts
-var Ge = {
+var Ke = {
 	states: {
 		disconnected: "Intet køretøj",
 		unavailable: "Ikke tilgængelig",
@@ -835,7 +835,7 @@ var Ge = {
 		showAdvanced: "Avancerede kontroller",
 		showCharger: "Trydan-illustration"
 	}
-}, Ke = {
+}, qe = {
 	states: {
 		disconnected: "Kein Fahrzeug",
 		unavailable: "Nicht verfügbar",
@@ -948,7 +948,7 @@ var Ge = {
 		showAdvanced: "Erweiterte Steuerung",
 		showCharger: "Trydan-Abbildung"
 	}
-}, qe = {
+}, Je = {
 	states: {
 		disconnected: "Aucun véhicule",
 		unavailable: "Indisponible",
@@ -1061,7 +1061,7 @@ var Ge = {
 		showAdvanced: "Commandes avancées",
 		showCharger: "Illustration Trydan"
 	}
-}, Je = {
+}, Ye = {
 	states: {
 		disconnected: "Nessun veicolo",
 		unavailable: "Non disponibile",
@@ -1174,7 +1174,7 @@ var Ge = {
 		showAdvanced: "Controlli avanzati",
 		showCharger: "Illustrazione Trydan"
 	}
-}, Ye = {
+}, Xe = {
 	states: {
 		disconnected: "Geen voertuig",
 		unavailable: "Niet beschikbaar",
@@ -1287,7 +1287,7 @@ var Ge = {
 		showAdvanced: "Geavanceerde bediening",
 		showCharger: "Trydan-afbeelding"
 	}
-}, Xe = {
+}, Ze = {
 	states: {
 		disconnected: "Ingen bil",
 		unavailable: "Ikke tilgjengelig",
@@ -1400,7 +1400,7 @@ var Ge = {
 		showAdvanced: "Avanserte kontroller",
 		showCharger: "Trydan-illustrasjon"
 	}
-}, Ze = {
+}, Qe = {
 	states: {
 		disconnected: "Niciun vehicul",
 		unavailable: "Indisponibil",
@@ -1513,7 +1513,7 @@ var Ge = {
 		showAdvanced: "Comenzi avansate",
 		showCharger: "Ilustrație Trydan"
 	}
-}, Qe = {
+}, $e = {
 	states: {
 		disconnected: "Inget fordon",
 		unavailable: "Inte tillgänglig",
@@ -1626,7 +1626,7 @@ var Ge = {
 		showAdvanced: "Avancerade kontroller",
 		showCharger: "Trydan-illustration"
 	}
-}, $e = {
+}, et = {
 	states: {
 		disconnected: "No vehicle",
 		unavailable: "Unavailable",
@@ -1739,7 +1739,7 @@ var Ge = {
 		showAdvanced: "Advanced controls",
 		showCharger: "Trydan artwork"
 	}
-}, et = {
+}, tt = {
 	states: {
 		disconnected: "Sin vehículo",
 		unavailable: "No disponible",
@@ -1852,7 +1852,7 @@ var Ge = {
 		showAdvanced: "Controles avanzados",
 		showCharger: "Ilustración Trydan"
 	}
-}, tt = [
+}, nt = [
 	"en",
 	"it",
 	"de",
@@ -1863,26 +1863,26 @@ var Ge = {
 	"no",
 	"ro",
 	"es"
-], nt = {
-	en: $e,
-	it: Je,
-	de: Ke,
-	fr: qe,
-	nl: Ye,
-	sv: Qe,
-	da: Ge,
-	no: Xe,
-	ro: Ze,
-	es: et
+], rt = {
+	en: et,
+	it: Ye,
+	de: qe,
+	fr: Je,
+	nl: Xe,
+	sv: $e,
+	da: Ke,
+	no: Ze,
+	ro: Qe,
+	es: tt
 };
-function rt(e, t) {
+function it(e, t) {
 	let n = (e === "auto" ? t : e)?.toLowerCase().split(/[-_]/)[0] ?? "en", r = n === "nb" || n === "nn" ? "no" : n;
-	return tt.includes(r) ? r : "en";
+	return nt.includes(r) ? r : "en";
 }
-function U(e) {
-	return nt[rt(e)];
+function H(e) {
+	return rt[it(e)];
 }
-function W(e, t) {
+function U(e, t) {
 	let n = t.split(".").reduce((e, t) => {
 		if (!(typeof e != "object" || !e)) return e[t];
 	}, e);
@@ -1890,13 +1890,13 @@ function W(e, t) {
 }
 //#endregion
 //#region src/localization/lcd-copy.ts
-function it(e, t, n = {}) {
-	let r = U(e), i = t === "disconnected" ? {
-		primary: W(r, "details.disconnected"),
-		secondary: W(r, "states.disconnected")
+function at(e, t, n = {}) {
+	let r = H(e), i = t === "disconnected" ? {
+		primary: U(r, "details.disconnected"),
+		secondary: U(r, "states.disconnected")
 	} : {
-		primary: W(r, `states.${t}`),
-		secondary: W(r, `details.${t}`)
+		primary: U(r, `states.${t}`),
+		secondary: U(r, `details.${t}`)
 	};
 	return t === "charging" ? {
 		primary: n.power && n.power !== "—" ? `${i.primary} ${n.power}` : i.primary,
@@ -1908,181 +1908,245 @@ function it(e, t, n = {}) {
 }
 //#endregion
 //#region src/services/actions.ts
-async function at(e, t, n) {
+async function ot(e, t, n) {
 	return e.callService("number", "set_value", {
 		entity_id: t,
 		value: n
 	});
 }
-async function ot(e, t, n) {
+async function st(e, t, n) {
 	return e.callService("switch", n ? "turn_on" : "turn_off", { entity_id: t });
 }
-async function st(e, t, n) {
+async function ct(e, t, n) {
 	return e.callService("select", "select_option", {
 		entity_id: t,
 		option: n
 	});
 }
-async function ct(e, t, n, r) {
+async function lt(e, t, n, r) {
 	let i = { entity_id: t };
 	return n && r !== void 0 && (i.brightness = r), e.callService("light", n ? "turn_on" : "turn_off", i);
 }
 //#endregion
-//#region src/models/types.ts
-var G = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), lt = [
-	"disconnected",
-	"charging",
-	"complete",
-	"timer",
-	"updating",
-	"control_pilot",
-	"load_balancing",
-	"error",
-	"waiting_power",
-	"wifi_connected",
-	"wifi_connecting"
-], ut = {
-	connected: "connected",
-	charging: "charging",
-	ready: "ready",
-	charge_power: "charge_power",
-	charge_energy: "charge_energy",
-	charge_time: "charge_time",
-	house_power: "house_power",
-	fv_power: "fv_power",
-	battery_power: "battery_power",
-	voltage_installation: "voltage",
-	intensity: "intensity",
-	min_intensity: "min_intensity",
-	max_intensity: "max_intensity",
-	meter_error: "meter_error",
-	ssid: "ssid",
-	ip_address: "ip_address",
-	signal_status: "signal_status",
-	paused: "paused",
-	locked: "locked",
-	timer: "timer",
-	dynamic: "dynamic",
-	pause_dynamic: "pause_dynamic",
-	logo_led: "logo_led",
-	light_led: "light_led",
-	charge_mode: "charge_mode"
-}, dt = {
-	connected: ["_connected", "_conectado"],
-	charging: ["_charging", "_cargando"],
-	ready: ["_ready", "_listo"],
-	charge_power: ["_charge_power", "_potencia_de_carga"],
-	charge_energy: ["_charge_energy", "_energia_de_carga"],
-	charge_time: ["_charge_time", "_tiempo_de_carga"],
-	house_power: ["_house_power", "_energia_de_la_casa"],
-	fv_power: [
-		"_fv_power",
-		"_energia_fotovoltaica",
-		"_sun_power"
-	],
-	battery_power: ["_battery_power", "_energia_de_la_bateria"],
-	grid_power: ["_grid_power", "_potencia_de_red"],
-	voltage: ["_voltage", "_tension_de_instalacion"],
-	intensity: ["_intensity", "_intensidad"],
-	min_intensity: ["_min_intensity", "_intensidad_minima"],
-	max_intensity: ["_max_intensity", "_intensidad_maxima"],
-	meter_error: ["_meter_error", "_error_del_medidor"],
-	ssid: ["_ssid"],
-	ip_address: ["_ip_address", "_ip"],
-	signal_status: ["_signal_status", "_signal"],
-	paused: ["_paused", "_pausar_sesion"],
-	locked: ["_locked", "_bloquear_evse"],
-	timer: ["_timer", "_temporizador_de_punto_de_recarga"],
-	dynamic: ["_dynamic", "_modulacion_de_intensidad_dinamica"],
-	pause_dynamic: ["_pause_dynamic", "_pausar_la_modulacion_de_control_dinamico"],
-	logo_led: ["_logo_led"],
-	light_led: ["_light_led", "_luz_led"],
-	charge_mode: ["_charge_mode", "_modo_de_carga"]
-}, ft = {
-	connected: ["binary_sensor"],
-	charging: ["binary_sensor"],
-	ready: ["binary_sensor"],
-	charge_power: ["sensor"],
-	charge_energy: ["sensor"],
-	charge_time: ["sensor"],
-	house_power: ["sensor"],
-	fv_power: ["sensor"],
-	battery_power: ["sensor"],
-	grid_power: ["sensor"],
-	voltage: ["sensor"],
-	intensity: ["number"],
-	min_intensity: ["number"],
-	max_intensity: ["number"],
-	meter_error: ["sensor", "binary_sensor"],
-	ssid: ["sensor"],
-	ip_address: ["sensor"],
-	signal_status: ["sensor"],
-	paused: ["switch"],
-	locked: ["switch"],
-	timer: ["switch"],
-	dynamic: ["switch"],
-	pause_dynamic: ["switch"],
-	logo_led: ["light"],
-	light_led: ["light"],
-	charge_mode: ["select"]
-};
+//#region src/services/discovery.ts
+var W = {
+	connected: {
+		translationKeys: ["connected"],
+		domains: ["binary_sensor"],
+		legacySuffixes: ["_connected", "_conectado"]
+	},
+	charging: {
+		translationKeys: ["charging"],
+		domains: ["binary_sensor"],
+		legacySuffixes: ["_charging", "_cargando"]
+	},
+	ready: {
+		translationKeys: ["ready"],
+		domains: ["binary_sensor"],
+		legacySuffixes: ["_ready", "_listo"]
+	},
+	charge_power: {
+		translationKeys: ["charge_power"],
+		domains: ["sensor"],
+		legacySuffixes: ["_charge_power", "_potencia_de_carga"]
+	},
+	charge_energy: {
+		translationKeys: ["charge_energy"],
+		domains: ["sensor"],
+		legacySuffixes: ["_charge_energy", "_energia_de_carga"]
+	},
+	charge_time: {
+		translationKeys: ["charge_time"],
+		domains: ["sensor"],
+		legacySuffixes: ["_charge_time", "_tiempo_de_carga"]
+	},
+	house_power: {
+		translationKeys: ["house_power"],
+		domains: ["sensor"],
+		legacySuffixes: ["_house_power", "_energia_de_la_casa"],
+		allowExternal: !0
+	},
+	fv_power: {
+		translationKeys: ["fv_power"],
+		domains: ["sensor"],
+		legacySuffixes: [
+			"_fv_power",
+			"_energia_fotovoltaica",
+			"_sun_power"
+		],
+		allowExternal: !0
+	},
+	battery_power: {
+		translationKeys: ["battery_power"],
+		domains: ["sensor"],
+		legacySuffixes: ["_battery_power", "_energia_de_la_bateria"],
+		allowExternal: !0
+	},
+	grid_power: {
+		translationKeys: [],
+		domains: ["sensor"],
+		legacySuffixes: ["_grid_power", "_potencia_de_red"],
+		allowExternal: !0
+	},
+	voltage: {
+		translationKeys: ["voltage_installation"],
+		domains: ["number", "sensor"],
+		preferredDomains: ["number", "sensor"],
+		legacySuffixes: ["_voltage", "_tension_de_instalacion"]
+	},
+	intensity: {
+		translationKeys: ["intensity"],
+		domains: ["number"],
+		legacySuffixes: ["_intensity", "_intensidad"],
+		writable: !0
+	},
+	min_intensity: {
+		translationKeys: ["min_intensity"],
+		domains: ["number"],
+		legacySuffixes: ["_min_intensity", "_intensidad_minima"]
+	},
+	max_intensity: {
+		translationKeys: ["max_intensity"],
+		domains: ["number"],
+		legacySuffixes: ["_max_intensity", "_intensidad_maxima"]
+	},
+	meter_error: {
+		translationKeys: ["meter_error"],
+		domains: ["sensor", "binary_sensor"],
+		legacySuffixes: ["_meter_error", "_error_del_medidor"]
+	},
+	ssid: {
+		translationKeys: ["ssid"],
+		domains: ["sensor"],
+		legacySuffixes: ["_ssid"]
+	},
+	ip_address: {
+		translationKeys: ["ip_address"],
+		domains: ["sensor"],
+		legacySuffixes: ["_ip_address", "_ip"]
+	},
+	signal_status: {
+		translationKeys: ["signal_status"],
+		domains: ["sensor"],
+		legacySuffixes: ["_signal_status", "_signal"]
+	},
+	paused: {
+		translationKeys: ["paused"],
+		domains: ["switch"],
+		legacySuffixes: ["_paused", "_pausar_sesion"],
+		writable: !0
+	},
+	locked: {
+		translationKeys: ["locked"],
+		domains: ["switch"],
+		legacySuffixes: ["_locked", "_bloquear_evse"],
+		writable: !0
+	},
+	timer: {
+		translationKeys: ["timer"],
+		domains: ["switch"],
+		legacySuffixes: ["_timer", "_temporizador_de_punto_de_recarga"],
+		writable: !0
+	},
+	dynamic: {
+		translationKeys: ["dynamic"],
+		domains: ["switch"],
+		legacySuffixes: ["_dynamic", "_modulacion_de_intensidad_dinamica"],
+		writable: !0
+	},
+	pause_dynamic: {
+		translationKeys: ["pause_dynamic"],
+		domains: ["switch"],
+		legacySuffixes: ["_pause_dynamic", "_pausar_la_modulacion_de_control_dinamico"],
+		writable: !0
+	},
+	logo_led: {
+		translationKeys: ["logo_led"],
+		domains: ["light"],
+		legacySuffixes: ["_logo_led"],
+		writable: !0
+	},
+	light_led: {
+		translationKeys: ["light_led"],
+		domains: ["light"],
+		legacySuffixes: ["_light_led", "_luz_led"],
+		writable: !0
+	},
+	charge_mode: {
+		translationKeys: ["charge_mode"],
+		domains: ["select"],
+		legacySuffixes: ["_charge_mode", "_modo_de_carga"],
+		writable: !0
+	}
+}, ut = (e) => W[e].writable === !0;
+function dt(e) {
+	return e.split(".", 1)[0] ?? "";
+}
+function ft(e) {
+	return Array.isArray(e) ? e : Object.values(e);
+}
 function pt(e, t) {
-	let n = t.split(".", 1)[0] ?? "";
-	return ft[e]?.includes(n) ?? !0;
+	return !e || e[t] !== void 0;
+}
+function G(e, t) {
+	return W[e].domains.includes(dt(t));
 }
 function mt(e, t) {
-	return dt[t]?.some((t) => e.endsWith(t)) ?? !1;
+	if (dt(e) !== "sensor") return !1;
+	let n = t?.[e];
+	if (!n || n.state === "unknown" || n.state === "unavailable") return !0;
+	if (!Number.isFinite(Number(n.state))) return !1;
+	let r = n.attributes.unit_of_measurement?.toLowerCase(), i = n.attributes.device_class;
+	return (!r || [
+		"w",
+		"kw",
+		"mw"
+	].includes(r)) && (!i || i === "power");
 }
 function ht(e, t) {
-	if (t.length === 1) return t[0];
-	if (e === "voltage") {
-		let e = t.filter((e) => e.startsWith("sensor."));
-		if (e.length === 1) return e[0];
+	if (t.length === 0) return;
+	let n = W[e].preferredDomains ?? W[e].domains;
+	for (let e of n) {
+		let n = t.filter((t) => dt(t.entity_id) === e);
+		if (n.length === 1) return n[0].entity_id;
+		if (n.length > 1) return;
 	}
+	return t.length === 1 ? t[0].entity_id : void 0;
 }
-function gt(e, t, n = {}) {
-	let r = {}, i = {}, a = {}, o = e.find((e) => e.entity_id === t), s = o?.device_id ?? void 0, c = s ? e.filter((e) => e.device_id === s && e.disabled_by == null) : e.filter((e) => e.disabled_by == null);
-	for (let t of G) {
-		let a = n[t];
-		a && (pt(t, a) && (!s || c.some((e) => e.entity_id === a) || !e.some((e) => e.entity_id === a)) ? (r[t] = a, i[t] = "manual") : i[t] = "invalid");
+function gt(e, t, n = {}, r) {
+	let i = ft(e), a = new Map(i.map((e) => [e.entity_id, e])), o = a.get(t), s = o?.platform === "v2c" ? o.device_id : void 0, c = s ? i.filter((e) => e.device_id === s && e.platform === "v2c" && pt(r, e.entity_id)) : [], l = {}, u = {}, d = {};
+	for (let e of Object.keys(W)) {
+		let t = n[e];
+		if (!t) continue;
+		let o = a.get(t), c = W[e].allowExternal && mt(t, r), d = !!(s && o && o.device_id === s && o.platform === "v2c" && G(e, t) && pt(r, t)), f = i.length === 0 && pt(r, t) && G(e, t);
+		c || d || f ? (l[e] = t, u[e] = "manual") : u[e] = "invalid";
 	}
-	for (let e of G) {
-		if (r[e]) continue;
-		let t = c.filter((t) => ut[t.translation_key ?? ""] === e).map((e) => e.entity_id), n = ht(e, t);
-		if (n) {
-			r[e] = n, i[e] = "automatic";
+	for (let e of Object.keys(W)) {
+		if (l[e] || !s) continue;
+		let t = W[e], n = c.filter((n) => !!(n.translation_key && t.translationKeys.includes(n.translation_key)) && G(e, n.entity_id)), r = ht(e, n);
+		if (r) {
+			l[e] = r, u[e] = "automatic";
 			continue;
 		}
-		if (t.length > 1) {
-			a[e] = t, i[e] = "ambiguous";
+		if (n.length > 1) {
+			d[e] = n.map((e) => e.entity_id), u[e] = "ambiguous";
 			continue;
 		}
-		let o = c.filter((t) => mt(t.entity_id, e)).map((e) => e.entity_id), s = ht(e, o);
-		s ? (r[e] = s, i[e] = "automatic") : o.length > 1 && (a[e] = o, i[e] = "ambiguous");
-	}
-	if (o?.translation_key) {
-		let e = ut[o.translation_key];
-		e && !r[e] && (r[e] = t, i[e] = "automatic");
+		let i = c.filter((n) => G(e, n.entity_id) && (t.legacySuffixes ?? []).some((e) => n.entity_id.endsWith(e))), a = ht(e, i);
+		a ? (l[e] = a, u[e] = "automatic") : i.length > 1 && (d[e] = i.map((e) => e.entity_id), u[e] = "ambiguous");
 	}
 	return {
-		entities: r,
-		ambiguities: a,
-		missing: G.filter((e) => !r[e]),
+		entities: l,
+		ambiguities: d,
+		missing: Object.keys(W).filter((e) => !l[e]),
 		deviceId: s,
-		statuses: Object.fromEntries(G.map((e) => [e, i[e] ?? "missing"]))
+		statuses: Object.fromEntries(Object.keys(W).map((e) => [e, u[e] ?? "missing"]))
 	};
 }
-var _t = class {
-	#e = 0;
-	#t = /* @__PURE__ */ new Map();
-	invalidate() {
-		this.#e += 1, this.#t.clear();
-	}
-	async discover(e, t, n = {}) {
-		let r = ++this.#e, i = this.#t.get(t);
-		return i || (i = Object.values(e.entities ?? {}), i.length === 0 && e.callWS && (i = await e.callWS({ type: "config/entity_registry/list" })), this.#t.set(t, i)), r === this.#e ? gt(i, t, n) : null;
-	}
-};
+function _t(e, t, n, r) {
+	let i = e.entities?.[n], a = e.states[n];
+	return !!(r && ut(t) && i?.device_id === r && i.platform === "v2c" && G(t, n) && a && a.state !== "unknown" && a.state !== "unavailable");
+}
 //#endregion
 //#region src/services/energy.ts
 function vt(e) {
@@ -2151,8 +2215,20 @@ function Tt(e, t, n = "es") {
 	if (Number.isFinite(r)) return `${new Intl.NumberFormat(K(n), { maximumFractionDigits: 1 }).format(r)} ${t}`;
 }
 //#endregion
-//#region src/services/state.ts
-var Et = {
+//#region src/models/types.ts
+var Et = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), Dt = [
+	"disconnected",
+	"charging",
+	"complete",
+	"timer",
+	"updating",
+	"control_pilot",
+	"load_balancing",
+	"error",
+	"waiting_power",
+	"wifi_connected",
+	"wifi_connecting"
+], Ot = {
 	sin_vehiculo: "disconnected",
 	desconectado: "disconnected",
 	cargando: "charging",
@@ -2169,7 +2245,7 @@ var Et = {
 	esperando_potencia: "waiting_power",
 	wifi_conectado: "wifi_connected",
 	conectando_wifi: "wifi_connecting"
-}, Dt = {
+}, kt = {
 	disconnected: "neutral",
 	charging: "info",
 	complete: "success",
@@ -2182,16 +2258,16 @@ var Et = {
 	wifi_connected: "success",
 	wifi_connecting: "info"
 };
-function Ot(e) {
+function At(e) {
 	return e.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 }
-function kt(e) {
+function jt(e) {
 	if (!e) return;
-	let t = Ot(e);
-	return lt.includes(t) ? t : Et[t];
+	let t = At(e);
+	return Dt.includes(t) ? t : Ot[t];
 }
-function At(e) {
-	let t = kt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
+function Mt(e) {
+	let t = jt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
 	r = e.charging === !0 ? "charging" : e.ready === !0 ? "complete" : e.connected === !0 ? "connected" : n || e.seedAvailable === !1 ? "unavailable" : "disconnected";
 	let i = [];
 	e.paused === !0 && i.push("paused"), e.locked === !0 && i.push("locked"), e.timer === !0 && i.push("timer");
@@ -2213,13 +2289,13 @@ function q(e, t, n = !1) {
 		key: e,
 		labelKey: n ? "states.unavailable" : `states.${e}`,
 		detailKey: n ? "details.unavailable" : `details.${e}`,
-		severity: Dt[e],
+		severity: kt[e],
 		badges: t.inhibitors,
 		diagnostic: t.diagnostic,
 		unavailable: n
 	};
 }
-function jt(e) {
+function Nt(e) {
 	return e.externalStatus ? q(e.externalStatus, e) : e.fault === "control_pilot" ? q("control_pilot", e) : e.fault === "load_balancing" ? q("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? q("error", e) : e.maintenance === "updating" ? q("updating", e) : e.phase === "charging" ? q("charging", e) : e.phase === "complete" ? q("complete", e) : e.inhibitors.includes("timer") ? q("timer", e) : e.connectivity === "wifi_connecting" ? q("wifi_connecting", e) : e.connectivity === "wifi_connected" ? q("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? q("waiting_power", e) : q("disconnected", e, e.phase === "unavailable");
 }
 function J(e) {
@@ -2227,7 +2303,7 @@ function J(e) {
 }
 //#endregion
 //#region src/card/advanced-controls.ts
-var Mt = [
+var Pt = [
 	{
 		role: "locked",
 		label: "actions.lock"
@@ -2245,45 +2321,45 @@ var Mt = [
 		label: "actions.pauseDynamic"
 	}
 ];
-function Nt(e) {
+function Ft(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function Pt(e, t, n) {
+function It(e, t, n) {
 	let r = e.entities[t];
 	if (!r) return N;
 	let i = e.hass.states[r], a = i?.state === "on";
 	return j`
     <div class="toggle-row">
-      <span>${t === "locked" && a ? W(e.dictionary, "actions.unlock") : W(e.dictionary, n)}</span>
+      <span>${t === "locked" && a ? U(e.dictionary, "actions.unlock") : U(e.dictionary, n)}</span>
       <button
         data-role=${t}
         role="switch"
         aria-checked=${String(a)}
         aria-pressed=${String(a)}
         aria-busy=${String(e.pending.includes(t))}
-        ?disabled=${!Nt(i) || e.pending.includes(t)}
+        ?disabled=${!Ft(i) || e.pending.includes(t)}
         @click=${() => e.onToggle(t)}
       >${a ? "ON" : "OFF"}</button>
     </div>
   `;
 }
-function Ft(e) {
-	let t = Mt.map(({ role: t, label: n }) => Pt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
+function Lt(e) {
+	let t = Pt.map(({ role: t, label: n }) => It(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
 	return !t.some((e) => e !== N) && !n && !i && !o && !s ? N : j`
     <details ?open=${e.advancedOpen === !0}>
-      <summary>${W(e.dictionary, "labels.advanced")}</summary>
+      <summary>${U(e.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
         ${t.slice(0, 2).some((e) => e !== N) || n ? j`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.chargingControls")}</h3>
+                <h3>${U(e.dictionary, "labels.chargingControls")}</h3>
                 ${t.slice(0, 2)}
                 ${n ? j`
                       <label class="select-row">
-                        <span>${W(e.dictionary, "actions.chargeMode")}</span>
+                        <span>${U(e.dictionary, "actions.chargeMode")}</span>
                         <select
                           data-role="charge_mode"
                           .value=${r?.state ?? ""}
-                          ?disabled=${!Nt(r) || e.pending.includes("charge_mode")}
+                          ?disabled=${!Ft(r) || e.pending.includes("charge_mode")}
                           @change=${(t) => e.onSelect(t.target.value)}
                         >
                           ${(r?.attributes.options ?? []).map((e) => j`<option .value=${String(e)}>${String(e)}</option>`)}
@@ -2294,17 +2370,17 @@ function Ft(e) {
             ` : N}
         ${t.slice(2).some((e) => e !== N) ? j`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.energyControls")}</h3>
+                <h3>${U(e.dictionary, "labels.energyControls")}</h3>
                 ${t.slice(2)}
               </section>
             ` : N}
         ${i || o ? j`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.lightControls")}</h3>
-                ${Pt(e, "logo_led", "actions.logoLed")}
-                ${i && Nt(a) ? j`
+                <h3>${U(e.dictionary, "labels.lightControls")}</h3>
+                ${It(e, "logo_led", "actions.logoLed")}
+                ${i && Ft(a) ? j`
                       <label class="range-head" for="v2c-logo-brightness">
-                        <span>${W(e.dictionary, "actions.logoLed")}</span>
+                        <span>${U(e.dictionary, "actions.logoLed")}</span>
                         <output>${Math.round((Number(a?.attributes.brightness ?? 0) || 0) / 255 * 100)}%</output>
                       </label>
                       <input
@@ -2316,28 +2392,28 @@ function Ft(e) {
                         @change=${(t) => e.onBrightness(Number(t.target.value))}
                       />
                     ` : N}
-                ${Pt(e, "light_led", "actions.lightLed")}
+                ${It(e, "light_led", "actions.lightLed")}
               </section>
             ` : N}
         ${s ? j`
               <section class="control-group">
-                <h3>${W(e.dictionary, "labels.diagnostics")}</h3>
+                <h3>${U(e.dictionary, "labels.diagnostics")}</h3>
                 <dl class="technical-list">
                   ${e.voltage ? j`
                         <div class="technical-row">
-                          <dt>${W(e.dictionary, "labels.voltage")}</dt>
+                          <dt>${U(e.dictionary, "labels.voltage")}</dt>
                           <dd>${e.voltage.state} ${e.voltage.attributes.unit_of_measurement ?? "V"}</dd>
                         </div>
                       ` : N}
                   ${e.diagnostic ? j`
                         <div class="technical-row" data-severity="error">
-                          <dt>${W(e.dictionary, "labels.diagnostics")}</dt>
+                          <dt>${U(e.dictionary, "labels.diagnostics")}</dt>
                           <dd>${e.diagnostic}</dd>
                         </div>
                       ` : N}
                   ${e.ambiguityRoles?.length ? j`
                         <div class="technical-row">
-                          <dt>${W(e.dictionary, "labels.configuration")}</dt>
+                          <dt>${U(e.dictionary, "labels.configuration")}</dt>
                           <dd>YAML · ${e.ambiguityRoles.join(", ")}</dd>
                         </div>
                       ` : N}
@@ -2350,18 +2426,18 @@ function Ft(e) {
 }
 //#endregion
 //#region src/card/energy-flow.ts
-var It = {
+var Rt = {
 	solar: "mdi:solar-power",
 	grid: "mdi:transmission-tower",
 	home: "mdi:home-lightning-bolt",
 	battery: "mdi:home-battery",
 	charger: "mdi:ev-station"
 };
-function Lt(e, t, n) {
+function zt(e, t, n) {
 	if (e.length === 0) return N;
-	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${W(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
+	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${U(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
 	return j`
-    <section class="energy-section" aria-label=${W(t, "labels.energyFlow")}>
+    <section class="energy-section" aria-label=${U(t, "labels.energyFlow")}>
       <div class="energy-summary" data-kind=${o}>
         <p class="energy-summary-title">
           <ha-icon icon="mdi:lightning-bolt-outline" aria-hidden="true"></ha-icon>
@@ -2370,10 +2446,10 @@ function Lt(e, t, n) {
         ${a.length ? j`
               <div class="energy-nodes">
                 ${a.map((e) => {
-		let r = W(t, `flows.${e.role}`), i = W(t, `flows.${e.direction}`), a = St(e.watts, n);
+		let r = U(t, `flows.${e.role}`), i = U(t, `flows.${e.direction}`), a = St(e.watts, n);
 		return j`
                     <div class="flow-node" aria-label=${`${r}: ${a}, ${i}`}>
-                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${It[e.role]}></ha-icon></span>
+                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${Rt[e.role]}></ha-icon></span>
                       <span class="flow-name-text">${r}</span>
                       <strong class="flow-value">${a}</strong>
                       <span class="flow-direction">${i}</span>
@@ -2382,7 +2458,7 @@ function Lt(e, t, n) {
 	})}
               </div>
             ` : N}
-        ${a.length && i ? j`<p class="energy-note">${W(t, "flows.partialData")}</p>` : N}
+        ${a.length && i ? j`<p class="energy-note">${U(t, "flows.partialData")}</p>` : N}
       </div>
     </section>
   `;
@@ -2392,24 +2468,24 @@ function Lt(e, t, n) {
 function Y(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function Rt(e) {
+function Bt(e) {
 	let t = e.entities.intensity, n = e.entities.paused, r = t ? e.hass.states[t] : void 0, i = n ? e.hass.states[n] : void 0;
 	if (!t && !n) return N;
 	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on", f = e.intensityControl !== "presets", p = e.showPresets !== !1 && e.intensityControl !== "slider";
 	return j`
-    <section class="session-controls" aria-label=${W(e.dictionary, "labels.chargingControls")}>
+    <section class="session-controls" aria-label=${U(e.dictionary, "labels.chargingControls")}>
       ${t ? j`<div class="range-control">
-        ${f ? j`<label class="range-head" for="v2c-intensity"><span>${W(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
+        ${f ? j`<label class="range-head" for="v2c-intensity"><span>${U(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
         <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!Y(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : N}
-        ${p ? j`<div class="presets" aria-label=${W(e.dictionary, "labels.intensity")}>${u.map((t) => j`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!Y(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : N}
+        ${p ? j`<div class="presets" aria-label=${U(e.dictionary, "labels.intensity")}>${u.map((t) => j`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!Y(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : N}
       </div>` : N}
-      ${n ? j`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!Y(i) || e.pending.includes("paused")} title=${Y(i) ? "" : W(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${W(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : N}
+      ${n ? j`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!Y(i) || e.pending.includes("paused")} title=${Y(i) ? "" : U(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${U(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : N}
     </section>
   `;
 }
 //#endregion
 //#region src/card/styles.ts
-var zt = o`
+var Vt = o`
   :host {
     --v2c-surface: var(--ha-card-background, var(--card-background-color, light-dark(#ffffff, #181b1e)));
     --v2c-surface-soft: var(--secondary-background-color, light-dark(#f4f5f6, #202428));
@@ -3029,50 +3105,63 @@ function X(e, t, n, r) {
 }
 //#endregion
 //#region src/card/v2c-trydan-card.ts
-var Z = class extends z {
+var Z = class extends L {
 	constructor(...e) {
-		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = new _t(), this.#t = /* @__PURE__ */ new Map(), this.#n = "";
+		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = /* @__PURE__ */ new Map();
 	}
 	static {
-		this.styles = zt;
+		this.styles = Vt;
 	}
 	#e;
 	#t;
-	#n;
 	static getConfigElement() {
 		return document.createElement("v2c-trydan-card-editor");
 	}
 	static getStubConfig(e) {
-		return We(e);
+		return Ge(e);
 	}
 	setConfig(e) {
-		let t = this.config?.entity;
-		this.config = Ue(e), this.resolvedEntities = gt(Object.values(this.hass?.entities ?? {}), this.config.entity, this.config.entities).entities, this.sliderValue = void 0, this.#n = "", t && t !== this.config.entity && this.#e.invalidate();
+		this.config = We(e), this.#n(), this.sliderValue = void 0;
 	}
 	getCardSize() {
 		return this.config?.display_mode === "ultra_compact" ? 3 : this.config?.display_mode === "compact" ? 4 : this.config?.display_mode === "standard" ? 6 : 8;
 	}
+	getGridOptions() {
+		return {
+			columns: "full",
+			min_columns: 6
+		};
+	}
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		for (let e of this.#t.values()) e.timer && clearTimeout(e.timer);
-		this.#t.clear();
+		for (let e of this.#e.values()) e.timer && clearTimeout(e.timer);
+		this.#e.clear();
+	}
+	shouldUpdate(e) {
+		if (!e.has("hass") || e.size > 1) return !0;
+		let t = e.get("hass");
+		return !t || !this.hass || t.entities !== this.hass.entities || t.language !== this.hass.language || t.locale?.language !== this.hass.locale?.language || [...this.#r()].some((e) => t.states[e] !== this.hass.states[e]);
+	}
+	willUpdate(e) {
+		(e.has("config") || e.has("hass") && e.get("hass")?.entities !== this.hass?.entities) && this.#n();
 	}
 	updated(e) {
-		(e.has("hass") || this.#n === "") && (this.#r(), this.#l());
+		e.has("hass") && this.#l();
 	}
-	async #r() {
-		if (!this.hass || !this.config) return;
-		let e = Object.keys(this.hass.entities ?? {}).length, t = `${this.config.entity}|${JSON.stringify(this.config.entities ?? {})}|${e}`;
-		if (t !== this.#n) {
-			this.#n = t;
-			try {
-				let e = await this.#e.discover(this.hass, this.config.entity, this.config.entities);
-				if (!e || !this.isConnected || t !== this.#n) return;
-				this.resolvedEntities = e.entities, this.ambiguities = e.ambiguities;
-			} catch {
-				t === this.#n && (this.#n = "");
-			}
+	#n() {
+		if (!this.hass || !this.config) {
+			this.resolvedEntities = {}, this.ambiguities = {}, this.#t = void 0;
+			return;
 		}
+		let e = gt(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
+		this.resolvedEntities = e.entities, this.ambiguities = e.ambiguities, this.#t = e.deviceId;
+	}
+	#r() {
+		return new Set([
+			this.config?.entity,
+			this.config?.status_entity,
+			...Object.values(this.resolvedEntities)
+		].filter((e) => !!e));
 	}
 	#i(e) {
 		let t = this.resolvedEntities[e];
@@ -3088,24 +3177,28 @@ var Z = class extends z {
 		return (e ? `--v2c-control:${e};--v2c-on-control:${t};` : "") + (this.config?.card_radius === void 0 ? "" : `--v2c-radius:${this.config.card_radius}px;`) + `--v2c-hero-scale:${this.config?.hero_scale ?? 1};`;
 	}
 	#o() {
-		return rt(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
+		return it(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
 	}
 	#s(e, t) {
-		this.#t.set(e, t), this.pendingRoles = [...this.#t.keys()];
+		this.#e.set(e, t), this.pendingRoles = [...this.#e.keys()];
 	}
 	#c(e, t) {
-		let n = this.#t.get(e);
-		n?.timer && clearTimeout(n.timer), this.#t.delete(e), this.pendingRoles = [...this.#t.keys()];
-		let r = U(this.#o());
-		this.actionMessage = W(r, t ? "labels.actionDone" : "labels.actionFailed");
+		let n = this.#e.get(e);
+		n?.timer && clearTimeout(n.timer), this.#e.delete(e), this.pendingRoles = [...this.#e.keys()];
+		let r = H(this.#o());
+		this.actionMessage = U(r, t ? "labels.actionDone" : "labels.actionFailed");
 	}
 	#l() {
-		if (this.hass) for (let [e, t] of this.#t) t.matches(this.hass.states[t.entityId]) && this.#c(e, !0);
+		if (this.hass) for (let [e, t] of this.#e) t.matches(this.hass.states[t.entityId]) && this.#c(e, !0);
 	}
 	async #u(e, t, n, r) {
-		if (this.#t.has(e)) return;
-		let i = U(this.#o());
-		this.actionMessage = W(i, "labels.actionPending");
+		if (!this.hass || !_t(this.hass, e, t, this.#t)) {
+			this.actionMessage = U(H(this.#o()), "labels.actionFailed");
+			return;
+		}
+		if (this.#e.has(e)) return;
+		let i = H(this.#o());
+		this.actionMessage = U(i, "labels.actionPending");
 		let a = {
 			entityId: t,
 			matches: n
@@ -3125,31 +3218,31 @@ var Z = class extends z {
 		let t = this.resolvedEntities.intensity, n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = Number(n.attributes.min ?? 6), i = Number(n.attributes.max ?? 32), a = Number(n.attributes.step ?? 1), o = Number.isFinite(a) && a > 0 ? a : 1, s = Math.min(i, Math.max(r, Math.round((e - r) / o) * o + r));
-		this.sliderValue = s, this.#u("intensity", t, (e) => Number(e?.state) === s, () => at(this.hass, t, s));
+		this.sliderValue = s, this.#u("intensity", t, (e) => Number(e?.state) === s, () => ot(this.hass, t, s));
 	}
 	#f(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(W(U(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ot(this.hass, t, r));
+		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(U(H(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => st(this.hass, t, r));
 	}
 	#p(e) {
-		let t = this.resolvedEntities.charge_mode;
-		!this.hass || !t || this.#u("charge_mode", t, (t) => t?.state === e, () => st(this.hass, t, e));
+		let t = this.resolvedEntities.charge_mode, n = t ? this.hass?.states[t] : void 0;
+		!this.hass || !t || !n || !n.attributes.options?.includes(e) || this.#u("charge_mode", t, (t) => t?.state === e, () => ct(this.hass, t, e));
 	}
 	#m(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ct(this.hass, t, r));
+		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => lt(this.hass, t, r));
 	}
 	#h(e) {
-		let t = this.resolvedEntities.logo_led;
-		!this.hass || !t || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => ct(this.hass, t, !0, e));
+		let t = this.resolvedEntities.logo_led, n = t ? this.hass?.states[t] : void 0;
+		!this.hass || !t || !n || !Number.isFinite(e) || e < 0 || e > 255 || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => lt(this.hass, t, !0, e));
 	}
 	render() {
 		if (!this.config || !this.hass) return j`<ha-card><div class="empty">V2C Trydan Card · configuración pendiente</div></ha-card>`;
-		let e = this.#o(), t = U(e), n = this.hass.states[this.config.entity], r = bt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = jt(At({
+		let e = this.#o(), t = H(e), n = this.hass.states[this.config.entity], r = bt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = Nt(Mt({
 			seedAvailable: !!(n && n.state !== "unknown" && n.state !== "unavailable"),
 			connected: J(this.#i("connected")?.state),
 			charging: J(this.#i("charging")?.state),
@@ -3190,19 +3283,19 @@ var Z = class extends z {
 		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => bt(e, this.#i(t), {
 			invert: n,
 			thresholdW: this.config?.flow_threshold_w
-		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? j`<div class="metric metric-power"><span class="metric-label">${W(t, "labels.power")}</span><strong class="metric-value">${St(r.watts, e)}</strong></div>` : n === "energy" ? j`<div class="metric"><span class="metric-label">${W(t, "labels.energy")}</span><strong class="metric-value">${Ct(o?.state ?? null, e)}</strong></div>` : j`<div class="metric"><span class="metric-label">${W(t, "labels.time")}</span><strong class="metric-value">${wt(s?.state ?? null)}</strong></div>`), ee = Object.keys(this.ambiguities), m = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, h = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", g = it(e, i.key, {
+		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? j`<div class="metric metric-power"><span class="metric-label">${U(t, "labels.power")}</span><strong class="metric-value">${St(r.watts, e)}</strong></div>` : n === "energy" ? j`<div class="metric"><span class="metric-label">${U(t, "labels.energy")}</span><strong class="metric-value">${Ct(o?.state ?? null, e)}</strong></div>` : j`<div class="metric"><span class="metric-label">${U(t, "labels.time")}</span><strong class="metric-value">${wt(s?.state ?? null)}</strong></div>`), ee = Object.keys(this.ambiguities), m = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, h = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", g = at(e, i.key, {
 			power: St(r.watts, e),
 			current: Tt(c?.state ?? null, "A", e),
 			voltage: Tt(l?.state ?? null, "V", e),
 			energy: Ct(o?.state ?? null, e)
-		}), _ = Math.max(g.primary.length, g.secondary.length), v = j`
+		}), te = Math.max(g.primary.length, g.secondary.length), _ = j`
       <section class="hero ${h ? "has-charger" : "without-charger"}" data-section="hero">
-        ${h ? j`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${Pe(Fe[i.key])}<div class="charger-lcd ${_ > 24 ? "is-very-long" : _ > 18 ? "is-long" : ""}"><span>${g.primary}</span><span>${g.secondary}</span></div></div></div>` : N}
+        ${h ? j`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${Fe(Ie[i.key])}<div class="charger-lcd ${te > 24 ? "is-very-long" : te > 18 ? "is-long" : ""}"><span>${g.primary}</span><span>${g.secondary}</span></div></div></div>` : N}
         <div class="hero-copy">
-          <div class="charger-status" data-severity=${i.severity} role="status">${W(t, i.labelKey)}</div>
-          ${this.config.show_badges !== !1 && i.badges.length ? j`<div class="badges" aria-label=${W(t, "labels.additionalStatus")}>${i.badges.map((e) => j`<span class="badge">${W(t, `badges.${e}`)}</span>`)}</div>` : N}
+          <div class="charger-status" data-severity=${i.severity} role="status">${U(t, i.labelKey)}</div>
+          ${this.config.show_badges !== !1 && i.badges.length ? j`<div class="badges" aria-label=${U(t, "labels.additionalStatus")}>${i.badges.map((e) => j`<span class="badge">${U(t, `badges.${e}`)}</span>`)}</div>` : N}
         </div>
-      </section>`, y = p.length ? j`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : N, b = this.config.show_controls ? j`<div data-section="controls">${Rt({
+      </section>`, v = p.length ? j`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : N, y = this.config.show_controls ? j`<div data-section="controls">${Bt({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
@@ -3214,7 +3307,7 @@ var Z = class extends z {
 			onSliderInput: (e) => this.sliderValue = e,
 			onIntensity: (e) => this.#d(e),
 			onPause: () => this.#f("paused")
-		})}</div>` : N, te = this.config.show_energy_flow ? j`<div data-section="energy">${Lt(f, t, e)}</div>` : N, x = this.config.show_advanced ? j`<div data-section="advanced">${Ft({
+		})}</div>` : N, ne = this.config.show_energy_flow ? j`<div data-section="energy">${zt(f, t, e)}</div>` : N, b = this.config.show_advanced ? j`<div data-section="advanced">${Lt({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
@@ -3226,15 +3319,15 @@ var Z = class extends z {
 			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#m(e) : this.#f(e),
 			onSelect: (e) => this.#p(e),
 			onBrightness: (e) => this.#h(e)
-		})}</div>` : N, S = (e) => {
+		})}</div>` : N, x = (e) => {
 			switch (e) {
-				case "hero": return v;
-				case "metrics": return y;
-				case "controls": return b;
-				case "energy": return te;
-				default: return x;
+				case "hero": return _;
+				case "metrics": return v;
+				case "controls": return y;
+				case "energy": return ne;
+				default: return b;
 			}
-		}, C = this.config.section_order ?? [
+		}, re = this.config.section_order ?? [
 			"hero",
 			"metrics",
 			"controls",
@@ -3245,16 +3338,16 @@ var Z = class extends z {
       <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== !1)} style=${this.#a()}>
         <div class="shell">
           ${this.config.show_header === !1 ? N : j`<header class="card-heading"><h2>${a}</h2>${this.config.location ? j`<span class="location">${this.config.location}</span>` : N}</header>`}
-          <div class="content-sections">${C.map(S)}</div>
+          <div class="content-sections">${re.map(x)}</div>
           <p class="live-region" aria-live="polite">${this.actionMessage}</p>
         </div>
       </ha-card>`;
 	}
 };
-X([Oe({ attribute: !1 })], Z.prototype, "hass", void 0), X([B()], Z.prototype, "config", void 0), X([B()], Z.prototype, "resolvedEntities", void 0), X([B()], Z.prototype, "ambiguities", void 0), X([B()], Z.prototype, "sliderValue", void 0), X([B()], Z.prototype, "pendingRoles", void 0), X([B()], Z.prototype, "actionMessage", void 0);
+X([R({ attribute: !1 })], Z.prototype, "hass", void 0), X([z()], Z.prototype, "config", void 0), X([z()], Z.prototype, "resolvedEntities", void 0), X([z()], Z.prototype, "ambiguities", void 0), X([z()], Z.prototype, "sliderValue", void 0), X([z()], Z.prototype, "pendingRoles", void 0), X([z()], Z.prototype, "actionMessage", void 0);
 //#endregion
 //#region src/localization/editor-copy.ts
-var Bt = {
+var Ht = {
 	en: {
 		general: "General",
 		appearance: "Appearance",
@@ -3825,7 +3918,7 @@ var Bt = {
 		statusInvalid: "Invalidă",
 		statusMissing: "Negăsită"
 	}
-}, Vt = {
+}, Ut = {
 	en: {
 		connected: "Vehicle connected",
 		charging: "Charging",
@@ -4107,61 +4200,61 @@ var Bt = {
 		charge_mode: "Mod de încărcare"
 	}
 };
-function Ht(e) {
-	return Bt[e];
+function Wt(e) {
+	return Ht[e];
 }
-function Ut(e, t) {
-	return Vt[e][t];
+function Gt(e, t) {
+	return Ut[e][t];
 }
-function Wt(e, t) {
+function Kt(e, t) {
 	return e[`status${t[0].toUpperCase()}${t.slice(1)}`];
 }
 //#endregion
 //#region src/editor/v2c-trydan-card-editor.ts
-var Gt = {
+var qt = {
 	en: "English",
 	it: "Italiano",
 	de: "Deutsch",
-	fr: "Français",
+	fr: "FranÃ§ais",
 	nl: "Nederlands",
 	sv: "Svenska",
 	da: "Dansk",
 	no: "Norsk",
-	ro: "Română",
-	es: "Español"
-}, Kt = {
+	ro: "RomÃ¢nÄƒ",
+	es: "EspaÃ±ol"
+}, Jt = {
 	en: "Ultra compact mode always hides the charger artwork. Your setting is preserved for other sizes.",
-	es: "El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaños.",
-	it: "La modalità ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
-	de: "Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt für andere Größen erhalten.",
-	fr: "Le mode ultra compact masque toujours le chargeur. Le réglage reste conservé pour les autres tailles.",
+	es: "El modo ultracompacto siempre oculta el cargador. Tu ajuste se conserva para otros tamaÃ±os.",
+	it: "La modalitÃ\xA0 ultra compatta nasconde sempre il caricatore. L'impostazione resta per le altre dimensioni.",
+	de: "Ultrakompakt blendet den Lader immer aus. Die Einstellung bleibt fÃ¼r andere GrÃ¶ÃŸen erhalten.",
+	fr: "Le mode ultra compact masque toujours le chargeur. Le rÃ©glage reste conservÃ© pour les autres tailles.",
 	nl: "Ultracompact verbergt de lader altijd. De instelling blijft bewaard voor andere formaten.",
-	sv: "Ultrakompakt döljer alltid laddaren. Inställningen sparas för andra storlekar.",
-	da: "Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre størrelser.",
-	no: "Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre størrelser.",
-	ro: "Modul ultra compact ascunde mereu încărcătorul. Setarea rămâne salvată pentru alte dimensiuni."
-}, qt = [
+	sv: "Ultrakompakt dÃ¶ljer alltid laddaren. InstÃ¤llningen sparas fÃ¶r andra storlekar.",
+	da: "Ultrakompakt skjuler altid laderen. Indstillingen bevares til andre stÃ¸rrelser.",
+	no: "Ultrakompakt skjuler alltid laderen. Innstillingen beholdes for andre stÃ¸rrelser.",
+	ro: "Modul ultra compact ascunde mereu Ã®ncÄƒrcÄƒtorul. Setarea rÄƒmÃ¢ne salvatÄƒ pentru alte dimensiuni."
+}, Yt = [
 	"power",
 	"energy",
 	"time"
-], Jt = [
+], Xt = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], Yt = [
+], Zt = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
-], Xt = [
+], Qt = [
 	["show_energy_flow", "editor.showEnergyFlow"],
 	["show_controls", "editor.showControls"],
 	["show_advanced", "editor.showAdvanced"],
 	["show_charger", "editor.showCharger"]
-], Q = class extends z {
+], Q = class extends L {
 	constructor(...e) {
 		super(...e), this.accentDraft = "#0067D9", this.presetDraft = "";
 	}
@@ -4174,7 +4267,7 @@ var Gt = {
     .group > summary { display:flex; min-height:48px; padding:12px 14px; align-items:center; gap:8px; cursor:pointer; color:var(--primary-text-color); font-size:.92rem; font-weight:700; list-style:none; }
     .group > summary::-webkit-details-marker { display:none; }
     .group > summary::after { content:"+"; margin-left:auto; color:var(--secondary-text-color); font-size:1.15rem; }
-    .group[open] > summary::after { content:"−"; }
+    .group[open] > summary::after { content:"âˆ’"; }
     .group-body { display:grid; gap:14px; padding:0 14px 16px; }
     .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
     label,.field { display:grid; gap:6px; color:var(--secondary-text-color); font-size:.78rem; }
@@ -4232,6 +4325,11 @@ var Gt = {
 			entities: { ...e.entities ?? {} }
 		}, this.accentDraft = /^#[0-9a-f]{6}$/i.test(e.accent_color ?? "") ? e.accent_color.toUpperCase() : "#0067D9";
 	}
+	shouldUpdate(e) {
+		if (!e.has("hass") || e.size > 1) return !0;
+		let t = e.get("hass");
+		return !t || !this.hass || t.entities !== this.hass.entities || t.language !== this.hass.language || t.locale?.language !== this.hass.locale?.language;
+	}
 	#e(e) {
 		this.config = e, this.dispatchEvent(new CustomEvent("config-changed", {
 			detail: { config: e },
@@ -4257,7 +4355,7 @@ var Gt = {
 	}
 	#i(e) {
 		if (!this.config) return;
-		let t = this.config.metrics ?? [...qt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		let t = this.config.metrics ?? [...Yt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
 		this.#e({
 			...this.config,
 			metrics: n
@@ -4265,15 +4363,15 @@ var Gt = {
 	}
 	#a(e) {
 		if (!this.config) return;
-		let t = this.config.energy_sources ?? [...Jt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		let t = this.config.energy_sources ?? [...Xt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
 		this.#e({
 			...this.config,
 			energy_sources: n
 		});
 	}
 	#o() {
-		let e = (this.config?.section_order ?? []).filter((e) => Yt.includes(e));
-		return [.../* @__PURE__ */ new Set([...e, ...Yt])];
+		let e = (this.config?.section_order ?? []).filter((e) => Zt.includes(e));
+		return [.../* @__PURE__ */ new Set([...e, ...Zt])];
 	}
 	#s(e, t) {
 		if (!this.config) return;
@@ -4308,7 +4406,7 @@ var Gt = {
 		if (!this.config) return;
 		let e = Number(this.presetDraft);
 		if (!Number.isInteger(e) || e <= 0 || e > 80) return;
-		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? V, e])].sort((e, t) => e - t);
+		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? B, e])].sort((e, t) => e - t);
 		this.presetDraft = "", this.#e({
 			...this.config,
 			current_presets: t
@@ -4317,7 +4415,7 @@ var Gt = {
 	#f(e) {
 		this.config && this.#e({
 			...this.config,
-			current_presets: (this.config.current_presets ?? V).filter((t) => t !== e)
+			current_presets: (this.config.current_presets ?? B).filter((t) => t !== e)
 		});
 	}
 	#p(e, t) {
@@ -4330,39 +4428,39 @@ var Gt = {
 	}
 	render() {
 		if (!this.config) return N;
-		let e = rt(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = U(e), n = Ht(e), r = Object.keys(this.hass?.states ?? {}), i = this.hass ? gt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities) : void 0, a = this.#o(), o = this.config.metrics ?? [...qt], s = this.config.energy_sources ?? [...Jt], c = this.config.current_presets ?? V, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
-			hero: W(t, "editor.showCharger"),
+		let e = it(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = H(e), n = Wt(e), r = Object.keys(this.hass?.states ?? {}), i = this.hass ? gt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities) : void 0, a = this.#o(), o = this.config.metrics ?? [...Yt], s = this.config.energy_sources ?? [...Xt], c = this.config.current_presets ?? B, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
+			hero: U(t, "editor.showCharger"),
 			metrics: n.metrics,
-			controls: W(t, "editor.showControls"),
-			energy: W(t, "editor.showEnergyFlow"),
-			advanced: W(t, "editor.showAdvanced")
+			controls: U(t, "editor.showControls"),
+			energy: U(t, "editor.showEnergyFlow"),
+			advanced: U(t, "editor.showAdvanced")
 		}, f = {
-			power: W(t, "labels.power"),
-			energy: W(t, "labels.energy"),
-			time: W(t, "labels.time")
+			power: U(t, "labels.power"),
+			energy: U(t, "labels.energy"),
+			time: U(t, "labels.time")
 		}, p = {
-			solar: W(t, "flows.solar"),
-			grid: W(t, "flows.grid"),
-			home: W(t, "flows.home"),
-			battery: W(t, "flows.battery"),
-			charger: W(t, "flows.charger")
+			solar: U(t, "flows.solar"),
+			grid: U(t, "flows.grid"),
+			home: U(t, "flows.home"),
+			battery: U(t, "flows.battery"),
+			charger: U(t, "flows.charger")
 		};
 		return j`
       <div class="editor">
         <details class="group" open>
           <summary>${n.general}</summary><div class="group-body">
-            <label><span>${W(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
+            <label><span>${U(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
             <div class="grid">
-              <label><span>${W(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
-              <label><span>${W(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
-              <label><span>${W(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${tt.map((e) => j`<option .value=${e}>${Gt[e]}</option>`)}</select></label>
-              <label><span>${W(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${W(t, "editor.themeAuto")}</option><option value="light">${W(t, "editor.themeLight")}</option><option value="dark">${W(t, "editor.themeDark")}</option></select></label>
+              <label><span>${U(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
+              <label><span>${U(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
+              <label><span>${U(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${nt.map((e) => j`<option .value=${e}>${qt[e]}</option>`)}</select></label>
+              <label><span>${U(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${U(t, "editor.themeAuto")}</option><option value="light">${U(t, "editor.themeLight")}</option><option value="dark">${U(t, "editor.themeDark")}</option></select></label>
             </div>
-            <div class="field"><span class="field-title">${W(t, "editor.displayMode")}</span><div class="choices">${[
+            <div class="field"><span class="field-title">${U(t, "editor.displayMode")}</span><div class="choices">${[
 			["xxl", n.modeXxl],
-			["standard", W(t, "editor.modeStandard")],
-			["compact", W(t, "editor.modeCompact")],
-			["ultra_compact", W(t, "editor.modeUltra")]
+			["standard", U(t, "editor.modeStandard")],
+			["compact", U(t, "editor.modeCompact")],
+			["ultra_compact", U(t, "editor.modeUltra")]
 		].map(([e, t]) => j`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
           </div>
         </details>
@@ -4422,11 +4520,11 @@ var Gt = {
 
         <details class="group" open>
           <summary>${n.contentOrder}</summary><div class="group-body">
-            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${qt.map((e) => j`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${Jt.map((e) => j`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => j`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>↑</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>↓</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
-            <div class="checks">${Xt.map(([e, n]) => j`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${W(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
-            ${u ? j`<p class="help" data-help="ultra-artwork">${Kt[e]}</p>` : N}
+            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${Yt.map((e) => j`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${Xt.map((e) => j`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => j`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>â†‘</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>â†“</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
+            <div class="checks">${Qt.map(([e, n]) => j`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${U(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
+            ${u ? j`<p class="help" data-help="ultra-artwork">${Jt[e]}</p>` : N}
           </div>
         </details>
 
@@ -4438,33 +4536,40 @@ var Gt = {
 			["both", n.both]
 		].map(([e, t]) => j`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
             <label><span class="field-title">${n.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e) => this.#r("flow_threshold_w", e.target.value)} /></label>
-            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => j`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>×</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
+            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => j`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>Ã—</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
 			e.key === "Enter" && (e.preventDefault(), this.#d());
-		}} /><button type="button" @click=${() => this.#d()}>${n.addPreset}</button></div></div>
+		}} /><button type="button" data-action="add-preset" @click=${() => this.#d()}>${n.addPreset}</button></div></div>
             <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />${n.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />${n.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />${n.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />${n.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />${n.invertSolar}</label></div>
           </div>
         </details>
 
         <details class="group">
-          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p><div class="grid">${G.map((t) => {
+          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p><div class="grid">${Et.map((t) => {
 			let r = i?.statuses[t] ?? "missing";
-			return j`<label><span>${Ut(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${Wt(n, r)}</small></label>`;
+			return j`<label><span>${Gt(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${Kt(n, r)}</small></label>`;
 		})}</div></div>
         </details>
         <datalist id="v2c-entities">${r.map((e) => j`<option value=${e}></option>`)}</datalist>
       </div>`;
 	}
 };
-X([Oe({ attribute: !1 })], Q.prototype, "hass", void 0), X([B()], Q.prototype, "config", void 0), X([B()], Q.prototype, "accentDraft", void 0), X([B()], Q.prototype, "presetDraft", void 0);
+X([R({ attribute: !1 })], Q.prototype, "hass", void 0), X([z()], Q.prototype, "config", void 0), X([z()], Q.prototype, "accentDraft", void 0), X([z()], Q.prototype, "presetDraft", void 0);
 //#endregion
 //#region src/index.ts
-var $ = "v2c-trydan-card", Zt = "v2c-trydan-card-editor";
-customElements.get($) || customElements.define($, Z), customElements.get(Zt) || customElements.define(Zt, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
+var $ = "v2c-trydan-card", $t = "v2c-trydan-card-editor";
+customElements.get($) || customElements.define($, Z), customElements.get($t) || customElements.define($t, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
 	type: $,
 	name: "V2C Trydan Card",
 	description: "Home Assistant V2C Trydan EV charger card with visual editor, controls and energy monitoring.",
 	documentationURL: "https://github.com/mactron254/v2c-trydan-card#readme",
-	preview: !0
+	preview: !0,
+	getEntitySuggestion: (e, t) => {
+		let n = e.entities?.[t];
+		return n?.platform === "v2c" && n.device_id ? { config: {
+			type: "custom:v2c-trydan-card",
+			entity: t
+		} } : null;
+	}
 });
 //#endregion
 export { Z as V2cTrydanCard, Q as V2cTrydanCardEditor };

@@ -67,16 +67,16 @@ describe("multilingual visual editor", () => {
 
     const draft=editor.shadowRoot?.querySelector<HTMLInputElement>('[data-field="preset_draft"]')!;
     draft.value="18"; draft.dispatchEvent(new Event("input",{ bubbles:true }));
-    const add=Array.from(editor.shadowRoot?.querySelectorAll("button") ?? []).find((button) => button.textContent?.includes("Añadir amperaje"));
+    const add=editor.shadowRoot?.querySelector<HTMLButtonElement>("[data-action=\"add-preset\"]");
     add?.click(); await editor.updateComplete;
     expect(latest?.current_presets).toContain(18);
   });
 
   it("shows translated discovery resolution", async () => {
     const editor=makeEditor("es");
-    editor.hass={ states:{}, callService:async()=>undefined, entities:{
-      "binary_sensor.trydan":{ entity_id:"binary_sensor.trydan", device_id:"trydan", translation_key:"connected" },
-      "sensor.manual_power":{ entity_id:"sensor.manual_power", device_id:"trydan", translation_key:"charge_power" },
+    editor.hass={ states:{ "binary_sensor.trydan":{ entity_id:"binary_sensor.trydan", state:"on", attributes:{} }, "sensor.manual_power":{ entity_id:"sensor.manual_power", state:"1200", attributes:{ unit_of_measurement:"W" } } }, callService:async()=>undefined, entities:{
+      "binary_sensor.trydan":{ entity_id:"binary_sensor.trydan", device_id:"trydan", platform:"v2c", translation_key:"connected" },
+      "sensor.manual_power":{ entity_id:"sensor.manual_power", device_id:"trydan", platform:"v2c", translation_key:"charge_power" },
     }} as HomeAssistant;
     editor.setConfig({ type:"custom:v2c-trydan-card", entity:"binary_sensor.trydan", language:"es", entities:{ charge_power:"sensor.manual_power" } });
     await editor.updateComplete;

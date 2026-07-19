@@ -13,7 +13,7 @@ import type {
   V2cTrydanCardConfig,
 } from "../models/types";
 import { setLight, setNumber, setSelect, setSwitch } from "../services/actions";
-import { EntityDiscovery, resolveRegistryRoles } from "../services/discovery";
+import { isActionTargetValid, resolveRegistryRoles } from "../services/discovery";
 import { normalizeEnergyFlow } from "../services/energy";
 import { formatDuration, formatEnergy, formatMeasure, formatPower } from "../services/format";
 import { entityBoolean, resolveSnapshot, resolveVisualState } from "../services/state";
@@ -39,9 +39,8 @@ export class V2cTrydanCard extends LitElement {
   @state() private pendingRoles: EntityRole[] = [];
   @state() private actionMessage = "";
 
-  readonly #discovery = new EntityDiscovery();
   readonly #pending = new Map<EntityRole, PendingExpectation>();
-  #discoveryKey = "";
+  #resolvedDeviceId?: string;
 
   static getConfigElement(): HTMLElement {
     return document.createElement("v2c-trydan-card-editor");
@@ -52,12 +51,9 @@ export class V2cTrydanCard extends LitElement {
   }
 
   setConfig(config: V2cTrydanCardConfig): void {
-    const previousSeed = this.config?.entity;
     this.config = normalizeConfig(config);
-    this.resolvedEntities = resolveRegistryRoles(Object.values(this.hass?.entities ?? {}), this.config.entity, this.config.entities).entities;
+    this.#resolveEntities();
     this.sliderValue = undefined;
-    this.#discoveryKey = "";
-    if (previousSeed && previousSeed !== this.config.entity) this.#discovery.invalidate();
   }
 
   getCardSize(): number {
@@ -65,6 +61,10 @@ export class V2cTrydanCard extends LitElement {
     if (this.config?.display_mode === "compact") return 4;
     if (this.config?.display_mode === "standard") return 6;
     return 8;
+  }
+
+  getGridOptions() {
+    return { columns: "full" as const, min_columns: 6 };
   }
 
   override disconnectedCallback(): void {
@@ -75,27 +75,48 @@ export class V2cTrydanCard extends LitElement {
     this.#pending.clear();
   }
 
-  protected override updated(changed: PropertyValues<this>): void {
-    if (changed.has("hass") || this.#discoveryKey === "") {
-      void this.#ensureDiscovery();
-      this.#confirmPending();
-    }
+  protected override shouldUpdate(changed: PropertyValues<this>): boolean {
+    if (!changed.has("hass") || changed.size > 1) return true;
+    const previous = changed.get("hass") as HomeAssistant | undefined;
+    if (!previous || !this.hass) return true;
+    if (
+      previous.entities !== this.hass.entities ||
+      previous.language !== this.hass.language ||
+      previous.locale?.language !== this.hass.locale?.language
+    ) return true;
+    return [...this.#watchedEntityIds()].some((entityId) => previous.states[entityId] !== this.hass!.states[entityId]);
   }
 
-  async #ensureDiscovery(): Promise<void> {
-    if (!this.hass || !this.config) return;
-    const metadataCount = Object.keys(this.hass.entities ?? {}).length;
-    const key = `${this.config.entity}|${JSON.stringify(this.config.entities ?? {})}|${metadataCount}`;
-    if (key === this.#discoveryKey) return;
-    this.#discoveryKey = key;
-    try {
-      const result = await this.#discovery.discover(this.hass, this.config.entity, this.config.entities);
-      if (!result || !this.isConnected || key !== this.#discoveryKey) return;
-      this.resolvedEntities = result.entities;
-      this.ambiguities = result.ambiguities;
-    } catch {
-      if (key === this.#discoveryKey) this.#discoveryKey = "";
+  protected override willUpdate(changed: PropertyValues<this>): void {
+    if (
+      changed.has("config" as never) ||
+      (changed.has("hass") && (changed.get("hass") as HomeAssistant | undefined)?.entities !== this.hass?.entities)
+    ) this.#resolveEntities();
+  }
+
+  protected override updated(changed: PropertyValues<this>): void {
+    if (changed.has("hass")) this.#confirmPending();
+  }
+
+  #resolveEntities(): void {
+    if (!this.hass || !this.config) {
+      this.resolvedEntities = {};
+      this.ambiguities = {};
+      this.#resolvedDeviceId = undefined;
+      return;
     }
+    const result = resolveRegistryRoles(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
+    this.resolvedEntities = result.entities;
+    this.ambiguities = result.ambiguities;
+    this.#resolvedDeviceId = result.deviceId;
+  }
+
+  #watchedEntityIds(): Set<string> {
+    return new Set([
+      this.config?.entity,
+      this.config?.status_entity,
+      ...Object.values(this.resolvedEntities),
+    ].filter((entityId): entityId is string => Boolean(entityId)));
   }
 
   #entity(role: EntityRole): HassEntity | undefined {
@@ -141,6 +162,10 @@ export class V2cTrydanCard extends LitElement {
     matches: PendingExpectation["matches"],
     action: () => Promise<unknown>,
   ): Promise<void> {
+    if (!this.hass || !isActionTargetValid(this.hass, role, entityId, this.#resolvedDeviceId)) {
+      this.actionMessage = translate(getDictionary(this.#language()), "labels.actionFailed");
+      return;
+    }
     if (this.#pending.has(role)) return;
     const dictionary = getDictionary(this.#language());
     this.actionMessage = translate(dictionary, "labels.actionPending");
@@ -197,7 +222,8 @@ export class V2cTrydanCard extends LitElement {
 
   #setMode(option: string): void {
     const entityId = this.resolvedEntities.charge_mode;
-    if (!this.hass || !entityId) return;
+    const entity = entityId ? this.hass?.states[entityId] : undefined;
+    if (!this.hass || !entityId || !entity || !entity.attributes.options?.includes(option)) return;
     void this.#runAction(
       "charge_mode",
       entityId,
@@ -221,7 +247,8 @@ export class V2cTrydanCard extends LitElement {
 
   #setLogoBrightness(value: number): void {
     const entityId = this.resolvedEntities.logo_led;
-    if (!this.hass || !entityId) return;
+    const entity = entityId ? this.hass?.states[entityId] : undefined;
+    if (!this.hass || !entityId || !entity || !Number.isFinite(value) || value < 0 || value > 255) return;
     void this.#runAction(
       "logo_led",
       entityId,
