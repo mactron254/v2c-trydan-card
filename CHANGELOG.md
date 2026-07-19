@@ -16,6 +16,13 @@ All notable changes are documented here. Versions follow semantic versioning.
 - Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
 - Redesign both README files with compact density comparisons, localized media, ten-language list, project story and transparent AI attribution.
 - Refresh visual guides, forum drafts, machine-readable project context, failure log and handoff.
+## [0.5.0-beta.4] - 2026-07-19
+
+### Fixed
+
+- Restore editor CSS parsing and replace control glyphs with ASCII HTML entities.
+- Add regression coverage for Unicode replacement characters in editor controls.
+
 ## [0.5.0-beta.3] - 2026-07-19
 
 ### Fixed

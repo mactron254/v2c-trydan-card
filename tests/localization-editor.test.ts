@@ -83,4 +83,13 @@ describe("multilingual visual editor", () => {
     expect(editor.shadowRoot?.querySelector('[data-role="charge_power"] + [data-status="manual"]')?.textContent).toContain("Manual");
     expect(editor.shadowRoot?.textContent).toContain("Potencia de carga");
   });
-});
+
+  it("renders order and remove controls without replacement characters", async () => {
+    const editor = makeEditor("es");
+    await editor.updateComplete;
+    const text = editor.shadowRoot?.textContent ?? "";
+    expect(text).toContain(String.fromCodePoint(0x2191));
+    expect(text).toContain(String.fromCodePoint(0x2193));
+    expect(text).toContain(String.fromCodePoint(0x00d7));
+    expect(text).not.toContain(String.fromCodePoint(0xfffd));
+  });});
