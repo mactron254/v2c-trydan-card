@@ -142,3 +142,6 @@ No public key was removed. Two intentional behavior changes apply:
 
 1. `show_energy_flow` now defaults to `false`; add `true` to retain it.
 2. `ultra_compact` always hides artwork, while preserving `show_charger` for other densities.
+## Discovery diagnostics
+
+The editor reports loading, seed_not_found, seed_not_v2c, seed_missing_device and legacy. Fix the seed first; no automatic discovery crosses to another V2C device. A legacy match stays scoped to the selected device and is shown for review.

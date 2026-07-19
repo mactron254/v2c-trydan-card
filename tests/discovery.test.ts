@@ -57,4 +57,18 @@ describe("entity discovery", () => {
     expect(isActionTargetValid(hass, "intensity", "number.trydan_intensity", "dev1")).toBe(true);
     expect(isActionTargetValid(hass, "intensity", "sensor.grid_import", "dev1")).toBe(false);
   });
-});
+
+  it("rejects missing external entities and reports registry diagnostics", () => {
+    const missing = resolveRegistryRoles(entries, "binary_sensor.trydan_connected", { grid_power: "sensor.missing" }, states);
+    expect(missing.statuses.grid_power).toBe("invalid");
+    expect(resolveRegistryRoles([], "binary_sensor.trydan_connected", {}, states).diagnostic).toBe("loading");
+    expect(resolveRegistryRoles(entries, "sensor.grid_import", {}, states).diagnostic).toBe("seed_not_v2c");
+  });
+
+  it("marks legacy resolution and excludes entities absent from live states", () => {
+    const legacyEntries = [{ entity_id: "binary_sensor.seed", device_id: "dev1", platform: "v2c", translation_key: "connected" }, { entity_id: "sensor.legacy_charge_power", device_id: "dev1", platform: "v2c" }];
+    const legacy = resolveRegistryRoles(legacyEntries, "binary_sensor.seed", {}, { "binary_sensor.seed": { entity_id: "binary_sensor.seed", state: "on", attributes: {} }, "sensor.legacy_charge_power": { entity_id: "sensor.legacy_charge_power", state: "1200", attributes: {} } });
+    expect(legacy.legacyRoles).toContain("charge_power");
+    const absent = resolveRegistryRoles(legacyEntries, "binary_sensor.seed", {}, { "binary_sensor.seed": { entity_id: "binary_sensor.seed", state: "on", attributes: {} } });
+    expect(absent.entities.charge_power).toBeUndefined();
+  });});

@@ -4,6 +4,7 @@ import type {
   HassEntityRegistryEntry,
   HomeAssistant,
   DiscoveryResult,
+  DiscoveryDiagnostic,
   ResolutionStatus,
 } from "../models/types";
 
@@ -14,6 +15,7 @@ export interface RoleSpec {
   legacySuffixes?: string[];
   writable?: boolean;
   allowExternal?: boolean;
+  platform?: "v2c";
 }
 
 export const ROLE_SPECS: Record<EntityRole, RoleSpec> = {
@@ -66,7 +68,8 @@ function isCompatibleDomain(role: EntityRole, entityId: string): boolean {
 function isUsableExternalPower(entityId: string, states: HomeAssistant["states"] | undefined): boolean {
   if (domain(entityId) !== "sensor") return false;
   const state = states?.[entityId];
-  if (!state || state.state === "unknown" || state.state === "unavailable") return true;
+  if (!state) return false;
+  if (state.state === "unknown" || state.state === "unavailable") return true;
   if (!Number.isFinite(Number(state.state))) return false;
   const unit = state.attributes.unit_of_measurement?.toLowerCase();
   const deviceClass = state.attributes.device_class;
@@ -93,13 +96,15 @@ export function resolveRegistryRoles(
   const entries = entriesFrom(source);
   const byId = new Map(entries.map((entry) => [entry.entity_id, entry]));
   const seed = byId.get(seedEntityId);
-  const deviceId = seed?.platform === "v2c" ? seed.device_id : undefined;
+  const diagnostic: DiscoveryDiagnostic | undefined = entries.length === 0 ? "loading" : !seed ? "seed_not_found" : seed.platform !== "v2c" ? "seed_not_v2c" : !seed.device_id ? "seed_missing_device" : undefined;
+  const deviceId = diagnostic ? undefined : seed?.device_id;
   const scoped = deviceId
     ? entries.filter((entry) => entry.device_id === deviceId && entry.platform === "v2c" && hasState(states, entry.entity_id))
     : [];
   const entities: EntityMap = {};
   const statuses: Partial<Record<EntityRole, ResolutionStatus>> = {};
   const ambiguities: DiscoveryResult["ambiguities"] = {};
+  const legacyRoles: EntityRole[] = [];
 
   for (const role of Object.keys(ROLE_SPECS) as EntityRole[]) {
     const override = overrides[role];
@@ -140,6 +145,7 @@ export function resolveRegistryRoles(
     if (suffixPick) {
       entities[role] = suffixPick;
       statuses[role] = "automatic";
+      legacyRoles.push(role);
     } else if (suffixed.length > 1) {
       ambiguities[role] = suffixed.map((entry) => entry.entity_id);
       statuses[role] = "ambiguous";
@@ -152,6 +158,8 @@ export function resolveRegistryRoles(
     missing: (Object.keys(ROLE_SPECS) as EntityRole[]).filter((role) => !entities[role]),
     deviceId,
     statuses: Object.fromEntries((Object.keys(ROLE_SPECS) as EntityRole[]).map((role) => [role, statuses[role] ?? "missing"])) as DiscoveryResult["statuses"],
+    diagnostic,
+    legacyRoles,
   };
 }
 

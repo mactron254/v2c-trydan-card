@@ -16,6 +16,18 @@ All notable changes are documented here. Versions follow semantic versioning.
 - Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
 - Redesign both README files with compact density comparisons, localized media, ten-language list, project story and transparent AI attribution.
 - Refresh visual guides, forum drafts, machine-readable project context, failure log and handoff.
+## [0.5.0-beta.2] - 2026-07-19
+
+### Fixed
+
+- Reject missing external power overrides and invalid number ranges before service calls.
+- Add seed/loading/legacy diagnostics and registry-backed editor entity choices.
+- Pin CI actions by SHA and enable Dependabot updates.
+
+### Tests
+
+- Add Home Assistant API-contract, SVG safety and resolver regression coverage.
+
 ## [0.5.0-beta.1] - 2026-07-19
 
 ### Changed

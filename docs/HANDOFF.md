@@ -75,3 +75,9 @@ Published v0.4.2 evidence remains in docs/PUBLISHING_CHECKLIST.md.
 - Estados: hass.states; acciones: revalidacion V2C antes del servicio; SVG: locales.
 - Validado: corepack pnpm typecheck y corepack pnpm test (59/59).
 - Publicacion prevista: prerelease v0.5.0-beta.1 y PR borrador a main.
+
+## Beta 0.5.0-beta.2 - 2026-07-19
+
+- Cierra auditoria: diagnosticos, selector registry, overrides externos ausentes, rango number, SVG safety y contrato APIs HA.
+- Actions fijadas SHA; Dependabot semanal.
+- Validacion local pendiente de publicar: pnpm check y beta.2.

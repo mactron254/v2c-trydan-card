@@ -8,6 +8,7 @@ import { getLcdCopy } from "../localization/lcd-copy";
 import type {
   EntityMap,
   EntityRole,
+  DiscoveryDiagnostic,
   HassEntity,
   HomeAssistant,
   V2cTrydanCardConfig,
@@ -35,6 +36,7 @@ export class V2cTrydanCard extends LitElement {
   @state() private config?: V2cTrydanCardConfig;
   @state() private resolvedEntities: EntityMap = {};
   @state() private ambiguities: Partial<Record<EntityRole, string[]>> = {};
+  @state() private discoveryDiagnostic?: DiscoveryDiagnostic;
   @state() private sliderValue?: number;
   @state() private pendingRoles: EntityRole[] = [];
   @state() private actionMessage = "";
@@ -109,6 +111,7 @@ export class V2cTrydanCard extends LitElement {
     this.resolvedEntities = result.entities;
     this.ambiguities = result.ambiguities;
     this.#resolvedDeviceId = result.deviceId;
+    this.discoveryDiagnostic = result.diagnostic;
   }
 
   #watchedEntityIds(): Set<string> {
@@ -259,7 +262,7 @@ export class V2cTrydanCard extends LitElement {
 
   protected override render() {
     if (!this.config || !this.hass) {
-      return html`<ha-card><div class="empty">V2C Trydan Card · configuración pendiente</div></ha-card>`;
+      return html`<ha-card><div class="empty">V2C Trydan Card Ã‚Â· configuraciÃƒÂ³n pendiente</div></ha-card>`;
     }
 
     const language = this.#language();
@@ -337,11 +340,13 @@ export class V2cTrydanCard extends LitElement {
       switch (section) { case "hero": return heroSection; case "metrics": return metricSection; case "controls": return controlSection; case "energy": return energySection; default: return advancedSection; }
     };
     const sectionOrder = this.config.section_order ?? ["hero", "metrics", "controls", "energy", "advanced"];
+    const discoveryNotice = this.discoveryDiagnostic ? html`<p class="live-region" data-diagnostic=${this.discoveryDiagnostic} role="status">${this.discoveryDiagnostic.replaceAll("_", " ")}</p>` : nothing;
     return html`
       <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== false)} style=${this.#styleVariables()}>
         <div class="shell">
           ${this.config.show_header !== false ? html`<header class="card-heading"><h2>${title}</h2>${this.config.location ? html`<span class="location">${this.config.location}</span>` : nothing}</header>` : nothing}
           <div class="content-sections">${sectionOrder.map(orderedSection)}</div>
+          ${discoveryNotice}
           <p class="live-region" aria-live="polite">${this.actionMessage}</p>
         </div>
       </ha-card>`;

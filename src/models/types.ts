@@ -186,6 +186,7 @@ export interface EnergyFlow {
 }
 
 export type ResolutionStatus = "automatic" | "manual" | "ambiguous" | "invalid" | "missing";
+export type DiscoveryDiagnostic = "loading" | "seed_not_found" | "seed_not_v2c" | "seed_missing_device";
 
 export interface DiscoveryResult {
   entities: EntityMap;
@@ -193,6 +194,8 @@ export interface DiscoveryResult {
   missing: EntityRole[];
   deviceId?: string;
   statuses: Partial<Record<EntityRole, ResolutionStatus>>;
+  diagnostic?: DiscoveryDiagnostic;
+  legacyRoles: EntityRole[];
 }
 
 declare global {

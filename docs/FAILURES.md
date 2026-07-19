@@ -220,3 +220,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: cache mutable por semilla y fallback de escaneo global.
 - **Resolucion**: resolver puro limitado al device_id V2C, con estado vivo desde hass.states y ambiguedad explicita.
 - **Prevencion**: no usar cantidad de registros como clave de invalidacion ni lanzar callWS desde la card.
+
+## 2026-07-19 - Override externo inexistente aceptado
+
+- **Sintoma**: una entidad externa configurada pero ausente podia aceptarse como lectura de potencia.
+- **Causa**: validacion trataba ausencia de estado como disponibilidad transitoria.
+- **Resolucion**: entidad ausente se rechaza; solo unknown y unavailable se toleran cuando entidad existe.
+- **Prevencion**: cubrir entidad ausente y rangos invalidos en pruebas de seguridad.

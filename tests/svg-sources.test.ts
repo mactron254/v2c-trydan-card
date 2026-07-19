@@ -12,6 +12,8 @@ describe("Trydan source SVGs", () => {
       expect(source).toContain('viewBox="24 0 312 480"');
       expect(source).not.toContain('viewBox="0 0 360 500"');
       expect(source).not.toMatch(/<text|role="img"|aria-label=/i);
+      expect(source).not.toMatch(/<(script|foreignObject)\b/i);
+      expect(source).not.toMatch(/(?:href|xlink:href)\s*=\s*["'](?:https?:|\/\/)/i);
     }
   });
 });
