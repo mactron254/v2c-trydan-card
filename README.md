@@ -143,3 +143,7 @@ corepack pnpm@11.5.1 docs:capture
 ## 📄 Credits and license
 
 Technical collaboration is credited to **Codex**, followed by product owner **Marc** ([@mactron254](https://github.com/mactron254)). Released under the [MIT license](LICENSE).
+
+## Discovery and safety
+
+Choose a V2C entity from the intended charger as entity. Discovery is restricted to that V2C device; renamed IDs keep working through 	ranslation_key. Ambiguous roles are never guessed. External grid, home, solar and battery power require explicit entities overrides and must be valid power sensors. Controls are checked again immediately before calling Home Assistant services.

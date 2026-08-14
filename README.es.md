@@ -143,3 +143,7 @@ corepack pnpm@11.5.1 docs:capture
 ## 📄 Créditos y licencia
 
 La colaboración técnica se acredita a **Codex**, seguido del responsable del producto **Marc** ([@mactron254](https://github.com/mactron254)). Publicado con [licencia MIT](LICENSE).
+
+## Descubrimiento y seguridad
+
+Elige como entity una entidad V2C del cargador deseado. El descubrimiento queda limitado a ese dispositivo V2C; IDs renombrados siguen funcionando mediante 	ranslation_key. Los roles ambiguos nunca se adivinan. Potencia externa de red, casa, solar o bateria requiere override explicito en entities y sensor de potencia valido. Los controles se verifican otra vez justo antes de llamar servicios Home Assistant.

@@ -213,3 +213,31 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: la revisión priorizó formulación editorial y SEO sobre el texto fuente y el tono en primera persona.
 - **Resolución**: tomar el texto personal de Marc como base, corregir únicamente claridad, idioma y enlaces rotos, y traducir esa voz al inglés.
 - **Prevención**: en textos de autor, conservar la primera persona y validar el tono con el propietario antes de publicar.
+
+## 2026-07-19 - Descubrimiento global y cache de metadata
+
+- **Sintoma**: una card podia considerar entidades de otro cargador tras cambios de registro con el mismo numero de entidades.
+- **Causa**: cache mutable por semilla y fallback de escaneo global.
+- **Resolucion**: resolver puro limitado al device_id V2C, con estado vivo desde hass.states y ambiguedad explicita.
+- **Prevencion**: no usar cantidad de registros como clave de invalidacion ni lanzar callWS desde la card.
+
+## 2026-07-19 - Override externo inexistente aceptado
+
+- **Sintoma**: una entidad externa configurada pero ausente podia aceptarse como lectura de potencia.
+- **Causa**: validacion trataba ausencia de estado como disponibilidad transitoria.
+- **Resolucion**: entidad ausente se rechaza; solo unknown y unavailable se toleran cuando entidad existe.
+- **Prevencion**: cubrir entidad ausente y rangos invalidos en pruebas de seguridad.
+
+## 2026-08-14 - LCD de no disponible mostraba sin vehiculo
+
+- **Fallo**: el estado principal usaba `states.unavailable`, pero el LCD recibia la clave visual `disconnected`.
+- **Causa**: el resolver reutiliza de forma segura el SVG desconectado para la fase no disponible y el LCD no consultaba la marca `unavailable`.
+- **Resolucion**: separar el estado de copia del LCD del SVG; el arte sigue siendo local y el LCD usa `states.unavailable` y `details.unavailable`.
+- **Prevencion**: matriz DOM de 10 idiomas por 12 condiciones, incluida indisponibilidad completa.
+
+## 2026-08-14 - Voltaje externo valido rechazado
+
+- **Fallo**: `sensor.v2c_trydan_voltage` no podia configurarse porque solo se permitian medidas externas de potencia.
+- **Causa**: la validacion externa era una funcion especifica de W/kW/MW.
+- **Resolucion**: validar medidas externas por tipo; voltaje admite solo sensor numerico/unknown/unavailable con unidad V y device_class voltage compatibles.
+- **Prevencion**: fixture HA 2026.7 prueba valores validos, no numericos, unidad incorrecta y device_class incorrecta.

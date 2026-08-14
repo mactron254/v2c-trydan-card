@@ -142,3 +142,6 @@ No se elimina ninguna clave pública. Hay dos cambios intencionados:
 
 1. `show_energy_flow` pasa a `false`; añade `true` para mantenerlo.
 2. `ultra_compact` oculta siempre el SVG, conservando `show_charger` para otras densidades.
+## Diagnosticos de descubrimiento
+
+El editor informa loading, seed_not_found, seed_not_v2c, seed_missing_device y legacy. Corrige primero semilla; descubrimiento automatico nunca cruza otro dispositivo V2C. Coincidencia legacy sigue limitada dispositivo elegido y se muestra para revision.

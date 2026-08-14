@@ -2,9 +2,9 @@
 
 ## Current release
 
-- Target and published release: v0.4.2.
-- Status: published from main on 2026-07-14.
-- Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.4.2
+- Current stable target and published release: v0.5.0.
+- Status: stable release prepared and published from main on 2026-08-14.
+- Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.5.0
 - Stack: Lit 3, TypeScript 7, Vite 8, Node 20+ and pnpm 11.5.1.
 - Attribution order: Codex first; Marc @mactron254 second.
 
@@ -67,3 +67,29 @@ Visual review must include density comparisons, split layout, Entities editor an
 PR #6 was merged only after Validate and HACS were green on both the PR and merged main commit. No v0.4.3, new tag or release was created, and v0.4.2 assets remain unchanged. Forum posts remain drafts and must not be published automatically.
 
 Published v0.4.2 evidence remains in docs/PUBLISHING_CHECKLIST.md.
+
+## Beta 0.5.0-beta.1 - 2026-07-19
+
+- Rama: codex/trydan-resilient-discovery-beta.
+- El descubrimiento es puro, por device_id V2C, sin callWS ni cache de metadatos.
+- Estados: hass.states; acciones: revalidacion V2C antes del servicio; SVG: locales.
+- Validado: corepack pnpm typecheck y corepack pnpm test (59/59).
+- Publicacion prevista: prerelease v0.5.0-beta.1 y PR borrador a main.
+
+## Beta 0.5.0-beta.2 - 2026-07-19
+
+- Cierra auditoria: diagnosticos, selector registry, overrides externos ausentes, rango number, SVG safety y contrato APIs HA.
+- Actions fijadas SHA; Dependabot semanal.
+- Validacion local pendiente de publicar: pnpm check y beta.2.
+
+## Stable 0.5.0 - 2026-08-14
+
+- Branch: `codex/trydan-resilient-discovery-beta`; PR: #11.
+- Stable tag and release: `v0.5.0`.
+- Entity discovery is pure and scoped to the selected V2C `device_id`; live values come from `hass.states`.
+- External solar, grid, battery and voltage entities require explicit validated overrides.
+- HACS update entities and unrelated devices are ignored.
+- SVG assets remain local; no runtime network fetch is used.
+- Verification: 75 tests, 120 localized state renders, 1,200 DOM transitions, five repeated suites and full `pnpm check`.
+- Issue #12: Italian disconnected regression covered; keep issue open until reporter confirms stable release.
+- Continue with pnpm 11.5.1 or newer. Run `corepack pnpm check` before every release.
