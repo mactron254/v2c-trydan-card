@@ -14,7 +14,7 @@ export interface RoleSpec {
   preferredDomains?: string[];
   legacySuffixes?: string[];
   writable?: boolean;
-  allowExternal?: boolean;
+  externalMeasurement?: "power" | "voltage";
   platform?: "v2c";
 }
 
@@ -25,11 +25,11 @@ export const ROLE_SPECS: Record<EntityRole, RoleSpec> = {
   charge_power: { translationKeys: ["charge_power"], domains: ["sensor"], legacySuffixes: ["_charge_power", "_potencia_de_carga"] },
   charge_energy: { translationKeys: ["charge_energy"], domains: ["sensor"], legacySuffixes: ["_charge_energy", "_energia_de_carga"] },
   charge_time: { translationKeys: ["charge_time"], domains: ["sensor"], legacySuffixes: ["_charge_time", "_tiempo_de_carga"] },
-  house_power: { translationKeys: ["house_power"], domains: ["sensor"], legacySuffixes: ["_house_power", "_energia_de_la_casa"], allowExternal: true },
-  fv_power: { translationKeys: ["fv_power"], domains: ["sensor"], legacySuffixes: ["_fv_power", "_energia_fotovoltaica", "_sun_power"], allowExternal: true },
-  battery_power: { translationKeys: ["battery_power"], domains: ["sensor"], legacySuffixes: ["_battery_power", "_energia_de_la_bateria"], allowExternal: true },
-  grid_power: { translationKeys: [], domains: ["sensor"], legacySuffixes: ["_grid_power", "_potencia_de_red"], allowExternal: true },
-  voltage: { translationKeys: ["voltage_installation"], domains: ["number", "sensor"], preferredDomains: ["number", "sensor"], legacySuffixes: ["_voltage", "_tension_de_instalacion"] },
+  house_power: { translationKeys: ["house_power"], domains: ["sensor"], legacySuffixes: ["_house_power", "_energia_de_la_casa"], externalMeasurement: "power" },
+  fv_power: { translationKeys: ["fv_power"], domains: ["sensor"], legacySuffixes: ["_fv_power", "_photovoltaic_power", "_energia_fotovoltaica", "_sun_power"], externalMeasurement: "power" },
+  battery_power: { translationKeys: ["battery_power"], domains: ["sensor"], legacySuffixes: ["_battery_power", "_energia_de_la_bateria"], externalMeasurement: "power" },
+  grid_power: { translationKeys: [], domains: ["sensor"], legacySuffixes: ["_grid_power", "_potencia_de_red"], externalMeasurement: "power" },
+  voltage: { translationKeys: ["voltage_installation"], domains: ["number", "sensor"], preferredDomains: ["number", "sensor"], legacySuffixes: ["_voltage", "_voltage_installation", "_tension_de_instalacion"], externalMeasurement: "voltage" },
   intensity: { translationKeys: ["intensity"], domains: ["number"], legacySuffixes: ["_intensity", "_intensidad"], writable: true },
   min_intensity: { translationKeys: ["min_intensity"], domains: ["number"], legacySuffixes: ["_min_intensity", "_intensidad_minima"] },
   max_intensity: { translationKeys: ["max_intensity"], domains: ["number"], legacySuffixes: ["_max_intensity", "_intensidad_maxima"] },
@@ -37,11 +37,11 @@ export const ROLE_SPECS: Record<EntityRole, RoleSpec> = {
   ssid: { translationKeys: ["ssid"], domains: ["sensor"], legacySuffixes: ["_ssid"] },
   ip_address: { translationKeys: ["ip_address"], domains: ["sensor"], legacySuffixes: ["_ip_address", "_ip"] },
   signal_status: { translationKeys: ["signal_status"], domains: ["sensor"], legacySuffixes: ["_signal_status", "_signal"] },
-  paused: { translationKeys: ["paused"], domains: ["switch"], legacySuffixes: ["_paused", "_pausar_sesion"], writable: true },
-  locked: { translationKeys: ["locked"], domains: ["switch"], legacySuffixes: ["_locked", "_bloquear_evse"], writable: true },
+  paused: { translationKeys: ["paused"], domains: ["switch"], legacySuffixes: ["_paused", "_pause_session", "_pausar_sesion"], writable: true },
+  locked: { translationKeys: ["locked"], domains: ["switch"], legacySuffixes: ["_locked", "_lock_evse", "_bloquear_evse"], writable: true },
   timer: { translationKeys: ["timer"], domains: ["switch"], legacySuffixes: ["_timer", "_temporizador_de_punto_de_recarga"], writable: true },
-  dynamic: { translationKeys: ["dynamic"], domains: ["switch"], legacySuffixes: ["_dynamic", "_modulacion_de_intensidad_dinamica"], writable: true },
-  pause_dynamic: { translationKeys: ["pause_dynamic"], domains: ["switch"], legacySuffixes: ["_pause_dynamic", "_pausar_la_modulacion_de_control_dinamico"], writable: true },
+  dynamic: { translationKeys: ["dynamic"], domains: ["switch"], legacySuffixes: ["_dynamic", "_dynamic_intensity_modulation", "_modulacion_de_intensidad_dinamica"], writable: true },
+  pause_dynamic: { translationKeys: ["pause_dynamic"], domains: ["switch"], legacySuffixes: ["_pause_dynamic", "_pause_dynamic_control_modulation", "_pausar_la_modulacion_de_control_dinamico"], writable: true },
   logo_led: { translationKeys: ["logo_led"], domains: ["light"], legacySuffixes: ["_logo_led"], writable: true },
   light_led: { translationKeys: ["light_led"], domains: ["light"], legacySuffixes: ["_light_led", "_luz_led"], writable: true },
   charge_mode: { translationKeys: ["charge_mode"], domains: ["select"], legacySuffixes: ["_charge_mode", "_modo_de_carga"], writable: true },
@@ -65,15 +65,21 @@ function isCompatibleDomain(role: EntityRole, entityId: string): boolean {
   return ROLE_SPECS[role].domains.includes(domain(entityId));
 }
 
-function isUsableExternalPower(entityId: string, states: HomeAssistant["states"] | undefined): boolean {
+function isUsableExternalMeasurement(
+  kind: NonNullable<RoleSpec["externalMeasurement"]>,
+  entityId: string,
+  states: HomeAssistant["states"] | undefined,
+): boolean {
   if (domain(entityId) !== "sensor") return false;
   const state = states?.[entityId];
   if (!state) return false;
-  if (state.state === "unknown" || state.state === "unavailable") return true;
-  if (!Number.isFinite(Number(state.state))) return false;
   const unit = state.attributes.unit_of_measurement?.toLowerCase();
   const deviceClass = state.attributes.device_class;
-  return (!unit || ["w", "kw", "mw"].includes(unit)) && (!deviceClass || deviceClass === "power");
+  const compatibleMetadata = kind === "power"
+    ? (!unit || ["w", "kw", "mw"].includes(unit)) && (!deviceClass || deviceClass === "power")
+    : (!unit || unit === "v") && (!deviceClass || deviceClass === "voltage");
+  if (!compatibleMetadata) return false;
+  return state.state === "unknown" || state.state === "unavailable" || Number.isFinite(Number(state.state));
 }
 
 function pickCandidate(role: EntityRole, candidates: HassEntityRegistryEntry[]): string | undefined {
@@ -111,7 +117,9 @@ export function resolveRegistryRoles(
     if (!override) continue;
     const entry = byId.get(override);
     const spec = ROLE_SPECS[role];
-    const validExternal = spec.allowExternal && isUsableExternalPower(override, states);
+    const validExternal = Boolean(
+      spec.externalMeasurement && isUsableExternalMeasurement(spec.externalMeasurement, override, states),
+    );
     const validV2c = Boolean(
       deviceId && entry && entry.device_id === deviceId && entry.platform === "v2c" && isCompatibleDomain(role, override) && hasState(states, override),
     );

@@ -317,7 +317,7 @@ export class V2cTrydanCard extends LitElement {
       : undefined;
 
     const showArtwork = this.config.show_charger !== false && this.config.display_mode !== "ultra_compact";
-    const lcd = getLcdCopy(language,visual.key,{
+    const lcd = getLcdCopy(language,visual.unavailable ? "unavailable" : visual.key,{
       power:formatPower(chargePower.watts,language),
       current:formatMeasure(intensity?.state ?? null,"A",language),
       voltage:formatMeasure(voltage?.state ?? null,"V",language),

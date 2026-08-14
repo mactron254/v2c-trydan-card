@@ -1964,35 +1964,41 @@ var U = {
 		translationKeys: ["house_power"],
 		domains: ["sensor"],
 		legacySuffixes: ["_house_power", "_energia_de_la_casa"],
-		allowExternal: !0
+		externalMeasurement: "power"
 	},
 	fv_power: {
 		translationKeys: ["fv_power"],
 		domains: ["sensor"],
 		legacySuffixes: [
 			"_fv_power",
+			"_photovoltaic_power",
 			"_energia_fotovoltaica",
 			"_sun_power"
 		],
-		allowExternal: !0
+		externalMeasurement: "power"
 	},
 	battery_power: {
 		translationKeys: ["battery_power"],
 		domains: ["sensor"],
 		legacySuffixes: ["_battery_power", "_energia_de_la_bateria"],
-		allowExternal: !0
+		externalMeasurement: "power"
 	},
 	grid_power: {
 		translationKeys: [],
 		domains: ["sensor"],
 		legacySuffixes: ["_grid_power", "_potencia_de_red"],
-		allowExternal: !0
+		externalMeasurement: "power"
 	},
 	voltage: {
 		translationKeys: ["voltage_installation"],
 		domains: ["number", "sensor"],
 		preferredDomains: ["number", "sensor"],
-		legacySuffixes: ["_voltage", "_tension_de_instalacion"]
+		legacySuffixes: [
+			"_voltage",
+			"_voltage_installation",
+			"_tension_de_instalacion"
+		],
+		externalMeasurement: "voltage"
 	},
 	intensity: {
 		translationKeys: ["intensity"],
@@ -2033,13 +2039,21 @@ var U = {
 	paused: {
 		translationKeys: ["paused"],
 		domains: ["switch"],
-		legacySuffixes: ["_paused", "_pausar_sesion"],
+		legacySuffixes: [
+			"_paused",
+			"_pause_session",
+			"_pausar_sesion"
+		],
 		writable: !0
 	},
 	locked: {
 		translationKeys: ["locked"],
 		domains: ["switch"],
-		legacySuffixes: ["_locked", "_bloquear_evse"],
+		legacySuffixes: [
+			"_locked",
+			"_lock_evse",
+			"_bloquear_evse"
+		],
 		writable: !0
 	},
 	timer: {
@@ -2051,13 +2065,21 @@ var U = {
 	dynamic: {
 		translationKeys: ["dynamic"],
 		domains: ["switch"],
-		legacySuffixes: ["_dynamic", "_modulacion_de_intensidad_dinamica"],
+		legacySuffixes: [
+			"_dynamic",
+			"_dynamic_intensity_modulation",
+			"_modulacion_de_intensidad_dinamica"
+		],
 		writable: !0
 	},
 	pause_dynamic: {
 		translationKeys: ["pause_dynamic"],
 		domains: ["switch"],
-		legacySuffixes: ["_pause_dynamic", "_pausar_la_modulacion_de_control_dinamico"],
+		legacySuffixes: [
+			"_pause_dynamic",
+			"_pause_dynamic_control_modulation",
+			"_pausar_la_modulacion_de_control_dinamico"
+		],
 		writable: !0
 	},
 	logo_led: {
@@ -2091,18 +2113,16 @@ function mt(e, t) {
 function W(e, t) {
 	return U[e].domains.includes(ft(t));
 }
-function ht(e, t) {
-	if (ft(e) !== "sensor") return !1;
-	let n = t?.[e];
-	if (!n) return !1;
-	if (n.state === "unknown" || n.state === "unavailable") return !0;
-	if (!Number.isFinite(Number(n.state))) return !1;
-	let r = n.attributes.unit_of_measurement?.toLowerCase(), i = n.attributes.device_class;
-	return (!r || [
+function ht(e, t, n) {
+	if (ft(t) !== "sensor") return !1;
+	let r = n?.[t];
+	if (!r) return !1;
+	let i = r.attributes.unit_of_measurement?.toLowerCase(), a = r.attributes.device_class;
+	return (e === "power" ? (!i || [
 		"w",
 		"kw",
 		"mw"
-	].includes(r)) && (!i || i === "power");
+	].includes(i)) && (!a || a === "power") : (!i || i === "v") && (!a || a === "voltage")) ? r.state === "unknown" || r.state === "unavailable" || Number.isFinite(Number(r.state)) : !1;
 }
 function gt(e, t) {
 	if (t.length === 0) return;
@@ -2119,8 +2139,8 @@ function _t(e, t, n = {}, r) {
 	for (let e of Object.keys(U)) {
 		let t = n[e];
 		if (!t) continue;
-		let o = a.get(t), s = U[e].allowExternal && ht(t, r), l = !!(c && o && o.device_id === c && o.platform === "v2c" && W(e, t) && mt(r, t)), f = i.length === 0 && mt(r, t) && W(e, t);
-		s || l || f ? (u[e] = t, d[e] = "manual") : d[e] = "invalid";
+		let o = a.get(t), s = U[e], l = !!(s.externalMeasurement && ht(s.externalMeasurement, t, r)), f = !!(c && o && o.device_id === c && o.platform === "v2c" && W(e, t) && mt(r, t)), p = i.length === 0 && mt(r, t) && W(e, t);
+		l || f || p ? (u[e] = t, d[e] = "manual") : d[e] = "invalid";
 	}
 	for (let e of Object.keys(U)) {
 		if (u[e] || !c) continue;
@@ -3286,7 +3306,7 @@ var X = class extends I {
 		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => xt(e, this.#i(t), {
 			invert: n,
 			thresholdW: this.config?.flow_threshold_w
-		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? k`<div class="metric metric-power"><span class="metric-label">${H(t, "labels.power")}</span><strong class="metric-value">${Ct(r.watts, e)}</strong></div>` : n === "energy" ? k`<div class="metric"><span class="metric-label">${H(t, "labels.energy")}</span><strong class="metric-value">${wt(o?.state ?? null, e)}</strong></div>` : k`<div class="metric"><span class="metric-label">${H(t, "labels.time")}</span><strong class="metric-value">${Tt(s?.state ?? null)}</strong></div>`), ee = Object.keys(this.ambiguities), m = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, h = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", g = ot(e, i.key, {
+		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? k`<div class="metric metric-power"><span class="metric-label">${H(t, "labels.power")}</span><strong class="metric-value">${Ct(r.watts, e)}</strong></div>` : n === "energy" ? k`<div class="metric"><span class="metric-label">${H(t, "labels.energy")}</span><strong class="metric-value">${wt(o?.state ?? null, e)}</strong></div>` : k`<div class="metric"><span class="metric-label">${H(t, "labels.time")}</span><strong class="metric-value">${Tt(s?.state ?? null)}</strong></div>`), ee = Object.keys(this.ambiguities), m = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, h = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", g = ot(e, i.unavailable ? "unavailable" : i.key, {
 			power: Ct(r.watts, e),
 			current: Et(c?.state ?? null, "A", e),
 			voltage: Et(l?.state ?? null, "V", e),

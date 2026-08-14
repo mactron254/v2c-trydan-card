@@ -16,6 +16,32 @@ All notable changes are documented here. Versions follow semantic versioning.
 - Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
 - Redesign both README files with compact density comparisons, localized media, ten-language list, project story and transparent AI attribution.
 - Refresh visual guides, forum drafts, machine-readable project context, failure log and handoff.
+
+## [0.5.0] - 2026-08-14
+
+### Changed
+
+- Discover V2C entities by device-scoped registry metadata and official translation keys while keeping explicit legacy suffix fallbacks.
+- Read live values from watched `hass.states` entries without periodic discovery or metadata caches.
+- Accept manual external voltage only with a compatible sensor state, unit and device class.
+
+### Fixed
+
+- Keep the main status and charger LCD consistently unavailable when core Trydan entities are unavailable.
+- Cover the Italian disconnected regression so `off` renders `Nessun veicolo`, never a connected label.
+- Recognize current Home Assistant English entity IDs for photovoltaic power and session controls.
+
+### Security
+
+- Revalidate writable targets against the active V2C device before service calls.
+- Ignore unrelated global and HACS update entities during discovery.
+
+### Tests
+
+- Add an exact Home Assistant 2026.7 fixture for all 22 supplied entities.
+- Cover 120 language/state renders, 1,200 live DOM transitions, external energy conventions and disabled controls.
+- Pass 75 automated tests, repeated full suites, typecheck, documentation, build, checksum and smoke verification.
+
 ## [0.5.0-beta.4] - 2026-07-19
 
 ### Fixed

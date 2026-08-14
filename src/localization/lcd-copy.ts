@@ -3,8 +3,9 @@ import { getDictionary, translate, type Language } from "./index";
 
 export interface LcdCopy { primary: string; secondary: string; }
 export interface LcdValues { power?: string; current?: string; voltage?: string; energy?: string; }
+export type LcdState = VisualStateKey | "unavailable";
 
-export function getLcdCopy(language: Language, state: VisualStateKey, values: LcdValues = {}): LcdCopy {
+export function getLcdCopy(language: Language, state: LcdState, values: LcdValues = {}): LcdCopy {
   const dictionary = getDictionary(language);
   const base: LcdCopy = state === "disconnected"
     ? { primary:translate(dictionary,"details.disconnected"), secondary:translate(dictionary,"states.disconnected") }

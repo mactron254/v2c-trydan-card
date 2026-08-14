@@ -227,3 +227,17 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: validacion trataba ausencia de estado como disponibilidad transitoria.
 - **Resolucion**: entidad ausente se rechaza; solo unknown y unavailable se toleran cuando entidad existe.
 - **Prevencion**: cubrir entidad ausente y rangos invalidos en pruebas de seguridad.
+
+## 2026-08-14 - LCD de no disponible mostraba sin vehiculo
+
+- **Fallo**: el estado principal usaba `states.unavailable`, pero el LCD recibia la clave visual `disconnected`.
+- **Causa**: el resolver reutiliza de forma segura el SVG desconectado para la fase no disponible y el LCD no consultaba la marca `unavailable`.
+- **Resolucion**: separar el estado de copia del LCD del SVG; el arte sigue siendo local y el LCD usa `states.unavailable` y `details.unavailable`.
+- **Prevencion**: matriz DOM de 10 idiomas por 12 condiciones, incluida indisponibilidad completa.
+
+## 2026-08-14 - Voltaje externo valido rechazado
+
+- **Fallo**: `sensor.v2c_trydan_voltage` no podia configurarse porque solo se permitian medidas externas de potencia.
+- **Causa**: la validacion externa era una funcion especifica de W/kW/MW.
+- **Resolucion**: validar medidas externas por tipo; voltaje admite solo sensor numerico/unknown/unavailable con unidad V y device_class voltage compatibles.
+- **Prevencion**: fixture HA 2026.7 prueba valores validos, no numericos, unidad incorrecta y device_class incorrecta.
