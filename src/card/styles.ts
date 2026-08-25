@@ -92,6 +92,7 @@ export const cardStyles = css`
     container-type: inline-size;
     width: 100%;
     height: 100%;
+    color: var(--v2c-led, #f4f6f8);
     filter: drop-shadow(0 18px 14px rgb(0 0 0 / 16%));
   }
 
@@ -100,6 +101,30 @@ export const cardStyles = css`
     width: 100%;
     height: 100%;
   }
+
+  /* The state to LED colour table, unchanged from the eleven SVGs it replaces. The
+     wordmark in trydan.svg is fill="currentColor", so these rules are what paints it.
+     Because the document is now the same in every state, the colour is a property a
+     future change can transition rather than hard-cut. */
+  .charger-art[data-state="disconnected"] { --v2c-led: #f4f6f8; }
+  .charger-art[data-state="charging"] { --v2c-led: #123cc9; }
+  .charger-art[data-state="complete"] { --v2c-led: #3fce6b; }
+  .charger-art[data-state="timer"] { --v2c-led: #43dbe7; }
+  .charger-art[data-state="updating"] { --v2c-led: #f050bd; }
+  .charger-art[data-state="control_pilot"] { --v2c-led: #ffd43b; }
+  .charger-art[data-state="load_balancing"] { --v2c-led: #ff9dd8; }
+  .charger-art[data-state="error"] { --v2c-led: #ef3340; }
+  .charger-art[data-state="waiting_power"] { --v2c-led: #f28c28; }
+  .charger-art[data-state="wifi_connected"] { --v2c-led: #3fce6b; }
+  .charger-art[data-state="wifi_connecting"] { --v2c-led: #f4f6f8; }
+
+  .charger-art[data-state="charging"] .charger-logo { animation: v2c-blink-current .65s steps(1, end) infinite; }
+  .charger-art[data-state="wifi_connecting"] .charger-logo { animation: v2c-blink-slow 1.35s steps(1, end) infinite; }
+  .charger-art[data-state="wifi_connected"] .charger-logo { animation: v2c-blink-once 1s ease-out 1; }
+
+  @keyframes v2c-blink-slow { 0%, 46% { opacity: 1; } 50%, 100% { opacity: .18; } }
+  @keyframes v2c-blink-current { 0%, 38% { opacity: 1; } 45%, 100% { opacity: .18; } }
+  @keyframes v2c-blink-once { 0%, 20% { opacity: .15; } 45%, 72% { opacity: 1; } 100% { opacity: .45; } }
 
   .charger-lcd {
     position: absolute;

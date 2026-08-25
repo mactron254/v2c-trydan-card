@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "../src/index";
-import { TRYDAN_ASSETS } from "../src/assets/trydan";
+import { TRYDAN_ARTWORK } from "../src/assets/trydan";
 import { V2cTrydanCard } from "../src/card/v2c-trydan-card";
 import { normalizeConfig } from "../src/config";
 import { formatDuration, formatEnergy, formatMeasure } from "../src/services/format";
@@ -37,12 +37,9 @@ describe("v0.4.2 localization and defaults", () => {
     expect(getLcdCopy("es","complete",{ energy:"8,6 kWh" }).secondary).toBe("8,6 kWh");
   });
 
-  it("keeps SVGs decorative and free from embedded copy or fake readings", () => {
-    expect(Object.values(TRYDAN_ASSETS)).toHaveLength(11);
-    for (const svg of Object.values(TRYDAN_ASSETS)) {
-      expect(svg).not.toMatch(/<text|role="img"|aria-label=/i);
-      expect(svg).not.toMatch(/3\.9\s*kW|17A|233V|12\.46\s*kWh/i);
-    }
+  it("keeps the artwork decorative and free from embedded copy or fake readings", () => {
+    expect(TRYDAN_ARTWORK).not.toMatch(/<text|role="img"|aria-label=/i);
+    expect(TRYDAN_ARTWORK).not.toMatch(/3\.9\s*kW|17A|233V|12\.46\s*kWh/i);
   });
 
   it("renders real LCD measurements and never renders artwork in ultra compact", async () => {

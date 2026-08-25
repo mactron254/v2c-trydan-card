@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "../src/index";
-import { TRYDAN_ASSETS } from "../src/assets/trydan";
+import { TRYDAN_ARTWORK } from "../src/assets/trydan";
 import { V2cTrydanCard } from "../src/card/v2c-trydan-card";
 import type { HomeAssistant, V2cTrydanCardConfig } from "../src/models/types";
 
@@ -48,13 +48,9 @@ describe("Trydan Hero XL contracts", () => {
     document.body.innerHTML = "";
   });
 
-  it("crops all eleven SVG canvases without retaining the old viewBox", () => {
-    const assets = Object.values(TRYDAN_ASSETS);
-    expect(assets).toHaveLength(11);
-    for (const asset of assets) {
-      expect(asset).toContain('viewBox="24 0 312 480"');
-      expect(asset).not.toContain('viewBox="0 0 360 500"');
-    }
+  it("crops the shared SVG canvas without retaining the old viewBox", () => {
+    expect(TRYDAN_ARTWORK).toContain('viewBox="24 0 312 480"');
+    expect(TRYDAN_ARTWORK).not.toContain('viewBox="0 0 360 500"');
   });
 
   it("uses centered overflow-safe Hero XL bounds in every density", () => {

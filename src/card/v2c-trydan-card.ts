@@ -1,7 +1,7 @@
 import { LitElement, html, nothing, type PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
-import { TRYDAN_ASSETS } from "../assets/trydan";
+import { TRYDAN_ARTWORK } from "../assets/trydan";
 import { normalizeConfig, stubConfig } from "../config";
 import { getDictionary, getLanguage, translate, type Language } from "../localization";
 import { getLcdCopy } from "../localization/lcd-copy";
@@ -326,7 +326,7 @@ export class V2cTrydanCard extends LitElement {
     const lcdLength = Math.max(lcd.primary.length,lcd.secondary.length);
     const heroSection = html`
       <section class="hero ${showArtwork ? "has-charger" : "without-charger"}" data-section="hero">
-        ${showArtwork ? html`<div class="charger-stage"><div class="charger-art" aria-hidden="true">${unsafeSVG(TRYDAN_ASSETS[visual.key])}<div class="charger-lcd ${lcdLength > 24 ? "is-very-long" : lcdLength > 18 ? "is-long" : ""}"><span>${lcd.primary}</span><span>${lcd.secondary}</span></div></div></div>` : nothing}
+        ${showArtwork ? html`<div class="charger-stage"><div class="charger-art" data-state=${visual.key} aria-hidden="true">${unsafeSVG(TRYDAN_ARTWORK)}<div class="charger-lcd ${lcdLength > 24 ? "is-very-long" : lcdLength > 18 ? "is-long" : ""}"><span>${lcd.primary}</span><span>${lcd.secondary}</span></div></div></div>` : nothing}
         <div class="hero-copy">
           <div class="charger-status" data-severity=${visual.severity} role="status">${translate(dictionary, visual.labelKey)}</div>
           ${this.config.show_badges !== false && visual.badges.length ? html`<div class="badges" aria-label=${translate(dictionary, "labels.additionalStatus")}>${visual.badges.map((badge) => html`<span class="badge">${translate(dictionary, `badges.${badge}`)}</span>`)}</div>` : nothing}
