@@ -1,26 +1,11 @@
-import charging from "./charging.svg?raw";
-import complete from "./complete.svg?raw";
-import controlPilot from "./control-pilot.svg?raw";
-import disconnected from "./disconnected.svg?raw";
-import error from "./error.svg?raw";
-import loadBalancing from "./load-balancing.svg?raw";
-import timer from "./timer.svg?raw";
-import updating from "./updating.svg?raw";
-import waitingPower from "./waiting-power.svg?raw";
-import wifiConnected from "./wifi-connected.svg?raw";
-import wifiConnecting from "./wifi-connecting.svg?raw";
-import type { VisualStateKey } from "../../models/types";
+import trydan from "./trydan.svg?raw";
 
-export const TRYDAN_ASSETS: Record<VisualStateKey, string> = {
-  disconnected,
-  charging,
-  complete,
-  timer,
-  updating,
-  control_pilot: controlPilot,
-  load_balancing: loadBalancing,
-  error,
-  waiting_power: waitingPower,
-  wifi_connected: wifiConnected,
-  wifi_connecting: wifiConnecting,
-};
+/**
+ * One artwork for every visual state.
+ *
+ * The illuminated V2C wordmark inside the file is `fill="currentColor"`, so the card
+ * stylesheet drives its colour and blink from `.charger-art[data-state]`. Switching state
+ * therefore recolours the wordmark in place instead of swapping the whole document, which
+ * is what makes a transition between states expressible at all.
+ */
+export const TRYDAN_ARTWORK: string = trydan;
