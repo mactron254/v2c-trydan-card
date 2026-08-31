@@ -25,7 +25,8 @@ Una tarjeta moderna para visualizar y controlar el cargador **V2C Trydan** desde
 - ⚡ Muestra potencia, intensidad, voltaje y energía de la sesión cuando existen entidades válidas.
 - ☀️ Puedes mostrar el flujo energético; viene desactivado por defecto.
 - 🔎 Descubre automáticamente las entidades del cargador mediante el registro de dispositivos, aunque sus nombres visibles sean distintos.
-- 🎨 Personaliza el color del cargador con opciones predefinidas o con el color que tú quieras.
+- 🎨 Colorea los controles y superficies de la tarjeta con paletas predefinidas o con el color que tú quieras.
+- 🖼️ Ilustración del cargador recortada de la propia fotografía de producto de V2C, con encuadre ajustable y vista opcional del conector. Consulta [cómo se construye la ilustración](docs/artwork/README.md).
 - ♿ Navega con teclado, foco visible, movimiento reducido y soporte de 280 a 768 px.
 
 ## 📐 4 modos de tamaño disponibles
@@ -125,6 +126,7 @@ Me encantará leer tu feedback, propuestas de funciones y correcciones. Antes de
 
 - [Referencia completa de configuración](docs/CONFIGURATION.es.md)
 - [Guía visual con 33 capturas reproducibles y cuatro GIF](docs/VISUAL_GUIDE.es.md)
+- [Ilustración del cargador: fuentes y procedencia](docs/artwork/README.md)
 - [FAQ y resolución de problemas](docs/FAQ.es.md)
 - [Historial de cambios](CHANGELOG.md)
 - [Guía para colaborar](CONTRIBUTING.md)

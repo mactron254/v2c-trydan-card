@@ -5,7 +5,7 @@ import { getDictionary, SUPPORTED_LANGUAGES, type Language } from "../src/locali
 import { getLcdCopy, type LcdState } from "../src/localization/lcd-copy";
 import { VISUAL_STATE_KEYS, type HomeAssistant, type V2cTrydanCardConfig } from "../src/models/types";
 import { resolveRegistryRoles } from "../src/services/discovery";
-import { formatEnergy, formatMeasure, formatPower } from "../src/services/format";
+import { formatLcdKw, formatPower } from "../src/services/format";
 import { resolveSnapshot, resolveVisualState } from "../src/services/state";
 import { EXPECTED_STATUS_COPY } from "./fixtures/expected-state-copy";
 import {
@@ -64,8 +64,10 @@ function statusText(card: V2cTrydanCard): string {
 }
 
 function lcdLines(card: V2cTrydanCard): string[] {
-  return Array.from(card.shadowRoot?.querySelectorAll(".charger-lcd span") ?? [])
-    .map((element) => element.textContent?.trim() ?? "");
+  // The LCD renders as dot-matrix paths, so the text lives on data-lcd.
+  const lcd = card.shadowRoot?.querySelector(".charger-display");
+  const raw = lcd?.getAttribute("data-lcd");
+  return raw === null || raw === undefined ? [] : raw.split("|")
 }
 
 describe("Home Assistant 2026.7 V2C fixture", () => {
@@ -170,11 +172,14 @@ describe("Home Assistant 2026.7 V2C fixture", () => {
     }));
     const dictionary = getDictionary("es");
     expect(statusText(card)).toBe(dictionary.states.unavailable);
+    // house_power is native, so its state goes "unavailable" along with everything else on
+    // the V2C device; T: falls back to the third-party grid_power reading (0 W here), and
+    // FV: is untouched since the solar sensor belongs to a separate integration.
     expect(lcdLines(card)).toEqual([
-      dictionary.states.unavailable,
-      dictionary.details.unavailable,
+      dictionary.lcd.unavailable,
+      "T:0.0 FV:2.8",
     ]);
-    expect(lcdLines(card)).not.toContain(dictionary.states.disconnected);
+    expect(lcdLines(card)).not.toContain(dictionary.lcd.disconnected);
     expect(Array.from(card.shadowRoot?.querySelectorAll(".metric-value") ?? [])
       .map((element) => element.textContent?.trim())).toEqual(["—", "—", "—"]);
 
@@ -217,11 +222,13 @@ describe("Home Assistant 2026.7 V2C fixture", () => {
         expect(dictionary.states[displayState]).toBe(EXPECTED_STATUS_COPY[language][displayState]);
         expect(statusText(card)).toBe(EXPECTED_STATUS_COPY[language][displayState]);
 
+        // house_power (native) mirrors the seed's own availability; fv_power and grid_power
+        // (both external, per EXTERNAL_OVERRIDES) keep reporting regardless, so T: falls
+        // back to the grid reading exactly when the state under test is "unavailable".
         const values = {
-          power: formatPower(displayState === "unavailable" ? null : 4200, language),
-          current: displayState === "unavailable" ? undefined : formatMeasure(16, "A", language),
-          voltage: formatMeasure(235.5, "V", language),
-          energy: formatEnergy(displayState === "unavailable" ? null : "8.6", language),
+          evKw: formatLcdKw(displayState === "unavailable" ? null : 4200),
+          totalKw: formatLcdKw(displayState === "unavailable" ? null : 1200) ?? formatLcdKw(0),
+          solarKw: formatLcdKw(2770),
         };
         const expectedLcd = getLcdCopy(language, displayState, values);
         expect(lcdLines(card)).toEqual([expectedLcd.primary, expectedLcd.secondary]);

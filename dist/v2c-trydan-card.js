@@ -29,11 +29,11 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 	let t = "";
 	for (let n of e.cssRules) t += n.cssText;
 	return a(t);
-})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: p, getPrototypeOf: ee } = Object, m = globalThis, h = m.trustedTypes, g = h ? h.emptyScript : "", te = m.reactiveElementPolyfillSupport, _ = (e, t) => e, v = {
+})(e) : e, { is: l, defineProperty: u, getOwnPropertyDescriptor: d, getOwnPropertyNames: f, getOwnPropertySymbols: p, getPrototypeOf: m } = Object, h = globalThis, g = h.trustedTypes, ee = g ? g.emptyScript : "", te = h.reactiveElementPolyfillSupport, _ = (e, t) => e, v = {
 	toAttribute(e, t) {
 		switch (t) {
 			case Boolean:
-				e = e ? g : null;
+				e = e ? ee : null;
 				break;
 			case Object:
 			case Array: e = e == null ? e : JSON.stringify(e);
@@ -58,23 +58,23 @@ var e = globalThis, t = e.ShadowRoot && (e.ShadyCSS === void 0 || e.ShadyCSS.nat
 		}
 		return n;
 	}
-}, y = (e, t) => !l(e, t), ne = {
+}, ne = (e, t) => !l(e, t), re = {
 	attribute: !0,
 	type: String,
 	converter: v,
 	reflect: !1,
 	useDefault: !1,
-	hasChanged: y
+	hasChanged: ne
 };
-Symbol.metadata ??= Symbol("metadata"), m.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-var b = class extends HTMLElement {
+Symbol.metadata ??= Symbol("metadata"), h.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+var y = class extends HTMLElement {
 	static addInitializer(e) {
 		this._$Ei(), (this.l ??= []).push(e);
 	}
 	static get observedAttributes() {
 		return this.finalize(), this._$Eh && [...this._$Eh.keys()];
 	}
-	static createProperty(e, t = ne) {
+	static createProperty(e, t = re) {
 		if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
 			let n = Symbol(), r = this.getPropertyDescriptor(e, n, t);
 			r !== void 0 && u(this.prototype, e, r);
@@ -100,11 +100,11 @@ var b = class extends HTMLElement {
 		};
 	}
 	static getPropertyOptions(e) {
-		return this.elementProperties.get(e) ?? ne;
+		return this.elementProperties.get(e) ?? re;
 	}
 	static _$Ei() {
 		if (this.hasOwnProperty(_("elementProperties"))) return;
-		let e = ee(this);
+		let e = m(this);
 		e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
 	}
 	static finalize() {
@@ -187,7 +187,7 @@ var b = class extends HTMLElement {
 	requestUpdate(e, t, n, r = !1, i) {
 		if (e !== void 0) {
 			let a = this.constructor;
-			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? y)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
+			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? ne)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
 			this.C(e, t, n);
 		}
 		!1 === this.isUpdatePending && (this._$ES = this._$EP());
@@ -251,87 +251,87 @@ var b = class extends HTMLElement {
 	updated(e) {}
 	firstUpdated(e) {}
 };
-b.elementStyles = [], b.shadowRootOptions = { mode: "open" }, b[_("elementProperties")] = /* @__PURE__ */ new Map(), b[_("finalized")] = /* @__PURE__ */ new Map(), te?.({ ReactiveElement: b }), (m.reactiveElementVersions ??= []).push("2.1.2");
+y.elementStyles = [], y.shadowRootOptions = { mode: "open" }, y[_("elementProperties")] = /* @__PURE__ */ new Map(), y[_("finalized")] = /* @__PURE__ */ new Map(), te?.({ ReactiveElement: y }), (h.reactiveElementVersions ??= []).push("2.1.2");
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/lit-html.js
-var x = globalThis, re = (e) => e, S = x.trustedTypes, ie = S ? S.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, ae = "$lit$", C = `lit$${Math.random().toFixed(9).slice(2)}$`, oe = "?" + C, se = `<${oe}>`, w = document, T = () => w.createComment(""), E = (e) => e === null || typeof e != "object" && typeof e != "function", ce = Array.isArray, le = (e) => ce(e) || typeof e?.[Symbol.iterator] == "function", ue = "[ 	\n\f\r]", D = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, de = /-->/g, fe = />/g, O = RegExp(`>|${ue}(?:([^\\s"'>=/]+)(${ue}*=${ue}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), pe = /'/g, me = /"/g, he = /^(?:script|style|textarea|title)$/i, k = ((e) => (t, ...n) => ({
+var b = globalThis, ie = (e) => e, x = b.trustedTypes, ae = x ? x.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, oe = "$lit$", S = `lit$${Math.random().toFixed(9).slice(2)}$`, se = "?" + S, ce = `<${se}>`, C = document, w = () => C.createComment(""), T = (e) => e === null || typeof e != "object" && typeof e != "function", le = Array.isArray, ue = (e) => le(e) || typeof e?.[Symbol.iterator] == "function", de = "[ 	\n\f\r]", E = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, fe = /-->/g, pe = />/g, D = RegExp(`>|${de}(?:([^\\s"'>=/]+)(${de}*=${de}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), me = /'/g, he = /"/g, ge = /^(?:script|style|textarea|title)$/i, _e = (e) => (t, ...n) => ({
 	_$litType$: e,
 	strings: t,
 	values: n
-}))(1), A = Symbol.for("lit-noChange"), j = Symbol.for("lit-nothing"), ge = /* @__PURE__ */ new WeakMap(), M = w.createTreeWalker(w, 129);
-function _e(e, t) {
-	if (!ce(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
-	return ie === void 0 ? t : ie.createHTML(t);
+}), O = _e(1), ve = _e(2), k = Symbol.for("lit-noChange"), A = Symbol.for("lit-nothing"), ye = /* @__PURE__ */ new WeakMap(), j = C.createTreeWalker(C, 129);
+function be(e, t) {
+	if (!le(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
+	return ae === void 0 ? t : ae.createHTML(t);
 }
-var ve = (e, t) => {
-	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = D;
+var xe = (e, t) => {
+	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = E;
 	for (let t = 0; t < n; t++) {
 		let n = e[t], s, c, l = -1, u = 0;
-		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === D ? c[1] === "!--" ? o = de : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = O) : (he.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = O) : o = fe : o === O ? c[0] === ">" ? (o = i ?? D, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? O : c[3] === "\"" ? me : pe) : o === me || o === pe ? o = O : o === de || o === fe ? o = D : (o = O, i = void 0);
-		let d = o === O && e[t + 1].startsWith("/>") ? " " : "";
-		a += o === D ? n + se : l >= 0 ? (r.push(s), n.slice(0, l) + ae + n.slice(l) + C + d) : n + C + (l === -2 ? t : d);
+		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === E ? c[1] === "!--" ? o = fe : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = D) : (ge.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = D) : o = pe : o === D ? c[0] === ">" ? (o = i ?? E, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? D : c[3] === "\"" ? he : me) : o === he || o === me ? o = D : o === fe || o === pe ? o = E : (o = D, i = void 0);
+		let d = o === D && e[t + 1].startsWith("/>") ? " " : "";
+		a += o === E ? n + ce : l >= 0 ? (r.push(s), n.slice(0, l) + oe + n.slice(l) + S + d) : n + S + (l === -2 ? t : d);
 	}
-	return [_e(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
-}, ye = class e {
+	return [be(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
+}, Se = class e {
 	constructor({ strings: t, _$litType$: n }, r) {
 		let i;
 		this.parts = [];
-		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = ve(t, n);
-		if (this.el = e.createElement(l, r), M.currentNode = this.el.content, n === 2 || n === 3) {
+		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = xe(t, n);
+		if (this.el = e.createElement(l, r), j.currentNode = this.el.content, n === 2 || n === 3) {
 			let e = this.el.content.firstChild;
 			e.replaceWith(...e.childNodes);
 		}
-		for (; (i = M.nextNode()) !== null && c.length < s;) {
+		for (; (i = j.nextNode()) !== null && c.length < s;) {
 			if (i.nodeType === 1) {
-				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(ae)) {
-					let t = u[o++], n = i.getAttribute(e).split(C), r = /([.?@])?(.*)/.exec(t);
+				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(oe)) {
+					let t = u[o++], n = i.getAttribute(e).split(S), r = /([.?@])?(.*)/.exec(t);
 					c.push({
 						type: 1,
 						index: a,
 						name: r[2],
 						strings: n,
-						ctor: r[1] === "." ? Se : r[1] === "?" ? Ce : r[1] === "@" ? we : P
+						ctor: r[1] === "." ? Te : r[1] === "?" ? Ee : r[1] === "@" ? De : N
 					}), i.removeAttribute(e);
-				} else e.startsWith(C) && (c.push({
+				} else e.startsWith(S) && (c.push({
 					type: 6,
 					index: a
 				}), i.removeAttribute(e));
-				if (he.test(i.tagName)) {
-					let e = i.textContent.split(C), t = e.length - 1;
+				if (ge.test(i.tagName)) {
+					let e = i.textContent.split(S), t = e.length - 1;
 					if (t > 0) {
-						i.textContent = S ? S.emptyScript : "";
-						for (let n = 0; n < t; n++) i.append(e[n], T()), M.nextNode(), c.push({
+						i.textContent = x ? x.emptyScript : "";
+						for (let n = 0; n < t; n++) i.append(e[n], w()), j.nextNode(), c.push({
 							type: 2,
 							index: ++a
 						});
-						i.append(e[t], T());
+						i.append(e[t], w());
 					}
 				}
-			} else if (i.nodeType === 8) if (i.data === oe) c.push({
+			} else if (i.nodeType === 8) if (i.data === se) c.push({
 				type: 2,
 				index: a
 			});
 			else {
 				let e = -1;
-				for (; (e = i.data.indexOf(C, e + 1)) !== -1;) c.push({
+				for (; (e = i.data.indexOf(S, e + 1)) !== -1;) c.push({
 					type: 7,
 					index: a
-				}), e += C.length - 1;
+				}), e += S.length - 1;
 			}
 			a++;
 		}
 	}
 	static createElement(e, t) {
-		let n = w.createElement("template");
+		let n = C.createElement("template");
 		return n.innerHTML = e, n;
 	}
 };
-function N(e, t, n = e, r) {
-	if (t === A) return t;
-	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = E(t) ? void 0 : t._$litDirective$;
-	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = N(e, i._$AS(e, t.values), i, r)), t;
+function M(e, t, n = e, r) {
+	if (t === k) return t;
+	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = T(t) ? void 0 : t._$litDirective$;
+	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = M(e, i._$AS(e, t.values), i, r)), t;
 }
-var be = class {
+var Ce = class {
 	constructor(e, t) {
 		this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
 	}
@@ -342,28 +342,28 @@ var be = class {
 		return this._$AM._$AU;
 	}
 	u(e) {
-		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? w).importNode(t, !0);
-		M.currentNode = r;
-		let i = M.nextNode(), a = 0, o = 0, s = n[0];
+		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? C).importNode(t, !0);
+		j.currentNode = r;
+		let i = j.nextNode(), a = 0, o = 0, s = n[0];
 		for (; s !== void 0;) {
 			if (a === s.index) {
 				let t;
-				s.type === 2 ? t = new xe(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Te(i, this, e)), this._$AV.push(t), s = n[++o];
+				s.type === 2 ? t = new we(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Oe(i, this, e)), this._$AV.push(t), s = n[++o];
 			}
-			a !== s?.index && (i = M.nextNode(), a++);
+			a !== s?.index && (i = j.nextNode(), a++);
 		}
-		return M.currentNode = w, r;
+		return j.currentNode = C, r;
 	}
 	p(e) {
 		let t = 0;
 		for (let n of this._$AV) n !== void 0 && (n.strings === void 0 ? n._$AI(e[t]) : (n._$AI(e, n, t), t += n.strings.length - 2)), t++;
 	}
-}, xe = class e {
+}, we = class e {
 	get _$AU() {
 		return this._$AM?._$AU ?? this._$Cv;
 	}
 	constructor(e, t, n, r) {
-		this.type = 2, this._$AH = j, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
+		this.type = 2, this._$AH = A, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
 	}
 	get parentNode() {
 		let e = this._$AA.parentNode, t = this._$AM;
@@ -376,7 +376,7 @@ var be = class {
 		return this._$AB;
 	}
 	_$AI(e, t = this) {
-		e = N(this, e, t), E(e) ? e === j || e == null || e === "" ? (this._$AH !== j && this._$AR(), this._$AH = j) : e !== this._$AH && e !== A && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? le(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
+		e = M(this, e, t), T(e) ? e === A || e == null || e === "" ? (this._$AH !== A && this._$AR(), this._$AH = A) : e !== this._$AH && e !== k && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? ue(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
 	}
 	O(e) {
 		return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -385,36 +385,36 @@ var be = class {
 		this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
 	}
 	_(e) {
-		this._$AH !== j && E(this._$AH) ? this._$AA.nextSibling.data = e : this.T(w.createTextNode(e)), this._$AH = e;
+		this._$AH !== A && T(this._$AH) ? this._$AA.nextSibling.data = e : this.T(C.createTextNode(e)), this._$AH = e;
 	}
 	$(e) {
-		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = ye.createElement(_e(n.h, n.h[0]), this.options)), n);
+		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = Se.createElement(be(n.h, n.h[0]), this.options)), n);
 		if (this._$AH?._$AD === r) this._$AH.p(t);
 		else {
-			let e = new be(r, this), n = e.u(this.options);
+			let e = new Ce(r, this), n = e.u(this.options);
 			e.p(t), this.T(n), this._$AH = e;
 		}
 	}
 	_$AC(e) {
-		let t = ge.get(e.strings);
-		return t === void 0 && ge.set(e.strings, t = new ye(e)), t;
+		let t = ye.get(e.strings);
+		return t === void 0 && ye.set(e.strings, t = new Se(e)), t;
 	}
 	k(t) {
-		ce(this._$AH) || (this._$AH = [], this._$AR());
+		le(this._$AH) || (this._$AH = [], this._$AR());
 		let n = this._$AH, r, i = 0;
-		for (let a of t) i === n.length ? n.push(r = new e(this.O(T()), this.O(T()), this, this.options)) : r = n[i], r._$AI(a), i++;
+		for (let a of t) i === n.length ? n.push(r = new e(this.O(w()), this.O(w()), this, this.options)) : r = n[i], r._$AI(a), i++;
 		i < n.length && (this._$AR(r && r._$AB.nextSibling, i), n.length = i);
 	}
 	_$AR(e = this._$AA.nextSibling, t) {
 		for (this._$AP?.(!1, !0, t); e !== this._$AB;) {
-			let t = re(e).nextSibling;
-			re(e).remove(), e = t;
+			let t = ie(e).nextSibling;
+			ie(e).remove(), e = t;
 		}
 	}
 	setConnected(e) {
 		this._$AM === void 0 && (this._$Cv = e, this._$AP?.(e));
 	}
-}, P = class {
+}, N = class {
 	get tagName() {
 		return this.element.tagName;
 	}
@@ -422,47 +422,47 @@ var be = class {
 		return this._$AM._$AU;
 	}
 	constructor(e, t, n, r, i) {
-		this.type = 1, this._$AH = j, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = j;
+		this.type = 1, this._$AH = A, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = A;
 	}
 	_$AI(e, t = this, n, r) {
 		let i = this.strings, a = !1;
-		if (i === void 0) e = N(this, e, t, 0), a = !E(e) || e !== this._$AH && e !== A, a && (this._$AH = e);
+		if (i === void 0) e = M(this, e, t, 0), a = !T(e) || e !== this._$AH && e !== k, a && (this._$AH = e);
 		else {
 			let r = e, o, s;
-			for (e = i[0], o = 0; o < i.length - 1; o++) s = N(this, r[n + o], t, o), s === A && (s = this._$AH[o]), a ||= !E(s) || s !== this._$AH[o], s === j ? e = j : e !== j && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
+			for (e = i[0], o = 0; o < i.length - 1; o++) s = M(this, r[n + o], t, o), s === k && (s = this._$AH[o]), a ||= !T(s) || s !== this._$AH[o], s === A ? e = A : e !== A && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
 		}
 		a && !r && this.j(e);
 	}
 	j(e) {
-		e === j ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
+		e === A ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
 	}
-}, Se = class extends P {
+}, Te = class extends N {
 	constructor() {
 		super(...arguments), this.type = 3;
 	}
 	j(e) {
-		this.element[this.name] = e === j ? void 0 : e;
+		this.element[this.name] = e === A ? void 0 : e;
 	}
-}, Ce = class extends P {
+}, Ee = class extends N {
 	constructor() {
 		super(...arguments), this.type = 4;
 	}
 	j(e) {
-		this.element.toggleAttribute(this.name, !!e && e !== j);
+		this.element.toggleAttribute(this.name, !!e && e !== A);
 	}
-}, we = class extends P {
+}, De = class extends N {
 	constructor(e, t, n, r, i) {
 		super(e, t, n, r, i), this.type = 5;
 	}
 	_$AI(e, t = this) {
-		if ((e = N(this, e, t, 0) ?? j) === A) return;
-		let n = this._$AH, r = e === j && n !== j || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== j && (n === j || r);
+		if ((e = M(this, e, t, 0) ?? A) === k) return;
+		let n = this._$AH, r = e === A && n !== A || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== A && (n === A || r);
 		r && this.element.removeEventListener(this.name, this, n), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
 	}
 	handleEvent(e) {
 		typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, e) : this._$AH.handleEvent(e);
 	}
-}, Te = class {
+}, Oe = class {
 	constructor(e, t, n) {
 		this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = n;
 	}
@@ -470,18 +470,18 @@ var be = class {
 		return this._$AM._$AU;
 	}
 	_$AI(e) {
-		N(this, e);
+		M(this, e);
 	}
-}, Ee = x.litHtmlPolyfillSupport;
-Ee?.(ye, xe), (x.litHtmlVersions ??= []).push("3.3.3");
-var De = (e, t, n) => {
+}, ke = b.litHtmlPolyfillSupport;
+ke?.(Se, we), (b.litHtmlVersions ??= []).push("3.3.3");
+var Ae = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
 		let e = n?.renderBefore ?? null;
-		r._$litPart$ = i = new xe(t.insertBefore(T(), e), e, void 0, n ?? {});
+		r._$litPart$ = i = new we(t.insertBefore(w(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, F = globalThis, I = class extends b {
+}, je = globalThis, P = class extends y {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -491,7 +491,7 @@ var De = (e, t, n) => {
 	}
 	update(e) {
 		let t = this.render();
-		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = De(t, this.renderRoot, this.renderOptions);
+		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Ae(t, this.renderRoot, this.renderOptions);
 	}
 	connectedCallback() {
 		super.connectedCallback(), this._$Do?.setConnected(!0);
@@ -500,21 +500,21 @@ var De = (e, t, n) => {
 		super.disconnectedCallback(), this._$Do?.setConnected(!1);
 	}
 	render() {
-		return A;
+		return k;
 	}
 };
-I._$litElement$ = !0, I.finalized = !0, F.litElementHydrateSupport?.({ LitElement: I });
-var Oe = F.litElementPolyfillSupport;
-Oe?.({ LitElement: I }), (F.litElementVersions ??= []).push("4.2.2");
+P._$litElement$ = !0, P.finalized = !0, je.litElementHydrateSupport?.({ LitElement: P });
+var Me = je.litElementPolyfillSupport;
+Me?.({ LitElement: P }), (je.litElementVersions ??= []).push("4.2.2");
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/property.js
-var ke = {
+var Ne = {
 	attribute: !0,
 	type: String,
 	converter: v,
 	reflect: !1,
-	hasChanged: y
-}, Ae = (e = ke, t, n) => {
+	hasChanged: ne
+}, Pe = (e = Ne, t, n) => {
 	let { kind: r, metadata: i } = n, a = globalThis.litPropertyMetadata.get(i);
 	if (a === void 0 && globalThis.litPropertyMetadata.set(i, a = /* @__PURE__ */ new Map()), r === "setter" && ((e = Object.create(e)).wrapped = !0), a.set(n.name, e), r === "accessor") {
 		let { name: r } = n;
@@ -537,71 +537,513 @@ var ke = {
 	}
 	throw Error("Unsupported decorator location: " + r);
 };
-function L(e) {
-	return (t, n) => typeof n == "object" ? Ae(e, t, n) : ((e, t, n) => {
+function Fe(e) {
+	return (t, n) => typeof n == "object" ? Pe(e, t, n) : ((e, t, n) => {
 		let r = t.hasOwnProperty(n);
 		return t.constructor.createProperty(n, e), r ? Object.getOwnPropertyDescriptor(t, n) : void 0;
 	})(e, t, n);
 }
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/state.js
-function R(e) {
-	return L({
+function F(e) {
+	return Fe({
 		...e,
 		state: !0,
 		attribute: !1
 	});
 }
 //#endregion
-//#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/directive.js
-var je = {
-	ATTRIBUTE: 1,
-	CHILD: 2,
-	PROPERTY: 3,
-	BOOLEAN_ATTRIBUTE: 4,
-	EVENT: 5,
-	ELEMENT: 6
-}, Me = (e) => (...t) => ({
-	_$litDirective$: e,
-	values: t
-}), Ne = class {
-	constructor(e) {}
-	get _$AU() {
-		return this._$AM._$AU;
+//#region src/assets/trydan/body.webp
+var Ie = "data:image/webp;base64,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", Le = "data:image/webp;base64,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358JOIlMnACLOknPcj37ZsMhxReHzVQtg6o8t7EBcBKROACLPlCqslzl5zegDqm+OGyhahmkJ4+sywBOIhEHyNKDJD3LVp5qg0PKL4LNVC2H6snuR8YD4uSKiROg6eFOkl5ZtrKvDQ6pvwg2KrUcUpXs3TQDgDiRURPnAKB1ywlSPUfR89j1cDBAEXyrQC2LVCVz7aumAIA4JxIkIs45jJz12IE8qZ6jqJ4918LBBMVh+Zf05ZHqSZ754OutDiNFxDnnRAQlpy155q9DJL1yNFW5/2o4WKGg9SBVyyPVK8l8z+uP3T6zAaGZKTcsefLlzixJeq8cVU99uQECO3QY/1vSa3kk1XuOvHj84I53XvjVr156p73jL0e+HOZITbxydFWZ/RogsEQHPPIFVUeDpKr3LF99ospR9+Sf2iACWxTBrHZSdVRGqqr3SVHvvaoqr6Aqc/8yDgJ7dMCyHtLrKMWsSu6+ERBYpAgmbh0iVStKPdm3XuAERumA+bsTUrViVMnB56cAArsUgdy+JyG9VoR68sJrcwAH2xRA7txXIFU1MlUlc1tnAyIwTwFwx/s5kqoajaqSPPZMKyACCxUBcP3GzzypXvXKqaqSzP1+VTMgAisVJ0DDnS/1kaR6VR01VfVKMt+5aTYAJzBVcQAmr3ylt0CSqt7rKHrlyLP7vn+zA8QJzFWcAJiw6Km3ei5y1C+f3v+LVTMAwAmMVpwAQEPr8qe2f3To72cGhvJDg4ODgxdy2f6+z9p/sn5BC0Y6EViuiBMUHX/V9Flz582dO/fGG9taZ05tbkBR5wQWLOKcCMoX50Rgy1I+/ldLAFZQOCCOCgAA8HEAnQEq4wFcAj5JJJBGIqIhoSEzKEBQCQlpbuF2sRk4lwp6EdtbdgG8PeTM5N3czMkYg9sjym0xP+of77mx/m3+19g3+Wf07/p9i/0Hv1ZBv3pjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELihwExiFxgF1NQExiFxf9pqX4gzfQ+wF1NQExiFxgF1NQEvFnebQuzx4ylRX2QhcYBdTUBMYhcYBcWwd8ahA7zmY5W6RPjbaZb3HWAJjELi/7Pfh8ZU7TLVCUhGC+66R4yZIOzezFxgF1NQExiFxgFIIpO2nbi6SDzOR+mrgKrPs/id6YxC4wC6moCYqgEtAE6JJTqu2xWlaJWaIP8xjClwCYxC4wC6moCYxCnYoohaFcN7maE4SNg5rKjWAMttMt7jrAExiFxgFI5yIwOY8TyxG338dDb7UU71tplvcdYAmMQuL/t5G+yOyjBoGm84aCb4UxDbFtplvcdYAmMQuMArQ0X9EdkyVHYs3YwevYldll493pjELjALqagJjEKd1DVa4jnlnD8ds1spJL+ii20y3uOsATGIXF/5m0vhDEiva6/oQjlnU1ATGIXGAXU1ATBR+MJjWBUwAzvX7w46wBMYhcYBdTUBLyQx11FCXDyO5Le46wBMYhcYBdTRe+u4iAypgdDSIyQd6YxC4wC6moCYxCneQCPZhrPbu2nV/id6YxC4wC4jY/IRaVLkQmXFkTRCc8QBaq4wC6moCYxCmQQyK1R5xZ+8idcaBfWBpuddPGTK6wBMYhcYBcSCARQEn6Fob6O20oi2ax7Zf5DY8PudlvcdYAmMQuL0BzvG20Ki4VdCJrrjVc1Mva09VdJOYW4x1ZGAXU1ATGIXF/2xmtAAo4B2nrwBKtpXzpNPb3SQIbP3d3WJkSn/TkwUEhiE9Y3SYo1xkYBdTUBMYhcYBSRRM1QoyzsC307UUgQnzfew0XGidN67/3RWV7a8qxQExUAA/v/pT4AAAAAAAAAAAAAAAAAAAAAJIRVYxfEx35zg2FcNpK3LAW5SA5ATbDczn5K83N6MEtflFR3kepXWLNHfXXtAlRUBNU2WRJRUGoBcy0KzSW8Wkz1ryj4sdHQljxvLXdrShuzsUAlrwPKLSq/814viHMe3o/UM/5Hhgnjqm1u0drI7CUt7fV8COYrILrt66UraFU4jDJWmaPcXHd2AU+/kLtB9ePielvzU9bBNCX6zyxpmFjNNwxukOXR+dnf7VDpgOMIDYj3i5jN4ZX/zRFyptO3CDIV2eR0h/8Lj6TRqQ11EZt6BB/orrzrBMtQJrFnpt/4TTmzuk1lWpgZ0+btCUDofSmeDSQs/0AE1Lz6VQLaufUXngDz7usXoS3xk0P3TTVe+HtVq7HG5wBA7wNislatigwwQTVx12M5GuartmIqDJQxCUCifDtkvypnxqAr4fuH29HuIWNYJ2bvNx5FEC02vPyj6qu3p4YoneTJvLZLwxZeIqJ8tlnNyiGK0JSaBi39xCyhYDmwsZ4Dz/XY+aXZjAAY7wagDqjup79ZVaMcgjTAgszSStpasWmNmXPfmOZ7AFDKBCsb/ts4rz8HftB7w9JFOUl3j2mhHDJ/MPTRqAE+PNMFGrf3sATNWLngJzg50JZdvifxCMI8iTTLQXbdAmsinCxRCUp6F4nuL3Op5ydUJ1BATFFHT8JmIWzGHCOwZT8IaHkiTW85y708pURb1FmKM2z+a6FkZJt24jObSHYwWdPqv+7IU+GmFoPbIfsp+FEwAAo64Nw3GKfAyL5I6H6RnN7P+LXjv8Szgjd5rLt0BYgJSfJKhuN8nA14bOuhvWFHHAw3jU+ht66CEUVTAsfoyZFlBtpCXYWPBMKIliEjH5pkymnXvzkJAW6jjmRB/bW07BafJ9HNRx1IJQcK607UiPM4PJGyAI5WMUYjCgeIPyLadztGJ5fEvAQ4+4p1M1WOv5Nr+6YFA2o1VPLWe1bGoBApQMtburfv7/2H4U0g6pK/4Ks1DotczM4DmRHEJuAEi7oEudQ0wGFM6c3WjRBCgz9Zii4aij6DCXD1OVVWw258dAgmHTbxVSLJ5GVwM4nCZTvscVa9tox2nIW99K57X6J2wcA/SRLpsa7KKk5vQxXfpjw1XozVU6HapxlNoM2maknqB/1jm9SxHjXX97qFrx/2uF98nMkMrrvoXdNrMv3Lc6L8MDn7/NWxFKjMCeRxbHthy/8smEsOewGnb1nrHBcN7upGgHEB20ZvytwE1xcyX1Y+5OaDU5oYapczGdUptn5QG66eFvNTqlcCbe+4kyzCDinCflUYB+IeDloALoAglzuDWUpdoF1j5S65nW0DfmLDd76XWICCCsWWiLwq1JqcjNBO+md8ojoi84Sr8S/sfCQYIb6oYQChbPyte3z18DTSQbzmARRY8Jg51sz8hyZymNszRtPAAOGMD2WZfsmB9nkA46rS6yjunF5ZCX8dZqo/kNhqFAJ91FGAVvjI1RAtm/Av3yK/jsdIdENZrFib3aRxPFEQnbIn+6LH2Y8xj7p1bBQzyjpRz/UEpEC/+SX9HtHE5xfXoGeYtCcu5zmHti0RR2Qj2dlnv8WeuHqBAYlTfx9f+Ue8lCyZBAwrGN5TAeDqeG8kIY2IDxv24SoOYGjjTCrrrd466kp5IUTTNrr/ryowMhFR4Msp0QMaPsK9fTb/96tUrt/oTr2L1PMtygP7sqatliFhRpKWSOcTwIeQSUzpCyOkoqGM/lv0XU8VqSze2WC4D+K/8JFPi0YkGa2UVgTCZjMAV0144xL4rA+NZ3BrI85OVlPPagwLkfVvKeCoC6s4GJp/4softWlFIpoYswrzIEBE7Lz4qjabidSXZPQe84DPTbRf2MLA3CH1yU9G3tx2BV09a1PnWv4Y0IIXQFqVG8KkFchGJCza6MDe3g70vaPU4piUEjCgBVlmDV1gUbQhCHK3ZVG8gG6ocGAb/4ghG9NayXB7A661TqU6q1exYtN7j0nKvoq3bXx3DANDIL0EhlyxqO6l/4DYZVO5p4pJZY15FkZryKPBgehGbHtU1zgoJPHB+AZ+qu9C/pBw/52708qxrOnBH1oQtoGnFdoPN5ljcfmC498sc9lis1QNE6nVUu3o7iANbteoqbWgXcH+wOftAq8r8kXD1591l7ILZneIV8b4zLrI+DOfNraIaFkZ/M3TWxcKXz/6ADRJu28MfzyoEz7nHQ1AkC49qCd7Fs/0nSxbY+l7A2uA4qTBFfAU7PukTfupVgHKkv3ZqkxOB+2wIxP7JP8yxiTn7lje4WJEsUq+2L3pYRPH6lmbdinl2ER+i17Wk//p1nqmeozcZ9jPvPwR7E+3IAJk0+/z4MeAAAAA=", I = {
+	canvasWidth: 483,
+	canvasHeight: 604,
+	body: {
+		x: 11,
+		y: 12,
+		width: 360,
+		height: 501
+	},
+	logo: {
+		x: 142,
+		y: 109,
+		width: 96,
+		height: 41
+	},
+	display: {
+		x: 142,
+		y: 207,
+		width: 98,
+		height: 21
 	}
-	_$AT(e, t, n) {
-		this._$Ct = e, this._$AM = t, this._$Ci = n;
-	}
-	_$AS(e, t) {
-		return this.update(e, t);
-	}
-	update(e, t) {
-		return this.render(...t);
-	}
-}, Pe = class extends Ne {
-	constructor(e) {
-		if (super(e), this.it = j, e.type !== je.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
-	}
-	render(e) {
-		if (e === j || e == null) return this._t = void 0, this.it = e;
-		if (e === A) return e;
-		if (typeof e != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
-		if (e === this.it) return this._t;
-		this.it = e;
-		let t = [e];
-		return t.raw = t, this._t = {
-			_$litType$: this.constructor.resultType,
-			strings: t,
-			values: []
-		};
+}, L = {
+	top: 252,
+	bottom: 600,
+	right: 424
+};
+function Re(e, t) {
+	let { body: n } = I, r = n.x + n.width / 2, i = Math.max(n.width / 2 + 6, t ? L.right + 6 - r : 0), a = r - i, o = n.y - 13, s = I.display.y + I.display.height, c = e === "focus" ? t ? Math.min(s + 22, L.top) : s + 82 : e === "mid" ? Math.round((L.top + L.bottom) / 2 + 62) : Math.min(L.bottom + 12, I.canvasHeight);
+	return {
+		x: a,
+		y: o,
+		width: i * 2,
+		height: c - o
+	};
+}
+//#endregion
+//#region src/assets/trydan/logo.ts
+var ze = {
+	width: 378,
+	height: 163
+}, R = "M301.5 0.2 288 3.2 287 4.2 285 4.2 275.5 8.2 260.5 18.2 248.2 30.5 240.2 42.5 236.2 51 233.2 60 230.8 75 231.2 93.5 235.2 109.5 242.2 124 250.2 135 263.5 147.2 274.5 154.2 289.5 160.2 298 162.2 302.5 162.2 304.5 163.2 320 163.2 321 162.2 326.5 162.2 335 160.2 346 156.2 353.5 152.2 365 144.2 375.2 134 378.2 129.5 360.5 112.2 352.8 122 344 129.2 337 133.2 326 137.2 315.5 138.8 304 138.2 295 136.2 284 131.2 275.5 125.2 268.2 118 263.2 111 258.2 100.5 255.2 88 255.2 75 259.2 60 265.2 49 275.5 37.8 281.5 33.2 289 29.2 301 25.2 315 24.2 323.5 25.2 335.5 29.2 343 33.2 349 37.8 359.5 49.2 360.5 49.2 377.2 32 372.8 26.5 363 17.2 347 7.2 336.5 3.2 328.5 1.2 325 1.2 323.5 0.2 301.5 0.2Z M165 1.2 149 4.2 135.5 10.2 129.5 14.2 120.8 22.5 115.2 31 128.5 43.2 132 46.2 133 46.2 141.5 35.2 152.5 28.2 158 26.2 166.5 24.8 174.5 24.8 182 26.2 189.5 30.2 193.2 34 196.2 39 197.8 45.5 197.2 54.5 196.2 58 189.2 72 174.2 90 156 107.2 116.2 140 116.2 159 259 159.2 247.5 149.8 235.5 135.8 159.8 136 160.5 134.2 184 114.2 203.2 94 212.2 81.5 218.2 70 222.2 55.5 222.2 40 221.2 38.5 220.2 32 215.2 22 206 12.2 200 8.2 188 3.2 176.5 1.2 165 1.2Z M0.5 3.2 0.2 5.5 1.2 6 8.2 25 14.2 38 17.2 47 30.2 77 35.2 91 39.2 99 44.2 113 48.2 121 48.2 122.5 63.2 159 86 159.2 89.2 153 94.2 139 100.2 126 100.2 124.5 127.2 58.5 109 41.2 108.2 41.5 83.2 103 83.2 104.5 82.2 105.5 82.2 107 81.2 108 81.2 109.5 80.2 110.5 80.2 112 79.2 113 79.2 114.5 78.2 115.5 78.2 117 77.2 118 77.2 119.5 76.2 120.5 76.2 122 75.5 122.2 27.8 4 27 3.2 0.5 3.2Z M296 46.8 294 47.2 292.2 49 291.2 52 293.5 55.8 297.5 56.8 301.2 54 301.8 51 299 47.2 296 46.8Z M328.5 46.8 325.2 48.5 324.2 53 326 55.8 330 56.8 333.2 55 334.2 50.5 332 47.2 328.5 46.8Z M273 70.2 268.2 75 268.2 82 272.5 86.2 279.5 86.2 284.2 81.5 284.2 75.5 282.2 72.5 279 70.2 273 70.2Z M310 70.2 305.2 74.5 304.2 78 305.2 82.5 309.5 86.2 316.5 86.2 320.2 83 321.2 80.5 321.2 76 319.2 72.5 317.5 71.2 315.5 70.2 310 70.2Z M347 70.2 343.2 73 341.2 77 342.2 82.5 346 86.2 353.5 86.2 357.8 81.5 357.8 75.5 356.2 73 352.5 70.2 347 70.2Z M293.5 104.2 289.2 108 288.2 110 288.2 114.5 290.2 118 293 120.2 300 120.2 304.2 116 305.2 113 304.2 108.5 299.5 104.2 293.5 104.2Z M326.5 104.2 324.5 105.2 321.2 109 321.2 115.5 325.5 120.2 333 120.2 337.2 116 337.2 109 334 105.2 332 104.2 326.5 104.2Z", Be = {
+	" ": [
+		0,
+		0,
+		0,
+		0,
+		0
+	],
+	0: [
+		62,
+		81,
+		73,
+		69,
+		62
+	],
+	1: [
+		0,
+		66,
+		127,
+		64,
+		0
+	],
+	2: [
+		66,
+		97,
+		81,
+		73,
+		70
+	],
+	3: [
+		33,
+		65,
+		69,
+		75,
+		49
+	],
+	4: [
+		24,
+		20,
+		18,
+		127,
+		16
+	],
+	5: [
+		39,
+		69,
+		69,
+		69,
+		57
+	],
+	6: [
+		60,
+		74,
+		73,
+		73,
+		48
+	],
+	7: [
+		1,
+		113,
+		9,
+		5,
+		3
+	],
+	8: [
+		54,
+		73,
+		73,
+		73,
+		54
+	],
+	9: [
+		6,
+		73,
+		73,
+		41,
+		30
+	],
+	A: [
+		126,
+		17,
+		17,
+		17,
+		126
+	],
+	B: [
+		127,
+		73,
+		73,
+		73,
+		54
+	],
+	C: [
+		62,
+		65,
+		65,
+		65,
+		34
+	],
+	D: [
+		127,
+		65,
+		65,
+		34,
+		28
+	],
+	E: [
+		127,
+		73,
+		73,
+		73,
+		65
+	],
+	F: [
+		127,
+		9,
+		9,
+		9,
+		1
+	],
+	G: [
+		62,
+		65,
+		73,
+		73,
+		122
+	],
+	H: [
+		127,
+		8,
+		8,
+		8,
+		127
+	],
+	I: [
+		0,
+		65,
+		127,
+		65,
+		0
+	],
+	J: [
+		32,
+		64,
+		65,
+		63,
+		1
+	],
+	K: [
+		127,
+		8,
+		20,
+		34,
+		65
+	],
+	L: [
+		127,
+		64,
+		64,
+		64,
+		64
+	],
+	M: [
+		127,
+		2,
+		12,
+		2,
+		127
+	],
+	N: [
+		127,
+		4,
+		8,
+		16,
+		127
+	],
+	O: [
+		62,
+		65,
+		65,
+		65,
+		62
+	],
+	P: [
+		127,
+		9,
+		9,
+		9,
+		6
+	],
+	Q: [
+		62,
+		65,
+		81,
+		33,
+		94
+	],
+	R: [
+		127,
+		9,
+		25,
+		41,
+		70
+	],
+	S: [
+		70,
+		73,
+		73,
+		73,
+		49
+	],
+	T: [
+		1,
+		1,
+		127,
+		1,
+		1
+	],
+	U: [
+		63,
+		64,
+		64,
+		64,
+		63
+	],
+	V: [
+		31,
+		32,
+		64,
+		32,
+		31
+	],
+	W: [
+		127,
+		32,
+		24,
+		32,
+		127
+	],
+	X: [
+		99,
+		20,
+		8,
+		20,
+		99
+	],
+	Y: [
+		3,
+		4,
+		120,
+		4,
+		3
+	],
+	Z: [
+		97,
+		81,
+		73,
+		69,
+		67
+	],
+	".": [
+		0,
+		0,
+		64,
+		0,
+		0
+	],
+	",": [
+		0,
+		0,
+		96,
+		0,
+		0
+	],
+	":": [
+		0,
+		0,
+		20,
+		0,
+		0
+	],
+	"-": [
+		8,
+		8,
+		8,
+		8,
+		8
+	],
+	"/": [
+		32,
+		16,
+		8,
+		4,
+		2
+	],
+	">": [
+		0,
+		65,
+		34,
+		20,
+		8
+	],
+	"%": [
+		99,
+		19,
+		8,
+		100,
+		99
+	],
+	"+": [
+		8,
+		8,
+		62,
+		8,
+		8
+	],
+	"*": [
+		20,
+		8,
+		62,
+		8,
+		20
+	]
+}, Ve = 6, He = 8, z = {
+	authentic: {
+		columns: 16,
+		rows: 2
+	},
+	mid: {
+		columns: 12,
+		rows: 2
+	},
+	big: {
+		columns: 7,
+		rows: 1
 	}
 };
-Pe.directiveName = "unsafeHTML", Pe.resultType = 1;
+function Ue(e, t, n, r = {
+	x: 3.6,
+	y: 2.6
+}) {
+	let { columns: i, rows: a } = z[e], o = Math.min((t - r.x) / (i * Ve), (n - r.y) / (a * He)), s = i * Ve * o, c = a * He * o;
+	return {
+		pitch: o,
+		dot: o * .78,
+		offsetX: (t - s) / 2,
+		offsetY: (n - c) / 2
+	};
+}
+function We(e) {
+	return e.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n").replace(/Ñ/g, "N").replace(/ç/g, "c").replace(/Ç/g, "C").replace(/æ/g, "ae").replace(/Æ/g, "AE").replace(/ø/g, "oe").replace(/Ø/g, "OE").replace(/ș/g, "s").replace(/Ș/g, "S").replace(/ț/g, "t").replace(/Ț/g, "T").replace(/º|ª/g, "").toUpperCase();
+}
+function Ge(e, t, n, r) {
+	let { columns: i, rows: a } = z[t], o = Ue(t, n, r), { pitch: s, dot: c } = o, l = (s - c) / 2, u = /* @__PURE__ */ new Set();
+	for (let t = 0; t < Math.min(e.length, a); t += 1) {
+		let n = We(String(e[t] ?? ""));
+		for (let e = 0; e < i; e += 1) {
+			let r = Be[n[e] ?? " "] ?? Be[" "];
+			for (let n = 0; n < 5; n += 1) for (let i = 0; i < 7; i += 1) r[n] >> i & 1 && u.add(`${e * Ve + n},${t * He + i}`);
+		}
+	}
+	let d = (e, t) => `M${(e * s + l).toFixed(2)} ${(t * s + l).toFixed(2)}h${c.toFixed(2)}v${c.toFixed(2)}h-${c.toFixed(2)}z`, f = [], p = [];
+	for (let e = 0; e < i * Ve - 1; e += 1) for (let t = 0; t < a * He - 1; t += 1) (u.has(`${e},${t}`) ? f : p).push(d(e, t));
+	return {
+		...o,
+		on: f.join(""),
+		off: p.join("")
+	};
+}
 //#endregion
-//#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/directives/unsafe-svg.js
-var Fe = class extends Pe {};
-Fe.directiveName = "unsafeSVG", Fe.resultType = 2;
-var Ie = Me(Fe), Le = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 312 480\">\n<defs>\n  <linearGradient id=\"case\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#15171a\"/><stop offset=\".55\" stop-color=\"#070809\"/><stop offset=\"1\" stop-color=\"#020304\"/></linearGradient>\n  <linearGradient id=\"rim\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f0f2f3\"/><stop offset=\".18\" stop-color=\"#70757a\"/><stop offset=\".7\" stop-color=\"#151719\"/><stop offset=\"1\" stop-color=\"#d4d7da\"/></linearGradient>\n  <linearGradient id=\"lcd\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#18314a\"/><stop offset=\"1\" stop-color=\"#050a0f\"/></linearGradient>\n  <filter id=\"shadow\" x=\"-30%\" y=\"-30%\" width=\"170%\" height=\"180%\"><feDropShadow dx=\"5\" dy=\"10\" stdDeviation=\"10\" flood-opacity=\".35\"/></filter>\n  <filter id=\"glow\" x=\"-70%\" y=\"-100%\" width=\"240%\" height=\"300%\"><feGaussianBlur stdDeviation=\"2.8\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n</defs>\n<g filter=\"url(#shadow)\">\n  <rect x=\"62\" y=\"24\" width=\"236\" height=\"410\" rx=\"29\" fill=\"url(#rim)\"/>\n  <rect x=\"66\" y=\"28\" width=\"228\" height=\"402\" rx=\"26\" fill=\"url(#case)\" stroke=\"#70757b\" stroke-width=\"1.2\"/>\n  <path d=\"M83 52 Q92 39 111 39 H250 Q276 40 286 61\" fill=\"none\" stroke=\"#34383d\" stroke-width=\"1.4\"/>\n  <path d=\"M77 397 Q90 419 115 422 H249 Q275 419 286 397\" fill=\"none\" stroke=\"#24272a\" stroke-width=\"1.3\"/>\n\n  <!-- The illuminated V2C wordmark. Colour and blink come from the host stylesheet:\n       fill=\"currentColor\" lets .charger-art[data-state] drive both, so switching state\n       recolours this group in place instead of swapping the whole document. -->\n  <g class=\"charger-logo\" transform=\"translate(107 104) scale(.92)\" fill=\"currentColor\" filter=\"url(#glow)\">\n    <!-- V -->\n    <path d=\"M0 0 H12 L28 39 L44 0 H56 L34 52 H22 Z\"/>\n    <!-- 2 -->\n    <path d=\"M51 9 C59 2 68 0 78 0 C95 0 106 9 106 23 C106 34 99 41 88 49 L68 63 H109 L116 73 H51 V62 L81 41 C90 35 95 30 95 23 C95 15 88 11 78 11 C70 11 64 14 59 20 Z\"/>\n    <!-- C with seven physical cut-outs arranged 2-3-2 -->\n    <path fill-rule=\"evenodd\" d=\"M143 8 A35 35 0 1 0 143 66 L135 55 A22 22 0 1 1 135 19 Z\"/>\n    <!-- Seven illuminated dots inside the C: 2-3-2, like the physical V2C logo. -->\n    <g class=\"c-led-dots\" opacity=\"0.78\">\n      <circle cx=\"124\" cy=\"23\" r=\"3.4\"/><circle cx=\"136\" cy=\"23\" r=\"3.4\"/>\n      <circle cx=\"118\" cy=\"36\" r=\"3.4\"/><circle cx=\"130\" cy=\"36\" r=\"3.4\"/><circle cx=\"142\" cy=\"36\" r=\"3.4\"/>\n      <circle cx=\"124\" cy=\"49\" r=\"3.4\"/><circle cx=\"136\" cy=\"49\" r=\"3.4\"/>\n    </g>\n  </g>\n\n  <rect x=\"130\" y=\"192\" width=\"100\" height=\"27\" fill=\"#020303\" stroke=\"#d9dcde\" stroke-width=\"1\"/>\n  <rect x=\"133\" y=\"195\" width=\"94\" height=\"21\" fill=\"url(#lcd)\" opacity=\".9\"/>\n</g>\n</svg>\n", z = [
+//#region src/card/charger-art.ts
+function Ke(e) {
+	let t = e.map((e) => We(e)), n = t.filter((e) => e.length > 0), r = t.reduce((e, t) => Math.max(e, t.length), 0);
+	return n.length <= 1 && r <= z.big.columns ? "big" : r <= z.mid.columns ? "mid" : "authentic";
+}
+function qe(e) {
+	let { crop: t, showConnector: n, connectorHoldered: r, lcdLines: i, flashSeconds: a, logoOff: o, state: s, flash: c } = e, l = Re(t, n), { canvasWidth: u, canvasHeight: d, logo: f, display: p } = I, m = f.width / ze.width, h = p.width / 65, g = Ge(i, Ke(i), 65, 13.7);
+	return O`<div
+    class="charger-art"
+    style=${(a ? `--v2c-flash:${a.toFixed(2)}s` : void 0) ?? ""}
+    data-crop=${t}
+    data-state=${s}
+    ?data-flash=${c}
+    data-connector=${n ? r ? "in" : "out" : "hidden"}
+    aria-hidden="true"
+  >
+    ${ve`<svg
+      viewBox="${l.x} ${l.y} ${l.width} ${l.height}"
+      preserveAspectRatio="xMidYMin meet"
+    >
+      <defs>
+        <filter id="v2c-glow-wide" x="-260%" y="-420%" width="640%" height="960%">
+          <feGaussianBlur stdDeviation="15" />
+        </filter>
+        <filter id="v2c-glow-mid" x="-220%" y="-360%" width="560%" height="820%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+        <filter id="v2c-glow-tight" x="-220%" y="-360%" width="560%" height="820%">
+          <feGaussianBlur stdDeviation="1.9" />
+        </filter>
+        <radialGradient id="v2c-backlight" cx=".5" cy=".5" r=".78">
+          <stop offset="0" stop-color="#4a56ff" stop-opacity=".5" />
+          <stop offset="1" stop-color="#0d1180" stop-opacity=".32" />
+        </radialGradient>
+      </defs>
+      <image href=${Ie} x="0" y="0" width=${u} height=${d} />
+      ${n ? ve`<image class="charger-connector" href=${Le} x="0" y="0"
+            width=${u} height=${d} />` : ""}
+      ${o ? "" : ve`<g class="charger-logo-glow">
+            <g filter="url(#v2c-glow-wide)" opacity=".3">
+              <g transform="translate(${f.x} ${f.y}) scale(${m})">
+                <path d=${R} fill="currentColor" fill-rule="evenodd" />
+              </g>
+            </g>
+            <g filter="url(#v2c-glow-mid)" opacity=".55">
+              <g transform="translate(${f.x} ${f.y}) scale(${m})">
+                <path d=${R} fill="currentColor" fill-rule="evenodd" />
+              </g>
+            </g>
+            <g filter="url(#v2c-glow-tight)" opacity=".5">
+              <g transform="translate(${f.x} ${f.y}) scale(${m})">
+                <path d=${R} fill="currentColor" fill-rule="evenodd" />
+              </g>
+            </g>
+          </g>
+          <g class="charger-logo" transform="translate(${f.x} ${f.y}) scale(${m})">
+            <path d=${R} fill="currentColor" fill-rule="evenodd" />
+          </g>`}
+      <g class="charger-display" data-lcd=${i.join("|")}
+        transform="translate(${p.x} ${p.y}) scale(${h})">
+        <rect x="-1" y="-1" width="67" height="15.7" rx="2.8" fill="#0a0c14" />
+        <rect width="65" height="13.7" rx="2" fill="#1b22b4" />
+        <rect width="65" height="13.7" rx="2" fill="url(#v2c-backlight)" />
+        <g transform="translate(${g.offsetX} ${g.offsetY})">
+          <path d=${g.off} fill="#000" opacity=".16" />
+          <path d=${g.on} fill="#dce4ff" opacity=".95" />
+        </g>
+        <rect width="65" height="13.7" rx="2" fill="none" stroke="#000" stroke-opacity=".45"
+          stroke-width=".5" />
+      </g>
+    </svg>`}
+  </div>`;
+}
+function Je(e, t) {
+	let n = Re(e, t);
+	return n.width / n.height;
+}
+//#endregion
+//#region src/config.ts
+var B = [
 	6,
 	10,
 	13,
@@ -609,59 +1051,63 @@ var Ie = Me(Fe), Le = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"24 0 
 	20,
 	25,
 	32
-], Re = [
+], Ye = [
 	"xxl",
 	"standard",
 	"compact",
 	"ultra_compact"
-], ze = [
+], Xe = [
 	"auto",
 	"centered",
 	"split",
 	"inline"
-], Be = [
+], Ze = [
 	"power",
 	"energy",
 	"time"
-], Ve = [
+], Qe = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], He = [
+], $e = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
+], et = [
+	"focus",
+	"mid",
+	"full"
 ];
-function B(e, t, n) {
+function V(e, t, n) {
 	return typeof e == "string" && t.includes(e) ? e : n;
 }
-function Ue(e, t) {
+function tt(e, t) {
 	return [...new Set(Array.isArray(e) ? e.filter((e) => typeof e == "string" && t.includes(e)) : t)];
 }
-function We(e, t) {
-	let n = Ue(e, t);
+function nt(e, t) {
+	let n = tt(e, t);
 	return [...n, ...t.filter((e) => !n.includes(e))];
 }
-function Ge(e) {
+function rt(e) {
 	if (!e || typeof e != "object") throw Error("V2C Trydan Card: configuración no válida");
 	if (!e.entity || typeof e.entity != "string") throw Error("V2C Trydan Card: debes indicar una entidad V2C principal");
-	let t = Array.isArray(e.current_presets) ? e.current_presets : z, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = B(e.display_mode, Re, "standard"), i = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
+	let t = Array.isArray(e.current_presets) ? e.current_presets : B, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = V(e.display_mode, Ye, "standard"), i = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
 	return {
 		...e,
 		type: "custom:v2c-trydan-card",
-		theme: B(e.theme, [
+		theme: V(e.theme, [
 			"auto",
 			"light",
 			"dark"
 		], "auto"),
 		display_mode: r,
 		language: e.language ?? "auto",
-		layout: B(e.layout, ze, "auto"),
-		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : B(e.color_scheme, [
+		layout: V(e.layout, Xe, "auto"),
+		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : V(e.color_scheme, [
 			"monochrome",
 			"v2c_blue",
 			"teal",
@@ -670,21 +1116,21 @@ function Ge(e) {
 			"custom"
 		], "monochrome"),
 		accent_color: i,
-		surface_style: B(e.surface_style, [
+		surface_style: V(e.surface_style, [
 			"solid",
 			"tinted",
 			"transparent"
 		], "solid"),
 		hero_scale: Math.min(1.25, Math.max(.75, Number(e.hero_scale) || 1)),
 		card_radius: Number.isFinite(e.card_radius) ? Math.min(40, Math.max(0, Number(e.card_radius))) : void 0,
-		metrics: Ue(e.metrics, Be),
-		energy_sources: Ue(e.energy_sources, Ve),
-		intensity_control: B(e.intensity_control, [
+		metrics: tt(e.metrics, Ze),
+		energy_sources: tt(e.energy_sources, Qe),
+		intensity_control: V(e.intensity_control, [
 			"slider",
 			"presets",
 			"both"
 		], "both"),
-		section_order: We(e.section_order, He),
+		section_order: nt(e.section_order, $e),
 		show_header: e.show_header ?? !0,
 		show_badges: e.show_badges ?? !0,
 		show_presets: e.show_presets ?? r !== "ultra_compact",
@@ -693,13 +1139,15 @@ function Ge(e) {
 		show_controls: e.show_controls ?? !0,
 		show_advanced: e.show_advanced ?? !0,
 		show_charger: e.show_charger ?? !0,
+		charger_art: V(e.charger_art, et, "focus"),
+		show_connector: e.show_connector ?? !1,
 		confirm_lock: e.confirm_lock ?? !0,
 		flow_threshold_w: Number.isFinite(e.flow_threshold_w) ? Math.max(0, Number(e.flow_threshold_w)) : 50,
 		current_presets: n,
 		entities: e.entities && typeof e.entities == "object" && !Array.isArray(e.entities) ? { ...e.entities } : {}
 	};
 }
-function Ke(e) {
+function it(e) {
 	let t = Object.values(e?.entities ?? {}).find((e) => e.platform === "v2c" && e.translation_key === "connected"), n = Object.keys(e?.states ?? {}).find((e) => e.startsWith("binary_sensor.") && e.toLowerCase().includes("v2c"));
 	return {
 		type: "custom:v2c-trydan-card",
@@ -710,7 +1158,7 @@ function Ke(e) {
 }
 //#endregion
 //#region src/localization/da.ts
-var qe = {
+var at = {
 	states: {
 		disconnected: "Intet køretøj",
 		unavailable: "Ikke tilgængelig",
@@ -822,8 +1270,22 @@ var qe = {
 		showControls: "Opladningskontroller",
 		showAdvanced: "Avancerede kontroller",
 		showCharger: "Trydan-illustration"
+	},
+	lcd: {
+		disconnected: "VENTER EV",
+		unavailable: "Offline",
+		charging: "EV OPLADNING",
+		complete: "Færdig",
+		timer: "Timer",
+		updating: "Opdaterer",
+		control_pilot: "Fejl",
+		load_balancing: "Fejl",
+		error: "Fejl",
+		waiting_power: "EV TILSLUTTET",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Tilslutter"
 	}
-}, Je = {
+}, ot = {
 	states: {
 		disconnected: "Kein Fahrzeug",
 		unavailable: "Nicht verfügbar",
@@ -935,8 +1397,22 @@ var qe = {
 		showControls: "Ladesteuerung",
 		showAdvanced: "Erweiterte Steuerung",
 		showCharger: "Trydan-Abbildung"
+	},
+	lcd: {
+		disconnected: "WARTEN AUF EV",
+		unavailable: "Offline",
+		charging: "EV LAEDT",
+		complete: "Fertig",
+		timer: "Timer",
+		updating: "Update",
+		control_pilot: "Fehler",
+		load_balancing: "Fehler",
+		error: "Fehler",
+		waiting_power: "VERBUNDENES EV",
+		wifi_connected: "WLAN OK",
+		wifi_connecting: "Verbinden"
 	}
-}, Ye = {
+}, st = {
 	states: {
 		disconnected: "Aucun véhicule",
 		unavailable: "Indisponible",
@@ -1048,8 +1524,22 @@ var qe = {
 		showControls: "Commandes de charge",
 		showAdvanced: "Commandes avancées",
 		showCharger: "Illustration Trydan"
+	},
+	lcd: {
+		disconnected: "EN ATTENTE VE",
+		unavailable: "Indispo",
+		charging: "RECHARGER VE",
+		complete: "Terminée",
+		timer: "Minuteur",
+		updating: "MAJ",
+		control_pilot: "Erreur",
+		load_balancing: "Erreur",
+		error: "Erreur",
+		waiting_power: "VE CONNECTE",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Connexion"
 	}
-}, Xe = {
+}, ct = {
 	states: {
 		disconnected: "Nessun veicolo",
 		unavailable: "Non disponibile",
@@ -1161,8 +1651,22 @@ var qe = {
 		showControls: "Controlli di ricarica",
 		showAdvanced: "Controlli avanzati",
 		showCharger: "Illustrazione Trydan"
+	},
+	lcd: {
+		disconnected: "IN ATTESA DI EV",
+		unavailable: "Non disp",
+		charging: "RICARICA EV",
+		complete: "Completa",
+		timer: "Programma",
+		updating: "Aggiorna",
+		control_pilot: "Errore",
+		load_balancing: "Errore",
+		error: "Errore",
+		waiting_power: "VE CONNESSO",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Connessione"
 	}
-}, Ze = {
+}, lt = {
 	states: {
 		disconnected: "Geen voertuig",
 		unavailable: "Niet beschikbaar",
@@ -1274,8 +1778,22 @@ var qe = {
 		showControls: "Laadbediening",
 		showAdvanced: "Geavanceerde bediening",
 		showCharger: "Trydan-afbeelding"
+	},
+	lcd: {
+		disconnected: "WACHTEN OP EV",
+		unavailable: "Offline",
+		charging: "EV OPLADEN",
+		complete: "Klaar",
+		timer: "Timer",
+		updating: "Update",
+		control_pilot: "Fout",
+		load_balancing: "Fout",
+		error: "Fout",
+		waiting_power: "VERBONDEN MET EV",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Verbinden"
 	}
-}, Qe = {
+}, ut = {
 	states: {
 		disconnected: "Ingen bil",
 		unavailable: "Ikke tilgjengelig",
@@ -1387,8 +1905,22 @@ var qe = {
 		showControls: "Ladekontroller",
 		showAdvanced: "Avanserte kontroller",
 		showCharger: "Trydan-illustrasjon"
+	},
+	lcd: {
+		disconnected: "Ingen EV",
+		unavailable: "Offline",
+		charging: "Lader",
+		complete: "Ferdig",
+		timer: "Timer",
+		updating: "Oppdaterer",
+		control_pilot: "Feil",
+		load_balancing: "Feil",
+		error: "Feil",
+		waiting_power: "Tilkoblet",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Kobler til"
 	}
-}, $e = {
+}, dt = {
 	states: {
 		disconnected: "Niciun vehicul",
 		unavailable: "Indisponibil",
@@ -1500,8 +2032,22 @@ var qe = {
 		showControls: "Comenzi de încărcare",
 		showAdvanced: "Comenzi avansate",
 		showCharger: "Ilustrație Trydan"
+	},
+	lcd: {
+		disconnected: "ASTEPTAND EV",
+		unavailable: "Indisponibil",
+		charging: "VE INCARCARE",
+		complete: "Gata",
+		timer: "Program",
+		updating: "Actualizează",
+		control_pilot: "Eroare",
+		load_balancing: "Eroare",
+		error: "Eroare",
+		waiting_power: "Conectat",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Conectare"
 	}
-}, et = {
+}, ft = {
 	states: {
 		disconnected: "Inget fordon",
 		unavailable: "Inte tillgänglig",
@@ -1613,8 +2159,22 @@ var qe = {
 		showControls: "Laddningskontroller",
 		showAdvanced: "Avancerade kontroller",
 		showCharger: "Trydan-illustration"
+	},
+	lcd: {
+		disconnected: "Inget EV",
+		unavailable: "Offline",
+		charging: "Laddar",
+		complete: "Klar",
+		timer: "Timer",
+		updating: "Uppdatera",
+		control_pilot: "Fel",
+		load_balancing: "Fel",
+		error: "Fel",
+		waiting_power: "Anslutet",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Ansluter"
 	}
-}, tt = {
+}, pt = {
 	states: {
 		disconnected: "No vehicle",
 		unavailable: "Unavailable",
@@ -1726,8 +2286,22 @@ var qe = {
 		showControls: "Charging controls",
 		showAdvanced: "Advanced controls",
 		showCharger: "Trydan artwork"
+	},
+	lcd: {
+		disconnected: "WAITING EV",
+		unavailable: "Offline",
+		charging: "CHARGING EV",
+		complete: "Done",
+		timer: "Timer",
+		updating: "Updating",
+		control_pilot: "Error",
+		load_balancing: "Error",
+		error: "Error",
+		waiting_power: "CONNECTED EV",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Wifi..."
 	}
-}, nt = {
+}, mt = {
 	states: {
 		disconnected: "Sin vehículo",
 		unavailable: "No disponible",
@@ -1839,8 +2413,22 @@ var qe = {
 		showControls: "Controles de carga",
 		showAdvanced: "Controles avanzados",
 		showCharger: "Ilustración Trydan"
+	},
+	lcd: {
+		disconnected: "ESPERANDO VE",
+		unavailable: "Sin datos",
+		charging: "VE CARGANDO",
+		complete: "Completa",
+		timer: "Programa",
+		updating: "Actualiza",
+		control_pilot: "Error",
+		load_balancing: "Error",
+		error: "Error",
+		waiting_power: "VE CONECTADO",
+		wifi_connected: "Wifi OK",
+		wifi_connecting: "Conectando"
 	}
-}, rt = [
+}, ht = [
 	"en",
 	"it",
 	"de",
@@ -1851,26 +2439,26 @@ var qe = {
 	"no",
 	"ro",
 	"es"
-], it = {
-	en: tt,
-	it: Xe,
-	de: Je,
-	fr: Ye,
-	nl: Ze,
-	sv: et,
-	da: qe,
-	no: Qe,
-	ro: $e,
-	es: nt
+], gt = {
+	en: pt,
+	it: ct,
+	de: ot,
+	fr: st,
+	nl: lt,
+	sv: ft,
+	da: at,
+	no: ut,
+	ro: dt,
+	es: mt
 };
-function at(e, t) {
+function _t(e, t) {
 	let n = (e === "auto" ? t : e)?.toLowerCase().split(/[-_]/)[0] ?? "en", r = n === "nb" || n === "nn" ? "no" : n;
-	return rt.includes(r) ? r : "en";
+	return ht.includes(r) ? r : "en";
 }
-function V(e) {
-	return it[at(e)];
+function H(e) {
+	return gt[_t(e)];
 }
-function H(e, t) {
+function U(e, t) {
 	let n = t.split(".").reduce((e, t) => {
 		if (!(typeof e != "object" || !e)) return e[t];
 	}, e);
@@ -1878,46 +2466,53 @@ function H(e, t) {
 }
 //#endregion
 //#region src/localization/lcd-copy.ts
-function ot(e, t, n = {}) {
-	let r = V(e), i = t === "disconnected" ? {
-		primary: H(r, "details.disconnected"),
-		secondary: H(r, "states.disconnected")
+var vt = /* @__PURE__ */ new Set([
+	"control_pilot",
+	"load_balancing",
+	"error"
+]);
+function yt(e) {
+	if (!e) return;
+	let t = e.replace(/\D/g, "");
+	if (t.length === 5) return `${t.slice(0, 2)} ${t.slice(2)}`;
+}
+function bt(e, t, n = {}) {
+	let r = U(H(e), `lcd.${t}`), i = [n.totalKw ? `T:${n.totalKw}` : void 0, n.solarKw ? `FV:${n.solarKw}` : void 0].filter((e) => !!e).join(" ");
+	return vt.has(t) ? {
+		primary: r,
+		secondary: n.errorCode ?? ""
+	} : t === "charging" ? {
+		primary: n.evKw ? `EV:${n.evKw}` : r,
+		secondary: i
 	} : {
-		primary: H(r, `states.${t}`),
-		secondary: H(r, `details.${t}`)
+		primary: r,
+		secondary: i
 	};
-	return t === "charging" ? {
-		primary: n.power && n.power !== "—" ? `${i.primary} ${n.power}` : i.primary,
-		secondary: [n.current, n.voltage].filter(Boolean).join(" · ") || i.secondary
-	} : t === "complete" && n.energy && n.energy !== "—" ? {
-		...i,
-		secondary: n.energy
-	} : i;
 }
 //#endregion
 //#region src/services/actions.ts
-async function st(e, t, n) {
+async function xt(e, t, n) {
 	return e.callService("number", "set_value", {
 		entity_id: t,
 		value: n
 	});
 }
-async function ct(e, t, n) {
+async function St(e, t, n) {
 	return e.callService("switch", n ? "turn_on" : "turn_off", { entity_id: t });
 }
-async function lt(e, t, n) {
+async function Ct(e, t, n) {
 	return e.callService("select", "select_option", {
 		entity_id: t,
 		option: n
 	});
 }
-async function ut(e, t, n, r) {
+async function wt(e, t, n, r) {
 	let i = { entity_id: t };
 	return n && r !== void 0 && (i.brightness = r), e.callService("light", n ? "turn_on" : "turn_off", i);
 }
 //#endregion
 //#region src/services/discovery.ts
-var U = {
+var W = {
 	connected: {
 		translationKeys: ["connected"],
 		domains: ["binary_sensor"],
@@ -2088,21 +2683,21 @@ var U = {
 		legacySuffixes: ["_charge_mode", "_modo_de_carga"],
 		writable: !0
 	}
-}, dt = (e) => U[e].writable === !0;
-function ft(e) {
+}, Tt = (e) => W[e].writable === !0;
+function Et(e) {
 	return e.split(".", 1)[0] ?? "";
 }
-function pt(e) {
+function Dt(e) {
 	return Array.isArray(e) ? e : Object.values(e);
 }
-function mt(e, t) {
+function Ot(e, t) {
 	return !e || e[t] !== void 0;
 }
-function W(e, t) {
-	return U[e].domains.includes(ft(t));
+function G(e, t) {
+	return W[e].domains.includes(Et(t));
 }
-function ht(e, t, n) {
-	if (ft(t) !== "sensor") return !1;
+function kt(e, t, n) {
+	if (Et(t) !== "sensor") return !1;
 	let r = n?.[t];
 	if (!r) return !1;
 	let i = r.attributes.unit_of_measurement?.toLowerCase(), a = r.attributes.device_class;
@@ -2112,27 +2707,27 @@ function ht(e, t, n) {
 		"mw"
 	].includes(i)) && (!a || a === "power") : (!i || i === "v") && (!a || a === "voltage")) ? r.state === "unknown" || r.state === "unavailable" || Number.isFinite(Number(r.state)) : !1;
 }
-function gt(e, t) {
+function At(e, t) {
 	if (t.length === 0) return;
-	let n = U[e].preferredDomains ?? U[e].domains;
+	let n = W[e].preferredDomains ?? W[e].domains;
 	for (let e of n) {
-		let n = t.filter((t) => ft(t.entity_id) === e);
+		let n = t.filter((t) => Et(t.entity_id) === e);
 		if (n.length === 1) return n[0].entity_id;
 		if (n.length > 1) return;
 	}
 	return t.length === 1 ? t[0].entity_id : void 0;
 }
-function _t(e, t, n = {}, r) {
-	let i = pt(e), a = new Map(i.map((e) => [e.entity_id, e])), o = a.get(t), s = i.length === 0 ? "loading" : o ? o.platform === "v2c" ? o.device_id ? void 0 : "seed_missing_device" : "seed_not_v2c" : "seed_not_found", c = s ? void 0 : o?.device_id, l = c ? i.filter((e) => e.device_id === c && e.platform === "v2c" && mt(r, e.entity_id)) : [], u = {}, d = {}, f = {}, p = [];
-	for (let e of Object.keys(U)) {
+function jt(e, t, n = {}, r) {
+	let i = Dt(e), a = new Map(i.map((e) => [e.entity_id, e])), o = a.get(t), s = i.length === 0 ? "loading" : o ? o.platform === "v2c" ? o.device_id ? void 0 : "seed_missing_device" : "seed_not_v2c" : "seed_not_found", c = s ? void 0 : o?.device_id, l = c ? i.filter((e) => e.device_id === c && e.platform === "v2c" && Ot(r, e.entity_id)) : [], u = {}, d = {}, f = {}, p = [];
+	for (let e of Object.keys(W)) {
 		let t = n[e];
 		if (!t) continue;
-		let o = a.get(t), s = U[e], l = !!(s.externalMeasurement && ht(s.externalMeasurement, t, r)), f = !!(c && o && o.device_id === c && o.platform === "v2c" && W(e, t) && mt(r, t)), p = i.length === 0 && mt(r, t) && W(e, t);
+		let o = a.get(t), s = W[e], l = !!(s.externalMeasurement && kt(s.externalMeasurement, t, r)), f = !!(c && o && o.device_id === c && o.platform === "v2c" && G(e, t) && Ot(r, t)), p = i.length === 0 && Ot(r, t) && G(e, t);
 		l || f || p ? (u[e] = t, d[e] = "manual") : d[e] = "invalid";
 	}
-	for (let e of Object.keys(U)) {
+	for (let e of Object.keys(W)) {
 		if (u[e] || !c) continue;
-		let t = U[e], n = l.filter((n) => !!(n.translation_key && t.translationKeys.includes(n.translation_key)) && W(e, n.entity_id)), r = gt(e, n);
+		let t = W[e], n = l.filter((n) => !!(n.translation_key && t.translationKeys.includes(n.translation_key)) && G(e, n.entity_id)), r = At(e, n);
 		if (r) {
 			u[e] = r, d[e] = "automatic";
 			continue;
@@ -2141,37 +2736,37 @@ function _t(e, t, n = {}, r) {
 			f[e] = n.map((e) => e.entity_id), d[e] = "ambiguous";
 			continue;
 		}
-		let i = l.filter((n) => W(e, n.entity_id) && (t.legacySuffixes ?? []).some((e) => n.entity_id.endsWith(e))), a = gt(e, i);
+		let i = l.filter((n) => G(e, n.entity_id) && (t.legacySuffixes ?? []).some((e) => n.entity_id.endsWith(e))), a = At(e, i);
 		a ? (u[e] = a, d[e] = "automatic", p.push(e)) : i.length > 1 && (f[e] = i.map((e) => e.entity_id), d[e] = "ambiguous");
 	}
 	return {
 		entities: u,
 		ambiguities: f,
-		missing: Object.keys(U).filter((e) => !u[e]),
+		missing: Object.keys(W).filter((e) => !u[e]),
 		deviceId: c,
-		statuses: Object.fromEntries(Object.keys(U).map((e) => [e, d[e] ?? "missing"])),
+		statuses: Object.fromEntries(Object.keys(W).map((e) => [e, d[e] ?? "missing"])),
 		diagnostic: s,
 		legacyRoles: p
 	};
 }
-function vt(e, t, n, r) {
+function Mt(e, t, n, r) {
 	let i = e.entities?.[n], a = e.states[n];
-	return !!(r && dt(t) && i?.device_id === r && i.platform === "v2c" && W(t, n) && a && a.state !== "unknown" && a.state !== "unavailable");
+	return !!(r && Tt(t) && i?.device_id === r && i.platform === "v2c" && G(t, n) && a && a.state !== "unknown" && a.state !== "unavailable");
 }
 //#endregion
 //#region src/services/energy.ts
-function yt(e) {
+function Nt(e) {
 	if (!e || e.state === "unknown" || e.state === "unavailable") return null;
 	let t = Number(e.state);
 	if (!Number.isFinite(t)) return null;
 	let n = e.attributes.unit_of_measurement?.toLowerCase();
 	return n === "kw" ? t * 1e3 : n === "mw" ? t * 1e6 : t;
 }
-function bt(e, t, n) {
+function Pt(e, t, n) {
 	return Math.abs(t) < n ? "idle" : e === "grid" ? t > 0 ? "import" : "export" : e === "battery" ? t > 0 ? "discharge" : "charge" : e === "solar" ? t > 0 ? "produce" : "unknown" : t > 0 ? "consume" : "export";
 }
-function xt(e, t, n = {}) {
-	let r = yt(t);
+function K(e, t, n = {}) {
+	let r = Nt(t);
 	if (r === null) return {
 		role: e,
 		watts: null,
@@ -2182,13 +2777,13 @@ function xt(e, t, n = {}) {
 	return {
 		role: e,
 		watts: i,
-		direction: bt(e, i, n.thresholdW ?? 50),
+		direction: Pt(e, i, n.thresholdW ?? 50),
 		available: !0
 	};
 }
 //#endregion
 //#region src/services/format.ts
-var St = {
+var Ft = {
 	en: "en-US",
 	it: "it-IT",
 	de: "de-DE",
@@ -2200,34 +2795,32 @@ var St = {
 	ro: "ro-RO",
 	es: "es-ES"
 };
-function G(e) {
-	return St[e ?? "es"] ?? "en-US";
+function It(e) {
+	return Ft[e ?? "es"] ?? "en-US";
 }
-function Ct(e, t = "es") {
+function Lt(e, t = "es") {
 	if (e === null || !Number.isFinite(e)) return "—";
 	let n = Math.abs(e);
-	return n >= 1e3 ? `${new Intl.NumberFormat(G(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(G(t), { maximumFractionDigits: 0 }).format(n)} W`;
+	return n >= 1e3 ? `${new Intl.NumberFormat(It(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(It(t), { maximumFractionDigits: 0 }).format(n)} W`;
 }
-function wt(e, t = "es") {
+function Rt(e, t = "es") {
 	if (e === null || e === "") return "—";
 	let n = Number(e);
-	return Number.isFinite(n) ? `${new Intl.NumberFormat(G(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
+	return Number.isFinite(n) ? `${new Intl.NumberFormat(It(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
 }
-function Tt(e) {
+function zt(e) {
 	if (e === null || e === "") return "—";
 	let t = Number(e);
 	if (!Number.isFinite(t) || t < 0) return "—";
 	let n = Math.floor(t / 3600), r = Math.floor(t % 3600 / 60);
 	return `${String(n).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
 }
-function Et(e, t, n = "es") {
-	if (e === null || e === "") return;
-	let r = Number(e);
-	if (Number.isFinite(r)) return `${new Intl.NumberFormat(G(n), { maximumFractionDigits: 1 }).format(r)} ${t}`;
+function q(e) {
+	if (!(e === null || !Number.isFinite(e))) return (Math.abs(e) / 1e3).toFixed(1);
 }
 //#endregion
 //#region src/models/types.ts
-var Dt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), Ot = [
+var Bt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), Vt = [
 	"disconnected",
 	"charging",
 	"complete",
@@ -2239,7 +2832,7 @@ var Dt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.ch
 	"waiting_power",
 	"wifi_connected",
 	"wifi_connecting"
-], kt = {
+], Ht = {
 	sin_vehiculo: "disconnected",
 	desconectado: "disconnected",
 	cargando: "charging",
@@ -2256,7 +2849,7 @@ var Dt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.ch
 	esperando_potencia: "waiting_power",
 	wifi_conectado: "wifi_connected",
 	conectando_wifi: "wifi_connecting"
-}, At = {
+}, Ut = {
 	disconnected: "neutral",
 	charging: "info",
 	complete: "success",
@@ -2269,16 +2862,16 @@ var Dt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.ch
 	wifi_connected: "success",
 	wifi_connecting: "info"
 };
-function jt(e) {
+function Wt(e) {
 	return e.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 }
-function Mt(e) {
+function Gt(e) {
 	if (!e) return;
-	let t = jt(e);
-	return Ot.includes(t) ? t : kt[t];
+	let t = Wt(e);
+	return Vt.includes(t) ? t : Ht[t];
 }
-function Nt(e) {
-	let t = Mt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
+function Kt(e) {
+	let t = Gt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
 	r = e.charging === !0 ? "charging" : e.ready === !0 ? "complete" : e.connected === !0 ? "connected" : n || e.seedAvailable === !1 ? "unavailable" : "disconnected";
 	let i = [];
 	e.paused === !0 && i.push("paused"), e.locked === !0 && i.push("locked"), e.timer === !0 && i.push("timer");
@@ -2295,26 +2888,26 @@ function Nt(e) {
 		diagnostic: l ? c : void 0
 	};
 }
-function K(e, t, n = !1) {
+function J(e, t, n = !1) {
 	return {
 		key: e,
 		labelKey: n ? "states.unavailable" : `states.${e}`,
 		detailKey: n ? "details.unavailable" : `details.${e}`,
-		severity: At[e],
+		severity: Ut[e],
 		badges: t.inhibitors,
 		diagnostic: t.diagnostic,
 		unavailable: n
 	};
 }
-function Pt(e) {
-	return e.externalStatus ? K(e.externalStatus, e) : e.fault === "control_pilot" ? K("control_pilot", e) : e.fault === "load_balancing" ? K("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? K("error", e) : e.maintenance === "updating" ? K("updating", e) : e.phase === "charging" ? K("charging", e) : e.phase === "complete" ? K("complete", e) : e.inhibitors.includes("timer") ? K("timer", e) : e.connectivity === "wifi_connecting" ? K("wifi_connecting", e) : e.connectivity === "wifi_connected" ? K("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? K("waiting_power", e) : K("disconnected", e, e.phase === "unavailable");
+function qt(e) {
+	return e.externalStatus ? J(e.externalStatus, e) : e.fault === "control_pilot" ? J("control_pilot", e) : e.fault === "load_balancing" ? J("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? J("error", e) : e.maintenance === "updating" ? J("updating", e) : e.phase === "charging" ? J("charging", e) : e.phase === "complete" ? J("complete", e) : e.inhibitors.includes("timer") ? J("timer", e) : e.connectivity === "wifi_connecting" ? J("wifi_connecting", e) : e.connectivity === "wifi_connected" ? J("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? J("waiting_power", e) : J("disconnected", e, e.phase === "unavailable");
 }
-function q(e) {
+function Y(e) {
 	return e === "on" || e === "true" ? !0 : e === "off" || e === "false" ? !1 : "unknown";
 }
 //#endregion
 //#region src/card/advanced-controls.ts
-var Ft = [
+var Jt = [
 	{
 		role: "locked",
 		label: "actions.lock"
@@ -2332,66 +2925,66 @@ var Ft = [
 		label: "actions.pauseDynamic"
 	}
 ];
-function It(e) {
+function Yt(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function Lt(e, t, n) {
+function Xt(e, t, n) {
 	let r = e.entities[t];
-	if (!r) return j;
+	if (!r) return A;
 	let i = e.hass.states[r], a = i?.state === "on";
-	return k`
+	return O`
     <div class="toggle-row">
-      <span>${t === "locked" && a ? H(e.dictionary, "actions.unlock") : H(e.dictionary, n)}</span>
+      <span>${t === "locked" && a ? U(e.dictionary, "actions.unlock") : U(e.dictionary, n)}</span>
       <button
         data-role=${t}
         role="switch"
         aria-checked=${String(a)}
         aria-pressed=${String(a)}
         aria-busy=${String(e.pending.includes(t))}
-        ?disabled=${!It(i) || e.pending.includes(t)}
+        ?disabled=${!Yt(i) || e.pending.includes(t)}
         @click=${() => e.onToggle(t)}
       >${a ? "ON" : "OFF"}</button>
     </div>
   `;
 }
-function Rt(e) {
-	let t = Ft.map(({ role: t, label: n }) => Lt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
-	return !t.some((e) => e !== j) && !n && !i && !o && !s ? j : k`
+function Zt(e) {
+	let t = Jt.map(({ role: t, label: n }) => Xt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
+	return !t.some((e) => e !== A) && !n && !i && !o && !s ? A : O`
     <details ?open=${e.advancedOpen === !0}>
-      <summary>${H(e.dictionary, "labels.advanced")}</summary>
+      <summary>${U(e.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
-        ${t.slice(0, 2).some((e) => e !== j) || n ? k`
+        ${t.slice(0, 2).some((e) => e !== A) || n ? O`
               <section class="control-group">
-                <h3>${H(e.dictionary, "labels.chargingControls")}</h3>
+                <h3>${U(e.dictionary, "labels.chargingControls")}</h3>
                 ${t.slice(0, 2)}
-                ${n ? k`
+                ${n ? O`
                       <label class="select-row">
-                        <span>${H(e.dictionary, "actions.chargeMode")}</span>
+                        <span>${U(e.dictionary, "actions.chargeMode")}</span>
                         <select
                           data-role="charge_mode"
                           .value=${r?.state ?? ""}
-                          ?disabled=${!It(r) || e.pending.includes("charge_mode")}
+                          ?disabled=${!Yt(r) || e.pending.includes("charge_mode")}
                           @change=${(t) => e.onSelect(t.target.value)}
                         >
-                          ${(r?.attributes.options ?? []).map((e) => k`<option .value=${String(e)}>${String(e)}</option>`)}
+                          ${(r?.attributes.options ?? []).map((e) => O`<option .value=${String(e)}>${String(e)}</option>`)}
                         </select>
                       </label>
-                    ` : j}
+                    ` : A}
               </section>
-            ` : j}
-        ${t.slice(2).some((e) => e !== j) ? k`
+            ` : A}
+        ${t.slice(2).some((e) => e !== A) ? O`
               <section class="control-group">
-                <h3>${H(e.dictionary, "labels.energyControls")}</h3>
+                <h3>${U(e.dictionary, "labels.energyControls")}</h3>
                 ${t.slice(2)}
               </section>
-            ` : j}
-        ${i || o ? k`
+            ` : A}
+        ${i || o ? O`
               <section class="control-group">
-                <h3>${H(e.dictionary, "labels.lightControls")}</h3>
-                ${Lt(e, "logo_led", "actions.logoLed")}
-                ${i && It(a) ? k`
+                <h3>${U(e.dictionary, "labels.lightControls")}</h3>
+                ${Xt(e, "logo_led", "actions.logoLed")}
+                ${i && Yt(a) ? O`
                       <label class="range-head" for="v2c-logo-brightness">
-                        <span>${H(e.dictionary, "actions.logoLed")}</span>
+                        <span>${U(e.dictionary, "actions.logoLed")}</span>
                         <output>${Math.round((Number(a?.attributes.brightness ?? 0) || 0) / 255 * 100)}%</output>
                       </label>
                       <input
@@ -2402,65 +2995,65 @@ function Rt(e) {
                         .value=${String(a?.attributes.brightness ?? 128)}
                         @change=${(t) => e.onBrightness(Number(t.target.value))}
                       />
-                    ` : j}
-                ${Lt(e, "light_led", "actions.lightLed")}
+                    ` : A}
+                ${Xt(e, "light_led", "actions.lightLed")}
               </section>
-            ` : j}
-        ${s ? k`
+            ` : A}
+        ${s ? O`
               <section class="control-group">
-                <h3>${H(e.dictionary, "labels.diagnostics")}</h3>
+                <h3>${U(e.dictionary, "labels.diagnostics")}</h3>
                 <dl class="technical-list">
-                  ${e.voltage ? k`
+                  ${e.voltage ? O`
                         <div class="technical-row">
-                          <dt>${H(e.dictionary, "labels.voltage")}</dt>
+                          <dt>${U(e.dictionary, "labels.voltage")}</dt>
                           <dd>${e.voltage.state} ${e.voltage.attributes.unit_of_measurement ?? "V"}</dd>
                         </div>
-                      ` : j}
-                  ${e.diagnostic ? k`
+                      ` : A}
+                  ${e.diagnostic ? O`
                         <div class="technical-row" data-severity="error">
-                          <dt>${H(e.dictionary, "labels.diagnostics")}</dt>
+                          <dt>${U(e.dictionary, "labels.diagnostics")}</dt>
                           <dd>${e.diagnostic}</dd>
                         </div>
-                      ` : j}
-                  ${e.ambiguityRoles?.length ? k`
+                      ` : A}
+                  ${e.ambiguityRoles?.length ? O`
                         <div class="technical-row">
-                          <dt>${H(e.dictionary, "labels.configuration")}</dt>
+                          <dt>${U(e.dictionary, "labels.configuration")}</dt>
                           <dd>YAML · ${e.ambiguityRoles.join(", ")}</dd>
                         </div>
-                      ` : j}
+                      ` : A}
                 </dl>
               </section>
-            ` : j}
+            ` : A}
       </div>
     </details>
   `;
 }
 //#endregion
 //#region src/card/energy-flow.ts
-var zt = {
+var Qt = {
 	solar: "mdi:solar-power",
 	grid: "mdi:transmission-tower",
 	home: "mdi:home-lightning-bolt",
 	battery: "mdi:home-battery",
 	charger: "mdi:ev-station"
 };
-function Bt(e, t, n) {
-	if (e.length === 0) return j;
-	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${H(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
-	return k`
-    <section class="energy-section" aria-label=${H(t, "labels.energyFlow")}>
+function $t(e, t, n) {
+	if (e.length === 0) return A;
+	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${U(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
+	return O`
+    <section class="energy-section" aria-label=${U(t, "labels.energyFlow")}>
       <div class="energy-summary" data-kind=${o}>
         <p class="energy-summary-title">
           <ha-icon icon="mdi:lightning-bolt-outline" aria-hidden="true"></ha-icon>
           <span>${s}</span>
         </p>
-        ${a.length ? k`
+        ${a.length ? O`
               <div class="energy-nodes">
                 ${a.map((e) => {
-		let r = H(t, `flows.${e.role}`), i = H(t, `flows.${e.direction}`), a = Ct(e.watts, n);
-		return k`
+		let r = U(t, `flows.${e.role}`), i = U(t, `flows.${e.direction}`), a = Lt(e.watts, n);
+		return O`
                     <div class="flow-node" aria-label=${`${r}: ${a}, ${i}`}>
-                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${zt[e.role]}></ha-icon></span>
+                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${Qt[e.role]}></ha-icon></span>
                       <span class="flow-name-text">${r}</span>
                       <strong class="flow-value">${a}</strong>
                       <span class="flow-direction">${i}</span>
@@ -2468,35 +3061,35 @@ function Bt(e, t, n) {
                   `;
 	})}
               </div>
-            ` : j}
-        ${a.length && i ? k`<p class="energy-note">${H(t, "flows.partialData")}</p>` : j}
+            ` : A}
+        ${a.length && i ? O`<p class="energy-note">${U(t, "flows.partialData")}</p>` : A}
       </div>
     </section>
   `;
 }
 //#endregion
 //#region src/card/session-controls.ts
-function J(e) {
+function X(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function Vt(e) {
+function en(e) {
 	let t = e.entities.intensity, n = e.entities.paused, r = t ? e.hass.states[t] : void 0, i = n ? e.hass.states[n] : void 0;
-	if (!t && !n) return j;
+	if (!t && !n) return A;
 	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on", f = e.intensityControl !== "presets", p = e.showPresets !== !1 && e.intensityControl !== "slider";
-	return k`
-    <section class="session-controls" aria-label=${H(e.dictionary, "labels.chargingControls")}>
-      ${t ? k`<div class="range-control">
-        ${f ? k`<label class="range-head" for="v2c-intensity"><span>${H(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
-        <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!J(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : j}
-        ${p ? k`<div class="presets" aria-label=${H(e.dictionary, "labels.intensity")}>${u.map((t) => k`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!J(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : j}
-      </div>` : j}
-      ${n ? k`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!J(i) || e.pending.includes("paused")} title=${J(i) ? "" : H(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${H(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : j}
+	return O`
+    <section class="session-controls" aria-label=${U(e.dictionary, "labels.chargingControls")}>
+      ${t ? O`<div class="range-control">
+        ${f ? O`<label class="range-head" for="v2c-intensity"><span>${U(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
+        <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!X(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : A}
+        ${p ? O`<div class="presets" aria-label=${U(e.dictionary, "labels.intensity")}>${u.map((t) => O`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!X(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : A}
+      </div>` : A}
+      ${n ? O`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!X(i) || e.pending.includes("paused")} title=${X(i) ? "" : U(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${U(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : A}
     </section>
   `;
 }
 //#endregion
 //#region src/card/styles.ts
-var Ht = o`
+var tn = o`
   :host {
     --v2c-surface: var(--ha-card-background, var(--card-background-color, light-dark(#ffffff, #181b1e)));
     --v2c-surface-soft: var(--secondary-background-color, light-dark(#f4f5f6, #202428));
@@ -2569,7 +3162,13 @@ var Ht = o`
     display: flex;
     min-width: 0;
     max-width: 100%;
-    margin-top: clamp(-36px, -7cqw, -26px);
+    /*
+     * No negative margin. The old illustration was a full-height charger with two thirds
+     * of it empty below the display, so the status text was pulled up into that void.
+     * The cropped artwork ends just past the display, and pulling up now lands the text
+     * on top of the picture.
+     */
+    margin-top: 6px;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -2580,70 +3179,103 @@ var Ht = o`
   .charger-stage {
     display: grid;
     width: min(100%, clamp(260px, 66cqw, 340px));
-    aspect-ratio: 312 / 480;
     place-items: center;
   }
+
+  /*
+   * The artwork is two bitmap layers with the lit parts drawn as vectors on top.
+   * 'color' carries the LED state: it interpolates inside a shadow root, which a
+   * registered custom property does not, and 'fill="currentColor"' follows it.
+   */
   .charger-art {
     position: relative;
-    container-type: inline-size;
     width: 100%;
-    height: 100%;
     color: var(--v2c-led, #f4f6f8);
-    filter: drop-shadow(0 18px 14px rgb(0 0 0 / 16%));
+    transition: color 700ms ease;
+    filter: drop-shadow(0 14px 12px rgb(0 0 0 / 18%));
   }
 
-  .charger-art svg {
-    display: block;
-    width: 100%;
-    height: 100%;
+  .charger-art svg { display: block; width: 100%; height: auto; }
+
+  /*
+   * Cropped frames dissolve along the bottom instead of stopping dead.
+   *
+   * A linear ramp is not enough: the shell's bright metallic rim runs down both sides and a
+   * short fade leaves those two highlights ending in mid-air, which is what makes a crop
+   * read as a broken image rather than as framing. This ramp is longer and eased, so the
+   * rim thins out gradually. It starts below the display: the frame is sized to leave room
+   * for the ramp precisely so the screen never gets dimmed by it.
+   *
+   * Fading to transparency rather than to a colour is what makes it work in both themes:
+   * the card's own surface shows through, whatever that surface happens to be.
+   */
+  .charger-art[data-crop="focus"],
+  .charger-art[data-crop="mid"] {
+    --v2c-fade: linear-gradient(
+      to bottom,
+      #000 0 78%,
+      rgb(0 0 0 / 96%) 84%,
+      rgb(0 0 0 / 84%) 88%,
+      rgb(0 0 0 / 62%) 92%,
+      rgb(0 0 0 / 36%) 96%,
+      rgb(0 0 0 / 14%) 98.5%,
+      transparent 100%
+    );
+    -webkit-mask-image: var(--v2c-fade);
+    mask-image: var(--v2c-fade);
+  }
+  .charger-art image { image-rendering: auto; }
+
+  .charger-logo-glow {
+    opacity: var(--v2c-glow, 0.5);
+    transition: opacity 700ms ease;
   }
 
-  /* The state to LED colour table, unchanged from the eleven SVGs it replaces. The
-     wordmark in trydan.svg is fill="currentColor", so these rules are what paints it.
-     Because the document is now the same in every state, the colour is a property a
-     future change can transition rather than hard-cut. */
-  .charger-art[data-state="disconnected"] { --v2c-led: #f4f6f8; }
-  .charger-art[data-state="charging"] { --v2c-led: #123cc9; }
-  .charger-art[data-state="complete"] { --v2c-led: #3fce6b; }
-  .charger-art[data-state="timer"] { --v2c-led: #43dbe7; }
-  .charger-art[data-state="updating"] { --v2c-led: #f050bd; }
-  .charger-art[data-state="control_pilot"] { --v2c-led: #ffd43b; }
-  .charger-art[data-state="load_balancing"] { --v2c-led: #ff9dd8; }
-  .charger-art[data-state="error"] { --v2c-led: #ef3340; }
-  .charger-art[data-state="waiting_power"] { --v2c-led: #f28c28; }
-  .charger-art[data-state="wifi_connected"] { --v2c-led: #3fce6b; }
-  .charger-art[data-state="wifi_connecting"] { --v2c-led: #f4f6f8; }
+  .charger-connector { transition: opacity 550ms ease; }
+  .charger-art[data-connector="out"] .charger-connector { opacity: 0; }
 
-  .charger-art[data-state="charging"] .charger-logo { animation: v2c-blink-current .65s steps(1, end) infinite; }
-  .charger-art[data-state="wifi_connecting"] .charger-logo { animation: v2c-blink-slow 1.35s steps(1, end) infinite; }
-  .charger-art[data-state="wifi_connected"] .charger-logo { animation: v2c-blink-once 1s ease-out 1; }
-
-  @keyframes v2c-blink-slow { 0%, 46% { opacity: 1; } 50%, 100% { opacity: .18; } }
-  @keyframes v2c-blink-current { 0%, 38% { opacity: 1; } 45%, 100% { opacity: .18; } }
-  @keyframes v2c-blink-once { 0%, 20% { opacity: .15; } 45%, 72% { opacity: 1; } 100% { opacity: .45; } }
-
-  .charger-lcd {
-    position: absolute;
-    top: 40.6%;
-    left: 34.9%;
-    display: grid;
-    width: 30.1%;
-    height: 4.4%;
-    grid-template-rows: 1fr 1fr;
-    place-items: center;
-    color: #cde6ef;
-    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 2.05cqi;
-    font-weight: 700;
-    letter-spacing: .04em;
-    line-height: 1;
-    pointer-events: none;
+  /* Charging and wifi-reconnect are the only two states the hardware blinks. */
+  .charger-art[data-flash] .charger-logo-glow {
+    animation: v2c-flash-glow var(--v2c-flash, 900ms) steps(1, end) infinite;
+  }
+  .charger-art[data-flash] .charger-logo {
+    animation: v2c-flash-core var(--v2c-flash, 900ms) steps(1, end) infinite;
   }
 
-  .charger-lcd span { display: block; max-width: 100%; overflow: hidden; text-overflow: clip; white-space: nowrap; }
-  .charger-lcd span + span { color: #9dc0cd; font-size: .92em; }
-  .charger-lcd.is-long { font-size: 1.72cqi; }
-  .charger-lcd.is-very-long { font-size: 1.48cqi; }
+  @keyframes v2c-flash-glow {
+    0%, 52% { opacity: var(--v2c-glow, 0.5); }
+    53%, 100% { opacity: 0.06; }
+  }
+
+  @keyframes v2c-flash-core {
+    0%, 52% { opacity: 1; }
+    53%, 100% { opacity: 0.16; }
+  }
+  /*
+   * LED colours, from V2C's own table at
+   * v2charge.com/support/trydan/led-lighting-instructions. The hues are the documented
+   * ones lifted a little towards white: the wordmark is a light source behind black
+   * glass, and the flat brand colours read as dead paint at card size. Only 'fix' and
+   * 'intermitent' are documented behaviours - the glow is our addition, not the
+   * device's, which is why it is a separate variable that can go to zero.
+   */
+  .charger-art[data-state="disconnected"] { --v2c-led: #f4f6f8; --v2c-glow: .42; }
+  .charger-art[data-state="wifi_connecting"] { --v2c-led: #f4f6f8; --v2c-glow: .42; }
+  .charger-art[data-state="wifi_connected"] { --v2c-led: #4fe07e; --v2c-glow: .5; }
+  .charger-art[data-state="charging"] { --v2c-led: #2e5bf0; --v2c-glow: .55; }
+  .charger-art[data-state="complete"] { --v2c-led: #4fe07e; --v2c-glow: .4; }
+  .charger-art[data-state="timer"] { --v2c-led: #58e6f0; --v2c-glow: .5; }
+  .charger-art[data-state="waiting_power"] { --v2c-led: #ff9c3c; --v2c-glow: .5; }
+  .charger-art[data-state="control_pilot"] { --v2c-led: #ffdc55; --v2c-glow: .5; }
+  .charger-art[data-state="updating"] { --v2c-led: #ff6acc; --v2c-glow: .5; }
+  .charger-art[data-state="load_balancing"] { --v2c-led: #ffb0e0; --v2c-glow: .5; }
+  .charger-art[data-state="error"] { --v2c-led: #ff4d57; --v2c-glow: .55; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .charger-art[data-flash] .charger-logo-glow,
+    .charger-art[data-flash] .charger-logo { animation: none; }
+  }
+
 
   .charger-status {
     max-width: 100%;
@@ -3046,7 +3678,7 @@ var Ht = o`
 
   ha-card[data-mode="compact"] .shell { padding: 18px; }
   ha-card[data-mode="compact"] .hero { gap: 0; margin-top: 12px; }
-  ha-card[data-mode="compact"] .hero-copy { margin-top: clamp(-26px, -6cqw, -18px); }
+  ha-card[data-mode="compact"] .hero-copy { margin-top: 4px; }
   ha-card[data-mode="compact"] .charger-stage { width: min(100%, clamp(210px, 62cqw, 280px)); }
   ha-card[data-mode="compact"] .charger-status { margin-top: 0; font-size: clamp(1.65rem, 6cqw, 2rem); }
   ha-card[data-mode="compact"] .metrics-section { margin-top: 12px; }
@@ -3092,11 +3724,12 @@ var Ht = o`
   ha-card[data-surface="transparent"] { background: transparent; }
   ha-card[data-surface="tinted"] { background: color-mix(in srgb, var(--v2c-control) 8%, var(--v2c-surface)); }
   .charger-stage { transform: scale(var(--v2c-hero-scale, 1)); transform-origin: center bottom; }
+  .charger-art { aspect-ratio: var(--v2c-art-ratio, 1.33); }
 
   ha-card[data-mode="xxl"] .shell { padding: clamp(26px, 5cqw, 36px); }
   ha-card[data-mode="xxl"] .hero { margin-top: 24px; }
   ha-card[data-mode="xxl"] .charger-stage { width: min(100%, clamp(320px, 84cqw, 430px)); }
-  ha-card[data-mode="xxl"] .hero-copy { margin-top: clamp(-44px, -8cqw, -31px); }
+  ha-card[data-mode="xxl"] .hero-copy { margin-top: 8px; }
   ha-card[data-mode="xxl"] .charger-status { font-size: clamp(2.35rem, 8cqw, 3rem); }
   ha-card[data-mode="xxl"] .metric { padding: 16px; }
   ha-card[data-mode="xxl"] .metric-value { font-size: clamp(1.2rem, 4.8cqw, 1.7rem); }
@@ -3133,7 +3766,7 @@ var Ht = o`
 `;
 //#endregion
 //#region \0@oxc-project+runtime@0.139.0/helpers/esm/decorate.js
-function Y(e, t, n, r) {
+function Z(e, t, n, r) {
 	var i = arguments.length, a = i < 3 ? t : r === null ? r = Object.getOwnPropertyDescriptor(t, n) : r, o;
 	if (typeof Reflect == "object" && typeof Reflect.decorate == "function") a = Reflect.decorate(e, t, n, r);
 	else for (var s = e.length - 1; s >= 0; s--) (o = e[s]) && (a = (i < 3 ? o(a) : i > 3 ? o(t, n, a) : o(t, n)) || a);
@@ -3141,12 +3774,16 @@ function Y(e, t, n, r) {
 }
 //#endregion
 //#region src/card/v2c-trydan-card.ts
-var X = class extends I {
+function nn(e) {
+	let t = Number(e);
+	return !Number.isFinite(t) || t <= 0 ? .9 : Math.min(1.45, Math.max(.5, 1.45 - Math.min(t, 32) / 32 * .95));
+}
+var Q = class extends P {
 	constructor(...e) {
 		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = /* @__PURE__ */ new Map();
 	}
 	static {
-		this.styles = Ht;
+		this.styles = tn;
 	}
 	#e;
 	#t;
@@ -3154,10 +3791,10 @@ var X = class extends I {
 		return document.createElement("v2c-trydan-card-editor");
 	}
 	static getStubConfig(e) {
-		return Ke(e);
+		return it(e);
 	}
 	setConfig(e) {
-		this.config = Ge(e), this.#n(), this.sliderValue = void 0;
+		this.config = rt(e), this.#n(), this.sliderValue = void 0;
 	}
 	getCardSize() {
 		return this.config?.display_mode === "ultra_compact" ? 3 : this.config?.display_mode === "compact" ? 4 : this.config?.display_mode === "standard" ? 6 : 8;
@@ -3189,7 +3826,7 @@ var X = class extends I {
 			this.resolvedEntities = {}, this.ambiguities = {}, this.#t = void 0;
 			return;
 		}
-		let e = _t(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
+		let e = jt(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
 		this.resolvedEntities = e.entities, this.ambiguities = e.ambiguities, this.#t = e.deviceId, this.discoveryDiagnostic = e.diagnostic;
 	}
 	#r() {
@@ -3213,7 +3850,7 @@ var X = class extends I {
 		return (e ? `--v2c-control:${e};--v2c-on-control:${t};` : "") + (this.config?.card_radius === void 0 ? "" : `--v2c-radius:${this.config.card_radius}px;`) + `--v2c-hero-scale:${this.config?.hero_scale ?? 1};`;
 	}
 	#o() {
-		return at(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
+		return _t(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
 	}
 	#s(e, t) {
 		this.#e.set(e, t), this.pendingRoles = [...this.#e.keys()];
@@ -3221,20 +3858,20 @@ var X = class extends I {
 	#c(e, t) {
 		let n = this.#e.get(e);
 		n?.timer && clearTimeout(n.timer), this.#e.delete(e), this.pendingRoles = [...this.#e.keys()];
-		let r = V(this.#o());
-		this.actionMessage = H(r, t ? "labels.actionDone" : "labels.actionFailed");
+		let r = H(this.#o());
+		this.actionMessage = U(r, t ? "labels.actionDone" : "labels.actionFailed");
 	}
 	#l() {
 		if (this.hass) for (let [e, t] of this.#e) t.matches(this.hass.states[t.entityId]) && this.#c(e, !0);
 	}
 	async #u(e, t, n, r) {
-		if (!this.hass || !vt(this.hass, e, t, this.#t)) {
-			this.actionMessage = H(V(this.#o()), "labels.actionFailed");
+		if (!this.hass || !Mt(this.hass, e, t, this.#t)) {
+			this.actionMessage = U(H(this.#o()), "labels.actionFailed");
 			return;
 		}
 		if (this.#e.has(e)) return;
-		let i = V(this.#o());
-		this.actionMessage = H(i, "labels.actionPending");
+		let i = H(this.#o());
+		this.actionMessage = U(i, "labels.actionPending");
 		let a = {
 			entityId: t,
 			matches: n
@@ -3254,43 +3891,45 @@ var X = class extends I {
 		let t = this.resolvedEntities.intensity, n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = Number(n.attributes.min ?? 6), i = Number(n.attributes.max ?? 32), a = Number(n.attributes.step ?? 1), o = Number.isFinite(a) && a > 0 ? a : 1, s = Math.min(i, Math.max(r, Math.round((e - r) / o) * o + r));
-		this.sliderValue = s, this.#u("intensity", t, (e) => Number(e?.state) === s, () => st(this.hass, t, s));
+		this.sliderValue = s, this.#u("intensity", t, (e) => Number(e?.state) === s, () => xt(this.hass, t, s));
 	}
 	#f(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(H(V(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ct(this.hass, t, r));
+		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(U(H(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => St(this.hass, t, r));
 	}
 	#p(e) {
 		let t = this.resolvedEntities.charge_mode, n = t ? this.hass?.states[t] : void 0;
-		!this.hass || !t || !n || !n.attributes.options?.includes(e) || this.#u("charge_mode", t, (t) => t?.state === e, () => lt(this.hass, t, e));
+		!this.hass || !t || !n || !n.attributes.options?.includes(e) || this.#u("charge_mode", t, (t) => t?.state === e, () => Ct(this.hass, t, e));
 	}
 	#m(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => ut(this.hass, t, r));
+		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => wt(this.hass, t, r));
 	}
 	#h(e) {
 		let t = this.resolvedEntities.logo_led, n = t ? this.hass?.states[t] : void 0;
-		!this.hass || !t || !n || !Number.isFinite(e) || e < 0 || e > 255 || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => ut(this.hass, t, !0, e));
+		!this.hass || !t || !n || !Number.isFinite(e) || e < 0 || e > 255 || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => wt(this.hass, t, !0, e));
 	}
 	render() {
-		if (!this.config || !this.hass) return k`<ha-card><div class="empty">V2C Trydan Card - configuration pending</div></ha-card>`;
-		let e = this.#o(), t = V(e), n = this.hass.states[this.config.entity], r = xt("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = Pt(Nt({
+		if (!this.config || !this.hass) return O`<ha-card><div class="empty">V2C Trydan Card - configuration pending</div></ha-card>`;
+		let e = this.#o(), t = H(e), n = this.hass.states[this.config.entity], r = K("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = Kt({
 			seedAvailable: !!(n && n.state !== "unknown" && n.state !== "unavailable"),
-			connected: q(this.#i("connected")?.state),
-			charging: q(this.#i("charging")?.state),
-			ready: q(this.#i("ready")?.state),
-			paused: q(this.#i("paused")?.state),
-			locked: q(this.#i("locked")?.state),
-			timer: q(this.#i("timer")?.state),
-			dynamic: q(this.#i("dynamic")?.state),
+			connected: Y(this.#i("connected")?.state),
+			charging: Y(this.#i("charging")?.state),
+			ready: Y(this.#i("ready")?.state),
+			paused: Y(this.#i("paused")?.state),
+			locked: Y(this.#i("locked")?.state),
+			timer: Y(this.#i("timer")?.state),
+			dynamic: Y(this.#i("dynamic")?.state),
 			meterError: this.#i("meter_error")?.state,
 			externalStatus: this.config.status_entity ? this.hass.states[this.config.status_entity]?.state : void 0,
 			chargePowerW: r.watts
-		})), a = this.config.name ?? "V2C Trydan", o = this.#i("charge_energy"), s = this.#i("charge_time"), c = this.#i("intensity"), l = this.#i("voltage"), u = [
+		}), a = qt(i), o = this.config.name ?? "V2C Trydan", s = this.#i("charge_energy"), c = this.#i("charge_time"), l = this.#i("intensity");
+		this.#i("voltage");
+		let u = [
 			[
 				"solar",
 				"fv_power",
@@ -3316,22 +3955,31 @@ var X = class extends I {
 				"charge_power",
 				!1
 			]
-		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => xt(e, this.#i(t), {
+		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => K(e, this.#i(t), {
 			invert: n,
 			thresholdW: this.config?.flow_threshold_w
-		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? k`<div class="metric metric-power"><span class="metric-label">${H(t, "labels.power")}</span><strong class="metric-value">${Ct(r.watts, e)}</strong></div>` : n === "energy" ? k`<div class="metric"><span class="metric-label">${H(t, "labels.energy")}</span><strong class="metric-value">${wt(o?.state ?? null, e)}</strong></div>` : k`<div class="metric"><span class="metric-label">${H(t, "labels.time")}</span><strong class="metric-value">${Tt(s?.state ?? null)}</strong></div>`), ee = Object.keys(this.ambiguities), m = i.diagnostic && i.diagnostic !== "no_error" ? i.diagnostic.replaceAll("_", " ") : void 0, h = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", g = ot(e, i.unavailable ? "unavailable" : i.key, {
-			power: Ct(r.watts, e),
-			current: Et(c?.state ?? null, "A", e),
-			voltage: Et(l?.state ?? null, "V", e),
-			energy: wt(o?.state ?? null, e)
-		}), te = Math.max(g.primary.length, g.secondary.length), _ = k`
-      <section class="hero ${h ? "has-charger" : "without-charger"}" data-section="hero">
-        ${h ? k`<div class="charger-stage"><div class="charger-art" data-state=${i.key} aria-hidden="true">${Ie(Le)}<div class="charger-lcd ${te > 24 ? "is-very-long" : te > 18 ? "is-long" : ""}"><span>${g.primary}</span><span>${g.secondary}</span></div></div></div>` : j}
+		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? O`<div class="metric metric-power"><span class="metric-label">${U(t, "labels.power")}</span><strong class="metric-value">${Lt(r.watts, e)}</strong></div>` : n === "energy" ? O`<div class="metric"><span class="metric-label">${U(t, "labels.energy")}</span><strong class="metric-value">${Rt(s?.state ?? null, e)}</strong></div>` : O`<div class="metric"><span class="metric-label">${U(t, "labels.time")}</span><strong class="metric-value">${zt(c?.state ?? null)}</strong></div>`), m = Object.keys(this.ambiguities), h = a.diagnostic && a.diagnostic !== "no_error" ? a.diagnostic.replaceAll("_", " ") : void 0, g = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", ee = q(K("home", this.#i("house_power")).watts) ?? q(K("grid", this.#i("grid_power")).watts), te = q(K("solar", this.#i("fv_power")).watts), _ = bt(e, a.unavailable ? "unavailable" : a.key, {
+			evKw: q(r.watts),
+			totalKw: ee,
+			solarKw: te,
+			errorCode: yt(a.diagnostic)
+		}), v = this.config.charger_art ?? "focus", ne = a.key === "disconnected" || a.unavailable || i.phase === "disconnected" || i.phase === "unavailable", re = this.config.show_connector === !0, y = Je(v, re), b = qe({
+			crop: v,
+			showConnector: re,
+			connectorHoldered: ne,
+			lcdLines: [_.primary, _.secondary],
+			flashSeconds: nn(l?.state),
+			logoOff: this.#i("logo_led")?.state === "off",
+			state: a.key,
+			flash: a.key === "charging" || a.key === "wifi_connecting"
+		}), ie = O`
+      <section class="hero ${g ? "has-charger" : "without-charger"}" data-section="hero">
+        ${g ? O`<div class="charger-stage" style=${`--v2c-art-ratio:${y.toFixed(3)}`}>${b}</div>` : A}
         <div class="hero-copy">
-          <div class="charger-status" data-severity=${i.severity} role="status">${H(t, i.labelKey)}</div>
-          ${this.config.show_badges !== !1 && i.badges.length ? k`<div class="badges" aria-label=${H(t, "labels.additionalStatus")}>${i.badges.map((e) => k`<span class="badge">${H(t, `badges.${e}`)}</span>`)}</div>` : j}
+          <div class="charger-status" data-severity=${a.severity} role="status">${U(t, a.labelKey)}</div>
+          ${this.config.show_badges !== !1 && a.badges.length ? O`<div class="badges" aria-label=${U(t, "labels.additionalStatus")}>${a.badges.map((e) => O`<span class="badge">${U(t, `badges.${e}`)}</span>`)}</div>` : A}
         </div>
-      </section>`, v = p.length ? k`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : j, y = this.config.show_controls ? k`<div data-section="controls">${Vt({
+      </section>`, x = p.length ? O`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : A, ae = this.config.show_controls ? O`<div data-section="controls">${en({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
@@ -3343,48 +3991,48 @@ var X = class extends I {
 			onSliderInput: (e) => this.sliderValue = e,
 			onIntensity: (e) => this.#d(e),
 			onPause: () => this.#f("paused")
-		})}</div>` : j, ne = this.config.show_energy_flow ? k`<div data-section="energy">${Bt(f, t, e)}</div>` : j, b = this.config.show_advanced ? k`<div data-section="advanced">${Rt({
+		})}</div>` : A, oe = this.config.show_energy_flow ? O`<div data-section="energy">${$t(f, t, e)}</div>` : A, S = this.config.show_advanced ? O`<div data-section="advanced">${Zt({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
 			pending: this.pendingRoles,
 			voltage: this.#i("voltage"),
-			diagnostic: m,
-			ambiguityRoles: ee,
+			diagnostic: h,
+			ambiguityRoles: m,
 			advancedOpen: this.config.advanced_open,
 			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#m(e) : this.#f(e),
 			onSelect: (e) => this.#p(e),
 			onBrightness: (e) => this.#h(e)
-		})}</div>` : j, x = (e) => {
+		})}</div>` : A, se = (e) => {
 			switch (e) {
-				case "hero": return _;
-				case "metrics": return v;
-				case "controls": return y;
-				case "energy": return ne;
-				default: return b;
+				case "hero": return ie;
+				case "metrics": return x;
+				case "controls": return ae;
+				case "energy": return oe;
+				default: return S;
 			}
-		}, re = this.config.section_order ?? [
+		}, ce = this.config.section_order ?? [
 			"hero",
 			"metrics",
 			"controls",
 			"energy",
 			"advanced"
-		], S = this.discoveryDiagnostic ? k`<p class="live-region" data-diagnostic=${this.discoveryDiagnostic} role="status">${this.discoveryDiagnostic.replaceAll("_", " ")}</p>` : j;
-		return k`
+		], C = this.discoveryDiagnostic ? O`<p class="live-region" data-diagnostic=${this.discoveryDiagnostic} role="status">${this.discoveryDiagnostic.replaceAll("_", " ")}</p>` : A;
+		return O`
       <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== !1)} style=${this.#a()}>
         <div class="shell">
-          ${this.config.show_header === !1 ? j : k`<header class="card-heading"><h2>${a}</h2>${this.config.location ? k`<span class="location">${this.config.location}</span>` : j}</header>`}
-          <div class="content-sections">${re.map(x)}</div>
-          ${S}
+          ${this.config.show_header === !1 ? A : O`<header class="card-heading"><h2>${o}</h2>${this.config.location ? O`<span class="location">${this.config.location}</span>` : A}</header>`}
+          <div class="content-sections">${ce.map(se)}</div>
+          ${C}
           <p class="live-region" aria-live="polite">${this.actionMessage}</p>
         </div>
       </ha-card>`;
 	}
 };
-Y([L({ attribute: !1 })], X.prototype, "hass", void 0), Y([R()], X.prototype, "config", void 0), Y([R()], X.prototype, "resolvedEntities", void 0), Y([R()], X.prototype, "ambiguities", void 0), Y([R()], X.prototype, "discoveryDiagnostic", void 0), Y([R()], X.prototype, "sliderValue", void 0), Y([R()], X.prototype, "pendingRoles", void 0), Y([R()], X.prototype, "actionMessage", void 0);
+Z([Fe({ attribute: !1 })], Q.prototype, "hass", void 0), Z([F()], Q.prototype, "config", void 0), Z([F()], Q.prototype, "resolvedEntities", void 0), Z([F()], Q.prototype, "ambiguities", void 0), Z([F()], Q.prototype, "discoveryDiagnostic", void 0), Z([F()], Q.prototype, "sliderValue", void 0), Z([F()], Q.prototype, "pendingRoles", void 0), Z([F()], Q.prototype, "actionMessage", void 0);
 //#endregion
 //#region src/localization/editor-copy.ts
-var Ut = {
+var rn = {
 	en: {
 		general: "General",
 		appearance: "Appearance",
@@ -3440,7 +4088,12 @@ var Ut = {
 		statusManual: "Manual",
 		statusAmbiguous: "Ambiguous",
 		statusInvalid: "Invalid",
-		statusMissing: "Not found"
+		statusMissing: "Not found",
+		chargerArt: "Charger artwork",
+		chargerArtFocus: "Close-up",
+		chargerArtMid: "Mid shot",
+		chargerArtFull: "Full charger",
+		showConnector: "Show connector"
 	},
 	es: {
 		general: "General",
@@ -3497,7 +4150,12 @@ var Ut = {
 		statusManual: "Manual",
 		statusAmbiguous: "Ambigua",
 		statusInvalid: "Inválida",
-		statusMissing: "No encontrada"
+		statusMissing: "No encontrada",
+		chargerArt: "Ilustración del cargador",
+		chargerArtFocus: "Primer plano",
+		chargerArtMid: "Plano medio",
+		chargerArtFull: "Cargador completo",
+		showConnector: "Mostrar conector"
 	},
 	it: {
 		general: "Generale",
@@ -3554,7 +4212,12 @@ var Ut = {
 		statusManual: "Manuale",
 		statusAmbiguous: "Ambigua",
 		statusInvalid: "Non valida",
-		statusMissing: "Non trovata"
+		statusMissing: "Non trovata",
+		chargerArt: "Illustrazione caricatore",
+		chargerArtFocus: "Primo piano",
+		chargerArtMid: "Piano medio",
+		chargerArtFull: "Caricatore completo",
+		showConnector: "Mostra connettore"
 	},
 	de: {
 		general: "Allgemein",
@@ -3611,7 +4274,12 @@ var Ut = {
 		statusManual: "Manuell",
 		statusAmbiguous: "Mehrdeutig",
 		statusInvalid: "Ungültig",
-		statusMissing: "Nicht gefunden"
+		statusMissing: "Nicht gefunden",
+		chargerArt: "Lader-Illustration",
+		chargerArtFocus: "Nahaufnahme",
+		chargerArtMid: "Mittlere Ansicht",
+		chargerArtFull: "Ganzer Lader",
+		showConnector: "Stecker anzeigen"
 	},
 	fr: {
 		general: "Général",
@@ -3668,7 +4336,12 @@ var Ut = {
 		statusManual: "Manuelle",
 		statusAmbiguous: "Ambiguë",
 		statusInvalid: "Invalide",
-		statusMissing: "Introuvable"
+		statusMissing: "Introuvable",
+		chargerArt: "Illustration du chargeur",
+		chargerArtFocus: "Gros plan",
+		chargerArtMid: "Plan moyen",
+		chargerArtFull: "Chargeur complet",
+		showConnector: "Afficher le connecteur"
 	},
 	nl: {
 		general: "Algemeen",
@@ -3725,7 +4398,12 @@ var Ut = {
 		statusManual: "Handmatig",
 		statusAmbiguous: "Dubbelzinnig",
 		statusInvalid: "Ongeldig",
-		statusMissing: "Niet gevonden"
+		statusMissing: "Niet gevonden",
+		chargerArt: "Laderillustratie",
+		chargerArtFocus: "Close-up",
+		chargerArtMid: "Middenbeeld",
+		chargerArtFull: "Volledige lader",
+		showConnector: "Connector tonen"
 	},
 	sv: {
 		general: "Allmänt",
@@ -3782,7 +4460,12 @@ var Ut = {
 		statusManual: "Manuell",
 		statusAmbiguous: "Tvetydig",
 		statusInvalid: "Ogiltig",
-		statusMissing: "Hittades inte"
+		statusMissing: "Hittades inte",
+		chargerArt: "Laddarillustration",
+		chargerArtFocus: "Närbild",
+		chargerArtMid: "Halvbild",
+		chargerArtFull: "Hela laddaren",
+		showConnector: "Visa kontakten"
 	},
 	da: {
 		general: "Generelt",
@@ -3839,7 +4522,12 @@ var Ut = {
 		statusManual: "Manuel",
 		statusAmbiguous: "Tvetydig",
 		statusInvalid: "Ugyldig",
-		statusMissing: "Ikke fundet"
+		statusMissing: "Ikke fundet",
+		chargerArt: "Laderillustration",
+		chargerArtFocus: "Nærbillede",
+		chargerArtMid: "Halvbillede",
+		chargerArtFull: "Hele laderen",
+		showConnector: "Vis stikket"
 	},
 	no: {
 		general: "Generelt",
@@ -3896,7 +4584,12 @@ var Ut = {
 		statusManual: "Manuell",
 		statusAmbiguous: "Tvetydig",
 		statusInvalid: "Ugyldig",
-		statusMissing: "Ikke funnet"
+		statusMissing: "Ikke funnet",
+		chargerArt: "Laderillustrasjon",
+		chargerArtFocus: "Nærbilde",
+		chargerArtMid: "Halvbilde",
+		chargerArtFull: "Hele laderen",
+		showConnector: "Vis kontakten"
 	},
 	ro: {
 		general: "General",
@@ -3953,9 +4646,14 @@ var Ut = {
 		statusManual: "Manuală",
 		statusAmbiguous: "Ambiguă",
 		statusInvalid: "Invalidă",
-		statusMissing: "Negăsită"
+		statusMissing: "Negăsită",
+		chargerArt: "Ilustrația încărcătorului",
+		chargerArtFocus: "Prim-plan",
+		chargerArtMid: "Plan mediu",
+		chargerArtFull: "Încărcător complet",
+		showConnector: "Arată conectorul"
 	}
-}, Wt = {
+}, an = {
 	en: {
 		connected: "Vehicle connected",
 		charging: "Charging",
@@ -4237,18 +4935,18 @@ var Ut = {
 		charge_mode: "Mod de încărcare"
 	}
 };
-function Gt(e) {
-	return Ut[e];
+function on(e) {
+	return rn[e];
 }
-function Kt(e, t) {
-	return Wt[e][t];
+function sn(e, t) {
+	return an[e][t];
 }
-function qt(e, t) {
+function cn(e, t) {
 	return e[`status${t[0].toUpperCase()}${t.slice(1)}`];
 }
 //#endregion
 //#region src/editor/v2c-trydan-card-editor.ts
-var Jt = {
+var ln = {
 	en: "English",
 	it: "Italiano",
 	de: "Deutsch",
@@ -4259,7 +4957,7 @@ var Jt = {
 	no: "Norsk",
 	ro: "Romana",
 	es: "Espanol"
-}, Yt = {
+}, un = {
 	en: "Ultra compact mode hides charger artwork. Setting remains for other sizes.",
 	es: "Modo ultracompacto oculta cargador. Ajuste se conserva para otros tamanos.",
 	it: "Modalita ultra compatta nasconde caricatore.",
@@ -4270,28 +4968,28 @@ var Jt = {
 	da: "Ultrakompakt skjuler laderen.",
 	no: "Ultrakompakt skjuler laderen.",
 	ro: "Modul ultra compact ascunde incarcatorul."
-}, Xt = [
+}, dn = [
 	"power",
 	"energy",
 	"time"
-], Z = [
+], fn = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], Zt = [
+], pn = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
-], Qt = [
+], mn = [
 	["show_energy_flow", "editor.showEnergyFlow"],
 	["show_controls", "editor.showControls"],
 	["show_advanced", "editor.showAdvanced"],
 	["show_charger", "editor.showCharger"]
-], Q = class extends I {
+], $ = class extends P {
 	constructor(...e) {
 		super(...e), this.accentDraft = "#0067D9", this.presetDraft = "";
 	}
@@ -4320,6 +5018,11 @@ var Jt = {
     .layout-icon[data-kind="split"],.layout-icon[data-kind="inline"] { grid-template-columns:1fr 1fr; }
     .layout-icon[data-kind="centered"]::before { width:55%; justify-self:center; }
     .layout-icon[data-kind="auto"]::after { width:70%; justify-self:center; }
+    .crop-icon { position:relative; display:block; width:17px; height:24px; border:1px solid currentColor; border-radius:3px; opacity:.85; }
+    .crop-icon::before { content:""; position:absolute; inset:1px 1px auto; border-radius:2px 2px 0 0; background:currentColor; opacity:.55; }
+    .crop-icon[data-kind="focus"]::before { height:36%; }
+    .crop-icon[data-kind="mid"]::before { height:64%; }
+    .crop-icon[data-kind="full"]::before { height:calc(100% - 2px); border-radius:2px; }
     .chips { display:flex; flex-wrap:wrap; gap:7px; }
     .chip { min-height:36px; padding:6px 11px; border:1px solid var(--divider-color,#7775); border-radius:999px; color:var(--secondary-text-color); background:transparent; cursor:pointer; }
     .chip[aria-pressed="true"] { color:var(--primary-text-color); border-color:var(--primary-color,#0067d9); background:color-mix(in srgb,var(--primary-color,#0067d9) 12%,transparent); }
@@ -4392,7 +5095,7 @@ var Jt = {
 	}
 	#i(e) {
 		if (!this.config) return;
-		let t = this.config.metrics ?? [...Xt], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		let t = this.config.metrics ?? [...dn], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
 		this.#e({
 			...this.config,
 			metrics: n
@@ -4400,15 +5103,15 @@ var Jt = {
 	}
 	#a(e) {
 		if (!this.config) return;
-		let t = this.config.energy_sources ?? [...Z], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		let t = this.config.energy_sources ?? [...fn], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
 		this.#e({
 			...this.config,
 			energy_sources: n
 		});
 	}
 	#o() {
-		let e = (this.config?.section_order ?? []).filter((e) => Zt.includes(e));
-		return [.../* @__PURE__ */ new Set([...e, ...Zt])];
+		let e = (this.config?.section_order ?? []).filter((e) => pn.includes(e));
+		return [.../* @__PURE__ */ new Set([...e, ...pn])];
 	}
 	#s(e, t) {
 		if (!this.config) return;
@@ -4443,7 +5146,7 @@ var Jt = {
 		if (!this.config) return;
 		let e = Number(this.presetDraft);
 		if (!Number.isInteger(e) || e <= 0 || e > 80) return;
-		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? z, e])].sort((e, t) => e - t);
+		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? B, e])].sort((e, t) => e - t);
 		this.presetDraft = "", this.#e({
 			...this.config,
 			current_presets: t
@@ -4452,7 +5155,7 @@ var Jt = {
 	#f(e) {
 		this.config && this.#e({
 			...this.config,
-			current_presets: (this.config.current_presets ?? z).filter((t) => t !== e)
+			current_presets: (this.config.current_presets ?? B).filter((t) => t !== e)
 		});
 	}
 	#p(e, t) {
@@ -4464,41 +5167,41 @@ var Jt = {
 		});
 	}
 	render() {
-		if (!this.config) return j;
-		let e = at(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = V(e), n = Gt(e), r = Object.keys(this.hass?.entities ?? {}), i = this.hass ? _t(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities, this.hass.states) : void 0, a = this.#o(), o = this.config.metrics ?? [...Xt], s = this.config.energy_sources ?? [...Z], c = this.config.current_presets ?? z, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
-			hero: H(t, "editor.showCharger"),
+		if (!this.config) return A;
+		let e = _t(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = H(e), n = on(e), r = Object.keys(this.hass?.entities ?? {}), i = this.hass ? jt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities, this.hass.states) : void 0, a = this.#o(), o = this.config.metrics ?? [...dn], s = this.config.energy_sources ?? [...fn], c = this.config.current_presets ?? B, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
+			hero: U(t, "editor.showCharger"),
 			metrics: n.metrics,
-			controls: H(t, "editor.showControls"),
-			energy: H(t, "editor.showEnergyFlow"),
-			advanced: H(t, "editor.showAdvanced")
+			controls: U(t, "editor.showControls"),
+			energy: U(t, "editor.showEnergyFlow"),
+			advanced: U(t, "editor.showAdvanced")
 		}, f = {
-			power: H(t, "labels.power"),
-			energy: H(t, "labels.energy"),
-			time: H(t, "labels.time")
+			power: U(t, "labels.power"),
+			energy: U(t, "labels.energy"),
+			time: U(t, "labels.time")
 		}, p = {
-			solar: H(t, "flows.solar"),
-			grid: H(t, "flows.grid"),
-			home: H(t, "flows.home"),
-			battery: H(t, "flows.battery"),
-			charger: H(t, "flows.charger")
+			solar: U(t, "flows.solar"),
+			grid: U(t, "flows.grid"),
+			home: U(t, "flows.home"),
+			battery: U(t, "flows.battery"),
+			charger: U(t, "flows.charger")
 		};
-		return k`
+		return O`
       <div class="editor">
         <details class="group" open>
           <summary>${n.general}</summary><div class="group-body">
-            <label><span>${H(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
+            <label><span>${U(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
             <div class="grid">
-              <label><span>${H(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
-              <label><span>${H(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
-              <label><span>${H(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${rt.map((e) => k`<option .value=${e}>${Jt[e]}</option>`)}</select></label>
-              <label><span>${H(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${H(t, "editor.themeAuto")}</option><option value="light">${H(t, "editor.themeLight")}</option><option value="dark">${H(t, "editor.themeDark")}</option></select></label>
+              <label><span>${U(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
+              <label><span>${U(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
+              <label><span>${U(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${ht.map((e) => O`<option .value=${e}>${ln[e]}</option>`)}</select></label>
+              <label><span>${U(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${U(t, "editor.themeAuto")}</option><option value="light">${U(t, "editor.themeLight")}</option><option value="dark">${U(t, "editor.themeDark")}</option></select></label>
             </div>
-            <div class="field"><span class="field-title">${H(t, "editor.displayMode")}</span><div class="choices">${[
+            <div class="field"><span class="field-title">${U(t, "editor.displayMode")}</span><div class="choices">${[
 			["xxl", n.modeXxl],
-			["standard", H(t, "editor.modeStandard")],
-			["compact", H(t, "editor.modeCompact")],
-			["ultra_compact", H(t, "editor.modeUltra")]
-		].map(([e, t]) => k`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
+			["standard", U(t, "editor.modeStandard")],
+			["compact", U(t, "editor.modeCompact")],
+			["ultra_compact", U(t, "editor.modeUltra")]
+		].map(([e, t]) => O`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
           </div>
         </details>
 
@@ -4509,7 +5212,7 @@ var Jt = {
 			["centered", n.centered],
 			["split", n.split],
 			["inline", n.inline]
-		].map(([e, t]) => k`<button type="button" class="choice" data-field="layout" data-value=${e} aria-pressed=${String((this.config?.layout ?? "auto") === e)} @click=${() => this.#t("layout", e)}><span class="layout-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="choice" data-field="layout" data-value=${e} aria-pressed=${String((this.config?.layout ?? "auto") === e)} @click=${() => this.#t("layout", e)}><span class="layout-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
             <div class="field"><span class="field-title">${n.colorScheme}</span><div class="swatches">${[
 			[
 				"monochrome",
@@ -4541,13 +5244,19 @@ var Jt = {
 				n.custom,
 				this.config.accent_color ?? "#0067D9"
 			]
-		].map(([e, t, n]) => k`<button type="button" class="swatch" style=${`--swatch:${n}`} title=${t} aria-label=${t} aria-pressed=${String((this.config?.color_scheme ?? "monochrome") === e)} @click=${() => this.#l(e)}></button>`)}</div></div>
-            ${this.config.color_scheme === "custom" ? k`<div class="field"><span class="field-title">${n.accentColor}</span><div class="color-row"><input data-field="accent_picker" type="color" .value=${/^#[0-9A-F]{6}$/.test(this.accentDraft) ? this.accentDraft : "#0067D9"} @input=${(e) => this.#u(e.target.value)} /><input data-field="accent_color" inputmode="text" .value=${this.accentDraft} @input=${(e) => this.#u(e.target.value)} /></div><p class="help">${n.accentHelp}</p>${l ? k`<p class="error" role="alert">${n.invalidHex}</p>` : j}</div>` : j}
+		].map(([e, t, n]) => O`<button type="button" class="swatch" style=${`--swatch:${n}`} title=${t} aria-label=${t} aria-pressed=${String((this.config?.color_scheme ?? "monochrome") === e)} @click=${() => this.#l(e)}></button>`)}</div></div>
+            ${this.config.color_scheme === "custom" ? O`<div class="field"><span class="field-title">${n.accentColor}</span><div class="color-row"><input data-field="accent_picker" type="color" .value=${/^#[0-9A-F]{6}$/.test(this.accentDraft) ? this.accentDraft : "#0067D9"} @input=${(e) => this.#u(e.target.value)} /><input data-field="accent_color" inputmode="text" .value=${this.accentDraft} @input=${(e) => this.#u(e.target.value)} /></div><p class="help">${n.accentHelp}</p>${l ? O`<p class="error" role="alert">${n.invalidHex}</p>` : A}</div>` : A}
             <div class="field"><span class="field-title">${n.surface}</span><div class="chips">${[
 			["solid", n.solid],
 			["tinted", n.tinted],
 			["transparent", n.transparent]
-		].map(([e, t]) => k`<button type="button" class="chip" aria-pressed=${String((this.config?.surface_style ?? "solid") === e)} @click=${() => this.#t("surface_style", e)}>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="chip" aria-pressed=${String((this.config?.surface_style ?? "solid") === e)} @click=${() => this.#t("surface_style", e)}>${t}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.chargerArt}</span><div class="choices">${[
+			["focus", n.chargerArtFocus],
+			["mid", n.chargerArtMid],
+			["full", n.chargerArtFull]
+		].map(([e, t]) => O`<button type="button" class="choice" data-field="charger_art" data-value=${e} aria-pressed=${String((this.config?.charger_art ?? "focus") === e)} @click=${() => this.#t("charger_art", e)}><span class="crop-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
+            <div class="checks"><label><input data-field="show_connector" type="checkbox" .checked=${this.config.show_connector === !0} @change=${(e) => this.#t("show_connector", e.target.checked)} />${n.showConnector}</label></div>
             <div class="grid">
               <label><span class="field-title">${n.heroScale}</span><div class="range-row"><input data-field="hero_scale" type="range" min="0.75" max="1.25" step="0.05" .value=${String(this.config.hero_scale ?? 1)} @input=${(e) => this.#r("hero_scale", e.target.value)} /><output>${Math.round((this.config.hero_scale ?? 1) * 100)}%</output></div></label>
               <label><span class="field-title">${n.cardRadius}</span><div class="range-row"><input data-field="card_radius" type="range" min="0" max="40" step="1" .value=${String(this.config.card_radius ?? 20)} @input=${(e) => this.#r("card_radius", e.target.value)} /><output>${this.config.card_radius ?? 20}px</output></div></label>
@@ -4557,11 +5266,11 @@ var Jt = {
 
         <details class="group" open>
           <summary>${n.contentOrder}</summary><div class="group-body">
-            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${Xt.map((e) => k`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${Z.map((e) => k`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => k`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>&#8593;</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>&#8595;</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
-            <div class="checks">${Qt.map(([e, n]) => k`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${H(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
-            ${u ? k`<p class="help" data-help="ultra-artwork">${Yt[e]}</p>` : j}
+            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${dn.map((e) => O`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${fn.map((e) => O`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => O`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>&#8593;</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>&#8595;</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
+            <div class="checks">${mn.map(([e, n]) => O`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${U(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
+            ${u ? O`<p class="help" data-help="ultra-artwork">${un[e]}</p>` : A}
           </div>
         </details>
 
@@ -4571,9 +5280,9 @@ var Jt = {
 			["slider", n.slider],
 			["presets", n.presets],
 			["both", n.both]
-		].map(([e, t]) => k`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
             <label><span class="field-title">${n.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e) => this.#r("flow_threshold_w", e.target.value)} /></label>
-            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => k`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>&times;</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
+            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => O`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>&times;</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
 			e.key === "Enter" && (e.preventDefault(), this.#d());
 		}} /><button type="button" data-action="add-preset" @click=${() => this.#d()}>${n.addPreset}</button></div></div>
             <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />${n.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />${n.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />${n.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />${n.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />${n.invertSolar}</label></div>
@@ -4581,21 +5290,21 @@ var Jt = {
         </details>
 
         <details class="group">
-          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p>${i?.diagnostic ? k`<p class="help" data-diagnostic=${i.diagnostic}>${i.diagnostic.replaceAll("_", " ")}</p>` : j}${i?.legacyRoles.length ? k`<p class="help" data-diagnostic="legacy">legacy: ${i.legacyRoles.join(", ")}</p>` : j}<div class="grid">${Dt.map((t) => {
+          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p>${i?.diagnostic ? O`<p class="help" data-diagnostic=${i.diagnostic}>${i.diagnostic.replaceAll("_", " ")}</p>` : A}${i?.legacyRoles.length ? O`<p class="help" data-diagnostic="legacy">legacy: ${i.legacyRoles.join(", ")}</p>` : A}<div class="grid">${Bt.map((t) => {
 			let r = i?.statuses[t] ?? "missing";
-			return k`<label><span>${Kt(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${qt(n, r)}</small></label>`;
+			return O`<label><span>${sn(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${cn(n, r)}</small></label>`;
 		})}</div></div>
         </details>
-        <datalist id="v2c-entities">${r.map((e) => k`<option value=${e}></option>`)}</datalist>
+        <datalist id="v2c-entities">${r.map((e) => O`<option value=${e}></option>`)}</datalist>
       </div>`;
 	}
 };
-Y([L({ attribute: !1 })], Q.prototype, "hass", void 0), Y([R()], Q.prototype, "config", void 0), Y([R()], Q.prototype, "accentDraft", void 0), Y([R()], Q.prototype, "presetDraft", void 0);
+Z([Fe({ attribute: !1 })], $.prototype, "hass", void 0), Z([F()], $.prototype, "config", void 0), Z([F()], $.prototype, "accentDraft", void 0), Z([F()], $.prototype, "presetDraft", void 0);
 //#endregion
 //#region src/index.ts
-var $ = "v2c-trydan-card", $t = "v2c-trydan-card-editor";
-customElements.get($) || customElements.define($, X), customElements.get($t) || customElements.define($t, Q), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === $) || window.customCards.push({
-	type: $,
+var hn = "v2c-trydan-card", gn = "v2c-trydan-card-editor";
+customElements.get(hn) || customElements.define(hn, Q), customElements.get(gn) || customElements.define(gn, $), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === hn) || window.customCards.push({
+	type: hn,
 	name: "V2C Trydan Card",
 	description: "Home Assistant V2C Trydan EV charger card with visual editor, controls and energy monitoring.",
 	documentationURL: "https://github.com/mactron254/v2c-trydan-card#readme",
@@ -4609,4 +5318,4 @@ customElements.get($) || customElements.define($, X), customElements.get($t) || 
 	}
 });
 //#endregion
-export { X as V2cTrydanCard, Q as V2cTrydanCardEditor };
+export { Q as V2cTrydanCard, $ as V2cTrydanCardEditor };

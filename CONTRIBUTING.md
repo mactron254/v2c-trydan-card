@@ -24,7 +24,7 @@ Run `corepack pnpm@11.5.1 docs:capture` after visual/editor changes. It requires
 
 ## Project structure
 
-- `src/`: card, editor, localization, services and canonical SVG assets.
+- `src/`: card, editor, localization, services and canonical charger artwork assets (WebP photography layers, SVG logo and LCD).
 - `tests/`: unit and DOM contracts.
 - `demo/`: privacy-safe visual laboratory.
 - `docs/`: configuration, media, release and support material.

@@ -112,5 +112,19 @@ export const ro = {
                    "showControls":  "Comenzi de încărcare",
                    "showAdvanced":  "Comenzi avansate",
                    "showCharger":  "Ilustrație Trydan"
-               }
+               },
+    "lcd":  {
+                "disconnected":  "ASTEPTAND EV",
+                "unavailable":  "Indisponibil",
+                "charging":  "VE INCARCARE",
+                "complete":  "Gata",
+                "timer":  "Program",
+                "updating":  "Actualizează",
+                "control_pilot":  "Eroare",
+                "load_balancing":  "Eroare",
+                "error":  "Eroare",
+                "waiting_power":  "Conectat",
+                "wifi_connected":  "Wifi OK",
+                "wifi_connecting":  "Conectare"
+            }
 } satisfies Dictionary;

@@ -25,7 +25,8 @@ A modern card for viewing and controlling a **V2C Trydan** charger from the Home
 - ⚡ Show power, current, voltage and session energy when valid entities are available.
 - ☀️ Energy flow can be shown; it is off by default.
 - 🔎 Discover charger entities automatically through the device registry, even when their visible names differ.
-- 🎨 Personalize charger colour with predefined options or any colour you choose.
+- 🎨 Tint the card's controls and surfaces with predefined palettes or any custom colour.
+- 🖼️ Charger illustration cut from V2C's own product photography, with adjustable framing and an optional connector view. See [how the artwork is built](docs/artwork/README.md).
 - ♿ Navigate by keyboard with visible focus, reduced motion and support from 280 to 768 px.
 
 ## 📐 4 available sizes
@@ -125,6 +126,7 @@ I would love to hear your feedback, feature ideas and corrections. Before sharin
 
 - [Complete configuration reference](docs/CONFIGURATION.md)
 - [Visual guide with 33 reproducible screenshots and four GIFs](docs/VISUAL_GUIDE.md)
+- [Charger artwork: sources and provenance](docs/artwork/README.md)
 - [FAQ and troubleshooting](docs/FAQ.md)
 - [Changelog](CHANGELOG.md)
 - [Contribution guide](CONTRIBUTING.md)

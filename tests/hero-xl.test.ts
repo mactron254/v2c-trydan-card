@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "../src/index";
-import { TRYDAN_ARTWORK } from "../src/assets/trydan";
+import { ARTWORK_PX, chargerArtFrame } from "../src/assets/trydan/geometry";
 import { V2cTrydanCard } from "../src/card/v2c-trydan-card";
 import type { HomeAssistant, V2cTrydanCardConfig } from "../src/models/types";
 
@@ -48,9 +48,20 @@ describe("Trydan Hero XL contracts", () => {
     document.body.innerHTML = "";
   });
 
-  it("crops the shared SVG canvas without retaining the old viewBox", () => {
-    expect(TRYDAN_ARTWORK).toContain('viewBox="24 0 312 480"');
-    expect(TRYDAN_ARTWORK).not.toContain('viewBox="0 0 360 500"');
+  it("frames the artwork so the lit features are always inside the crop", () => {
+    // Replaces the old assertion that eleven separate SVG canvases shared one viewBox.
+    for (const crop of ["focus", "mid", "full"] as const) {
+      for (const showConnector of [false, true]) {
+        const frame = chargerArtFrame(crop, showConnector);
+        const { logo, display } = ARTWORK_PX;
+        expect(logo.x).toBeGreaterThanOrEqual(frame.x);
+        expect(logo.y).toBeGreaterThanOrEqual(frame.y);
+        expect(display.x + display.width).toBeLessThanOrEqual(frame.x + frame.width);
+        expect(display.y + display.height).toBeLessThanOrEqual(frame.y + frame.height);
+        // Hiding the connector must claw back the width the photo left for the cable.
+        if (!showConnector) expect(frame.width).toBeLessThan(400);
+      }
+    }
   });
 
   it("uses centered overflow-safe Hero XL bounds in every density", () => {

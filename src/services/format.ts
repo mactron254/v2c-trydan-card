@@ -34,3 +34,16 @@ export function formatMeasure(value: string | number | null, unit: string, langu
   if (!Number.isFinite(numeric)) return undefined;
   return `${new Intl.NumberFormat(localeFor(language), { maximumFractionDigits:1 }).format(numeric)} ${unit}`;
 }
+
+/**
+ * Power reading for the LCD replica, in kW with one decimal and no unit suffix - "3.7", not
+ * "3.7 kW" or, in most of this file's other locales, "3,7 kW". The real display always uses
+ * a period for the decimal separator no matter what language the unit is set to: a
+ * photograph of a unit set to Catalan reads "T:3.7 FV:1.7", not "T:3,7". So this ignores
+ * `language` on purpose, unlike every other formatter here. Magnitude only - the screen has
+ * no room for a sign, and direction is already implied by which of EV/T/FV labels it.
+ */
+export function formatLcdKw(watts: number | null): string | undefined {
+  if (watts === null || !Number.isFinite(watts)) return undefined;
+  return (Math.abs(watts) / 1000).toFixed(1);
+}
