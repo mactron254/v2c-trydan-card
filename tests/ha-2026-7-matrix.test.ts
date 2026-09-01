@@ -200,7 +200,7 @@ describe("Home Assistant 2026.7 V2C fixture", () => {
     expect(card.shadowRoot?.querySelector('[data-role="max_intensity"]')).toBeNull();
   });
 
-  it("renders all 120 language and visual-state combinations without encoding damage", async () => {
+  it("renders every language and visual-state combination without encoding damage", async () => {
     for (const language of SUPPORTED_LANGUAGES) {
       const dictionary = getDictionary(language);
       for (const displayState of DISPLAY_STATES) {

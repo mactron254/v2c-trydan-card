@@ -17,7 +17,7 @@ describe("multilingual visual editor", () => {
   beforeEach(() => { document.body.innerHTML = ""; });
 
   it("keeps complete copy and entity role labels in all ten languages", () => {
-    expect(SUPPORTED_LANGUAGES).toEqual(["en","it","de","fr","nl","sv","da","no","ro","es"]);
+    expect(SUPPORTED_LANGUAGES).toEqual(["en","it","de","fr","nl","sv","da","no","ro","es","ca"]);
     expect(getLanguage("fr-FR")).toBe("fr");
     expect(getLanguage("nb-NO")).toBe("no");
     for (const language of SUPPORTED_LANGUAGES) {
