@@ -32,10 +32,10 @@
 
 ## GitHub y publicación
 
-- [ ] PR de estabilización con Validate, HACS y seguridad verdes.
-- [ ] Siete alertas de dependencias desaparecidas y alertas CodeQL resueltas o justificadas.
-- [ ] PRs #13, #14, #15, #19, #20 y #23 cerrados como sustituidos; #17 cerrado con explicación de compatibilidad.
-- [ ] Tag `v0.6.0-beta.1` apunta al merge exacto en `main`.
-- [ ] GitHub release marcada como prerelease; `v0.5.0` sigue estable/latest.
-- [ ] Assets publicados descargados y SHA-256 verificado.
-- [ ] Instrucciones publicadas en #21; issue mantenido abierto para incidencias.
+- [x] PR #26 fusionado como `330aa59c715486f83297dd38f35d679dc817d910` con Validate, HACS, Security y CodeQL verdes en PR y `main`.
+- [x] Cero alertas abiertas: las ocho alertas Dependabot finalmente registradas y las tres CodeQL figuran corregidas.
+- [x] PRs #13, #14, #15, #19, #20 y #23 cerrados como sustituidos; #17 cerrado explicando la compatibilidad de jsdom y la corrección de Undici.
+- [x] Tag `v0.6.0-beta.1` apunta al merge exacto `330aa59c` en `main`.
+- [x] GitHub release marcada como prerelease; `v0.5.0` sigue estable/latest.
+- [x] JavaScript, SHA-256 y procedencia descargados; hash verificado: `1f8bad262325fc010dfe38dc93afd1c7e8aef29fe6261f24944fa88d6c98ae42`.
+- [x] Instrucciones publicadas en #21; issue mantenido abierto para incidencias.
