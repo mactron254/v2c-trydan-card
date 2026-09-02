@@ -2,7 +2,7 @@
 
 ## v0.6.0-beta.1 stabilization - 2026-09-02
 
-- Stable release remains `v0.5.0`; `v0.6.0-beta.1` is a community-test prerelease and must not be promoted automatically.
+- Published prerelease: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.6.0-beta.1. Stable/latest remains `v0.5.0`; do not promote automatically.
 - PR #24 was approved and merged with merge commit `880dc66dd75849e83adbc9197cf5c28f523bd2e5`; its artwork, photographs, WebP layers, vectors, geometry and provenance are preserved.
 - PR #25 was reduced to its Catalan change, approved and merged with merge commit `b5e474e4f8ee76d81c2c5f1a57ad462bf8d0ac2d`.
 - Stabilization branch: `codex/v0.6.0-beta.1`, created from clean `origin/main`; the earlier local branch and its uncommitted documentation were not modified.
@@ -15,6 +15,13 @@
 - Release notes must prominently thank Pere Montpeó (`@pmontp19`) for #21, #22, #24 and #25. Keep issue #21 open for beta reports and post testing instructions there.
 - Before publication: full check, full/production audits, clean `dist` comparison, Validate, HACS and security checks green; then download published assets and verify the checksum.
 - Local verification completed before the PR: 123 tests, documentation check, build, SHA-256 smoke, full/production audits and `git diff --check` all pass.
+- Stabilization PR #26 merged as `330aa59c715486f83297dd38f35d679dc817d910`; Validate, HACS, Security and CodeQL passed on the PR and merged `main`.
+- Tag `v0.6.0-beta.1` resolves to that merge. The exact-tag workflow rebuilt it and published JavaScript, SHA-256 and provenance as a prerelease.
+- Download verification passed with SHA-256 `1f8bad262325fc010dfe38dc93afd1c7e8aef29fe6261f24944fa88d6c98ae42`; provenance names commit `330aa59c`.
+- No pull requests or security alerts remain open. Eight Dependabot alerts, including a later NanoID alert, and all three CodeQL alerts are marked fixed.
+- CodeQL #1 referred to generated internal Lit code. Regeneration made GitHub mark it fixed before a dismissal could be applied; its false-positive trace remains documented without suppressing the rule.
+- #13, #14, #15, #19, #20 and #23 have supersession notes. #17 was closed because Undici is fixed at 7.29.0 while jsdom 29.1.1 preserves Node 20 support.
+- Issue #21 remains open with beta/HACS instructions and the public thanks to Pere.
 
 ## Current release
 

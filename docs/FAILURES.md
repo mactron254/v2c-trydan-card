@@ -274,7 +274,7 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 
 - **Fallo aparente**: CodeQL marcó una expresión regular dentro del bundle minificado generado.
 - **Causa**: el código pertenece al runtime interno de Lit empaquetado y no recibe un patrón controlado por YAML, estado de Home Assistant ni entrada del editor.
-- **Resolución**: conservar la dependencia oficial, documentar la traza fuente y descartar la alerta concreta como falso positivo; no silenciar la regla global.
+- **Resolución**: conservar la dependencia oficial y documentar la traza fuente como falso positivo sin silenciar la regla global. Al regenerar el bundle, GitHub marcó la alerta como corregida antes de que pudiera aplicarse un descarte manual.
 - **Prevención**: revisar de nuevo el origen al actualizar Lit y no editar manualmente el bundle generado.
 
 ## 2026-09-02 - Catalan incompleto en auto y decimales
