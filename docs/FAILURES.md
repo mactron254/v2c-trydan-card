@@ -297,3 +297,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: pnpm 11.5.1 requiere Node 22.13 o posterior y carga `node:sqlite`, inexistente en Node 20.
 - **Resolución**: CI instala con pnpm 11.5.1 bajo Node 22.22.2, cambia después a Node 20.19.0 y ejecuta directamente TypeScript, Vitest, documentación, Vite, checksum y smoke.
 - **Prevención**: separar la versión necesaria para ejecutar el gestor de paquetes del mínimo compatible del proyecto y no declarar combinaciones de herramientas imposibles.
+
+## 2026-09-02 - Notas públicas de la beta publicadas en español
+
+- **Fallo**: la descripción pública de `v0.6.0-beta.1` apareció en español aunque GitHub y el anuncio del foro requerían inglés.
+- **Causa**: el flujo de release publicó literalmente `docs/RELEASE_NOTES_0.6.0-beta.1.md`, cuyo contenido se redactó en español sin una revisión final del idioma de destino.
+- **Resolución**: convertir las notas canónicas de la beta a inglés, reutilizarlas en la release y preparar una respuesta inglesa específica para el hilo existente del foro.
+- **Prevención**: revisar idioma, versión estable, estado prerelease, enlaces, agradecimientos y fuente de notas antes de cada publicación externa.
