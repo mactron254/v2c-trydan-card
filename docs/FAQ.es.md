@@ -24,7 +24,7 @@ Es intencionado. Prioriza estado, potencia y controles esenciales. <code>show_ch
 
 ## ¿Por qué cambia el idioma de la LCD?
 
-Sigue <code>language</code>. Con <code>auto</code>, el orden es: configuración de la tarjeta, locale/idioma de Home Assistant, navegador e inglés como fallback. La LCD está localizada; la ilustración SVG no contiene texto incrustado.
+Sigue <code>language</code>. Con <code>auto</code>, el orden es: configuración de la tarjeta, locale/idioma de Home Assistant, navegador e inglés como fallback. La LCD está localizada; la ilustración no contiene texto incrustado, porque la LCD se dibuja como una rejilla de puntos y no como texto renderizado.
 
 ## ¿Los valores de la LCD son ejemplos?
 

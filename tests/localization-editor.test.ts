@@ -38,9 +38,13 @@ describe("multilingual visual editor", () => {
     expect(editor.shadowRoot?.textContent).not.toContain("Appearance");
     expect(editor.shadowRoot?.querySelectorAll('button[data-field="display_mode"]')).toHaveLength(4);
     expect(editor.shadowRoot?.querySelectorAll('button[data-field="layout"]')).toHaveLength(4);
+    expect(editor.shadowRoot?.querySelectorAll('button[data-field="charger_art"]')).toHaveLength(3);
+    expect(editor.shadowRoot?.querySelectorAll('input[data-field="show_connector"]')).toHaveLength(1);
     expect(editor.shadowRoot?.querySelectorAll('[data-role]')).toHaveLength(26);
     expect(editor.shadowRoot?.querySelectorAll('[data-metric]')).toHaveLength(3);
     expect(editor.shadowRoot?.querySelectorAll('[data-source]')).toHaveLength(5);
+    expect(editor.shadowRoot?.textContent).toContain("Illustrazione caricatore");
+    expect(editor.shadowRoot?.textContent).toContain("Mostra connettore");
   });
 
   it("emits visual metric, order, radius, custom color and preset changes", async () => {
@@ -70,6 +74,18 @@ describe("multilingual visual editor", () => {
     const add=editor.shadowRoot?.querySelector<HTMLButtonElement>("[data-action=\"add-preset\"]");
     add?.click(); await editor.updateComplete;
     expect(latest?.current_presets).toContain(18);
+
+    (editor.shadowRoot?.querySelector('button[data-field="charger_art"][data-value="mid"]') as HTMLButtonElement).click();
+    await editor.updateComplete;
+    expect(latest?.charger_art).toBe("mid");
+    expect(editor.shadowRoot?.querySelector('button[data-field="charger_art"][data-value="mid"]')?.getAttribute("aria-pressed")).toBe("true");
+    expect(editor.shadowRoot?.querySelector('button[data-field="charger_art"][data-value="focus"]')?.getAttribute("aria-pressed")).toBe("false");
+
+    const connector=editor.shadowRoot?.querySelector<HTMLInputElement>('input[data-field="show_connector"]')!;
+    connector.checked=true; connector.dispatchEvent(new Event("change",{ bubbles:true }));
+    await editor.updateComplete;
+    expect(latest?.show_connector).toBe(true);
+    expect(connector.checked).toBe(true);
   });
 
   it("shows translated discovery resolution", async () => {

@@ -111,4 +111,25 @@ export const en = {
     showAdvanced: "Advanced controls",
     showCharger: "Trydan artwork",
   },
+  /**
+   * Short, device-shaped status words for the LCD replica (see lcd-copy.ts) - not the same
+   * copy as `states`/`details` above, which are full sentences for the accessible status
+   * text next to the artwork. control_pilot/load_balancing share the same word as error:
+   * the real screen has no room to spell out which fault this is, only a generic word and a
+   * numeric code.
+   */
+  lcd: {
+    disconnected: "WAITING EV",
+    unavailable: "Offline",
+    charging: "CHARGING EV",
+    complete: "Done",
+    timer: "Timer",
+    updating: "Updating",
+    control_pilot: "Error",
+    load_balancing: "Error",
+    error: "Error",
+    waiting_power: "CONNECTED EV",
+    wifi_connected: "Wifi OK",
+    wifi_connecting: "Wifi...",
+  },
 } as const;

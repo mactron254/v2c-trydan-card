@@ -6,6 +6,7 @@ const LAYOUTS = ["auto", "centered", "split", "inline"] as const;
 const METRICS = ["power", "energy", "time"] as const;
 const SOURCES = ["solar", "grid", "home", "battery", "charger"] as const;
 const SECTIONS = ["hero", "metrics", "controls", "energy", "advanced"] as const;
+const CHARGER_ART = ["focus", "mid", "full"] as const;
 function pick<T extends string>(value: unknown, values: readonly T[], fallback: T): T { return typeof value === "string" && values.includes(value as T) ? value as T : fallback; }
 function list<T extends string>(value: unknown, values: readonly T[]): T[] { return [...new Set(Array.isArray(value) ? value.filter((v): v is T => typeof v === "string" && values.includes(v as T)) : values)]; }
 function completeList<T extends string>(value: unknown, values: readonly T[]): T[] { const selected = list(value, values); return [...selected, ...values.filter((item) => !selected.includes(item))]; }
@@ -46,6 +47,8 @@ export function normalizeConfig(config: V2cTrydanCardConfig): V2cTrydanCardConfi
     show_controls: config.show_controls ?? true,
     show_advanced: config.show_advanced ?? true,
     show_charger: config.show_charger ?? true,
+    charger_art: pick(config.charger_art, CHARGER_ART, "focus"),
+    show_connector: config.show_connector ?? false,
     confirm_lock: config.confirm_lock ?? true,
     flow_threshold_w: Number.isFinite(config.flow_threshold_w) ? Math.max(0, Number(config.flow_threshold_w)) : 50,
     current_presets: presets,

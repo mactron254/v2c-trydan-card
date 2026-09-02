@@ -112,5 +112,19 @@ export const fr = {
                    "showControls":  "Commandes de charge",
                    "showAdvanced":  "Commandes avancées",
                    "showCharger":  "Illustration Trydan"
-               }
+               },
+    "lcd":  {
+                "disconnected":  "EN ATTENTE VE",
+                "unavailable":  "Indispo",
+                "charging":  "RECHARGER VE",
+                "complete":  "Terminée",
+                "timer":  "Minuteur",
+                "updating":  "MAJ",
+                "control_pilot":  "Erreur",
+                "load_balancing":  "Erreur",
+                "error":  "Erreur",
+                "waiting_power":  "VE CONNECTE",
+                "wifi_connected":  "Wifi OK",
+                "wifi_connecting":  "Connexion"
+            }
 } satisfies Dictionary;

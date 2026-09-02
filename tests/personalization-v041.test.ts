@@ -41,6 +41,10 @@ describe("v0.4.1 visual personalization", () => {
     expect(art).toBeTruthy(); expect(copy).toBeTruthy();
     if (!art || !copy) return;
     expect(Boolean(art.compareDocumentPosition(copy) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
-    expect(String(V2cTrydanCard.styles)).toContain("margin-top: clamp(-36px, -7cqw, -26px)");
+    // The status used to be pulled up into the old illustration's empty lower half with a
+    // negative margin. The cropped artwork has no empty half, so anything negative here
+    // prints the status on top of the charger. Assert the outcome, not the declaration.
+    const copyStyle=getComputedStyle(copy);
+    expect(Number.parseFloat(copyStyle.marginTop)).toBeGreaterThanOrEqual(0);
   });
 });

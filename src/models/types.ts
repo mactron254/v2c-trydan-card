@@ -159,6 +159,10 @@ export interface V2cTrydanCardConfig {
   show_controls?: boolean;
   show_advanced?: boolean;
   show_charger?: boolean;
+  /** How much of the charger to show. `focus` stops just below the display. */
+  charger_art?: "focus" | "mid" | "full";
+  /** Draw the connector hanging at the side. Off by default: it costs vertical space. */
+  show_connector?: boolean;
   confirm_lock?: boolean;
   current_presets?: number[];
   flow_threshold_w?: number;

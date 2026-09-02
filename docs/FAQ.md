@@ -24,7 +24,7 @@ That is intentional. Ultra compact prioritizes state, power and essential contro
 
 ## Why does the LCD language change?
 
-LCD copy follows <code>language</code>. With <code>auto</code>, resolution order is card configuration, Home Assistant locale/language, browser and English fallback. The LCD is localized; the SVG artwork itself contains no embedded text.
+LCD copy follows <code>language</code>. With <code>auto</code>, resolution order is card configuration, Home Assistant locale/language, browser and English fallback. The LCD is localized; the artwork itself contains no embedded text, since the LCD is drawn as a dot-matrix grid rather than rendered as real text.
 
 ## Are the LCD power values examples?
 

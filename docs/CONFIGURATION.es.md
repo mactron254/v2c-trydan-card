@@ -28,13 +28,15 @@ Idiomas: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`. Los locales
 | `show_header` | boolean | `true` | Título y ubicación |
 | `show_badges` | boolean | `true` | Insignias secundarias |
 | `show_charger` | boolean | `true` | Cargador; siempre oculto en ultra |
+| `charger_art` | `focus`, `mid`, `full` | `focus` | Cuánto se ve de la ilustración del cargador. Ver [Encuadre de la ilustración](#encuadre-de-la-ilustración-del-cargador) |
+| `show_connector` | boolean | `false` | Dibuja el conector en el lateral del cargador |
 
 Densidades:
 
 - `xxl`: arte de 320–430 px, tipografía y espacios máximos.
 - `standard`: arte de 260–340 px y tres métricas.
 - `compact`: arte de 210–280 px y controles condensados.
-- `ultra_compact`: sin SVG, potencia y controles esenciales.
+- `ultra_compact`: sin ilustración, potencia y controles esenciales.
 
 Layouts:
 
@@ -42,6 +44,16 @@ Layouts:
 - `split`: arte izquierda y estado derecha desde 400 px.
 - `inline`: Hero horizontal reducido desde 400 px.
 - `auto`: centrado estrecho y dividido desde 520 px.
+
+### Encuadre de la ilustración del cargador
+
+`charger_art` y `show_connector` intercambian densidad de la ilustración por completitud. Consulta [las fuentes y medidas de la ilustración](artwork/README.md) para ver cómo se construyen las capas.
+
+- `focus` (por defecto): el encuadre más denso, centrado en la pantalla. Descarta el conector aunque `show_connector` sea `true`: no queda espacio para mostrarlo sin dejar un trozo suelto.
+- `mid`: conserva la mayor parte del conector cuando `show_connector` es `true`.
+- `full`: muestra toda la ilustración, conector incluido cuando `show_connector` es `true`.
+
+`show_connector` es `false` por defecto sea cual sea `charger_art`: dibujar el conector ensancha el encuadre y cuesta espacio horizontal, así que es opcional.
 
 ## Contenido y orden
 
@@ -141,7 +153,7 @@ current_presets: [6, 10, 16, 20, 25, 32]
 No se elimina ninguna clave pública. Hay dos cambios intencionados:
 
 1. `show_energy_flow` pasa a `false`; añade `true` para mantenerlo.
-2. `ultra_compact` oculta siempre el SVG, conservando `show_charger` para otras densidades.
+2. `ultra_compact` oculta siempre la ilustración, conservando `show_charger` para otras densidades.
 ## Diagnosticos de descubrimiento
 
 El editor informa loading, seed_not_found, seed_not_v2c, seed_missing_device y legacy. Corrige primero semilla; descubrimiento automatico nunca cruza otro dispositivo V2C. Coincidencia legacy sigue limitada dispositivo elegido y se muestra para revision.

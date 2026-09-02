@@ -112,5 +112,19 @@ export const da = {
                    "showControls":  "Opladningskontroller",
                    "showAdvanced":  "Avancerede kontroller",
                    "showCharger":  "Trydan-illustration"
-               }
+               },
+    "lcd":  {
+                "disconnected":  "VENTER EV",
+                "unavailable":  "Offline",
+                "charging":  "EV OPLADNING",
+                "complete":  "Færdig",
+                "timer":  "Timer",
+                "updating":  "Opdaterer",
+                "control_pilot":  "Fejl",
+                "load_balancing":  "Fejl",
+                "error":  "Fejl",
+                "waiting_power":  "EV TILSLUTTET",
+                "wifi_connected":  "Wifi OK",
+                "wifi_connecting":  "Tilslutter"
+            }
 } satisfies Dictionary;

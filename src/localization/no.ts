@@ -112,5 +112,19 @@ export const no = {
                    "showControls":  "Ladekontroller",
                    "showAdvanced":  "Avanserte kontroller",
                    "showCharger":  "Trydan-illustrasjon"
-               }
+               },
+    "lcd":  {
+                "disconnected":  "Ingen EV",
+                "unavailable":  "Offline",
+                "charging":  "Lader",
+                "complete":  "Ferdig",
+                "timer":  "Timer",
+                "updating":  "Oppdaterer",
+                "control_pilot":  "Feil",
+                "load_balancing":  "Feil",
+                "error":  "Feil",
+                "waiting_power":  "Tilkoblet",
+                "wifi_connected":  "Wifi OK",
+                "wifi_connecting":  "Kobler til"
+            }
 } satisfies Dictionary;

@@ -28,6 +28,8 @@ Languages: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`. Norwegian
 | `show_header` | boolean | `true` | Title and location |
 | `show_badges` | boolean | `true` | Secondary state badges |
 | `show_charger` | boolean | `true` | Charger artwork; always hidden in ultra compact |
+| `charger_art` | `focus`, `mid`, `full` | `focus` | How much of the charger illustration is framed. See [Charger artwork framing](#charger-artwork-framing) |
+| `show_connector` | boolean | `false` | Draw the connector cable at the charger's side |
 
 Densities:
 
@@ -42,6 +44,16 @@ Layouts:
 - `split`: artwork left, status right from 400 px.
 - `inline`: reduced horizontal Hero from 400 px.
 - `auto`: centered when narrow and split from 520 px.
+
+### Charger artwork framing
+
+`charger_art` and `show_connector` trade illustration density for completeness. See [the artwork's sources and measurements](artwork/README.md) for how the layers are built.
+
+- `focus` (default): the densest crop, centred on the display. It drops the connector even when `show_connector` is `true` - there is no room left to show it without a disembodied sliver.
+- `mid`: keeps most of the connector when `show_connector` is `true`.
+- `full`: shows the whole illustration, connector included when `show_connector` is `true`.
+
+`show_connector` defaults to `false` regardless of `charger_art`: drawing the connector widens the frame and costs horizontal space, so it is opt-in.
 
 ## Content and order
 

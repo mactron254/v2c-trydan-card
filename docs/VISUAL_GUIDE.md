@@ -2,7 +2,9 @@
 
 [Español](VISUAL_GUIDE.es.md) · [Configuration](CONFIGURATION.md)
 
-All images are generated locally with `corepack pnpm@11.5.1 docs:capture`. They use the demo, bundled SVGs and mock data; no Home Assistant credentials or private entities are captured.
+All images are generated locally with `corepack pnpm@11.5.1 docs:capture`. They use the demo, bundled artwork and mock data; no Home Assistant credentials or private entities are captured.
+
+> The screenshots and GIFs below were captured before the charger-artwork redesign and still show the retired per-state illustrations. They will be recaptured; until then, treat the images as a stand-in for layout and density, not for how the charger itself currently looks. See [Charger artwork](#charger-artwork) below for what actually ships now.
 
 Every PNG is cropped automatically against its real row background. Shadows are preserved, isolated pixels are ignored and the final lower margin is at most 16 px. Exact dimensions are recorded in the reproducible capture manifest.
 
@@ -23,7 +25,7 @@ The three frames use the real visual states: **No vehicle → Vehicle connected 
 | Compact | ![Compact density in light theme](screenshots/v042/density-compact-light.png) | ![Compact density in dark theme](screenshots/v042/density-compact-dark.png) |
 | Ultra compact | ![Ultra compact density without charger artwork in light theme](screenshots/v042/density-ultra_compact-light.png) | ![Ultra compact density without charger artwork in dark theme](screenshots/v042/density-ultra_compact-dark.png) |
 
-Ultra compact intentionally removes the SVG. The state, power and essential controls remain visible.
+Ultra compact intentionally removes the charger artwork. The state, power and essential controls remain visible.
 
 ## Layouts
 
@@ -57,6 +59,18 @@ Ultra compact intentionally removes the SVG. The state, power and essential cont
 | Advanced | ![English Advanced editor section](screenshots/v042/editor-en-advanced.png) |
 | Entities | ![English Entities editor section](screenshots/v042/editor-en-entities.png) |
 
+## Charger artwork
+
+The eleven visual states below no longer switch between separate illustrations. The charger is one photographic image - two transparent WebP layers cut from V2C's own press-kit photograph - with the illuminated logo and the 16x2 LCD drawn as SVG on top so they can be recoloured and animated per state. Full provenance, measurements and licensing notes live in [`docs/artwork/README.md`](artwork/README.md).
+
+What changes per state, and what does not:
+
+- **LED colour**: each state tints the logo with the colour from V2C's own [LED lighting instructions](https://v2charge.com/support/trydan/led-lighting-instructions). That table documents exactly two behaviours, steady and blinking - there is no "pulsing" or "breathing" in the hardware, and the card does not invent one.
+- **Glow**: the soft glow around the logo is this card's own design choice, not something the physical LED does. It is there for legibility on a dashboard, not as a claim about the real unit.
+- **Blink rate**: while charging, the logo blinks faster at higher amperage and slower at lower amperage, matching what the hardware itself does - the one animated behaviour with a real hardware basis.
+
+`charger_art` (`focus` / `mid` / `full`) controls how much of the illustration is framed, and `show_connector` toggles the connector cable; see [Configuration](CONFIGURATION.md#charger-artwork-framing).
+
 ## Eleven charger states
 
 ![Animated sequence of the eleven localized V2C Trydan charger states](media/charger-states.gif)
@@ -75,4 +89,4 @@ Ultra compact intentionally removes the SVG. The state, power and essential cont
 | Wi-Fi connected | ![Wi-Fi connected state](screenshots/v042/state-wifi_connected-dark.png) |
 | Wi-Fi connecting | ![Wi-Fi connecting state](screenshots/v042/state-wifi_connecting-dark.png) |
 
-The SVG contains no language-specific text. The overlaid LCD is safe HTML, localized with the card and scaled for long translations.
+The artwork contains no language-specific text: the logo is a traced wordmark and the LCD is a dot-matrix grid drawn as SVG paths, not rendered text. The lines shown are mirrored onto a `data-lcd` attribute, localized with the card and scaled for long translations.

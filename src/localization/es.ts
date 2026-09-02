@@ -111,4 +111,18 @@ export const es = {
     showAdvanced: "Controles avanzados",
     showCharger: "Ilustración Trydan",
   },
+  lcd: {
+    disconnected: "ESPERANDO VE",
+    unavailable: "Sin datos",
+    charging: "VE CARGANDO",
+    complete: "Completa",
+    timer: "Programa",
+    updating: "Actualiza",
+    control_pilot: "Error",
+    load_balancing: "Error",
+    error: "Error",
+    waiting_power: "VE CONECTADO",
+    wifi_connected: "Wifi OK",
+    wifi_connecting: "Conectando",
+  },
 } as const;
