@@ -1,6 +1,6 @@
 const LOCALES: Record<string, string> = {
   en: "en-US", it: "it-IT", de: "de-DE", fr: "fr-FR", nl: "nl-NL",
-  sv: "sv-SE", da: "da-DK", no: "no-NO", ro: "ro-RO", es: "es-ES",
+  sv: "sv-SE", da: "da-DK", no: "no-NO", ro: "ro-RO", es: "es-ES", ca: "ca-ES",
 };
 
 function localeFor(language?: string): string { return LOCALES[language ?? "es"] ?? "en-US"; }

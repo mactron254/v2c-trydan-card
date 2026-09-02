@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import "../src/index";
 import { V2cTrydanCard } from "../src/card/v2c-trydan-card";
 import { normalizeConfig } from "../src/config";
-import { formatDuration, formatEnergy, formatLcdKw, formatMeasure } from "../src/services/format";
+import { formatDuration, formatEnergy, formatLcdKw, formatMeasure, formatPower } from "../src/services/format";
 import { SUPPORTED_LANGUAGES } from "../src/localization";
 import { formatLcdErrorCode, getLcdCopy } from "../src/localization/lcd-copy";
 import { VISUAL_STATE_KEYS, type HomeAssistant } from "../src/models/types";
@@ -91,6 +91,13 @@ describe("v0.4.2 localization and defaults", () => {
     expect(formatLcdKw(Number.NaN)).toBeUndefined();
   });
 
+  it("uses Catalan decimal commas outside the authentic LCD", () => {
+    expect(formatPower(4200, "ca")).toBe("4,2 kW");
+    expect(formatEnergy(8.6, "ca")).toBe("8,6 kWh");
+    expect(formatMeasure(236.7, "V", "ca")).toBe("236,7 V");
+    expect(formatLcdKw(4200)).toBe("4.2");
+  });
+
   it("renders real LCD measurements and never renders artwork in ultra compact", async () => {
     const hass = {
       language:"en",
@@ -172,6 +179,11 @@ describe("v0.4.2 localization and defaults", () => {
         "binary_sensor.trydan":{ entity_id:"binary_sensor.trydan", state:"on", attributes:{} },
         "switch.dynamic":{ entity_id:"switch.dynamic", state:"on", attributes:{} },
         "sensor.meter_error":{ entity_id:"sensor.meter_error", state:"02015", attributes:{} },
+      },
+      entities: {
+        "binary_sensor.trydan": { entity_id:"binary_sensor.trydan", device_id:"dev1", platform:"v2c", translation_key:"connected" },
+        "switch.dynamic": { entity_id:"switch.dynamic", device_id:"dev1", platform:"v2c", translation_key:"dynamic" },
+        "sensor.meter_error": { entity_id:"sensor.meter_error", device_id:"dev1", platform:"v2c", translation_key:"meter_error" },
       },
       callService:vi.fn(),
     } as unknown as HomeAssistant;

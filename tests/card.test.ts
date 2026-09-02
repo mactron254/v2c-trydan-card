@@ -159,6 +159,45 @@ describe("v2c-trydan-card", () => {
     expect(hass.callService).not.toHaveBeenCalled();
   });
 
+  it("does not expose or execute a pause control bound to the lock role", async () => {
+    const crossed = mockHass();
+    delete crossed.states["switch.trydan_paused"];
+    delete crossed.entities!["switch.trydan_paused"];
+    const card = await renderCard(crossed, {
+      ...config,
+      entities: { ...config.entities, paused: "switch.trydan_locked" },
+    });
+    expect(card.shadowRoot?.querySelector('button[data-role="paused"]')).toBeNull();
+    expect(crossed.callService).not.toHaveBeenCalled();
+
+    card.remove();
+    const changedAtClick = mockHass();
+    const validCard = await renderCard(changedAtClick);
+    const pause = validCard.shadowRoot?.querySelector<HTMLButtonElement>('button[data-role="paused"]');
+    expect(pause).toBeTruthy();
+    changedAtClick.entities!["switch.trydan_paused"] = {
+      ...changedAtClick.entities!["switch.trydan_paused"]!,
+      translation_key: "locked",
+    };
+    pause?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(changedAtClick.callService).not.toHaveBeenCalled();
+  });
+
+  it("revalidates the seed device from the live registry before a service call", async () => {
+    const hass = mockHass();
+    const card = await renderCard(hass);
+    const pause = card.shadowRoot?.querySelector<HTMLButtonElement>('button[data-role="paused"]');
+    expect(pause).toBeTruthy();
+    hass.entities![config.entity] = {
+      ...hass.entities![config.entity]!,
+      device_id: "dev2",
+    };
+    pause?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(hass.callService).not.toHaveBeenCalled();
+  });
+
   it("uses one title and places the textual state directly after the charger", async () => {
     const card = await renderCard();
     const art = card.shadowRoot?.querySelector(".charger-art");

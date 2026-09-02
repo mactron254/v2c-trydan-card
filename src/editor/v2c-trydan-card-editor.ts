@@ -1,14 +1,14 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
-import { DEFAULT_PRESETS } from "../config";
+import { DEFAULT_PRESETS, normalizeAccentColor } from "../config";
 import { getDictionary, getLanguage, SUPPORTED_LANGUAGES, translate, type Language } from "../localization";
 import { getEditorCopy, getEntityRoleLabel, getResolutionLabel } from "../localization/editor-copy";
 import { ENTITY_ROLES, type EntityRole, type HomeAssistant, type V2cTrydanCardConfig } from "../models/types";
 import { resolveRegistryRoles } from "../services/discovery";
 
-const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = { en: "English", it: "Italiano", de: "Deutsch", fr: "Francais", nl: "Nederlands", sv: "Svenska", da: "Dansk", no: "Norsk", ro: "Romana", es: "Espanol", ca: "Catala" };
+const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = { en: "English", it: "Italiano", de: "Deutsch", fr: "Francais", nl: "Nederlands", sv: "Svenska", da: "Dansk", no: "Norsk", ro: "Romana", es: "Espanol", ca: "Català" };
 
-const ULTRA_ARTWORK_HELP: Record<Language, string> = { en: "Ultra compact mode hides charger artwork. Setting remains for other sizes.", es: "Modo ultracompacto oculta cargador. Ajuste se conserva para otros tamanos.", it: "Modalita ultra compatta nasconde caricatore.", de: "Ultrakompakt blendet Lader aus.", fr: "Mode ultra compact masque chargeur.", nl: "Ultracompact verbergt lader.", sv: "Ultrakompakt doljer laddaren.", da: "Ultrakompakt skjuler laderen.", no: "Ultrakompakt skjuler laderen.", ro: "Modul ultra compact ascunde incarcatorul.", ca: "El mode ultracompacte amaga la il-lustracio. L ajust es queda per a les altres mides." };
+const ULTRA_ARTWORK_HELP: Record<Language, string> = { en: "Ultra compact mode hides charger artwork. Setting remains for other sizes.", es: "Modo ultracompacto oculta cargador. Ajuste se conserva para otros tamanos.", it: "Modalita ultra compatta nasconde caricatore.", de: "Ultrakompakt blendet Lader aus.", fr: "Mode ultra compact masque chargeur.", nl: "Ultracompact verbergt lader.", sv: "Ultrakompakt doljer laddaren.", da: "Ultrakompakt skjuler laderen.", no: "Ultrakompakt skjuler laderen.", ro: "Modul ultra compact ascunde incarcatorul.", ca: "El mode ultracompacte amaga la il·lustració. L’ajust es conserva per a les altres mides." };
 const METRICS = ["power", "energy", "time"] as const;
 const SOURCES = ["solar", "grid", "home", "battery", "charger"] as const;
 const SECTIONS = ["hero", "metrics", "controls", "energy", "advanced"] as const;
@@ -89,8 +89,14 @@ export class V2cTrydanCardEditor extends LitElement {
   @state() private presetDraft = "";
 
   setConfig(config: V2cTrydanCardConfig): void {
-    this.config = { ...config, entities:{ ...(config.entities ?? {}) } };
-    this.accentDraft = /^#[0-9a-f]{6}$/i.test(config.accent_color ?? "") ? config.accent_color!.toUpperCase() : "#0067D9";
+    const accentColor = normalizeAccentColor(config.accent_color);
+    this.config = {
+      ...config,
+      color_scheme: config.color_scheme === "custom" && !accentColor ? "monochrome" : config.color_scheme,
+      accent_color: accentColor,
+      entities:{ ...(config.entities ?? {}) },
+    };
+    this.accentDraft = accentColor ?? "#0067D9";
   }
 
   protected override shouldUpdate(changed: Map<PropertyKey, unknown>): boolean {
@@ -193,7 +199,7 @@ export class V2cTrydanCardEditor extends LitElement {
 
   protected override render() {
     if (!this.config) return nothing;
-    const language = getLanguage(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language);
+    const language = getLanguage(this.config.language, this.hass?.locale?.language ?? this.hass?.language);
     const dictionary = getDictionary(language);
     const copy = getEditorCopy(language);
     const entityIds = Object.keys(this.hass?.entities ?? {});

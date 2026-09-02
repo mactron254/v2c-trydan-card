@@ -65,6 +65,26 @@ function isCompatibleDomain(role: EntityRole, entityId: string): boolean {
   return ROLE_SPECS[role].domains.includes(domain(entityId));
 }
 
+function legacyRoleFor(entityId: string): EntityRole | undefined {
+  const matches = (Object.keys(ROLE_SPECS) as EntityRole[])
+    .filter(isWritableRole)
+    .flatMap((role) => (ROLE_SPECS[role].legacySuffixes ?? [])
+      .filter((suffix) => entityId.endsWith(suffix))
+      .map((suffix) => ({ role, suffixLength: suffix.length })))
+    .sort((left, right) => right.suffixLength - left.suffixLength);
+  if (matches.length === 0) return undefined;
+  const longest = matches[0]!.suffixLength;
+  const roles = [...new Set(matches.filter((match) => match.suffixLength === longest).map((match) => match.role))];
+  return roles.length === 1 ? roles[0] : undefined;
+}
+
+export function matchesWritableRole(role: EntityRole, entry: HassEntityRegistryEntry): boolean {
+  if (!isWritableRole(role)) return false;
+  const translationKey = entry.translation_key;
+  if (translationKey) return ROLE_SPECS[role].translationKeys.includes(translationKey);
+  return legacyRoleFor(entry.entity_id) === role;
+}
+
 function isUsableExternalMeasurement(
   kind: NonNullable<RoleSpec["externalMeasurement"]>,
   entityId: string,
@@ -111,21 +131,32 @@ export function resolveRegistryRoles(
   const statuses: Partial<Record<EntityRole, ResolutionStatus>> = {};
   const ambiguities: DiscoveryResult["ambiguities"] = {};
   const legacyRoles: EntityRole[] = [];
+  const overrideCounts = new Map<string, number>();
+  for (const entityId of Object.values(overrides)) {
+    if (entityId) overrideCounts.set(entityId, (overrideCounts.get(entityId) ?? 0) + 1);
+  }
 
   for (const role of Object.keys(ROLE_SPECS) as EntityRole[]) {
     const override = overrides[role];
     if (!override) continue;
     const entry = byId.get(override);
     const spec = ROLE_SPECS[role];
+    const duplicate = (overrideCounts.get(override) ?? 0) > 1;
     const validExternal = Boolean(
       spec.externalMeasurement && isUsableExternalMeasurement(spec.externalMeasurement, override, states),
     );
     const validV2c = Boolean(
-      deviceId && entry && entry.device_id === deviceId && entry.platform === "v2c" && isCompatibleDomain(role, override) && hasState(states, override),
+      deviceId &&
+      entry &&
+      entry.device_id === deviceId &&
+      entry.platform === "v2c" &&
+      isCompatibleDomain(role, override) &&
+      (!spec.writable || matchesWritableRole(role, entry)) &&
+      hasState(states, override),
     );
     const validConfiguredFallback =
-      entries.length === 0 && hasState(states, override) && isCompatibleDomain(role, override);
-    if (validExternal || validV2c || validConfiguredFallback) {
+      !spec.writable && entries.length === 0 && hasState(states, override) && isCompatibleDomain(role, override);
+    if (!duplicate && (validExternal || validV2c || validConfiguredFallback)) {
       entities[role] = override;
       statuses[role] = "manual";
     } else {
@@ -148,7 +179,10 @@ export function resolveRegistryRoles(
       statuses[role] = "ambiguous";
       continue;
     }
-    const suffixed = scoped.filter((entry) => isCompatibleDomain(role, entry.entity_id) && (spec.legacySuffixes ?? []).some((suffix) => entry.entity_id.endsWith(suffix)));
+    const suffixed = scoped.filter((entry) =>
+      isCompatibleDomain(role, entry.entity_id) &&
+      (spec.writable ? matchesWritableRole(role, entry) : (spec.legacySuffixes ?? []).some((suffix) => entry.entity_id.endsWith(suffix))),
+    );
     const suffixPick = pickCandidate(role, suffixed);
     if (suffixPick) {
       entities[role] = suffixPick;
@@ -180,6 +214,7 @@ export function isActionTargetValid(hass: HomeAssistant, role: EntityRole, entit
       entry?.device_id === deviceId &&
       entry.platform === "v2c" &&
       isCompatibleDomain(role, entityId) &&
+      matchesWritableRole(role, entry) &&
       state &&
       state.state !== "unknown" &&
       state.state !== "unavailable",

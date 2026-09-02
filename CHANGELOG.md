@@ -4,18 +4,42 @@ All notable changes are documented here. Versions follow semantic versioning.
 
 ## [Unreleased]
 
+## [0.6.0-beta.1] - 2026-09-02
+
+### Added
+
+- Add `language: ca`, Catalan auto-detection through `ca-ES`, localized editor/LCD copy and locale-aware decimal formatting.
+- Add `charger_art: focus | mid | full` and `show_connector`, with `focus` and `false` as compatible defaults.
+- Add layered WebP/vector charger artwork, framing geometry, connector states and documented source provenance contributed by Pere Montpeó.
+- Add release provenance metadata and an exact-tag prerelease workflow that publishes the JavaScript, SHA-256 and provenance record.
+
+### Changed
+
+- Consolidate the community artwork into a single state-driven SVG using `currentColor`, `data-state` and CSS animations.
+- Require Node.js 20.19.0 or newer and verify Node.js 20.19.0 and 22.22.2 in CI.
+- Update Vite to 8.2.2, Vitest to 4.1.11, `@types/node` to 26.4.1, PostCSS to 8.5.26 and Undici to 7.29.0 while retaining jsdom 29.1.1 for Node 20 support.
+- Update GitHub Actions to reviewed immutable SHAs.
+
+### Fixed
+
+- Correct Catalan labels, decimal locale and `language: auto` handling in the visual editor.
+- Read the built bundle once during smoke verification, eliminating time-of-check/time-of-use races.
+- Normalize editor `accent_color` values before they can reach inline CSS.
+
+### Security
+
+- Bind every writable override to its exact V2C role, reject duplicate mappings and revalidate role metadata immediately before a Home Assistant service call.
+- Compare regenerated release artifacts with committed `dist` files in CI.
+
+### Tests
+
+- Add regression coverage for Catalan, automatic language, decimal separators, cross-role controls, CSS colors, artwork layers, connector behavior, LCD output and visual `data-state` contracts.
+
 ### Documentation
 
-- Polish both README files with complete bilingual parity, the official Home Assistant V2C integration relationship and natural search terminology.
-- Restore Marc's first-person project story and human tone in both README files while preserving accurate links and support guidance.
-- Add a visible no-warranty notice, expanded bilingual FAQ and clear routes for Discussions, reproducible Issues and private security reports.
-- Correct the project owner name to Marc across every tracked document and metadata file.
-- Enable GitHub Discussions with the six default community categories and a bilingual welcome announcement.
-- Automatically crop all 33 screenshots while preserving shadows and a maximum 16 px lower margin.
-- Add a deterministic capture manifest and synthetic light/dark crop checks.
-- Add English and Spanish vehicle-cycle GIFs while retaining the existing tour and state animations.
-- Redesign both README files with compact density comparisons, localized media, ten-language list, project story and transparent AI attribution.
-- Refresh visual guides, forum drafts, machine-readable project context, failure log and handoff.
+- Thank Pere Montpeó ([@pmontp19](https://github.com/pmontp19)) for issue #21 and PRs #22, #24 and #25.
+- Document beta installation in HACS, artwork provenance, security boundaries, publication checks and community testing.
+- Include the post-v0.5.0 bilingual README, FAQ, media and community documentation refresh.
 
 ## [0.5.0] - 2026-08-14
 

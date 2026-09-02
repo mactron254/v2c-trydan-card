@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import type { HassEntityRegistryEntry, HomeAssistant } from "../src/models/types";
-import { isActionTargetValid, resolveRegistryRoles } from "../src/services/discovery";
+import { isActionTargetValid, matchesWritableRole, resolveRegistryRoles } from "../src/services/discovery";
 
 const entries: HassEntityRegistryEntry[] = [
   { entity_id: "binary_sensor.trydan_connected", device_id: "dev1", platform: "v2c", translation_key: "connected" },
@@ -9,6 +9,8 @@ const entries: HassEntityRegistryEntry[] = [
   { entity_id: "number.trydan_voltage", device_id: "dev1", platform: "v2c", translation_key: "voltage_installation" },
   { entity_id: "sensor.trydan_voltage_legacy", device_id: "dev1", platform: "v2c", translation_key: "voltage_installation" },
   { entity_id: "number.trydan_intensity", device_id: "dev1", platform: "v2c", translation_key: "intensity" },
+  { entity_id: "switch.trydan_paused", device_id: "dev1", platform: "v2c", translation_key: "paused" },
+  { entity_id: "switch.trydan_locked", device_id: "dev1", platform: "v2c", translation_key: "locked" },
   { entity_id: "sensor.other_power", device_id: "dev2", platform: "v2c", translation_key: "charge_power" },
   { entity_id: "sensor.grid_import", device_id: "meter", platform: "template" },
 ];
@@ -53,9 +55,55 @@ describe("entity discovery", () => {
   });
 
   it("validates writable targets at click time", () => {
-    const hass = { states, entities: Object.fromEntries(entries.map((entry) => [entry.entity_id, entry])), callService: vi.fn() } as unknown as HomeAssistant;
+    const hass = { states, entities: Object.fromEntries(entries.map((entry) => [entry.entity_id, { ...entry }])), callService: vi.fn() } as unknown as HomeAssistant;
     expect(isActionTargetValid(hass, "intensity", "number.trydan_intensity", "dev1")).toBe(true);
     expect(isActionTargetValid(hass, "intensity", "sensor.grid_import", "dev1")).toBe(false);
+    expect(isActionTargetValid(hass, "paused", "switch.trydan_locked", "dev1")).toBe(false);
+
+    hass.entities!["switch.trydan_paused"]!.translation_key = "locked";
+    expect(isActionTargetValid(hass, "paused", "switch.trydan_paused", "dev1")).toBe(false);
+  });
+
+  it("binds manual controls to their exact role and rejects duplicate overrides", () => {
+    const crossed = resolveRegistryRoles(entries, "binary_sensor.trydan_connected", {
+      paused: "switch.trydan_locked",
+      locked: "switch.trydan_locked",
+    }, states);
+    expect(crossed.statuses.paused).not.toBe("manual");
+    expect(crossed.statuses.locked).not.toBe("manual");
+    expect(crossed.entities.paused).toBe("switch.trydan_paused");
+    expect(crossed.entities.locked).toBe("switch.trydan_locked");
+
+    const noRegistry = resolveRegistryRoles([], "binary_sensor.trydan_connected", {
+      paused: "switch.trydan_paused",
+    }, states);
+    expect(noRegistry.entities.paused).toBeUndefined();
+    expect(noRegistry.statuses.paused).toBe("invalid");
+  });
+
+  it("accepts exact translation and legacy roles but never trusts a deceptive suffix", () => {
+    expect(matchesWritableRole("paused", {
+      entity_id: "switch.renamed_control",
+      device_id: "dev1",
+      platform: "v2c",
+      translation_key: "paused",
+    })).toBe(true);
+    expect(matchesWritableRole("pause_dynamic", {
+      entity_id: "switch.trydan_pause_dynamic",
+      device_id: "dev1",
+      platform: "v2c",
+    })).toBe(true);
+    expect(matchesWritableRole("dynamic", {
+      entity_id: "switch.trydan_pause_dynamic",
+      device_id: "dev1",
+      platform: "v2c",
+    })).toBe(false);
+    expect(matchesWritableRole("paused", {
+      entity_id: "switch.trydan_paused",
+      device_id: "dev1",
+      platform: "v2c",
+      translation_key: "locked",
+    })).toBe(false);
   });
 
   it("rejects missing external entities and reports registry diagnostics", () => {

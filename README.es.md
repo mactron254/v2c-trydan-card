@@ -19,7 +19,7 @@ Una tarjeta moderna para visualizar y controlar el cargador **V2C Trydan** desde
 ## ✨ Características
 
 - 🎛️ Monitoriza la carga y controla intensidad, pausa, bloqueo, temporizador, potencia dinámica y luces.
-- 🌍 Tiene un editor visual y la pantalla LCD del cargador está disponible en 10 idiomas.
+- 🌍 Tiene un editor visual y la pantalla LCD del cargador está disponible en 11 idiomas.
 - 📐 Elige tamaño XXL, estándar, compacto o ultracompacto.
 - 🖥️ Cambia entre layouts: automático, centrado, dividido y en línea.
 - ⚡ Muestra potencia, intensidad, voltaje y energía de la sesión cuando existen entidades válidas.
@@ -56,7 +56,7 @@ La LCD localizada sigue la secuencia real: **Sin vehículo → Vehículo conecta
 
 ## 🌍 Idiomas
 
-Disponible en: 🇬🇧 Inglés · 🇮🇹 Italiano · 🇩🇪 Alemán · 🇫🇷 Francés · 🇳🇱 Neerlandés · 🇸🇪 Sueco · 🇩🇰 Danés · 🇳🇴 Noruego · 🇷🇴 Rumano · 🇪🇸 Español
+Disponible en: 🇬🇧 Inglés · 🇮🇹 Italiano · 🇩🇪 Alemán · 🇫🇷 Francés · 🇳🇱 Neerlandés · 🇸🇪 Sueco · 🇩🇰 Danés · 🇳🇴 Noruego · 🇷🇴 Rumano · 🇪🇸 Español · Català
 
 ## 💡 El porqué de este proyecto
 
@@ -81,6 +81,8 @@ Consulta el registro de autoría en [CONTRIBUTORS.md](CONTRIBUTORS.md).
 [![Abrir Home Assistant y añadir V2C Trydan Card mediante HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mactron254&repository=v2c-trydan-card&category=plugin)
 
 Si aún no aparece en el catálogo, añade <code>https://github.com/mactron254/v2c-trydan-card</code> como repositorio personalizado de tipo **Dashboard**. Instálala, recarga el navegador y añade la tarjeta desde el editor.
+
+Para probar una beta, activa primero las versiones preliminares de este repositorio en HACS. HACS mantiene esa opción desactivada por defecto; consulta su [documentación oficial del interruptor de versiones preliminares](https://www.hacs.xyz/docs/use/entities/switch/). El canal estable continúa en v0.5.0.
 
 ### Instalación manual
 
@@ -134,7 +136,7 @@ Me encantará leer tu feedback, propuestas de funciones y correcciones. Antes de
 
 ## 🧰 Desarrollo
 
-Necesita Node.js 20+ y pnpm 11+. El repositorio está fijado a pnpm 11.5.1.
+El proyecto compilado admite Node.js 20.19.0+. Para desarrollar con pnpm 11.5.1 se necesita Node.js 22.13.0+; CI instala con Node.js 22.22.2 y ejecuta por separado toda la verificación del proyecto bajo Node.js 20.19.0.
 
 ~~~powershell
 corepack pnpm@11.5.1 install
@@ -144,7 +146,7 @@ corepack pnpm@11.5.1 docs:capture
 
 ## 📄 Créditos y licencia
 
-La colaboración técnica se acredita a **Codex**, seguido del responsable del producto **Marc** ([@mactron254](https://github.com/mactron254)). Publicado con [licencia MIT](LICENSE).
+La colaboración técnica se acredita a **Codex**, seguida del responsable del producto **Marc** ([@mactron254](https://github.com/mactron254)) y del colaborador comunitario **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)). Publicado con [licencia MIT](LICENSE).
 
 ## Descubrimiento y seguridad
 

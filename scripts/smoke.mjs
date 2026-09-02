@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readdir, readFile, stat } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const dist = resolve("dist");
@@ -11,13 +11,14 @@ if (artifacts.length !== expectedArtifacts.length || expectedArtifacts.some((nam
 }
 
 const file = resolve(dist, "v2c-trydan-card.js");
-const size = (await stat(file)).size;
+const bundle = await readFile(file);
+const size = bundle.byteLength;
 if (size > 300 * 1024) throw new Error(`Bundle is ${size} bytes; limit is 307200 bytes`);
-const content = await readFile(file, "utf8");
+const content = bundle.toString("utf8");
 if (!content.includes("v2c-trydan-card")) throw new Error("Card registration missing from bundle");
 if (!content.includes("<svg")) throw new Error("Trydan SVG assets are not embedded");
 if (/\bimport\s+[^;(]*\s+from\s+["']/.test(content)) throw new Error("Bundle contains external imports");
-const expectedChecksum = createHash("sha256").update(await readFile(file)).digest("hex");
+const expectedChecksum = createHash("sha256").update(bundle).digest("hex");
 const checksum = await readFile(resolve(dist, "v2c-trydan-card.js.sha256"), "utf8");
 if (checksum.trim() !== `${expectedChecksum}  v2c-trydan-card.js`) throw new Error("SHA-256 checksum mismatch");
 console.log(`smoke ok: v2c-trydan-card.js (${size} bytes, SHA-256 verified)`);

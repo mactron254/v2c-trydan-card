@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-The latest release in the `0.4.x` line receives security fixes.
+The stable `0.5.x` line and the current `0.6.x` prerelease receive security fixes. Older lines are unsupported.
 
 ## Reporting a vulnerability
 

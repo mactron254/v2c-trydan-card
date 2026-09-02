@@ -11,6 +11,10 @@ function pick<T extends string>(value: unknown, values: readonly T[], fallback: 
 function list<T extends string>(value: unknown, values: readonly T[]): T[] { return [...new Set(Array.isArray(value) ? value.filter((v): v is T => typeof v === "string" && values.includes(v as T)) : values)]; }
 function completeList<T extends string>(value: unknown, values: readonly T[]): T[] { const selected = list(value, values); return [...selected, ...values.filter((item) => !selected.includes(item))]; }
 
+export function normalizeAccentColor(value: unknown): string | undefined {
+  return typeof value === "string" && /^#[0-9a-fA-F]{6}$/.test(value) ? value.toUpperCase() : undefined;
+}
+
 export function normalizeConfig(config: V2cTrydanCardConfig): V2cTrydanCardConfig {
   if (!config || typeof config !== "object") throw new Error("V2C Trydan Card: configuración no válida");
   if (!config.entity || typeof config.entity !== "string") {
@@ -22,7 +26,7 @@ export function normalizeConfig(config: V2cTrydanCardConfig): V2cTrydanCardConfi
     .filter((value) => Number.isFinite(value) && value > 0)
     .sort((a, b) => a - b);
   const mode = pick(config.display_mode, MODES, "standard");
-  const accent = typeof config.accent_color === "string" && /^#[0-9a-fA-F]{6}$/.test(config.accent_color) ? config.accent_color.toUpperCase() : undefined;
+  const accent = normalizeAccentColor(config.accent_color);
   return {
     ...config,
     type: "custom:v2c-trydan-card",

@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v0.6.0-beta.1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 11.5.1
+          run_install: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.22.2"
+          cache: pnpm
+      - name: Verify tag and version
+        id: tag
+        shell: bash
+        run: |
+          test "${GITHUB_REF_NAME#v}" = "$(node -p "require('./package.json').version")"
+          tag_commit="$(git rev-parse "$GITHUB_REF_NAME^{commit}")"
+          echo "commit=$tag_commit" >> "$GITHUB_OUTPUT"
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$tag_commit" origin/main
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - name: Verify committed release artifacts
+        run: git diff --exit-code -- dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256
+      - name: Generate provenance
+        run: node scripts/provenance.mjs "$GITHUB_REF_NAME" "${{ steps.tag.outputs.commit }}"
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            dist/v2c-trydan-card.js \
+            dist/v2c-trydan-card.js.sha256 \
+            dist/v2c-trydan-card.js.provenance.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --prerelease \
+            --title "V2C Trydan Card $GITHUB_REF_NAME" \
+            --notes-file "docs/RELEASE_NOTES_0.6.0-beta.1.md"

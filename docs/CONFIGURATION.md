@@ -14,7 +14,7 @@
 | `display_mode` | density | `standard` | Yes | Card density |
 | `layout` | layout | `auto` | Yes | Hero arrangement |
 
-Languages: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`. Norwegian `nb` and `nn` locales map to `no`.
+Languages: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`, `ca`. Catalan uses locale `ca-ES`; Norwegian `nb` and `nn` locales map to `no`.
 
 ## Appearance
 
@@ -92,7 +92,7 @@ Power conventions: positive grid = import, positive battery = discharge, positiv
 
 ## Entities
 
-Manual overrides win over automatic discovery. Invalid domain/device matches never enable a service. Ambiguous matches are shown instead of guessed.
+Manual overrides win over automatic discovery. A writable override must match the exact V2C role through its registry `translation_key` or a known legacy suffix; cross-role and duplicate overrides are rejected. The role is checked again when a control is pressed. Invalid domain/device matches never enable a service. Ambiguous matches are shown instead of guessed.
 
 ```yaml
 entities:

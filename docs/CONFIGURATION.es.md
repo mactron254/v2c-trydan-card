@@ -14,7 +14,7 @@
 | `display_mode` | densidad | `standard` | Sí | Densidad visual |
 | `layout` | distribución | `auto` | Sí | Composición del Hero |
 
-Idiomas: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`. Los locales noruegos `nb` y `nn` se asignan a `no`.
+Idiomas: `en`, `it`, `de`, `fr`, `nl`, `sv`, `da`, `no`, `ro`, `es`, `ca`. Catalán usa el locale `ca-ES`; los locales noruegos `nb` y `nn` se asignan a `no`.
 
 ## Apariencia
 
@@ -92,7 +92,7 @@ Convenciones: red positiva = importación; batería positiva = descarga; solar p
 
 ## Entidades
 
-Los overrides manuales ganan. Una entidad de dominio/dispositivo inválido no habilita servicios. Si hay varios candidatos, la tarjeta muestra ambigüedad y no adivina.
+Los overrides manuales ganan. Un control manual debe coincidir con su función V2C exacta mediante el `translation_key` del registro o un sufijo legacy conocido; se rechazan roles cruzados y duplicados. El rol se vuelve a comprobar al pulsar. Una entidad de dominio/dispositivo inválido no habilita servicios. Si hay varios candidatos, la tarjeta muestra ambigüedad y no adivina.
 
 ```yaml
 entities:

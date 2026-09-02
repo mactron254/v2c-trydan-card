@@ -22,7 +22,7 @@ It is an independent community project and is not affiliated with or endorsed by
 ### ✨ Features
 
 - 🎛️ Current, presets, pause, lock, timer, dynamic control and lights.
-- 🌍 Visual editor and charger LCD translated into 10 languages.
+- 🌍 Visual editor and charger LCD translated into 11 languages, including Catalan.
 - 📐 XXL, standard, compact and ultra compact densities.
 - 🖥️ Automatic, centered, split and inline responsive layouts.
 - ⚡ Real power, current, voltage and session energy.

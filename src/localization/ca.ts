@@ -15,7 +15,7 @@ export const ca = {
   },
   details: {
     disconnected: "Trydan preparat",
-    unavailable: "Revisa la entitat principal",
+    unavailable: "Revisa l’entitat principal",
     charging: "Energia cap al vehicle",
     complete: "Ja pots desconnectar el vehicle",
     timer: "El temporitzador és actiu",

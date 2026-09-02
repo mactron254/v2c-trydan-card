@@ -10,16 +10,48 @@ permissions:
 
 jobs:
   check:
+    name: check (22.22.2)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-      - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
         with:
           version: 11.5.1
           run_install: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 22
+          node-version: "22.22.2"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - name: Verify committed release artifacts
+        run: git diff --exit-code -- dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256
+
+  node-20-compatibility:
+    name: compatibility (20.19.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 11.5.1
+          run_install: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.22.2"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Switch to supported runtime floor
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "20.19.0"
+      - name: Verify project under Node 20.19.0
+        run: |
+          node node_modules/typescript/bin/tsc --noEmit
+          node node_modules/vitest/vitest.mjs run
+          node scripts/check-docs.mjs
+          node node_modules/vite/bin/vite.js build
+          node scripts/checksum.mjs
+          node scripts/smoke.mjs
+      - name: Verify committed release artifacts
+        run: git diff --exit-code -- dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256

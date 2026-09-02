@@ -16,6 +16,13 @@ describe("accessible Quiet Hardware contract", () => {
         "switch.pause": { entity_id: "switch.pause", state: "off", attributes: {} },
         "switch.lock": { entity_id: "switch.lock", state: "off", attributes: {} },
       },
+      entities: {
+        "binary_sensor.connected": { entity_id: "binary_sensor.connected", device_id: "dev1", platform: "v2c", translation_key: "connected" },
+        "sensor.power": { entity_id: "sensor.power", device_id: "dev1", platform: "v2c", translation_key: "charge_power" },
+        "number.intensity": { entity_id: "number.intensity", device_id: "dev1", platform: "v2c", translation_key: "intensity" },
+        "switch.pause": { entity_id: "switch.pause", device_id: "dev1", platform: "v2c", translation_key: "paused" },
+        "switch.lock": { entity_id: "switch.lock", device_id: "dev1", platform: "v2c", translation_key: "locked" },
+      },
       callService: vi.fn().mockResolvedValue(undefined),
     } as unknown as HomeAssistant;
     const card = document.createElement("v2c-trydan-card") as V2cTrydanCard;
