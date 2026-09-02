@@ -136,7 +136,7 @@ I would love to hear your feedback, feature ideas and corrections. Before sharin
 
 ## 🧰 Development
 
-Requires Node.js 20.19.0+ and pnpm 11+. The repository is pinned to pnpm 11.5.1 and CI also verifies Node.js 22.22.2.
+The built project supports Node.js 20.19.0+. Development with the pinned pnpm 11.5.1 requires Node.js 22.13.0+; CI installs with Node.js 22.22.2 and separately runs the full project verification under Node.js 20.19.0.
 
 ~~~powershell
 corepack pnpm@11.5.1 install

@@ -290,3 +290,10 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: jsdom 30 exige Node 22.22.2, mientras el proyecto conserva compatibilidad con Node 20.
 - **Resolución**: mantener jsdom 29.1.1, fijar el mínimo real en Node 20.19.0 y probar también Node 22.22.2; Undici se actualiza por override sin adoptar el major incompatible.
 - **Prevención**: revisar motores transitivos antes de fusionar majors de Dependabot.
+
+## 2026-09-02 - pnpm 11.5.1 no arranca sobre Node 20
+
+- **Fallo**: el primer check del PR beta falló antes de instalar al ejecutar pnpm 11.5.1 con Node 20.19.0.
+- **Causa**: pnpm 11.5.1 requiere Node 22.13 o posterior y carga `node:sqlite`, inexistente en Node 20.
+- **Resolución**: CI instala con pnpm 11.5.1 bajo Node 22.22.2, cambia después a Node 20.19.0 y ejecuta directamente TypeScript, Vitest, documentación, Vite, checksum y smoke.
+- **Prevención**: separar la versión necesaria para ejecutar el gestor de paquetes del mínimo compatible del proyecto y no declarar combinaciones de herramientas imposibles.

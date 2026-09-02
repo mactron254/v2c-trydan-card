@@ -9,7 +9,7 @@
 - Public additions: `language: ca`, `charger_art: focus | mid | full` (default `focus`) and `show_connector` (default `false`). Existing YAML remains valid.
 - Security decisions: exact writable-role binding, duplicate override rejection, click-time role revalidation, strict `#RRGGBB` accent colors, single-read bundle smoke verification and CI comparison of regenerated `dist`.
 - Dependency decisions: Vite 8.2.2, Vitest 4.1.11, `@types/node` 26.4.1, PostCSS 8.5.26 and Undici 7.29.0. Keep jsdom 29.1.1 because jsdom 30 requires Node 22.22.2 and would drop Node 20 support.
-- Runtime floor: Node 20.19.0; CI also covers Node 22.22.2. Package manager remains pnpm 11.5.1.
+- Runtime floor: Node 20.19.0. Because pnpm 11.5.1 itself requires Node 22.13+, CI installs under Node 22.22.2 and then runs the project tools directly under Node 20.19.0. Package manager remains pnpm 11.5.1.
 - Release workflow must build the exact beta tag, verify version/tag and committed bundle identity, then publish JavaScript, SHA-256 and provenance as a GitHub prerelease.
 - After the stabilization PR is green and alerts are cleared, close #13, #14, #15, #19, #20 and #23 as superseded. Close #17 explaining that Undici was fixed without adopting incompatible jsdom 30.
 - Release notes must prominently thank Pere Montpeó (`@pmontp19`) for #21, #22, #24 and #25. Keep issue #21 open for beta reports and post testing instructions there.

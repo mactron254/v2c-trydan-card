@@ -136,7 +136,7 @@ Me encantará leer tu feedback, propuestas de funciones y correcciones. Antes de
 
 ## 🧰 Desarrollo
 
-Necesita Node.js 20.19.0+ y pnpm 11+. El repositorio está fijado a pnpm 11.5.1 y CI también verifica Node.js 22.22.2.
+El proyecto compilado admite Node.js 20.19.0+. Para desarrollar con pnpm 11.5.1 se necesita Node.js 22.13.0+; CI instala con Node.js 22.22.2 y ejecuta por separado toda la verificación del proyecto bajo Node.js 20.19.0.
 
 ~~~powershell
 corepack pnpm@11.5.1 install
