@@ -4,7 +4,7 @@
 
 - The public GitHub prerelease description uses the canonical English source in `docs/RELEASE_NOTES_0.6.0-beta.1.md`; tag, assets, checksum, provenance and prerelease status are unchanged.
 - The English beta announcement is a reply in the existing Home Assistant Community topic: https://community.home-assistant.io/t/v2c-trydan-card-custom-card-for-home-assistant/1017597. Its opening post remains unchanged and no duplicate topic is created.
-- The reply uses a direct answer block, query-shaped headings, verified numbers, official sources, descriptive image text and explicit community attribution without keyword stuffing.
+- The reply uses a direct answer block, prominent thanks to Pere immediately after it, query-shaped headings, verified numbers, official sources and descriptive image text without keyword stuffing.
 - `llms.txt` now records 11 languages including Catalan, stable `v0.5.0` and prerelease `v0.6.0-beta.1`.
 - This correction changes documentation and public announcement text only. It does not change code, YAML, bundle, package version, tag or release assets.
 
