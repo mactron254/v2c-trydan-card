@@ -96,4 +96,26 @@ describe("V2C editor and registration", () => {
     const event = await eventPromise;
     expect(event.detail.config.show_connector).toBe(true);
   });
+
+  it("never places an unsafe accent value into editor CSS or emitted config", async () => {
+    const editor = document.createElement("v2c-trydan-card-editor") as V2cTrydanCardEditor;
+    editor.hass = { states: {}, callService: async () => undefined };
+    editor.setConfig({
+      type: "custom:v2c-trydan-card",
+      entity: "binary_sensor.seed",
+      color_scheme: "custom",
+      accent_color: "url(https://example.invalid/pixel)" as `#${string}`,
+    });
+    document.body.append(editor);
+    await editor.updateComplete;
+    expect(editor.shadowRoot?.innerHTML).not.toContain("url(");
+
+    const eventPromise = new Promise<CustomEvent>((resolve) =>
+      editor.addEventListener("config-changed", (event) => resolve(event as CustomEvent), { once: true }),
+    );
+    editor.shadowRoot?.querySelector<HTMLButtonElement>('.swatches .swatch:last-child')?.click();
+    const event = await eventPromise;
+    expect(event.detail.config.accent_color).not.toContain("url(");
+    expect(event.detail.config.accent_color).toMatch(/^#[0-9A-F]{6}$/);
+  });
 });

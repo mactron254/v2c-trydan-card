@@ -52,7 +52,6 @@ export class V2cTrydanCard extends LitElement {
   @state() private actionMessage = "";
 
   readonly #pending = new Map<EntityRole, PendingExpectation>();
-  #resolvedDeviceId?: string;
 
   static getConfigElement(): HTMLElement {
     return document.createElement("v2c-trydan-card-editor");
@@ -114,13 +113,11 @@ export class V2cTrydanCard extends LitElement {
     if (!this.hass || !this.config) {
       this.resolvedEntities = {};
       this.ambiguities = {};
-      this.#resolvedDeviceId = undefined;
       return;
     }
     const result = resolveRegistryRoles(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
     this.resolvedEntities = result.entities;
     this.ambiguities = result.ambiguities;
-    this.#resolvedDeviceId = result.deviceId;
     this.discoveryDiagnostic = result.diagnostic;
   }
 
@@ -175,7 +172,9 @@ export class V2cTrydanCard extends LitElement {
     matches: PendingExpectation["matches"],
     action: () => Promise<unknown>,
   ): Promise<void> {
-    if (!this.hass || !isActionTargetValid(this.hass, role, entityId, this.#resolvedDeviceId)) {
+    const seedEntry = this.config ? this.hass?.entities?.[this.config.entity] : undefined;
+    const currentDeviceId = seedEntry?.platform === "v2c" ? seedEntry.device_id : undefined;
+    if (!this.hass || !isActionTargetValid(this.hass, role, entityId, currentDeviceId)) {
       this.actionMessage = translate(getDictionary(this.#language()), "labels.actionFailed");
       return;
     }

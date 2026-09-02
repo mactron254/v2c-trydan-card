@@ -29,6 +29,15 @@ const hass = {
     "number.trydan_intensity": { entity_id: "number.trydan_intensity", state: "18", attributes: { min: 6, max: 32, step: 1 } },
     "switch.trydan_paused": { entity_id: "switch.trydan_paused", state: "off", attributes: {} },
   },
+  entities: {
+    "binary_sensor.trydan_connected": { entity_id: "binary_sensor.trydan_connected", device_id: "dev1", platform: "v2c", translation_key: "connected" },
+    "binary_sensor.trydan_charging": { entity_id: "binary_sensor.trydan_charging", device_id: "dev1", platform: "v2c", translation_key: "charging" },
+    "sensor.trydan_power": { entity_id: "sensor.trydan_power", device_id: "dev1", platform: "v2c", translation_key: "charge_power" },
+    "sensor.trydan_energy": { entity_id: "sensor.trydan_energy", device_id: "dev1", platform: "v2c", translation_key: "charge_energy" },
+    "sensor.trydan_time": { entity_id: "sensor.trydan_time", device_id: "dev1", platform: "v2c", translation_key: "charge_time" },
+    "number.trydan_intensity": { entity_id: "number.trydan_intensity", device_id: "dev1", platform: "v2c", translation_key: "intensity" },
+    "switch.trydan_paused": { entity_id: "switch.trydan_paused", device_id: "dev1", platform: "v2c", translation_key: "paused" },
+  },
   callService: vi.fn().mockResolvedValue(undefined),
 } as unknown as HomeAssistant;
 

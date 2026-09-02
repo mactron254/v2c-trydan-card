@@ -16,10 +16,11 @@ function makeEditor(language: V2cTrydanCardConfig["language"] = "es"): V2cTrydan
 describe("multilingual visual editor", () => {
   beforeEach(() => { document.body.innerHTML = ""; });
 
-  it("keeps complete copy and entity role labels in all ten languages", () => {
+  it("keeps complete copy and entity role labels in all eleven languages", () => {
     expect(SUPPORTED_LANGUAGES).toEqual(["en","it","de","fr","nl","sv","da","no","ro","es","ca"]);
     expect(getLanguage("fr-FR")).toBe("fr");
     expect(getLanguage("nb-NO")).toBe("no");
+    expect(getLanguage("ca-ES")).toBe("ca");
     for (const language of SUPPORTED_LANGUAGES) {
       const dictionary = getDictionary(language);
       const copy = getEditorCopy(language);
@@ -28,6 +29,16 @@ describe("multilingual visual editor", () => {
       expect(dictionary.states.charging).not.toBe("");
       expect(dictionary.labels.energyFlow).not.toBe("");
     }
+  });
+
+  it("detects Catalan automatically from Home Assistant", async () => {
+    const editor = document.createElement("v2c-trydan-card-editor") as V2cTrydanCardEditor;
+    editor.hass = { locale: { language: "ca-ES" }, states: {}, callService: async () => undefined } as HomeAssistant;
+    editor.setConfig({ type: "custom:v2c-trydan-card", entity: "binary_sensor.trydan", language: "auto" });
+    document.body.append(editor);
+    await editor.updateComplete;
+    expect(editor.shadowRoot?.textContent).toContain("Aparença");
+    expect(editor.shadowRoot?.textContent).not.toContain("Appearance");
   });
 
   it("translates every personalization group and exposes visual controls", async () => {
