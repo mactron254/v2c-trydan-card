@@ -4,6 +4,7 @@
 
 Canonical repository: https://github.com/mactron254/v2c-trydan-card
 Official Home Assistant V2C integration: https://www.home-assistant.io/integrations/v2c/
+Last updated: 2026-09-02
 
 ## Purpose and authorship
 
@@ -18,9 +19,10 @@ The card uses entities exposed by the official Home Assistant V2C integration. I
 ## Core capabilities
 
 - Lovelace EV charger card with four densities and four responsive layouts.
-- Visual editor and localized charger LCD in English, Italian, German, French, Dutch, Swedish, Danish, Norwegian, Romanian and Spanish.
+- Visual editor and localized charger LCD in 11 languages: English, Spanish, Catalan, Italian, German, French, Dutch, Swedish, Danish, Norwegian and Romanian.
 - Eleven charger states with real power, current, voltage and session energy when valid entities provide them.
 - Predefined and custom HEX colours.
+- Three artwork framing modes (`focus`, `mid` and `full`) with an optional connector.
 - Charger controls plus optional energy-flow summary, disabled by default.
 - Keyboard, focus, reduced-motion and 280–768 px responsive support.
 
@@ -42,4 +44,5 @@ The card uses entities exposed by the official Home Assistant V2C integration. I
 - Minimum declared Home Assistant version: 2024.1.0.
 - Public YAML contract is documented in CONFIGURATION.md.
 - Community software under the MIT license, provided without warranties and used at the user's own risk.
-- Current card release: v0.4.2.
+- Current stable release: v0.5.0.
+- Current prerelease: v0.6.0-beta.1, available through HACS when prereleases are enabled.

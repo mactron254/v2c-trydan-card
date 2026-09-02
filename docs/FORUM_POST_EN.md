@@ -1,66 +1,52 @@
-# Forum draft — English
+# Home Assistant forum reply — v0.6.0-beta.1
 
-## Suggested title
+- Target: <https://community.home-assistant.io/t/v2c-trydan-card-custom-card-for-home-assistant/1017597>
+- Publication mode: reply to the existing topic; do not edit its opening post or create another topic.
+- Updated: 2026-09-02
 
-**⚡ V2C Trydan Card — multilingual visual control for a Trydan EV charger**
+## Reply body
 
-## Category and tags
+Hi everyone 👋
 
-Share your Projects! → Dashboards & Frontend
-Tags: lovelace, cards, hacs, ev-charging, v2c
+**V2C Trydan Card v0.6.0-beta.1 is now available as a HACS prerelease for Home Assistant users who want to test the new Trydan EV charger artwork, optional connector, Catalan localization and safer controls. v0.5.0 remains the stable release while the community tests this EV charger dashboard update.**
 
-## Post body
+### What's new in v0.6.0-beta.1?
 
-Hi Home Assistant community 👋
+- Three charger artwork framing modes: `focus` (default), `mid` and `full`.
+- An optional connector with `show_connector: true`.
+- Catalan with `language: ca`, including automatic `ca-ES` detection and localized decimals.
+- More accurate layered artwork, charger LCD geometry and state animations.
+- Safer manual controls: exact entity roles, duplicate rejection and click-time revalidation.
+- Strict custom colours: only `#RRGGBB` values are accepted.
 
-I created **V2C Trydan Card** as a personal project for my own charger. While looking for a Trydan card, I could not find a modern, maintained option that offered the visual monitoring and controls I wanted. I built one for my dashboard and am sharing it in case it helps other EV owners too.
+![Comparison of focus, mid and full charger artwork framing in V2C Trydan Card v0.6.0-beta.1](https://raw.githubusercontent.com/mactron254/v2c-trydan-card/main/docs/artwork/compare-crops.png)
 
-It is an independent community project and is not affiliated with or endorsed by V2C.
+This beta passed **123 automated tests**, plus the Validate, HACS, Security and CodeQL checks.
 
-![V2C Trydan changing from no vehicle to connected and charging](https://raw.githubusercontent.com/mactron254/v2c-trydan-card/main/docs/media/vehicle-connection-en.gif)
+### How do I install the beta through HACS?
 
-### ✨ Features
+Enable prereleases for the V2C Trydan Card repository, then select `v0.6.0-beta.1`. HACS keeps prereleases disabled by default; see the [official HACS prerelease documentation](https://www.hacs.xyz/docs/use/entities/switch/).
 
-- 🎛️ Current, presets, pause, lock, timer, dynamic control and lights.
-- 🌍 Visual editor and charger LCD translated into 11 languages, including Catalan.
-- 📐 XXL, standard, compact and ultra compact densities.
-- 🖥️ Automatic, centered, split and inline responsive layouts.
-- ⚡ Real power, current, voltage and session energy.
-- ☀️ Optional energy-flow summary, disabled by default.
-- ♿ Keyboard, visible focus and reduced-motion support.
+The stable channel remains on `v0.5.0`, and this beta will not be promoted automatically.
 
-Ultra compact intentionally hides the charger artwork while keeping status, readings and essential controls.
+### What should beta testers check?
 
-![V2C Trydan Card split layout in dark theme](https://raw.githubusercontent.com/mactron254/v2c-trydan-card/main/docs/screenshots/v042/layout-split-dark.png)
+- `focus`, `mid` and `full` on phone, tablet and desktop layouts.
+- The connector in light and dark themes.
+- Connected, disconnected, charging, paused, completed, timer and error states.
+- Catalan selected manually and automatically from Home Assistant `ca-ES`.
+- Current, pause, lock, timer, dynamic modulation, lights and charging mode controls.
+- Existing YAML configurations; no public option was removed.
 
-### 🤖 Transparent AI assistance
+### Where should I report feedback?
 
-I conceived, directed and reviewed the project. Codex / OpenAI assisted with development, tests, documentation and reproducible screenshots/GIFs. Product decisions and final acceptance remain human-directed.
+Please use [GitHub issue #21](https://github.com/mactron254/v2c-trydan-card/issues/21). Include your Home Assistant version, browser or device, selected framing mode, charger state and exact reproduction steps. Remove private entity IDs, locations, SSIDs, IP addresses, tokens and personal data from screenshots or logs.
 
-### 📦 Installation
+### Community credit
 
-[![Open V2C Trydan Card in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mactron254&repository=v2c-trydan-card&category=plugin)
+Special thanks to **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)) for #21, #22, #24 and #25: the SVG refactor, layered artwork, connector, photographs, WebP layers, vectors, geometry, provenance research and Catalan translation.
 
-If needed, add <code>https://github.com/mactron254/v2c-trydan-card</code> as a custom **Dashboard** repository in HACS.
+V2C Trydan Card is an independent community project. It uses entities from the [official Home Assistant V2C integration](https://www.home-assistant.io/integrations/v2c/) and is not affiliated with or endorsed by V2C.
 
-~~~yaml
-type: custom:v2c-trydan-card
-entity: binary_sensor.garage_v2c_charger_connected
-~~~
-
-Optional energy flow:
-
-~~~yaml
-show_energy_flow: true
-~~~
-
-### 📚 Documentation and support
-
-- Repository: https://github.com/mactron254/v2c-trydan-card
-- Configuration: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/CONFIGURATION.md
-- Visual guide: https://github.com/mactron254/v2c-trydan-card/blob/main/docs/VISUAL_GUIDE.md
-- Issues: https://github.com/mactron254/v2c-trydan-card/issues
-
-The current v0.4.2 card includes the localized LCD, real readings, hidden artwork in ultra compact and safer defaults. The repository documentation includes 33 reproducible, tightly cropped screenshots and four optimized GIFs.
-
-Feedback is welcome, especially from different Trydan firmware versions and entity languages. Please remove private entity IDs, SSIDs and IP addresses before sharing screenshots or YAML.
+- [Download v0.6.0-beta.1](https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.6.0-beta.1)
+- [Repository and documentation](https://github.com/mactron254/v2c-trydan-card)

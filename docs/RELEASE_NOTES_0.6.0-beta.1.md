@@ -1,25 +1,29 @@
-# v0.6.0-beta.1 — beta comunitaria
+# v0.6.0-beta.1 — community beta
 
-Esta versión es preliminar. `v0.5.0` continúa siendo la versión estable y no habrá promoción automática a `v0.6.0` hasta conocer el resultado de las pruebas comunitarias.
+This is a prerelease. `v0.5.0` remains the stable version, and there will be no automatic promotion to `v0.6.0` until community testing is complete.
 
-## Gracias, Pere
+## Thank you, Pere
 
-Gracias especialmente a **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)) por iniciar la mejora en #21 y aportar el refactor de #22, el nuevo arte por capas y el conector de #24, y la traducción catalana de #25. Sus fotografías, WebP, vectores, geometría y documentación de procedencia se conservan en esta beta.
+Special thanks to **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)) for starting the improvement in #21 and contributing the #22 refactor, the new layered artwork and connector in #24, and the Catalan translation in #25. His photographs, WebP layers, vectors, geometry and provenance documentation are preserved in this beta.
 
-## Qué probar
+## What to test
 
-- Los encuadres `focus`, `mid` y `full`, con y sin conector.
-- Todos los estados del cargador, las animaciones, la LCD y los temas claro/oscuro.
-- Catalán manual con `language: ca` y automático con Home Assistant configurado en `ca-ES`.
-- Intensidad, pausa, bloqueo, temporizador, modulación dinámica, luces y modo de carga.
-- Configuraciones YAML existentes: no se ha retirado ninguna opción pública.
+- The `focus`, `mid` and `full` artwork framing modes, with and without the connector.
+- Every charger state, animation, LCD screen, and light and dark theme.
+- Catalan selected manually with `language: ca` and automatically when Home Assistant uses `ca-ES`.
+- Charging current, pause, lock, timer, dynamic modulation, lights and charging mode controls.
+- Existing YAML configurations: no public option has been removed.
 
-Los controles manuales ahora solo aceptan una entidad V2C de su función exacta, rechazan duplicados y vuelven a comprobar el rol al pulsar. Los colores personalizados solo admiten `#RRGGBB`.
+Manual controls now accept only a V2C entity with the exact required function, reject duplicate overrides and revalidate the role when clicked. Custom colours accept only `#RRGGBB`.
 
-## Instalar mediante HACS
+## Install through HACS
 
-Activa las versiones preliminares para este repositorio y selecciona `v0.6.0-beta.1`. HACS mantiene las versiones preliminares desactivadas por defecto; consulta su [documentación oficial](https://www.hacs.xyz/docs/use/entities/switch/).
+Enable prereleases for this repository and select `v0.6.0-beta.1`. HACS keeps prereleases disabled by default; see the [official HACS documentation](https://www.hacs.xyz/docs/use/entities/switch/).
 
-Si encuentras un fallo, deja los pasos y el estado probado en [el issue #21](https://github.com/mactron254/v2c-trydan-card/issues/21). Antes de publicar capturas o registros, elimina IDs de entidad, ubicaciones, SSID, IP, tokens y datos personales.
+## Verification
 
-La release incluye `v2c-trydan-card.js`, su SHA-256 y un registro JSON de procedencia generado desde el commit exacto del tag.
+The tagged build passed 123 automated tests together with the Validate, HACS, Security and CodeQL checks.
+
+If you find a problem, add the reproduction steps and tested state to [issue #21](https://github.com/mactron254/v2c-trydan-card/issues/21). Remove entity IDs, locations, SSIDs, IP addresses, tokens and personal data before sharing screenshots or logs.
+
+The release includes `v2c-trydan-card.js`, its SHA-256 checksum and a JSON provenance record generated from the exact tagged commit.
