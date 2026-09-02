@@ -6,7 +6,7 @@ All notable changes are documented here. Versions follow semantic versioning.
 
 ### Documentation
 
-- Publish canonical English notes for `v0.6.0-beta.1`, prepare an SEO/GEO-focused Home Assistant forum reply and refresh the agent-readable release and language facts.
+- Publish canonical English notes for `v0.6.0-beta.1`, prepare an SEO/GEO-focused Home Assistant forum reply with prominent community credit, and refresh the agent-readable release and language facts.
 
 ## [0.6.0-beta.1] - 2026-09-02
 

@@ -10,6 +10,10 @@ Hi everyone 👋
 
 **V2C Trydan Card v0.6.0-beta.1 is now available as a HACS prerelease for Home Assistant users who want to test the new Trydan EV charger artwork, optional connector, Catalan localization and safer controls. v0.5.0 remains the stable release while the community tests this EV charger dashboard update.**
 
+### Thank you, Pere
+
+This beta exists thanks in large part to **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)). He proposed the improvement in #21, delivered the state-driven SVG refactor in #22, contributed the layered charger artwork and optional connector in #24, and added Catalan in #25. Thank you, Pere, for the care, research and work behind this release.
+
 ### What's new in v0.6.0-beta.1?
 
 - Three charger artwork framing modes: `focus` (default), `mid` and `full`.
@@ -41,10 +45,6 @@ The stable channel remains on `v0.5.0`, and this beta will not be promoted autom
 ### Where should I report feedback?
 
 Please use [GitHub issue #21](https://github.com/mactron254/v2c-trydan-card/issues/21). Include your Home Assistant version, browser or device, selected framing mode, charger state and exact reproduction steps. Remove private entity IDs, locations, SSIDs, IP addresses, tokens and personal data from screenshots or logs.
-
-### Community credit
-
-Special thanks to **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)) for #21, #22, #24 and #25: the SVG refactor, layered artwork, connector, photographs, WebP layers, vectors, geometry, provenance research and Catalan translation.
 
 V2C Trydan Card is an independent community project. It uses entities from the [official Home Assistant V2C integration](https://www.home-assistant.io/integrations/v2c/) and is not affiliated with or endorsed by V2C.
 
