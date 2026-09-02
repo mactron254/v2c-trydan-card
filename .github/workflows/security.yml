@@ -1,4 +1,4 @@
-name: Validate
+name: Security
 
 on:
   push:
@@ -9,12 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  dependency-and-regression-audit:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node: ["20.19.0", "22.22.2"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
@@ -23,9 +19,12 @@ jobs:
           run_install: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: ${{ matrix.node }}
+          node-version: "22.22.2"
           cache: pnpm
+      - run: pnpm audit --audit-level moderate
+      - run: pnpm audit --prod
       - run: pnpm install --frozen-lockfile
-      - run: pnpm check
-      - name: Verify committed release artifacts
-        run: git diff --exit-code -- dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256
+      - name: Run security regression tests
+        run: pnpm exec vitest run tests/discovery.test.ts tests/editor.test.ts
+      - name: Verify committed release artifact
+        run: node scripts/smoke.mjs

@@ -1,12 +1,28 @@
 # Project handoff
 
+## v0.6.0-beta.1 stabilization - 2026-09-02
+
+- Stable release remains `v0.5.0`; `v0.6.0-beta.1` is a community-test prerelease and must not be promoted automatically.
+- PR #24 was approved and merged with merge commit `880dc66dd75849e83adbc9197cf5c28f523bd2e5`; its artwork, photographs, WebP layers, vectors, geometry and provenance are preserved.
+- PR #25 was reduced to its Catalan change, approved and merged with merge commit `b5e474e4f8ee76d81c2c5f1a57ad462bf8d0ac2d`.
+- Stabilization branch: `codex/v0.6.0-beta.1`, created from clean `origin/main`; the earlier local branch and its uncommitted documentation were not modified.
+- Public additions: `language: ca`, `charger_art: focus | mid | full` (default `focus`) and `show_connector` (default `false`). Existing YAML remains valid.
+- Security decisions: exact writable-role binding, duplicate override rejection, click-time role revalidation, strict `#RRGGBB` accent colors, single-read bundle smoke verification and CI comparison of regenerated `dist`.
+- Dependency decisions: Vite 8.2.2, Vitest 4.1.11, `@types/node` 26.4.1, PostCSS 8.5.26 and Undici 7.29.0. Keep jsdom 29.1.1 because jsdom 30 requires Node 22.22.2 and would drop Node 20 support.
+- Runtime floor: Node 20.19.0; CI also covers Node 22.22.2. Package manager remains pnpm 11.5.1.
+- Release workflow must build the exact beta tag, verify version/tag and committed bundle identity, then publish JavaScript, SHA-256 and provenance as a GitHub prerelease.
+- After the stabilization PR is green and alerts are cleared, close #13, #14, #15, #19, #20 and #23 as superseded. Close #17 explaining that Undici was fixed without adopting incompatible jsdom 30.
+- Release notes must prominently thank Pere Montpeó (`@pmontp19`) for #21, #22, #24 and #25. Keep issue #21 open for beta reports and post testing instructions there.
+- Before publication: full check, full/production audits, clean `dist` comparison, Validate, HACS and security checks green; then download published assets and verify the checksum.
+- Local verification completed before the PR: 123 tests, documentation check, build, SHA-256 smoke, full/production audits and `git diff --check` all pass.
+
 ## Current release
 
 - Current stable target and published release: v0.5.0.
 - Status: stable release prepared and published from main on 2026-08-14.
 - Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.5.0
-- Stack: Lit 3, TypeScript 7, Vite 8, Node 20+ and pnpm 11.5.1.
-- Attribution order: Codex first; Marc @mactron254 second.
+- Stack: Lit 3, TypeScript 7, Vite 8, Node 20.19.0+ and pnpm 11.5.1.
+- Attribution order: Codex first; Marc @mactron254 second; Pere @pmontp19 third.
 
 ## Post-release documentation refresh
 

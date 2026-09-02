@@ -22,7 +22,7 @@ Es un proyecto comunitario independiente; no está afiliado ni respaldado por V2
 ### ✨ Características
 
 - 🎛️ Intensidad, presets, pausa, bloqueo, temporizador, control dinámico y luces.
-- 🌍 Editor visual y LCD del cargador traducidos a 10 idiomas.
+- 🌍 Editor visual y LCD del cargador traducidos a 11 idiomas, incluido catalán.
 - 📐 Densidades XXL, estándar, compacta y ultracompacta.
 - 🖥️ Layout automático, centrado, dividido y en línea.
 - ⚡ Potencia, intensidad, voltaje y energía de sesión reales.

@@ -24,7 +24,7 @@ That is intentional. Ultra compact prioritizes state, power and essential contro
 
 ## Why does the LCD language change?
 
-LCD copy follows <code>language</code>. With <code>auto</code>, resolution order is card configuration, Home Assistant locale/language, browser and English fallback. The LCD is localized; the artwork itself contains no embedded text, since the LCD is drawn as a dot-matrix grid rather than rendered as real text.
+LCD copy follows <code>language</code>. With <code>auto</code>, Home Assistant locale/language is used, with English as the fallback. The LCD is localized; the artwork itself contains no embedded text, since the LCD is drawn as a dot-matrix grid rather than rendered as real text.
 
 ## Are the LCD power values examples?
 
@@ -45,6 +45,10 @@ Use the matching <code>invert_grid_power</code>, <code>invert_battery_power</cod
 ## The card does not appear after updating
 
 Reload the browser, clear the frontend cache and confirm the resource URL is a JavaScript module. HACS users can use Redownload, then reload Home Assistant.
+
+## How do I test a beta in HACS?
+
+Enable prereleases for this repository, then select the beta version. HACS leaves prereleases disabled by default; see the [official HACS switch documentation](https://www.hacs.xyz/docs/use/entities/switch/). Disable the option to return to stable releases.
 
 ## What Home Assistant version is supported?
 

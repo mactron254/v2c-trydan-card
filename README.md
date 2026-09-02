@@ -19,7 +19,7 @@ A modern card for viewing and controlling a **V2C Trydan** charger from the Home
 ## ✨ Features
 
 - 🎛️ Monitor charging and control current, pause, lock, timer, dynamic power and lighting.
-- 🌍 Visual editor and charger LCD available in 10 languages.
+- 🌍 Visual editor and charger LCD available in 11 languages.
 - 📐 Choose XXL, standard, compact or ultra compact size.
 - 🖥️ Switch between automatic, centered, split and inline layouts.
 - ⚡ Show power, current, voltage and session energy when valid entities are available.
@@ -56,7 +56,7 @@ The localized LCD follows the real sequence: **No vehicle → Vehicle connected 
 
 ## 🌍 Languages
 
-Available in: 🇬🇧 English · 🇮🇹 Italiano · 🇩🇪 Deutsch · 🇫🇷 Français · 🇳🇱 Nederlands · 🇸🇪 Svenska · 🇩🇰 Dansk · 🇳🇴 Norsk · 🇷🇴 Română · 🇪🇸 Español
+Available in: 🇬🇧 English · 🇮🇹 Italiano · 🇩🇪 Deutsch · 🇫🇷 Français · 🇳🇱 Nederlands · 🇸🇪 Svenska · 🇩🇰 Dansk · 🇳🇴 Norsk · 🇷🇴 Română · 🇪🇸 Español · Català
 
 ## 💡 Why I created this project
 
@@ -81,6 +81,8 @@ See the contributor record in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 [![Open your Home Assistant instance and add V2C Trydan Card through HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mactron254&repository=v2c-trydan-card&category=plugin)
 
 If the repository is not listed yet, add <code>https://github.com/mactron254/v2c-trydan-card</code> as a custom **Dashboard** repository in HACS. Install it, reload the browser and add the card from the dashboard editor.
+
+To test a beta release, enable prereleases for this repository in HACS first. HACS keeps that option disabled by default; see its [official prerelease switch documentation](https://www.hacs.xyz/docs/use/entities/switch/). The stable channel remains on v0.5.0.
 
 ### Manual installation
 
@@ -134,7 +136,7 @@ I would love to hear your feedback, feature ideas and corrections. Before sharin
 
 ## 🧰 Development
 
-Requires Node.js 20+ and pnpm 11+. The repository is pinned to pnpm 11.5.1.
+Requires Node.js 20.19.0+ and pnpm 11+. The repository is pinned to pnpm 11.5.1 and CI also verifies Node.js 22.22.2.
 
 ~~~powershell
 corepack pnpm@11.5.1 install
@@ -144,7 +146,7 @@ corepack pnpm@11.5.1 docs:capture
 
 ## 📄 Credits and license
 
-Technical collaboration is credited to **Codex**, followed by product owner **Marc** ([@mactron254](https://github.com/mactron254)). Released under the [MIT license](LICENSE).
+Technical collaboration is credited to **Codex**, followed by product owner **Marc** ([@mactron254](https://github.com/mactron254)) and community contributor **Pere Montpeó** ([@pmontp19](https://github.com/pmontp19)). Released under the [MIT license](LICENSE).
 
 ## Discovery and safety
 

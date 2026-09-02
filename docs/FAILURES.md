@@ -241,3 +241,52 @@ Cada entrada incluye fecha, síntoma, causa, resolución y prevención.
 - **Causa**: la validacion externa era una funcion especifica de W/kW/MW.
 - **Resolucion**: validar medidas externas por tipo; voltaje admite solo sensor numerico/unknown/unavailable con unidad V y device_class voltage compatibles.
 - **Prevencion**: fixture HA 2026.7 prueba valores validos, no numericos, unidad incorrecta y device_class incorrecta.
+
+## 2026-09-02 - Override de pausa podia apuntar al bloqueo
+
+- **Fallo**: dos controles con el mismo dominio, dispositivo y plataforma podían intercambiarse mediante YAML manual.
+- **Causa**: la validación comprobaba dispositivo, plataforma y dominio, pero no la función exacta declarada por `translation_key` o sufijo legacy.
+- **Resolución**: los roles de escritura exigen coincidencia funcional exacta, rechazan overrides duplicados y se vuelven a validar al pulsar; sin registro se falla cerrado.
+- **Prevención**: pruebas de roles cruzados, IDs renombrados, sufijos solapados, metadatos engañosos y mutación del rol o dispositivo semilla antes del clic.
+
+## 2026-09-02 - Color CSS sin normalizar en el editor
+
+- **Fallo**: un `accent_color` malicioso podía llegar al atributo `style` de la muestra del editor antes de normalizar la configuración de la tarjeta.
+- **Causa**: el editor clonaba el YAML recibido y construía `--swatch` con el valor original.
+- **Resolución**: normalizador compartido que solo admite `#RRGGBB`; los valores no válidos se eliminan y la paleta vuelve a monocromo.
+- **Prevención**: prueba DOM con `url(...)` que comprueba tanto el HTML renderizado como la configuración emitida.
+
+## 2026-09-02 - CI regeneraba dist sin comparar procedencia
+
+- **Fallo**: un bundle versionado obsoleto podía quedar oculto porque `pnpm check` lo sobrescribía durante CI.
+- **Causa**: no se comparaba el artefacto recién construido con el `dist` confirmado.
+- **Resolución**: CI compara JavaScript y SHA después del build; el flujo de beta repite la comparación desde el commit exacto del tag y publica procedencia.
+- **Prevención**: no publicar artefactos construidos fuera del tag y verificar checksum tras descargar la release.
+
+## 2026-09-02 - Smoke leia el bundle en varias operaciones
+
+- **Fallo**: CodeQL detectó dos ventanas de carrera entre tamaño, contenido y hash del mismo bundle.
+- **Causa**: el smoke abría el archivo por separado para cada comprobación.
+- **Resolución**: una única lectura inmutable alimenta tamaño, validación y SHA-256.
+- **Prevención**: toda comprobación de procedencia deriva de los mismos bytes.
+
+## 2026-09-02 - CodeQL señalo una expresion interna de Lit
+
+- **Fallo aparente**: CodeQL marcó una expresión regular dentro del bundle minificado generado.
+- **Causa**: el código pertenece al runtime interno de Lit empaquetado y no recibe un patrón controlado por YAML, estado de Home Assistant ni entrada del editor.
+- **Resolución**: conservar la dependencia oficial, documentar la traza fuente y descartar la alerta concreta como falso positivo; no silenciar la regla global.
+- **Prevención**: revisar de nuevo el origen al actualizar Lit y no editar manualmente el bundle generado.
+
+## 2026-09-02 - Catalan incompleto en auto y decimales
+
+- **Fallo**: `ca` existía parcialmente, pero el editor no resolvía bien `language: auto` y el formateador no usaba `ca-ES`.
+- **Causa**: se pasaba el locale como valor principal en vez de fallback y faltaba la tabla regional catalana.
+- **Resolución**: fallback correcto de Home Assistant, locale `ca-ES`, erratas corregidas y pruebas específicas.
+- **Prevención**: contrato de `ca-ES`, editor automático, comas decimales y punto fijo en la LCD auténtica.
+
+## 2026-09-02 - jsdom 30 incompatible con Node 20
+
+- **Fallo**: aceptar el major automático habría roto el runtime mínimo declarado.
+- **Causa**: jsdom 30 exige Node 22.22.2, mientras el proyecto conserva compatibilidad con Node 20.
+- **Resolución**: mantener jsdom 29.1.1, fijar el mínimo real en Node 20.19.0 y probar también Node 22.22.2; Undici se actualiza por override sin adoptar el major incompatible.
+- **Prevención**: revisar motores transitivos antes de fusionar majors de Dependabot.

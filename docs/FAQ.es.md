@@ -24,7 +24,7 @@ Es intencionado. Prioriza estado, potencia y controles esenciales. <code>show_ch
 
 ## ¿Por qué cambia el idioma de la LCD?
 
-Sigue <code>language</code>. Con <code>auto</code>, el orden es: configuración de la tarjeta, locale/idioma de Home Assistant, navegador e inglés como fallback. La LCD está localizada; la ilustración no contiene texto incrustado, porque la LCD se dibuja como una rejilla de puntos y no como texto renderizado.
+Sigue <code>language</code>. Con <code>auto</code>, usa el locale/idioma de Home Assistant e inglés como fallback. La LCD está localizada; la ilustración no contiene texto incrustado, porque la LCD se dibuja como una rejilla de puntos y no como texto renderizado.
 
 ## ¿Los valores de la LCD son ejemplos?
 
@@ -45,6 +45,10 @@ Usa <code>invert_grid_power</code>, <code>invert_battery_power</code> o <code>in
 ## La tarjeta no aparece después de actualizar
 
 Recarga el navegador, limpia la caché y confirma que el recurso es un módulo JavaScript. En HACS usa Redownload y vuelve a cargar Home Assistant.
+
+## ¿Cómo pruebo una beta en HACS?
+
+Activa las versiones preliminares de este repositorio y selecciona la beta. HACS deja las versiones preliminares desactivadas por defecto; consulta la [documentación oficial del interruptor de HACS](https://www.hacs.xyz/docs/use/entities/switch/). Desactiva la opción para volver al canal estable.
 
 ## ¿Qué versión de Home Assistant se admite?
 

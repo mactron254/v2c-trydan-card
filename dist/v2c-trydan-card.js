@@ -128,7 +128,7 @@ var y = class extends HTMLElement {
 	static finalizeStyles(e) {
 		let t = [];
 		if (Array.isArray(e)) {
-			let n = new Set(e.flat(Infinity).reverse());
+			let n = new Set(e.flat(1 / 0).reverse());
 			for (let e of n) t.unshift(c(e));
 		} else e !== void 0 && t.push(c(e));
 		return t;
@@ -254,84 +254,86 @@ var y = class extends HTMLElement {
 y.elementStyles = [], y.shadowRootOptions = { mode: "open" }, y[_("elementProperties")] = /* @__PURE__ */ new Map(), y[_("finalized")] = /* @__PURE__ */ new Map(), te?.({ ReactiveElement: y }), (h.reactiveElementVersions ??= []).push("2.1.2");
 //#endregion
 //#region node_modules/.pnpm/lit-html@3.3.3/node_modules/lit-html/lit-html.js
-var ie = globalThis, ae = (e) => e, b = ie.trustedTypes, oe = b ? b.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, se = "$lit$", x = `lit$${Math.random().toFixed(9).slice(2)}$`, ce = "?" + x, le = `<${ce}>`, S = document, C = () => S.createComment(""), w = (e) => e === null || typeof e != "object" && typeof e != "function", ue = Array.isArray, de = (e) => ue(e) || typeof e?.[Symbol.iterator] == "function", fe = "[ 	\n\f\r]", T = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, pe = /-->/g, me = />/g, E = RegExp(`>|${fe}(?:([^\\s"'>=/]+)(${fe}*=${fe}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), he = /'/g, ge = /"/g, _e = /^(?:script|style|textarea|title)$/i, ve = (e) => (t, ...n) => ({
+var b = globalThis, ie = (e) => e, x = b.trustedTypes, ae = x ? x.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, oe = "$lit$", S = `lit$${Math.random().toFixed(9).slice(2)}$`, se = "?" + S, ce = `<${se}>`, C = document, w = () => C.createComment(""), T = (e) => e === null || typeof e != "object" && typeof e != "function", le = Array.isArray, ue = (e) => le(e) || typeof e?.[Symbol.iterator] == "function", de = "[ 	\n\f\r]", E = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, fe = /-->/g, pe = />/g, D = RegExp(`>|${de}(?:([^\\s"'>=/]+)(${de}*=${de}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), me = /'/g, he = /"/g, ge = /^(?:script|style|textarea|title)$/i, _e = (e) => (t, ...n) => ({
 	_$litType$: e,
 	strings: t,
 	values: n
-}), D = ve(1), ye = ve(2), O = Symbol.for("lit-noChange"), k = Symbol.for("lit-nothing"), be = /* @__PURE__ */ new WeakMap(), A = S.createTreeWalker(S, 129);
-function xe(e, t) {
-	if (!ue(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
-	return oe === void 0 ? t : oe.createHTML(t);
+}), O = _e(1), ve = _e(2), k = Symbol.for("lit-noChange"), A = Symbol.for("lit-nothing"), ye = /* @__PURE__ */ new WeakMap(), j = C.createTreeWalker(C, 129);
+function be(e, t) {
+	if (!le(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
+	return ae === void 0 ? t : ae.createHTML(t);
 }
-var Se = (e, t) => {
-	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = T;
+var xe = (e, t) => {
+	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = E;
 	for (let t = 0; t < n; t++) {
 		let n = e[t], s, c, l = -1, u = 0;
-		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === T ? c[1] === "!--" ? o = pe : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = E) : (_e.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = E) : o = me : o === E ? c[0] === ">" ? (o = i ?? T, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? E : c[3] === "\"" ? ge : he) : o === ge || o === he ? o = E : o === pe || o === me ? o = T : (o = E, i = void 0);
-		let d = o === E && e[t + 1].startsWith("/>") ? " " : "";
-		a += o === T ? n + le : l >= 0 ? (r.push(s), n.slice(0, l) + se + n.slice(l) + x + d) : n + x + (l === -2 ? t : d);
+		for (; u < n.length && (o.lastIndex = u, c = o.exec(n), c !== null);) u = o.lastIndex, o === E ? c[1] === "!--" ? o = fe : c[1] === void 0 ? c[2] === void 0 ? c[3] !== void 0 && (o = D) : (ge.test(c[2]) && (i = RegExp("</" + c[2], "g")), o = D) : o = pe : o === D ? c[0] === ">" ? (o = i ?? E, l = -1) : c[1] === void 0 ? l = -2 : (l = o.lastIndex - c[2].length, s = c[1], o = c[3] === void 0 ? D : c[3] === "\"" ? he : me) : o === he || o === me ? o = D : o === fe || o === pe ? o = E : (o = D, i = void 0);
+		let d = o === D && e[t + 1].startsWith("/>") ? " " : "";
+		a += o === E ? n + ce : l >= 0 ? (r.push(s), n.slice(0, l) + oe + n.slice(l) + S + d) : n + S + (l === -2 ? t : d);
 	}
-	return [xe(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
-}, Ce = class e {
+	return [be(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
+}, Se = class e {
 	constructor({ strings: t, _$litType$: n }, r) {
 		let i;
 		this.parts = [];
-		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = Se(t, n);
-		if (this.el = e.createElement(l, r), A.currentNode = this.el.content, n === 2 || n === 3) {
+		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = xe(t, n);
+		if (this.el = e.createElement(l, r), j.currentNode = this.el.content, n === 2 || n === 3) {
 			let e = this.el.content.firstChild;
 			e.replaceWith(...e.childNodes);
 		}
-		for (; (i = A.nextNode()) !== null && c.length < s;) {
+		for (; (i = j.nextNode()) !== null && c.length < s;) {
 			if (i.nodeType === 1) {
-				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(se)) {
-					let t = u[o++], n = i.getAttribute(e).split(x), r = /([.?@])?(.*)/.exec(t);
+				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(oe)) {
+					let t = u[o++], n = i.getAttribute(e).split(S), r = /([.?@])?(.*)/.exec(t);
 					c.push({
 						type: 1,
 						index: a,
 						name: r[2],
 						strings: n,
-						ctor: r[1] === "." ? De : r[1] === "?" ? Oe : r[1] === "@" ? ke : Ee
+						ctor: r[1] === "." ? Te : r[1] === "?" ? Ee : r[1] === "@" ? De : N
 					}), i.removeAttribute(e);
-				} else e.startsWith(x) && (c.push({
+				} else e.startsWith(S) && (c.push({
 					type: 6,
 					index: a
 				}), i.removeAttribute(e));
-				if (_e.test(i.tagName)) {
-					let e = i.textContent.split(x), t = e.length - 1;
+				if (ge.test(i.tagName)) {
+					let e = i.textContent.split(S), t = e.length - 1;
 					if (t > 0) {
-						i.textContent = b ? b.emptyScript : "";
-						for (let n = 0; n < t; n++) i.append(e[n], C()), A.nextNode(), c.push({
+						i.textContent = x ? x.emptyScript : "";
+						for (let n = 0; n < t; n++) i.append(e[n], w()), j.nextNode(), c.push({
 							type: 2,
 							index: ++a
 						});
-						i.append(e[t], C());
+						i.append(e[t], w());
 					}
 				}
-			} else if (i.nodeType === 8) if (i.data === ce) c.push({
-				type: 2,
-				index: a
-			});
-			else {
-				let e = -1;
-				for (; (e = i.data.indexOf(x, e + 1)) !== -1;) c.push({
-					type: 7,
+			} else if (i.nodeType === 8) {
+				if (i.data === se) c.push({
+					type: 2,
 					index: a
-				}), e += x.length - 1;
+				});
+				else {
+					let e = -1;
+					for (; (e = i.data.indexOf(S, e + 1)) !== -1;) c.push({
+						type: 7,
+						index: a
+					}), e += S.length - 1;
+				}
 			}
 			a++;
 		}
 	}
 	static createElement(e, t) {
-		let n = S.createElement("template");
+		let n = C.createElement("template");
 		return n.innerHTML = e, n;
 	}
 };
-function j(e, t, n = e, r) {
-	if (t === O) return t;
-	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = w(t) ? void 0 : t._$litDirective$;
-	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = j(e, i._$AS(e, t.values), i, r)), t;
+function M(e, t, n = e, r) {
+	if (t === k) return t;
+	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = T(t) ? void 0 : t._$litDirective$;
+	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = M(e, i._$AS(e, t.values), i, r)), t;
 }
-var we = class {
+var Ce = class {
 	constructor(e, t) {
 		this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
 	}
@@ -342,28 +344,28 @@ var we = class {
 		return this._$AM._$AU;
 	}
 	u(e) {
-		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? S).importNode(t, !0);
-		A.currentNode = r;
-		let i = A.nextNode(), a = 0, o = 0, s = n[0];
+		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? C).importNode(t, !0);
+		j.currentNode = r;
+		let i = j.nextNode(), a = 0, o = 0, s = n[0];
 		for (; s !== void 0;) {
 			if (a === s.index) {
 				let t;
-				s.type === 2 ? t = new Te(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Ae(i, this, e)), this._$AV.push(t), s = n[++o];
+				s.type === 2 ? t = new we(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Oe(i, this, e)), this._$AV.push(t), s = n[++o];
 			}
-			a !== s?.index && (i = A.nextNode(), a++);
+			a !== s?.index && (i = j.nextNode(), a++);
 		}
-		return A.currentNode = S, r;
+		return j.currentNode = C, r;
 	}
 	p(e) {
 		let t = 0;
 		for (let n of this._$AV) n !== void 0 && (n.strings === void 0 ? n._$AI(e[t]) : (n._$AI(e, n, t), t += n.strings.length - 2)), t++;
 	}
-}, Te = class e {
+}, we = class e {
 	get _$AU() {
 		return this._$AM?._$AU ?? this._$Cv;
 	}
 	constructor(e, t, n, r) {
-		this.type = 2, this._$AH = k, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
+		this.type = 2, this._$AH = A, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
 	}
 	get parentNode() {
 		let e = this._$AA.parentNode, t = this._$AM;
@@ -376,7 +378,7 @@ var we = class {
 		return this._$AB;
 	}
 	_$AI(e, t = this) {
-		e = j(this, e, t), w(e) ? e === k || e == null || e === "" ? (this._$AH !== k && this._$AR(), this._$AH = k) : e !== this._$AH && e !== O && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? de(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
+		e = M(this, e, t), T(e) ? e === A || e == null || e === "" ? (this._$AH !== A && this._$AR(), this._$AH = A) : e !== this._$AH && e !== k && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? ue(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
 	}
 	O(e) {
 		return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -385,36 +387,36 @@ var we = class {
 		this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
 	}
 	_(e) {
-		this._$AH !== k && w(this._$AH) ? this._$AA.nextSibling.data = e : this.T(S.createTextNode(e)), this._$AH = e;
+		this._$AH !== A && T(this._$AH) ? this._$AA.nextSibling.data = e : this.T(C.createTextNode(e)), this._$AH = e;
 	}
 	$(e) {
-		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = Ce.createElement(xe(n.h, n.h[0]), this.options)), n);
+		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = Se.createElement(be(n.h, n.h[0]), this.options)), n);
 		if (this._$AH?._$AD === r) this._$AH.p(t);
 		else {
-			let e = new we(r, this), n = e.u(this.options);
+			let e = new Ce(r, this), n = e.u(this.options);
 			e.p(t), this.T(n), this._$AH = e;
 		}
 	}
 	_$AC(e) {
-		let t = be.get(e.strings);
-		return t === void 0 && be.set(e.strings, t = new Ce(e)), t;
+		let t = ye.get(e.strings);
+		return t === void 0 && ye.set(e.strings, t = new Se(e)), t;
 	}
 	k(t) {
-		ue(this._$AH) || (this._$AH = [], this._$AR());
+		le(this._$AH) || (this._$AH = [], this._$AR());
 		let n = this._$AH, r, i = 0;
-		for (let a of t) i === n.length ? n.push(r = new e(this.O(C()), this.O(C()), this, this.options)) : r = n[i], r._$AI(a), i++;
+		for (let a of t) i === n.length ? n.push(r = new e(this.O(w()), this.O(w()), this, this.options)) : r = n[i], r._$AI(a), i++;
 		i < n.length && (this._$AR(r && r._$AB.nextSibling, i), n.length = i);
 	}
 	_$AR(e = this._$AA.nextSibling, t) {
 		for (this._$AP?.(!1, !0, t); e !== this._$AB;) {
-			let t = ae(e).nextSibling;
-			ae(e).remove(), e = t;
+			let t = ie(e).nextSibling;
+			ie(e).remove(), e = t;
 		}
 	}
 	setConnected(e) {
 		this._$AM === void 0 && (this._$Cv = e, this._$AP?.(e));
 	}
-}, Ee = class {
+}, N = class {
 	get tagName() {
 		return this.element.tagName;
 	}
@@ -422,47 +424,47 @@ var we = class {
 		return this._$AM._$AU;
 	}
 	constructor(e, t, n, r, i) {
-		this.type = 1, this._$AH = k, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = k;
+		this.type = 1, this._$AH = A, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = A;
 	}
 	_$AI(e, t = this, n, r) {
 		let i = this.strings, a = !1;
-		if (i === void 0) e = j(this, e, t, 0), a = !w(e) || e !== this._$AH && e !== O, a && (this._$AH = e);
+		if (i === void 0) e = M(this, e, t, 0), a = !T(e) || e !== this._$AH && e !== k, a && (this._$AH = e);
 		else {
 			let r = e, o, s;
-			for (e = i[0], o = 0; o < i.length - 1; o++) s = j(this, r[n + o], t, o), s === O && (s = this._$AH[o]), a ||= !w(s) || s !== this._$AH[o], s === k ? e = k : e !== k && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
+			for (e = i[0], o = 0; o < i.length - 1; o++) s = M(this, r[n + o], t, o), s === k && (s = this._$AH[o]), a ||= !T(s) || s !== this._$AH[o], s === A ? e = A : e !== A && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
 		}
 		a && !r && this.j(e);
 	}
 	j(e) {
-		e === k ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
+		e === A ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
 	}
-}, De = class extends Ee {
+}, Te = class extends N {
 	constructor() {
 		super(...arguments), this.type = 3;
 	}
 	j(e) {
-		this.element[this.name] = e === k ? void 0 : e;
+		this.element[this.name] = e === A ? void 0 : e;
 	}
-}, Oe = class extends Ee {
+}, Ee = class extends N {
 	constructor() {
 		super(...arguments), this.type = 4;
 	}
 	j(e) {
-		this.element.toggleAttribute(this.name, !!e && e !== k);
+		this.element.toggleAttribute(this.name, !!e && e !== A);
 	}
-}, ke = class extends Ee {
+}, De = class extends N {
 	constructor(e, t, n, r, i) {
 		super(e, t, n, r, i), this.type = 5;
 	}
 	_$AI(e, t = this) {
-		if ((e = j(this, e, t, 0) ?? k) === O) return;
-		let n = this._$AH, r = e === k && n !== k || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== k && (n === k || r);
+		if ((e = M(this, e, t, 0) ?? A) === k) return;
+		let n = this._$AH, r = e === A && n !== A || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== A && (n === A || r);
 		r && this.element.removeEventListener(this.name, this, n), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
 	}
 	handleEvent(e) {
 		typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, e) : this._$AH.handleEvent(e);
 	}
-}, Ae = class {
+}, Oe = class {
 	constructor(e, t, n) {
 		this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = n;
 	}
@@ -470,18 +472,18 @@ var we = class {
 		return this._$AM._$AU;
 	}
 	_$AI(e) {
-		j(this, e);
+		M(this, e);
 	}
-}, je = ie.litHtmlPolyfillSupport;
-je?.(Ce, Te), (ie.litHtmlVersions ??= []).push("3.3.3");
-var Me = (e, t, n) => {
+}, ke = b.litHtmlPolyfillSupport;
+ke?.(Se, we), (b.litHtmlVersions ??= []).push("3.3.3");
+var Ae = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
 		let e = n?.renderBefore ?? null;
-		r._$litPart$ = i = new Te(t.insertBefore(C(), e), e, void 0, n ?? {});
+		r._$litPart$ = i = new we(t.insertBefore(w(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, Ne = globalThis, M = class extends y {
+}, je = globalThis, P = class extends y {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -491,7 +493,7 @@ var Me = (e, t, n) => {
 	}
 	update(e) {
 		let t = this.render();
-		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Me(t, this.renderRoot, this.renderOptions);
+		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Ae(t, this.renderRoot, this.renderOptions);
 	}
 	connectedCallback() {
 		super.connectedCallback(), this._$Do?.setConnected(!0);
@@ -500,21 +502,21 @@ var Me = (e, t, n) => {
 		super.disconnectedCallback(), this._$Do?.setConnected(!1);
 	}
 	render() {
-		return O;
+		return k;
 	}
 };
-M._$litElement$ = !0, M.finalized = !0, Ne.litElementHydrateSupport?.({ LitElement: M });
-var Pe = Ne.litElementPolyfillSupport;
-Pe?.({ LitElement: M }), (Ne.litElementVersions ??= []).push("4.2.2");
+P._$litElement$ = !0, P.finalized = !0, je.litElementHydrateSupport?.({ LitElement: P });
+var Me = je.litElementPolyfillSupport;
+Me?.({ LitElement: P }), (je.litElementVersions ??= []).push("4.2.2");
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/property.js
-var Fe = {
+var Ne = {
 	attribute: !0,
 	type: String,
 	converter: v,
 	reflect: !1,
 	hasChanged: ne
-}, Ie = (e = Fe, t, n) => {
+}, Pe = (e = Ne, t, n) => {
 	let { kind: r, metadata: i } = n, a = globalThis.litPropertyMetadata.get(i);
 	if (a === void 0 && globalThis.litPropertyMetadata.set(i, a = /* @__PURE__ */ new Map()), r === "setter" && ((e = Object.create(e)).wrapped = !0), a.set(n.name, e), r === "accessor") {
 		let { name: r } = n;
@@ -537,16 +539,16 @@ var Fe = {
 	}
 	throw Error("Unsupported decorator location: " + r);
 };
-function Le(e) {
-	return (t, n) => typeof n == "object" ? Ie(e, t, n) : ((e, t, n) => {
+function Fe(e) {
+	return (t, n) => typeof n == "object" ? Pe(e, t, n) : ((e, t, n) => {
 		let r = t.hasOwnProperty(n);
 		return t.constructor.createProperty(n, e), r ? Object.getOwnPropertyDescriptor(t, n) : void 0;
 	})(e, t, n);
 }
 //#endregion
 //#region node_modules/.pnpm/@lit+reactive-element@2.1.2/node_modules/@lit/reactive-element/decorators/state.js
-function N(e) {
-	return Le({
+function F(e) {
+	return Fe({
 		...e,
 		state: !0,
 		attribute: !1
@@ -554,7 +556,7 @@ function N(e) {
 }
 //#endregion
 //#region src/assets/trydan/body.webp
-var Re = "data:image/webp;base64,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", ze = "data:image/webp;base64,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358JOIlMnACLOknPcj37ZsMhxReHzVQtg6o8t7EBcBKROACLPlCqslzl5zegDqm+OGyhahmkJ4+sywBOIhEHyNKDJD3LVp5qg0PKL4LNVC2H6snuR8YD4uSKiROg6eFOkl5ZtrKvDQ6pvwg2KrUcUpXs3TQDgDiRURPnAKB1ywlSPUfR89j1cDBAEXyrQC2LVCVz7aumAIA4JxIkIs45jJz12IE8qZ6jqJ4918LBBMVh+Zf05ZHqSZ754OutDiNFxDnnRAQlpy155q9DJL1yNFW5/2o4WKGg9SBVyyPVK8l8z+uP3T6zAaGZKTcsefLlzixJeq8cVU99uQECO3QY/1vSa3kk1XuOvHj84I53XvjVr156p73jL0e+HOZITbxydFWZ/RogsEQHPPIFVUeDpKr3LF99ospR9+Sf2iACWxTBrHZSdVRGqqr3SVHvvaoqr6Aqc/8yDgJ7dMCyHtLrKMWsSu6+ERBYpAgmbh0iVStKPdm3XuAERumA+bsTUrViVMnB56cAArsUgdy+JyG9VoR68sJrcwAH2xRA7txXIFU1MlUlc1tnAyIwTwFwx/s5kqoajaqSPPZMKyACCxUBcP3GzzypXvXKqaqSzP1+VTMgAisVJ0DDnS/1kaR6VR01VfVKMt+5aTYAJzBVcQAmr3ylt0CSqt7rKHrlyLP7vn+zA8QJzFWcAJiw6Km3ei5y1C+f3v+LVTMAwAmMVpwAQEPr8qe2f3To72cGhvJDg4ODgxdy2f6+z9p/sn5BC0Y6EViuiBMUHX/V9Flz582dO/fGG9taZ05tbkBR5wQWLOKcCMoX50Rgy1I+/ldLAFZQOCCOCgAA8HEAnQEq4wFcAj5JJJBGIqIhoSEzKEBQCQlpbuF2sRk4lwp6EdtbdgG8PeTM5N3czMkYg9sjym0xP+of77mx/m3+19g3+Wf07/p9i/0Hv1ZBv3pjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqag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", P = {
+var Ie = "data:image/webp;base64,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", Le = "data:image/webp;base64,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358JOIlMnACLOknPcj37ZsMhxReHzVQtg6o8t7EBcBKROACLPlCqslzl5zegDqm+OGyhahmkJ4+sywBOIhEHyNKDJD3LVp5qg0PKL4LNVC2H6snuR8YD4uSKiROg6eFOkl5ZtrKvDQ6pvwg2KrUcUpXs3TQDgDiRURPnAKB1ywlSPUfR89j1cDBAEXyrQC2LVCVz7aumAIA4JxIkIs45jJz12IE8qZ6jqJ4918LBBMVh+Zf05ZHqSZ754OutDiNFxDnnRAQlpy155q9DJL1yNFW5/2o4WKGg9SBVyyPVK8l8z+uP3T6zAaGZKTcsefLlzixJeq8cVU99uQECO3QY/1vSa3kk1XuOvHj84I53XvjVr156p73jL0e+HOZITbxydFWZ/RogsEQHPPIFVUeDpKr3LF99ospR9+Sf2iACWxTBrHZSdVRGqqr3SVHvvaoqr6Aqc/8yDgJ7dMCyHtLrKMWsSu6+ERBYpAgmbh0iVStKPdm3XuAERumA+bsTUrViVMnB56cAArsUgdy+JyG9VoR68sJrcwAH2xRA7txXIFU1MlUlc1tnAyIwTwFwx/s5kqoajaqSPPZMKyACCxUBcP3GzzypXvXKqaqSzP1+VTMgAisVJ0DDnS/1kaR6VR01VfVKMt+5aTYAJzBVcQAmr3ylt0CSqt7rKHrlyLP7vn+zA8QJzFWcAJiw6Km3ei5y1C+f3v+LVTMAwAmMVpwAQEPr8qe2f3To72cGhvJDg4ODgxdy2f6+z9p/sn5BC0Y6EViuiBMUHX/V9Flz582dO/fGG9taZ05tbkBR5wQWLOKcCMoX50Rgy1I+/ldLAFZQOCCOCgAA8HEAnQEq4wFcAj5JJJBGIqIhoSEzKEBQCQlpbuF2sRk4lwp6EdtbdgG8PeTM5N3czMkYg9sjym0xP+of77mx/m3+19g3+Wf07/p9i/0Hv1ZBv3pjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqagJjELjALqag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", I = {
 	canvasWidth: 483,
 	canvasHeight: 604,
 	body: {
@@ -575,13 +577,13 @@ var Re = "data:image/webp;base64,UklGRvIRAABXRUJQVlA4WAoAAAAQAAAA4gEAWwIAQUxQSOI
 		width: 98,
 		height: 21
 	}
-}, F = {
+}, L = {
 	top: 252,
 	bottom: 600,
 	right: 424
 };
-function Be(e, t) {
-	let { body: n } = P, r = n.x + n.width / 2, i = Math.max(n.width / 2 + 6, t ? F.right + 6 - r : 0), a = r - i, o = n.y - 13, s = P.display.y + P.display.height, c = e === "focus" ? t ? Math.min(s + 22, F.top) : s + 82 : e === "mid" ? Math.round((F.top + F.bottom) / 2 + 62) : Math.min(F.bottom + 12, P.canvasHeight);
+function Re(e, t) {
+	let { body: n } = I, r = n.x + n.width / 2, i = Math.max(n.width / 2 + 6, t ? L.right + 6 - r : 0), a = r - i, o = n.y - 13, s = I.display.y + I.display.height, c = e === "focus" ? t ? Math.min(s + 22, L.top) : s + 82 : e === "mid" ? Math.round((L.top + L.bottom) / 2 + 62) : Math.min(L.bottom + 12, I.canvasHeight);
 	return {
 		x: a,
 		y: o,
@@ -591,10 +593,10 @@ function Be(e, t) {
 }
 //#endregion
 //#region src/assets/trydan/logo.ts
-var Ve = {
+var ze = {
 	width: 378,
 	height: 163
-}, I = "M301.5 0.2 288 3.2 287 4.2 285 4.2 275.5 8.2 260.5 18.2 248.2 30.5 240.2 42.5 236.2 51 233.2 60 230.8 75 231.2 93.5 235.2 109.5 242.2 124 250.2 135 263.5 147.2 274.5 154.2 289.5 160.2 298 162.2 302.5 162.2 304.5 163.2 320 163.2 321 162.2 326.5 162.2 335 160.2 346 156.2 353.5 152.2 365 144.2 375.2 134 378.2 129.5 360.5 112.2 352.8 122 344 129.2 337 133.2 326 137.2 315.5 138.8 304 138.2 295 136.2 284 131.2 275.5 125.2 268.2 118 263.2 111 258.2 100.5 255.2 88 255.2 75 259.2 60 265.2 49 275.5 37.8 281.5 33.2 289 29.2 301 25.2 315 24.2 323.5 25.2 335.5 29.2 343 33.2 349 37.8 359.5 49.2 360.5 49.2 377.2 32 372.8 26.5 363 17.2 347 7.2 336.5 3.2 328.5 1.2 325 1.2 323.5 0.2 301.5 0.2Z M165 1.2 149 4.2 135.5 10.2 129.5 14.2 120.8 22.5 115.2 31 128.5 43.2 132 46.2 133 46.2 141.5 35.2 152.5 28.2 158 26.2 166.5 24.8 174.5 24.8 182 26.2 189.5 30.2 193.2 34 196.2 39 197.8 45.5 197.2 54.5 196.2 58 189.2 72 174.2 90 156 107.2 116.2 140 116.2 159 259 159.2 247.5 149.8 235.5 135.8 159.8 136 160.5 134.2 184 114.2 203.2 94 212.2 81.5 218.2 70 222.2 55.5 222.2 40 221.2 38.5 220.2 32 215.2 22 206 12.2 200 8.2 188 3.2 176.5 1.2 165 1.2Z M0.5 3.2 0.2 5.5 1.2 6 8.2 25 14.2 38 17.2 47 30.2 77 35.2 91 39.2 99 44.2 113 48.2 121 48.2 122.5 63.2 159 86 159.2 89.2 153 94.2 139 100.2 126 100.2 124.5 127.2 58.5 109 41.2 108.2 41.5 83.2 103 83.2 104.5 82.2 105.5 82.2 107 81.2 108 81.2 109.5 80.2 110.5 80.2 112 79.2 113 79.2 114.5 78.2 115.5 78.2 117 77.2 118 77.2 119.5 76.2 120.5 76.2 122 75.5 122.2 27.8 4 27 3.2 0.5 3.2Z M296 46.8 294 47.2 292.2 49 291.2 52 293.5 55.8 297.5 56.8 301.2 54 301.8 51 299 47.2 296 46.8Z M328.5 46.8 325.2 48.5 324.2 53 326 55.8 330 56.8 333.2 55 334.2 50.5 332 47.2 328.5 46.8Z M273 70.2 268.2 75 268.2 82 272.5 86.2 279.5 86.2 284.2 81.5 284.2 75.5 282.2 72.5 279 70.2 273 70.2Z M310 70.2 305.2 74.5 304.2 78 305.2 82.5 309.5 86.2 316.5 86.2 320.2 83 321.2 80.5 321.2 76 319.2 72.5 317.5 71.2 315.5 70.2 310 70.2Z M347 70.2 343.2 73 341.2 77 342.2 82.5 346 86.2 353.5 86.2 357.8 81.5 357.8 75.5 356.2 73 352.5 70.2 347 70.2Z M293.5 104.2 289.2 108 288.2 110 288.2 114.5 290.2 118 293 120.2 300 120.2 304.2 116 305.2 113 304.2 108.5 299.5 104.2 293.5 104.2Z M326.5 104.2 324.5 105.2 321.2 109 321.2 115.5 325.5 120.2 333 120.2 337.2 116 337.2 109 334 105.2 332 104.2 326.5 104.2Z", He = {
+}, R = "M301.5 0.2 288 3.2 287 4.2 285 4.2 275.5 8.2 260.5 18.2 248.2 30.5 240.2 42.5 236.2 51 233.2 60 230.8 75 231.2 93.5 235.2 109.5 242.2 124 250.2 135 263.5 147.2 274.5 154.2 289.5 160.2 298 162.2 302.5 162.2 304.5 163.2 320 163.2 321 162.2 326.5 162.2 335 160.2 346 156.2 353.5 152.2 365 144.2 375.2 134 378.2 129.5 360.5 112.2 352.8 122 344 129.2 337 133.2 326 137.2 315.5 138.8 304 138.2 295 136.2 284 131.2 275.5 125.2 268.2 118 263.2 111 258.2 100.5 255.2 88 255.2 75 259.2 60 265.2 49 275.5 37.8 281.5 33.2 289 29.2 301 25.2 315 24.2 323.5 25.2 335.5 29.2 343 33.2 349 37.8 359.5 49.2 360.5 49.2 377.2 32 372.8 26.5 363 17.2 347 7.2 336.5 3.2 328.5 1.2 325 1.2 323.5 0.2 301.5 0.2Z M165 1.2 149 4.2 135.5 10.2 129.5 14.2 120.8 22.5 115.2 31 128.5 43.2 132 46.2 133 46.2 141.5 35.2 152.5 28.2 158 26.2 166.5 24.8 174.5 24.8 182 26.2 189.5 30.2 193.2 34 196.2 39 197.8 45.5 197.2 54.5 196.2 58 189.2 72 174.2 90 156 107.2 116.2 140 116.2 159 259 159.2 247.5 149.8 235.5 135.8 159.8 136 160.5 134.2 184 114.2 203.2 94 212.2 81.5 218.2 70 222.2 55.5 222.2 40 221.2 38.5 220.2 32 215.2 22 206 12.2 200 8.2 188 3.2 176.5 1.2 165 1.2Z M0.5 3.2 0.2 5.5 1.2 6 8.2 25 14.2 38 17.2 47 30.2 77 35.2 91 39.2 99 44.2 113 48.2 121 48.2 122.5 63.2 159 86 159.2 89.2 153 94.2 139 100.2 126 100.2 124.5 127.2 58.5 109 41.2 108.2 41.5 83.2 103 83.2 104.5 82.2 105.5 82.2 107 81.2 108 81.2 109.5 80.2 110.5 80.2 112 79.2 113 79.2 114.5 78.2 115.5 78.2 117 77.2 118 77.2 119.5 76.2 120.5 76.2 122 75.5 122.2 27.8 4 27 3.2 0.5 3.2Z M296 46.8 294 47.2 292.2 49 291.2 52 293.5 55.8 297.5 56.8 301.2 54 301.8 51 299 47.2 296 46.8Z M328.5 46.8 325.2 48.5 324.2 53 326 55.8 330 56.8 333.2 55 334.2 50.5 332 47.2 328.5 46.8Z M273 70.2 268.2 75 268.2 82 272.5 86.2 279.5 86.2 284.2 81.5 284.2 75.5 282.2 72.5 279 70.2 273 70.2Z M310 70.2 305.2 74.5 304.2 78 305.2 82.5 309.5 86.2 316.5 86.2 320.2 83 321.2 80.5 321.2 76 319.2 72.5 317.5 71.2 315.5 70.2 310 70.2Z M347 70.2 343.2 73 341.2 77 342.2 82.5 346 86.2 353.5 86.2 357.8 81.5 357.8 75.5 356.2 73 352.5 70.2 347 70.2Z M293.5 104.2 289.2 108 288.2 110 288.2 114.5 290.2 118 293 120.2 300 120.2 304.2 116 305.2 113 304.2 108.5 299.5 104.2 293.5 104.2Z M326.5 104.2 324.5 105.2 321.2 109 321.2 115.5 325.5 120.2 333 120.2 337.2 116 337.2 109 334 105.2 332 104.2 326.5 104.2Z", Be = {
 	" ": [
 		0,
 		0,
@@ -917,7 +919,7 @@ var Ve = {
 		8,
 		20
 	]
-}, L = 6, R = 8, z = {
+}, z = 6, B = 8, V = {
 	authentic: {
 		columns: 16,
 		rows: 2
@@ -931,11 +933,11 @@ var Ve = {
 		rows: 1
 	}
 };
-function Ue(e, t, n, r = {
+function Ve(e, t, n, r = {
 	x: 3.6,
 	y: 2.6
 }) {
-	let { columns: i, rows: a } = z[e], o = Math.min((t - r.x) / (i * L), (n - r.y) / (a * R)), s = i * L * o, c = a * R * o;
+	let { columns: i, rows: a } = V[e], o = Math.min((t - r.x) / (i * z), (n - r.y) / (a * B)), s = i * z * o, c = a * B * o;
 	return {
 		pitch: o,
 		dot: o * .78,
@@ -943,20 +945,20 @@ function Ue(e, t, n, r = {
 		offsetY: (n - c) / 2
 	};
 }
-function We(e) {
+function He(e) {
 	return e.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n").replace(/Ñ/g, "N").replace(/ç/g, "c").replace(/Ç/g, "C").replace(/æ/g, "ae").replace(/Æ/g, "AE").replace(/ø/g, "oe").replace(/Ø/g, "OE").replace(/ș/g, "s").replace(/Ș/g, "S").replace(/ț/g, "t").replace(/Ț/g, "T").replace(/º|ª/g, "").toUpperCase();
 }
-function Ge(e, t, n, r) {
-	let { columns: i, rows: a } = z[t], o = Ue(t, n, r), { pitch: s, dot: c } = o, l = (s - c) / 2, u = /* @__PURE__ */ new Set();
+function Ue(e, t, n, r) {
+	let { columns: i, rows: a } = V[t], o = Ve(t, n, r), { pitch: s, dot: c } = o, l = (s - c) / 2, u = /* @__PURE__ */ new Set();
 	for (let t = 0; t < Math.min(e.length, a); t += 1) {
-		let n = We(String(e[t] ?? ""));
+		let n = He(String(e[t] ?? ""));
 		for (let e = 0; e < i; e += 1) {
-			let r = He[n[e] ?? " "] ?? He[" "];
-			for (let n = 0; n < 5; n += 1) for (let i = 0; i < 7; i += 1) r[n] >> i & 1 && u.add(`${e * L + n},${t * R + i}`);
+			let r = Be[n[e] ?? " "] ?? Be[" "];
+			for (let n = 0; n < 5; n += 1) for (let i = 0; i < 7; i += 1) r[n] >> i & 1 && u.add(`${e * z + n},${t * B + i}`);
 		}
 	}
 	let d = (e, t) => `M${(e * s + l).toFixed(2)} ${(t * s + l).toFixed(2)}h${c.toFixed(2)}v${c.toFixed(2)}h-${c.toFixed(2)}z`, f = [], p = [];
-	for (let e = 0; e < i * L - 1; e += 1) for (let t = 0; t < a * R - 1; t += 1) (u.has(`${e},${t}`) ? f : p).push(d(e, t));
+	for (let e = 0; e < i * z - 1; e += 1) for (let t = 0; t < a * B - 1; t += 1) (u.has(`${e},${t}`) ? f : p).push(d(e, t));
 	return {
 		...o,
 		on: f.join(""),
@@ -965,13 +967,13 @@ function Ge(e, t, n, r) {
 }
 //#endregion
 //#region src/card/charger-art.ts
-function Ke(e) {
-	let t = e.map((e) => We(e)), n = t.filter((e) => e.length > 0), r = t.reduce((e, t) => Math.max(e, t.length), 0);
-	return n.length <= 1 && r <= z.big.columns ? "big" : r <= z.mid.columns ? "mid" : "authentic";
+function We(e) {
+	let t = e.map((e) => He(e)), n = t.filter((e) => e.length > 0), r = t.reduce((e, t) => Math.max(e, t.length), 0);
+	return n.length <= 1 && r <= V.big.columns ? "big" : r <= V.mid.columns ? "mid" : "authentic";
 }
-function qe(e) {
-	let { crop: t, showConnector: n, connectorHoldered: r, lcdLines: i, flashSeconds: a, logoOff: o, state: s, flash: c } = e, l = Be(t, n), { canvasWidth: u, canvasHeight: d, logo: f, display: p } = P, m = f.width / Ve.width, h = p.width / 65, g = Ge(i, Ke(i), 65, 13.7);
-	return D`<div
+function Ge(e) {
+	let { crop: t, showConnector: n, connectorHoldered: r, lcdLines: i, flashSeconds: a, logoOff: o, state: s, flash: c } = e, l = Re(t, n), { canvasWidth: u, canvasHeight: d, logo: f, display: p } = I, m = f.width / ze.width, h = p.width / 65, g = Ue(i, We(i), 65, 13.7);
+	return O`<div
     class="charger-art"
     style=${(a ? `--v2c-flash:${a.toFixed(2)}s` : void 0) ?? ""}
     data-crop=${t}
@@ -980,7 +982,7 @@ function qe(e) {
     data-connector=${n ? r ? "in" : "out" : "hidden"}
     aria-hidden="true"
   >
-    ${ye`<svg
+    ${ve`<svg
       viewBox="${l.x} ${l.y} ${l.width} ${l.height}"
       preserveAspectRatio="xMidYMin meet"
     >
@@ -999,28 +1001,28 @@ function qe(e) {
           <stop offset="1" stop-color="#0d1180" stop-opacity=".32" />
         </radialGradient>
       </defs>
-      <image href=${Re} x="0" y="0" width=${u} height=${d} />
-      ${n ? ye`<image class="charger-connector" href=${ze} x="0" y="0"
+      <image href=${Ie} x="0" y="0" width=${u} height=${d} />
+      ${n ? ve`<image class="charger-connector" href=${Le} x="0" y="0"
             width=${u} height=${d} />` : ""}
-      ${o ? "" : ye`<g class="charger-logo-glow">
+      ${o ? "" : ve`<g class="charger-logo-glow">
             <g filter="url(#v2c-glow-wide)" opacity=".3">
               <g transform="translate(${f.x} ${f.y}) scale(${m})">
-                <path d=${I} fill="currentColor" fill-rule="evenodd" />
+                <path d=${R} fill="currentColor" fill-rule="evenodd" />
               </g>
             </g>
             <g filter="url(#v2c-glow-mid)" opacity=".55">
               <g transform="translate(${f.x} ${f.y}) scale(${m})">
-                <path d=${I} fill="currentColor" fill-rule="evenodd" />
+                <path d=${R} fill="currentColor" fill-rule="evenodd" />
               </g>
             </g>
             <g filter="url(#v2c-glow-tight)" opacity=".5">
               <g transform="translate(${f.x} ${f.y}) scale(${m})">
-                <path d=${I} fill="currentColor" fill-rule="evenodd" />
+                <path d=${R} fill="currentColor" fill-rule="evenodd" />
               </g>
             </g>
           </g>
           <g class="charger-logo" transform="translate(${f.x} ${f.y}) scale(${m})">
-            <path d=${I} fill="currentColor" fill-rule="evenodd" />
+            <path d=${R} fill="currentColor" fill-rule="evenodd" />
           </g>`}
       <g class="charger-display" data-lcd=${i.join("|")}
         transform="translate(${p.x} ${p.y}) scale(${h})">
@@ -1037,13 +1039,13 @@ function qe(e) {
     </svg>`}
   </div>`;
 }
-function Je(e, t) {
-	let n = Be(e, t);
+function Ke(e, t) {
+	let n = Re(e, t);
 	return n.width / n.height;
 }
 //#endregion
 //#region src/config.ts
-var B = [
+var H = [
 	6,
 	10,
 	13,
@@ -1051,63 +1053,66 @@ var B = [
 	20,
 	25,
 	32
-], Ye = [
+], qe = [
 	"xxl",
 	"standard",
 	"compact",
 	"ultra_compact"
-], Xe = [
+], Je = [
 	"auto",
 	"centered",
 	"split",
 	"inline"
-], Ze = [
+], Ye = [
 	"power",
 	"energy",
 	"time"
-], Qe = [
+], Xe = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], $e = [
+], Ze = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
-], et = [
+], Qe = [
 	"focus",
 	"mid",
 	"full"
 ];
-function V(e, t, n) {
+function U(e, t, n) {
 	return typeof e == "string" && t.includes(e) ? e : n;
 }
-function tt(e, t) {
+function $e(e, t) {
 	return [...new Set(Array.isArray(e) ? e.filter((e) => typeof e == "string" && t.includes(e)) : t)];
 }
-function nt(e, t) {
-	let n = tt(e, t);
+function et(e, t) {
+	let n = $e(e, t);
 	return [...n, ...t.filter((e) => !n.includes(e))];
 }
-function rt(e) {
+function tt(e) {
+	return typeof e == "string" && /^#[0-9a-fA-F]{6}$/.test(e) ? e.toUpperCase() : void 0;
+}
+function nt(e) {
 	if (!e || typeof e != "object") throw Error("V2C Trydan Card: configuración no válida");
 	if (!e.entity || typeof e.entity != "string") throw Error("V2C Trydan Card: debes indicar una entidad V2C principal");
-	let t = Array.isArray(e.current_presets) ? e.current_presets : B, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = V(e.display_mode, Ye, "standard"), i = typeof e.accent_color == "string" && /^#[0-9a-fA-F]{6}$/.test(e.accent_color) ? e.accent_color.toUpperCase() : void 0;
+	let t = Array.isArray(e.current_presets) ? e.current_presets : H, n = [...new Set(t)].map(Number).filter((e) => Number.isFinite(e) && e > 0).sort((e, t) => e - t), r = U(e.display_mode, qe, "standard"), i = tt(e.accent_color);
 	return {
 		...e,
 		type: "custom:v2c-trydan-card",
-		theme: V(e.theme, [
+		theme: U(e.theme, [
 			"auto",
 			"light",
 			"dark"
 		], "auto"),
 		display_mode: r,
 		language: e.language ?? "auto",
-		layout: V(e.layout, Xe, "auto"),
-		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : V(e.color_scheme, [
+		layout: U(e.layout, Je, "auto"),
+		color_scheme: e.color_scheme === "custom" && !i ? "monochrome" : U(e.color_scheme, [
 			"monochrome",
 			"v2c_blue",
 			"teal",
@@ -1116,21 +1121,21 @@ function rt(e) {
 			"custom"
 		], "monochrome"),
 		accent_color: i,
-		surface_style: V(e.surface_style, [
+		surface_style: U(e.surface_style, [
 			"solid",
 			"tinted",
 			"transparent"
 		], "solid"),
 		hero_scale: Math.min(1.25, Math.max(.75, Number(e.hero_scale) || 1)),
 		card_radius: Number.isFinite(e.card_radius) ? Math.min(40, Math.max(0, Number(e.card_radius))) : void 0,
-		metrics: tt(e.metrics, Ze),
-		energy_sources: tt(e.energy_sources, Qe),
-		intensity_control: V(e.intensity_control, [
+		metrics: $e(e.metrics, Ye),
+		energy_sources: $e(e.energy_sources, Xe),
+		intensity_control: U(e.intensity_control, [
 			"slider",
 			"presets",
 			"both"
 		], "both"),
-		section_order: nt(e.section_order, $e),
+		section_order: et(e.section_order, Ze),
 		show_header: e.show_header ?? !0,
 		show_badges: e.show_badges ?? !0,
 		show_presets: e.show_presets ?? r !== "ultra_compact",
@@ -1139,7 +1144,7 @@ function rt(e) {
 		show_controls: e.show_controls ?? !0,
 		show_advanced: e.show_advanced ?? !0,
 		show_charger: e.show_charger ?? !0,
-		charger_art: V(e.charger_art, et, "focus"),
+		charger_art: U(e.charger_art, Qe, "focus"),
 		show_connector: e.show_connector ?? !1,
 		confirm_lock: e.confirm_lock ?? !0,
 		flow_threshold_w: Number.isFinite(e.flow_threshold_w) ? Math.max(0, Number(e.flow_threshold_w)) : 50,
@@ -1147,7 +1152,7 @@ function rt(e) {
 		entities: e.entities && typeof e.entities == "object" && !Array.isArray(e.entities) ? { ...e.entities } : {}
 	};
 }
-function it(e) {
+function rt(e) {
 	let t = Object.values(e?.entities ?? {}).find((e) => e.platform === "v2c" && e.translation_key === "connected"), n = Object.keys(e?.states ?? {}).find((e) => e.startsWith("binary_sensor.") && e.toLowerCase().includes("v2c"));
 	return {
 		type: "custom:v2c-trydan-card",
@@ -1158,7 +1163,7 @@ function it(e) {
 }
 //#endregion
 //#region src/localization/ca.ts
-var at = {
+var it = {
 	states: {
 		disconnected: "Sense vehicle",
 		unavailable: "No disponible",
@@ -1175,7 +1180,7 @@ var at = {
 	},
 	details: {
 		disconnected: "Trydan preparat",
-		unavailable: "Revisa la entitat principal",
+		unavailable: "Revisa l’entitat principal",
 		charging: "Energia cap al vehicle",
 		complete: "Ja pots desconnectar el vehicle",
 		timer: "El temporitzador és actiu",
@@ -1285,7 +1290,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Connectant"
 	}
-}, ot = {
+}, at = {
 	states: {
 		disconnected: "Intet køretøj",
 		unavailable: "Ikke tilgængelig",
@@ -1412,7 +1417,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Tilslutter"
 	}
-}, st = {
+}, ot = {
 	states: {
 		disconnected: "Kein Fahrzeug",
 		unavailable: "Nicht verfügbar",
@@ -1539,7 +1544,7 @@ var at = {
 		wifi_connected: "WLAN OK",
 		wifi_connecting: "Verbinden"
 	}
-}, ct = {
+}, st = {
 	states: {
 		disconnected: "Aucun véhicule",
 		unavailable: "Indisponible",
@@ -1666,7 +1671,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Connexion"
 	}
-}, lt = {
+}, ct = {
 	states: {
 		disconnected: "Nessun veicolo",
 		unavailable: "Non disponibile",
@@ -1793,7 +1798,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Connessione"
 	}
-}, ut = {
+}, lt = {
 	states: {
 		disconnected: "Geen voertuig",
 		unavailable: "Niet beschikbaar",
@@ -1920,7 +1925,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Verbinden"
 	}
-}, dt = {
+}, ut = {
 	states: {
 		disconnected: "Ingen bil",
 		unavailable: "Ikke tilgjengelig",
@@ -2047,7 +2052,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Kobler til"
 	}
-}, ft = {
+}, dt = {
 	states: {
 		disconnected: "Niciun vehicul",
 		unavailable: "Indisponibil",
@@ -2174,7 +2179,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Conectare"
 	}
-}, pt = {
+}, ft = {
 	states: {
 		disconnected: "Inget fordon",
 		unavailable: "Inte tillgänglig",
@@ -2301,7 +2306,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Ansluter"
 	}
-}, mt = {
+}, pt = {
 	states: {
 		disconnected: "No vehicle",
 		unavailable: "Unavailable",
@@ -2428,7 +2433,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Wifi..."
 	}
-}, ht = {
+}, mt = {
 	states: {
 		disconnected: "Sin vehículo",
 		unavailable: "No disponible",
@@ -2555,7 +2560,7 @@ var at = {
 		wifi_connected: "Wifi OK",
 		wifi_connecting: "Conectando"
 	}
-}, gt = [
+}, ht = [
 	"en",
 	"it",
 	"de",
@@ -2567,27 +2572,27 @@ var at = {
 	"ro",
 	"es",
 	"ca"
-], _t = {
-	en: mt,
-	it: lt,
-	de: st,
-	fr: ct,
-	nl: ut,
-	sv: pt,
-	da: ot,
-	no: dt,
-	ro: ft,
-	es: ht,
-	ca: at
+], gt = {
+	en: pt,
+	it: ct,
+	de: ot,
+	fr: st,
+	nl: lt,
+	sv: ft,
+	da: at,
+	no: ut,
+	ro: dt,
+	es: mt,
+	ca: it
 };
-function vt(e, t) {
+function _t(e, t) {
 	let n = (e === "auto" ? t : e)?.toLowerCase().split(/[-_]/)[0] ?? "en", r = n === "nb" || n === "nn" ? "no" : n;
-	return gt.includes(r) ? r : "en";
+	return ht.includes(r) ? r : "en";
 }
-function H(e) {
-	return _t[vt(e)];
+function W(e) {
+	return gt[_t(e)];
 }
-function U(e, t) {
+function G(e, t) {
 	let n = t.split(".").reduce((e, t) => {
 		if (!(typeof e != "object" || !e)) return e[t];
 	}, e);
@@ -2595,19 +2600,19 @@ function U(e, t) {
 }
 //#endregion
 //#region src/localization/lcd-copy.ts
-var yt = /* @__PURE__ */ new Set([
+var vt = /* @__PURE__ */ new Set([
 	"control_pilot",
 	"load_balancing",
 	"error"
 ]);
-function bt(e) {
+function yt(e) {
 	if (!e) return;
 	let t = e.replace(/\D/g, "");
 	if (t.length === 5) return `${t.slice(0, 2)} ${t.slice(2)}`;
 }
-function xt(e, t, n = {}) {
-	let r = U(H(e), `lcd.${t}`), i = [n.totalKw ? `T:${n.totalKw}` : void 0, n.solarKw ? `FV:${n.solarKw}` : void 0].filter((e) => !!e).join(" ");
-	return yt.has(t) ? {
+function bt(e, t, n = {}) {
+	let r = G(W(e), `lcd.${t}`), i = [n.totalKw ? `T:${n.totalKw}` : void 0, n.solarKw ? `FV:${n.solarKw}` : void 0].filter((e) => !!e).join(" ");
+	return vt.has(t) ? {
 		primary: r,
 		secondary: n.errorCode ?? ""
 	} : t === "charging" ? {
@@ -2620,28 +2625,28 @@ function xt(e, t, n = {}) {
 }
 //#endregion
 //#region src/services/actions.ts
-async function St(e, t, n) {
+async function xt(e, t, n) {
 	return e.callService("number", "set_value", {
 		entity_id: t,
 		value: n
 	});
 }
-async function Ct(e, t, n) {
+async function St(e, t, n) {
 	return e.callService("switch", n ? "turn_on" : "turn_off", { entity_id: t });
 }
-async function wt(e, t, n) {
+async function Ct(e, t, n) {
 	return e.callService("select", "select_option", {
 		entity_id: t,
 		option: n
 	});
 }
-async function Tt(e, t, n, r) {
+async function wt(e, t, n, r) {
 	let i = { entity_id: t };
 	return n && r !== void 0 && (i.brightness = r), e.callService("light", n ? "turn_on" : "turn_off", i);
 }
 //#endregion
 //#region src/services/discovery.ts
-var W = {
+var K = {
 	connected: {
 		translationKeys: ["connected"],
 		domains: ["binary_sensor"],
@@ -2812,21 +2817,35 @@ var W = {
 		legacySuffixes: ["_charge_mode", "_modo_de_carga"],
 		writable: !0
 	}
-}, Et = (e) => W[e].writable === !0;
-function Dt(e) {
+}, Tt = (e) => K[e].writable === !0;
+function Et(e) {
 	return e.split(".", 1)[0] ?? "";
 }
-function Ot(e) {
+function Dt(e) {
 	return Array.isArray(e) ? e : Object.values(e);
 }
-function kt(e, t) {
+function Ot(e, t) {
 	return !e || e[t] !== void 0;
 }
-function G(e, t) {
-	return W[e].domains.includes(Dt(t));
+function q(e, t) {
+	return K[e].domains.includes(Et(t));
 }
-function At(e, t, n) {
-	if (Dt(t) !== "sensor") return !1;
+function kt(e) {
+	let t = Object.keys(K).filter(Tt).flatMap((t) => (K[t].legacySuffixes ?? []).filter((t) => e.endsWith(t)).map((e) => ({
+		role: t,
+		suffixLength: e.length
+	}))).sort((e, t) => t.suffixLength - e.suffixLength);
+	if (t.length === 0) return;
+	let n = t[0].suffixLength, r = [...new Set(t.filter((e) => e.suffixLength === n).map((e) => e.role))];
+	return r.length === 1 ? r[0] : void 0;
+}
+function At(e, t) {
+	if (!Tt(e)) return !1;
+	let n = t.translation_key;
+	return n ? K[e].translationKeys.includes(n) : kt(t.entity_id) === e;
+}
+function jt(e, t, n) {
+	if (Et(t) !== "sensor") return !1;
 	let r = n?.[t];
 	if (!r) return !1;
 	let i = r.attributes.unit_of_measurement?.toLowerCase(), a = r.attributes.device_class;
@@ -2836,27 +2855,28 @@ function At(e, t, n) {
 		"mw"
 	].includes(i)) && (!a || a === "power") : (!i || i === "v") && (!a || a === "voltage")) ? r.state === "unknown" || r.state === "unavailable" || Number.isFinite(Number(r.state)) : !1;
 }
-function jt(e, t) {
+function Mt(e, t) {
 	if (t.length === 0) return;
-	let n = W[e].preferredDomains ?? W[e].domains;
+	let n = K[e].preferredDomains ?? K[e].domains;
 	for (let e of n) {
-		let n = t.filter((t) => Dt(t.entity_id) === e);
+		let n = t.filter((t) => Et(t.entity_id) === e);
 		if (n.length === 1) return n[0].entity_id;
 		if (n.length > 1) return;
 	}
 	return t.length === 1 ? t[0].entity_id : void 0;
 }
-function Mt(e, t, n = {}, r) {
-	let i = Ot(e), a = new Map(i.map((e) => [e.entity_id, e])), o = a.get(t), s = i.length === 0 ? "loading" : o ? o.platform === "v2c" ? o.device_id ? void 0 : "seed_missing_device" : "seed_not_v2c" : "seed_not_found", c = s ? void 0 : o?.device_id, l = c ? i.filter((e) => e.device_id === c && e.platform === "v2c" && kt(r, e.entity_id)) : [], u = {}, d = {}, f = {}, p = [];
-	for (let e of Object.keys(W)) {
+function Nt(e, t, n = {}, r) {
+	let i = Dt(e), a = new Map(i.map((e) => [e.entity_id, e])), o = a.get(t), s = i.length === 0 ? "loading" : o ? o.platform === "v2c" ? o.device_id ? void 0 : "seed_missing_device" : "seed_not_v2c" : "seed_not_found", c = s ? void 0 : o?.device_id, l = c ? i.filter((e) => e.device_id === c && e.platform === "v2c" && Ot(r, e.entity_id)) : [], u = {}, d = {}, f = {}, p = [], m = /* @__PURE__ */ new Map();
+	for (let e of Object.values(n)) e && m.set(e, (m.get(e) ?? 0) + 1);
+	for (let e of Object.keys(K)) {
 		let t = n[e];
 		if (!t) continue;
-		let o = a.get(t), s = W[e], l = !!(s.externalMeasurement && At(s.externalMeasurement, t, r)), f = !!(c && o && o.device_id === c && o.platform === "v2c" && G(e, t) && kt(r, t)), p = i.length === 0 && kt(r, t) && G(e, t);
-		l || f || p ? (u[e] = t, d[e] = "manual") : d[e] = "invalid";
+		let o = a.get(t), s = K[e], l = (m.get(t) ?? 0) > 1, f = !!(s.externalMeasurement && jt(s.externalMeasurement, t, r)), p = !!(c && o && o.device_id === c && o.platform === "v2c" && q(e, t) && (!s.writable || At(e, o)) && Ot(r, t)), h = !s.writable && i.length === 0 && Ot(r, t) && q(e, t);
+		!l && (f || p || h) ? (u[e] = t, d[e] = "manual") : d[e] = "invalid";
 	}
-	for (let e of Object.keys(W)) {
+	for (let e of Object.keys(K)) {
 		if (u[e] || !c) continue;
-		let t = W[e], n = l.filter((n) => !!(n.translation_key && t.translationKeys.includes(n.translation_key)) && G(e, n.entity_id)), r = jt(e, n);
+		let t = K[e], n = l.filter((n) => !!(n.translation_key && t.translationKeys.includes(n.translation_key)) && q(e, n.entity_id)), r = Mt(e, n);
 		if (r) {
 			u[e] = r, d[e] = "automatic";
 			continue;
@@ -2865,37 +2885,37 @@ function Mt(e, t, n = {}, r) {
 			f[e] = n.map((e) => e.entity_id), d[e] = "ambiguous";
 			continue;
 		}
-		let i = l.filter((n) => G(e, n.entity_id) && (t.legacySuffixes ?? []).some((e) => n.entity_id.endsWith(e))), a = jt(e, i);
+		let i = l.filter((n) => q(e, n.entity_id) && (t.writable ? At(e, n) : (t.legacySuffixes ?? []).some((e) => n.entity_id.endsWith(e)))), a = Mt(e, i);
 		a ? (u[e] = a, d[e] = "automatic", p.push(e)) : i.length > 1 && (f[e] = i.map((e) => e.entity_id), d[e] = "ambiguous");
 	}
 	return {
 		entities: u,
 		ambiguities: f,
-		missing: Object.keys(W).filter((e) => !u[e]),
+		missing: Object.keys(K).filter((e) => !u[e]),
 		deviceId: c,
-		statuses: Object.fromEntries(Object.keys(W).map((e) => [e, d[e] ?? "missing"])),
+		statuses: Object.fromEntries(Object.keys(K).map((e) => [e, d[e] ?? "missing"])),
 		diagnostic: s,
 		legacyRoles: p
 	};
 }
-function Nt(e, t, n, r) {
+function Pt(e, t, n, r) {
 	let i = e.entities?.[n], a = e.states[n];
-	return !!(r && Et(t) && i?.device_id === r && i.platform === "v2c" && G(t, n) && a && a.state !== "unknown" && a.state !== "unavailable");
+	return !!(r && Tt(t) && i?.device_id === r && i.platform === "v2c" && q(t, n) && At(t, i) && a && a.state !== "unknown" && a.state !== "unavailable");
 }
 //#endregion
 //#region src/services/energy.ts
-function Pt(e) {
+function Ft(e) {
 	if (!e || e.state === "unknown" || e.state === "unavailable") return null;
 	let t = Number(e.state);
 	if (!Number.isFinite(t)) return null;
 	let n = e.attributes.unit_of_measurement?.toLowerCase();
 	return n === "kw" ? t * 1e3 : n === "mw" ? t * 1e6 : t;
 }
-function Ft(e, t, n) {
+function It(e, t, n) {
 	return Math.abs(t) < n ? "idle" : e === "grid" ? t > 0 ? "import" : "export" : e === "battery" ? t > 0 ? "discharge" : "charge" : e === "solar" ? t > 0 ? "produce" : "unknown" : t > 0 ? "consume" : "export";
 }
-function K(e, t, n = {}) {
-	let r = Pt(t);
+function J(e, t, n = {}) {
+	let r = Ft(t);
 	if (r === null) return {
 		role: e,
 		watts: null,
@@ -2906,13 +2926,13 @@ function K(e, t, n = {}) {
 	return {
 		role: e,
 		watts: i,
-		direction: Ft(e, i, n.thresholdW ?? 50),
+		direction: It(e, i, n.thresholdW ?? 50),
 		available: !0
 	};
 }
 //#endregion
 //#region src/services/format.ts
-var It = {
+var Lt = {
 	en: "en-US",
 	it: "it-IT",
 	de: "de-DE",
@@ -2922,34 +2942,35 @@ var It = {
 	da: "da-DK",
 	no: "no-NO",
 	ro: "ro-RO",
-	es: "es-ES"
+	es: "es-ES",
+	ca: "ca-ES"
 };
-function Lt(e) {
-	return It[e ?? "es"] ?? "en-US";
-}
-function Rt(e, t = "es") {
-	if (e === null || !Number.isFinite(e)) return "—";
-	let n = Math.abs(e);
-	return n >= 1e3 ? `${new Intl.NumberFormat(Lt(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(Lt(t), { maximumFractionDigits: 0 }).format(n)} W`;
+function Rt(e) {
+	return Lt[e ?? "es"] ?? "en-US";
 }
 function zt(e, t = "es") {
+	if (e === null || !Number.isFinite(e)) return "—";
+	let n = Math.abs(e);
+	return n >= 1e3 ? `${new Intl.NumberFormat(Rt(t), { maximumFractionDigits: 1 }).format(n / 1e3)} kW` : `${new Intl.NumberFormat(Rt(t), { maximumFractionDigits: 0 }).format(n)} W`;
+}
+function Bt(e, t = "es") {
 	if (e === null || e === "") return "—";
 	let n = Number(e);
-	return Number.isFinite(n) ? `${new Intl.NumberFormat(Lt(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
+	return Number.isFinite(n) ? `${new Intl.NumberFormat(Rt(t), { maximumFractionDigits: 2 }).format(n)} kWh` : "—";
 }
-function Bt(e) {
+function Vt(e) {
 	if (e === null || e === "") return "—";
 	let t = Number(e);
 	if (!Number.isFinite(t) || t < 0) return "—";
 	let n = Math.floor(t / 3600), r = Math.floor(t % 3600 / 60);
 	return `${String(n).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
 }
-function q(e) {
+function Ht(e) {
 	if (!(e === null || !Number.isFinite(e))) return (Math.abs(e) / 1e3).toFixed(1);
 }
 //#endregion
 //#region src/models/types.ts
-var Vt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), Ht = [
+var Ut = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.charge_time.house_power.fv_power.battery_power.grid_power.voltage.intensity.min_intensity.max_intensity.meter_error.ssid.ip_address.signal_status.paused.locked.timer.dynamic.pause_dynamic.logo_led.light_led.charge_mode".split("."), Wt = [
 	"disconnected",
 	"charging",
 	"complete",
@@ -2961,7 +2982,7 @@ var Vt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.ch
 	"waiting_power",
 	"wifi_connected",
 	"wifi_connecting"
-], Ut = {
+], Gt = {
 	sin_vehiculo: "disconnected",
 	desconectado: "disconnected",
 	cargando: "charging",
@@ -2978,7 +2999,7 @@ var Vt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.ch
 	esperando_potencia: "waiting_power",
 	wifi_conectado: "wifi_connected",
 	conectando_wifi: "wifi_connecting"
-}, Wt = {
+}, Kt = {
 	disconnected: "neutral",
 	charging: "info",
 	complete: "success",
@@ -2991,16 +3012,16 @@ var Vt = /* @__PURE__ */ "connected.charging.ready.charge_power.charge_energy.ch
 	wifi_connected: "success",
 	wifi_connecting: "info"
 };
-function Gt(e) {
+function qt(e) {
 	return e.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 }
-function Kt(e) {
+function Jt(e) {
 	if (!e) return;
-	let t = Gt(e);
-	return Ht.includes(t) ? t : Ut[t];
+	let t = qt(e);
+	return Wt.includes(t) ? t : Gt[t];
 }
-function qt(e) {
-	let t = Kt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
+function Yt(e) {
+	let t = Jt(e.externalStatus), n = (e.connected === void 0 || e.connected === "unknown") && (e.charging === void 0 || e.charging === "unknown") ? e.ready === void 0 || e.ready === "unknown" : !1, r;
 	r = e.charging === !0 ? "charging" : e.ready === !0 ? "complete" : e.connected === !0 ? "connected" : n || e.seedAvailable === !1 ? "unavailable" : "disconnected";
 	let i = [];
 	e.paused === !0 && i.push("paused"), e.locked === !0 && i.push("locked"), e.timer === !0 && i.push("timer");
@@ -3017,26 +3038,26 @@ function qt(e) {
 		diagnostic: l ? c : void 0
 	};
 }
-function J(e, t, n = !1) {
+function Y(e, t, n = !1) {
 	return {
 		key: e,
 		labelKey: n ? "states.unavailable" : `states.${e}`,
 		detailKey: n ? "details.unavailable" : `details.${e}`,
-		severity: Wt[e],
+		severity: Kt[e],
 		badges: t.inhibitors,
 		diagnostic: t.diagnostic,
 		unavailable: n
 	};
 }
-function Jt(e) {
-	return e.externalStatus ? J(e.externalStatus, e) : e.fault === "control_pilot" ? J("control_pilot", e) : e.fault === "load_balancing" ? J("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? J("error", e) : e.maintenance === "updating" ? J("updating", e) : e.phase === "charging" ? J("charging", e) : e.phase === "complete" ? J("complete", e) : e.inhibitors.includes("timer") ? J("timer", e) : e.connectivity === "wifi_connecting" ? J("wifi_connecting", e) : e.connectivity === "wifi_connected" ? J("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? J("waiting_power", e) : J("disconnected", e, e.phase === "unavailable");
+function Xt(e) {
+	return e.externalStatus ? Y(e.externalStatus, e) : e.fault === "control_pilot" ? Y("control_pilot", e) : e.fault === "load_balancing" ? Y("load_balancing", e) : e.fault === "meter" || e.fault === "generic" ? Y("error", e) : e.maintenance === "updating" ? Y("updating", e) : e.phase === "charging" ? Y("charging", e) : e.phase === "complete" ? Y("complete", e) : e.inhibitors.includes("timer") ? Y("timer", e) : e.connectivity === "wifi_connecting" ? Y("wifi_connecting", e) : e.connectivity === "wifi_connected" ? Y("wifi_connected", e) : e.phase === "connected" || e.inhibitors.includes("paused") ? Y("waiting_power", e) : Y("disconnected", e, e.phase === "unavailable");
 }
-function Y(e) {
+function X(e) {
 	return e === "on" || e === "true" ? !0 : e === "off" || e === "false" ? !1 : "unknown";
 }
 //#endregion
 //#region src/card/advanced-controls.ts
-var Yt = [
+var Zt = [
 	{
 		role: "locked",
 		label: "actions.lock"
@@ -3054,66 +3075,66 @@ var Yt = [
 		label: "actions.pauseDynamic"
 	}
 ];
-function Xt(e) {
+function Qt(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function Zt(e, t, n) {
+function $t(e, t, n) {
 	let r = e.entities[t];
-	if (!r) return k;
+	if (!r) return A;
 	let i = e.hass.states[r], a = i?.state === "on";
-	return D`
+	return O`
     <div class="toggle-row">
-      <span>${t === "locked" && a ? U(e.dictionary, "actions.unlock") : U(e.dictionary, n)}</span>
+      <span>${t === "locked" && a ? G(e.dictionary, "actions.unlock") : G(e.dictionary, n)}</span>
       <button
         data-role=${t}
         role="switch"
         aria-checked=${String(a)}
         aria-pressed=${String(a)}
         aria-busy=${String(e.pending.includes(t))}
-        ?disabled=${!Xt(i) || e.pending.includes(t)}
+        ?disabled=${!Qt(i) || e.pending.includes(t)}
         @click=${() => e.onToggle(t)}
       >${a ? "ON" : "OFF"}</button>
     </div>
   `;
 }
-function Qt(e) {
-	let t = Yt.map(({ role: t, label: n }) => Zt(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
-	return !t.some((e) => e !== k) && !n && !i && !o && !s ? k : D`
+function en(e) {
+	let t = Zt.map(({ role: t, label: n }) => $t(e, t, n)), n = e.entities.charge_mode, r = n ? e.hass.states[n] : void 0, i = e.entities.logo_led, a = i ? e.hass.states[i] : void 0, o = e.entities.light_led, s = !!(e.voltage || e.diagnostic || e.ambiguityRoles?.length);
+	return !t.some((e) => e !== A) && !n && !i && !o && !s ? A : O`
     <details ?open=${e.advancedOpen === !0}>
-      <summary>${U(e.dictionary, "labels.advanced")}</summary>
+      <summary>${G(e.dictionary, "labels.advanced")}</summary>
       <div class="advanced-grid">
-        ${t.slice(0, 2).some((e) => e !== k) || n ? D`
+        ${t.slice(0, 2).some((e) => e !== A) || n ? O`
               <section class="control-group">
-                <h3>${U(e.dictionary, "labels.chargingControls")}</h3>
+                <h3>${G(e.dictionary, "labels.chargingControls")}</h3>
                 ${t.slice(0, 2)}
-                ${n ? D`
+                ${n ? O`
                       <label class="select-row">
-                        <span>${U(e.dictionary, "actions.chargeMode")}</span>
+                        <span>${G(e.dictionary, "actions.chargeMode")}</span>
                         <select
                           data-role="charge_mode"
                           .value=${r?.state ?? ""}
-                          ?disabled=${!Xt(r) || e.pending.includes("charge_mode")}
+                          ?disabled=${!Qt(r) || e.pending.includes("charge_mode")}
                           @change=${(t) => e.onSelect(t.target.value)}
                         >
-                          ${(r?.attributes.options ?? []).map((e) => D`<option .value=${String(e)}>${String(e)}</option>`)}
+                          ${(r?.attributes.options ?? []).map((e) => O`<option .value=${String(e)}>${String(e)}</option>`)}
                         </select>
                       </label>
-                    ` : k}
+                    ` : A}
               </section>
-            ` : k}
-        ${t.slice(2).some((e) => e !== k) ? D`
+            ` : A}
+        ${t.slice(2).some((e) => e !== A) ? O`
               <section class="control-group">
-                <h3>${U(e.dictionary, "labels.energyControls")}</h3>
+                <h3>${G(e.dictionary, "labels.energyControls")}</h3>
                 ${t.slice(2)}
               </section>
-            ` : k}
-        ${i || o ? D`
+            ` : A}
+        ${i || o ? O`
               <section class="control-group">
-                <h3>${U(e.dictionary, "labels.lightControls")}</h3>
-                ${Zt(e, "logo_led", "actions.logoLed")}
-                ${i && Xt(a) ? D`
+                <h3>${G(e.dictionary, "labels.lightControls")}</h3>
+                ${$t(e, "logo_led", "actions.logoLed")}
+                ${i && Qt(a) ? O`
                       <label class="range-head" for="v2c-logo-brightness">
-                        <span>${U(e.dictionary, "actions.logoLed")}</span>
+                        <span>${G(e.dictionary, "actions.logoLed")}</span>
                         <output>${Math.round((Number(a?.attributes.brightness ?? 0) || 0) / 255 * 100)}%</output>
                       </label>
                       <input
@@ -3124,65 +3145,65 @@ function Qt(e) {
                         .value=${String(a?.attributes.brightness ?? 128)}
                         @change=${(t) => e.onBrightness(Number(t.target.value))}
                       />
-                    ` : k}
-                ${Zt(e, "light_led", "actions.lightLed")}
+                    ` : A}
+                ${$t(e, "light_led", "actions.lightLed")}
               </section>
-            ` : k}
-        ${s ? D`
+            ` : A}
+        ${s ? O`
               <section class="control-group">
-                <h3>${U(e.dictionary, "labels.diagnostics")}</h3>
+                <h3>${G(e.dictionary, "labels.diagnostics")}</h3>
                 <dl class="technical-list">
-                  ${e.voltage ? D`
+                  ${e.voltage ? O`
                         <div class="technical-row">
-                          <dt>${U(e.dictionary, "labels.voltage")}</dt>
+                          <dt>${G(e.dictionary, "labels.voltage")}</dt>
                           <dd>${e.voltage.state} ${e.voltage.attributes.unit_of_measurement ?? "V"}</dd>
                         </div>
-                      ` : k}
-                  ${e.diagnostic ? D`
+                      ` : A}
+                  ${e.diagnostic ? O`
                         <div class="technical-row" data-severity="error">
-                          <dt>${U(e.dictionary, "labels.diagnostics")}</dt>
+                          <dt>${G(e.dictionary, "labels.diagnostics")}</dt>
                           <dd>${e.diagnostic}</dd>
                         </div>
-                      ` : k}
-                  ${e.ambiguityRoles?.length ? D`
+                      ` : A}
+                  ${e.ambiguityRoles?.length ? O`
                         <div class="technical-row">
-                          <dt>${U(e.dictionary, "labels.configuration")}</dt>
+                          <dt>${G(e.dictionary, "labels.configuration")}</dt>
                           <dd>YAML · ${e.ambiguityRoles.join(", ")}</dd>
                         </div>
-                      ` : k}
+                      ` : A}
                 </dl>
               </section>
-            ` : k}
+            ` : A}
       </div>
     </details>
   `;
 }
 //#endregion
 //#region src/card/energy-flow.ts
-var $t = {
+var tn = {
 	solar: "mdi:solar-power",
 	grid: "mdi:transmission-tower",
 	home: "mdi:home-lightning-bolt",
 	battery: "mdi:home-battery",
 	charger: "mdi:ev-station"
 };
-function en(e, t, n) {
-	if (e.length === 0) return k;
-	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${U(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
-	return D`
-    <section class="energy-section" aria-label=${U(t, "labels.energyFlow")}>
+function nn(e, t, n) {
+	if (e.length === 0) return A;
+	let r = e.filter((e) => e.available), i = e.length - r.length, a = r.filter((e) => !["idle", "unknown"].includes(e.direction)), o = a.length > 0 ? "active" : r.length === 0 ? "unavailable" : i > 0 ? "partial" : "idle", s = `${G(t, o === "active" ? "flows.activeFlow" : o === "partial" ? "flows.partialData" : o === "unavailable" ? "flows.noData" : "flows.noFlow")}${o === "idle" ? " · 0 W" : ""}`;
+	return O`
+    <section class="energy-section" aria-label=${G(t, "labels.energyFlow")}>
       <div class="energy-summary" data-kind=${o}>
         <p class="energy-summary-title">
           <ha-icon icon="mdi:lightning-bolt-outline" aria-hidden="true"></ha-icon>
           <span>${s}</span>
         </p>
-        ${a.length ? D`
+        ${a.length ? O`
               <div class="energy-nodes">
                 ${a.map((e) => {
-		let r = U(t, `flows.${e.role}`), i = U(t, `flows.${e.direction}`), a = Rt(e.watts, n);
-		return D`
+		let r = G(t, `flows.${e.role}`), i = G(t, `flows.${e.direction}`), a = zt(e.watts, n);
+		return O`
                     <div class="flow-node" aria-label=${`${r}: ${a}, ${i}`}>
-                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${$t[e.role]}></ha-icon></span>
+                      <span class="flow-name" aria-hidden="true"><ha-icon icon=${tn[e.role]}></ha-icon></span>
                       <span class="flow-name-text">${r}</span>
                       <strong class="flow-value">${a}</strong>
                       <span class="flow-direction">${i}</span>
@@ -3190,35 +3211,35 @@ function en(e, t, n) {
                   `;
 	})}
               </div>
-            ` : k}
-        ${a.length && i ? D`<p class="energy-note">${U(t, "flows.partialData")}</p>` : k}
+            ` : A}
+        ${a.length && i ? O`<p class="energy-note">${G(t, "flows.partialData")}</p>` : A}
       </div>
     </section>
   `;
 }
 //#endregion
 //#region src/card/session-controls.ts
-function X(e) {
+function rn(e) {
 	return !!(e && e.state !== "unknown" && e.state !== "unavailable");
 }
-function tn(e) {
+function an(e) {
 	let t = e.entities.intensity, n = e.entities.paused, r = t ? e.hass.states[t] : void 0, i = n ? e.hass.states[n] : void 0;
-	if (!t && !n) return k;
+	if (!t && !n) return A;
 	let a = Number(r?.attributes.min ?? 6), o = Number(r?.attributes.max ?? 32), s = Number(r?.attributes.step ?? 1), c = Number(r?.state), l = e.sliderValue ?? (Number.isFinite(c) ? c : a), u = e.presets.filter((e) => e >= a && e <= o), d = i?.state === "on", f = e.intensityControl !== "presets", p = e.showPresets !== !1 && e.intensityControl !== "slider";
-	return D`
-    <section class="session-controls" aria-label=${U(e.dictionary, "labels.chargingControls")}>
-      ${t ? D`<div class="range-control">
-        ${f ? D`<label class="range-head" for="v2c-intensity"><span>${U(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
-        <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!X(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : k}
-        ${p ? D`<div class="presets" aria-label=${U(e.dictionary, "labels.intensity")}>${u.map((t) => D`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!X(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : k}
-      </div>` : k}
-      ${n ? D`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!X(i) || e.pending.includes("paused")} title=${X(i) ? "" : U(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${U(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : k}
+	return O`
+    <section class="session-controls" aria-label=${G(e.dictionary, "labels.chargingControls")}>
+      ${t ? O`<div class="range-control">
+        ${f ? O`<label class="range-head" for="v2c-intensity"><span>${G(e.dictionary, "labels.intensity")}</span><output>${Math.round(l)} A</output></label>
+        <input id="v2c-intensity" data-role="intensity" type="range" .min=${String(a)} .max=${String(o)} .step=${String(s)} .value=${String(l)} ?disabled=${!rn(r) || e.pending.includes("intensity")} aria-busy=${String(e.pending.includes("intensity"))} @input=${(t) => e.onSliderInput(Number(t.target.value))} @change=${(t) => e.onIntensity(Number(t.target.value))} />` : A}
+        ${p ? O`<div class="presets" aria-label=${G(e.dictionary, "labels.intensity")}>${u.map((t) => O`<button class="preset" aria-pressed=${String(Math.round(l) === t)} ?disabled=${!rn(r) || e.pending.includes("intensity")} @click=${() => e.onIntensity(t)}>${t} A</button>`)}</div>` : A}
+      </div>` : A}
+      ${n ? O`<button class="primary-action" data-role="paused" aria-busy=${String(e.pending.includes("paused"))} ?disabled=${!rn(i) || e.pending.includes("paused")} title=${rn(i) ? "" : G(e.dictionary, "labels.unavailableEntity")} @click=${e.onPause}>${G(e.dictionary, d ? "actions.resume" : "actions.pause")}</button>` : A}
     </section>
   `;
 }
 //#endregion
 //#region src/card/styles.ts
-var nn = o`
+var on = o`
   :host {
     --v2c-surface: var(--ha-card-background, var(--card-background-color, light-dark(#ffffff, #181b1e)));
     --v2c-surface-soft: var(--secondary-background-color, light-dark(#f4f5f6, #202428));
@@ -3894,7 +3915,7 @@ var nn = o`
   }
 `;
 //#endregion
-//#region \0@oxc-project+runtime@0.139.0/helpers/esm/decorate.js
+//#region \0@oxc-project+runtime@0.147.0/helpers/esm/decorate.js
 function Z(e, t, n, r) {
 	var i = arguments.length, a = i < 3 ? t : r === null ? r = Object.getOwnPropertyDescriptor(t, n) : r, o;
 	if (typeof Reflect == "object" && typeof Reflect.decorate == "function") a = Reflect.decorate(e, t, n, r);
@@ -3903,27 +3924,26 @@ function Z(e, t, n, r) {
 }
 //#endregion
 //#region src/card/v2c-trydan-card.ts
-function rn(e) {
+function sn(e) {
 	let t = Number(e);
 	return !Number.isFinite(t) || t <= 0 ? .9 : Math.min(1.45, Math.max(.5, 1.45 - Math.min(t, 32) / 32 * .95));
 }
-var Q = class extends M {
+var Q = class extends P {
 	constructor(...e) {
 		super(...e), this.resolvedEntities = {}, this.ambiguities = {}, this.pendingRoles = [], this.actionMessage = "", this.#e = /* @__PURE__ */ new Map();
 	}
 	static {
-		this.styles = nn;
+		this.styles = on;
 	}
 	#e;
-	#t;
 	static getConfigElement() {
 		return document.createElement("v2c-trydan-card-editor");
 	}
 	static getStubConfig(e) {
-		return it(e);
+		return rt(e);
 	}
 	setConfig(e) {
-		this.config = rt(e), this.#n(), this.sliderValue = void 0;
+		this.config = nt(e), this.#t(), this.sliderValue = void 0;
 	}
 	getCardSize() {
 		return this.config?.display_mode === "ultra_compact" ? 3 : this.config?.display_mode === "compact" ? 4 : this.config?.display_mode === "standard" ? 6 : 8;
@@ -3942,34 +3962,34 @@ var Q = class extends M {
 	shouldUpdate(e) {
 		if (!e.has("hass") || e.size > 1) return !0;
 		let t = e.get("hass");
-		return !t || !this.hass || t.entities !== this.hass.entities || t.language !== this.hass.language || t.locale?.language !== this.hass.locale?.language || [...this.#r()].some((e) => t.states[e] !== this.hass.states[e]);
+		return !t || !this.hass || t.entities !== this.hass.entities || t.language !== this.hass.language || t.locale?.language !== this.hass.locale?.language || [...this.#n()].some((e) => t.states[e] !== this.hass.states[e]);
 	}
 	willUpdate(e) {
-		(e.has("config") || e.has("hass") && e.get("hass")?.entities !== this.hass?.entities) && this.#n();
+		(e.has("config") || e.has("hass") && e.get("hass")?.entities !== this.hass?.entities) && this.#t();
 	}
 	updated(e) {
-		e.has("hass") && this.#l();
+		e.has("hass") && this.#c();
 	}
-	#n() {
+	#t() {
 		if (!this.hass || !this.config) {
-			this.resolvedEntities = {}, this.ambiguities = {}, this.#t = void 0;
+			this.resolvedEntities = {}, this.ambiguities = {};
 			return;
 		}
-		let e = Mt(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
-		this.resolvedEntities = e.entities, this.ambiguities = e.ambiguities, this.#t = e.deviceId, this.discoveryDiagnostic = e.diagnostic;
+		let e = Nt(this.hass.entities ?? {}, this.config.entity, this.config.entities, this.hass.states);
+		this.resolvedEntities = e.entities, this.ambiguities = e.ambiguities, this.discoveryDiagnostic = e.diagnostic;
 	}
-	#r() {
+	#n() {
 		return new Set([
 			this.config?.entity,
 			this.config?.status_entity,
 			...Object.values(this.resolvedEntities)
 		].filter((e) => !!e));
 	}
-	#i(e) {
+	#r(e) {
 		let t = this.resolvedEntities[e];
 		return t && this.hass ? this.hass.states[t] : void 0;
 	}
-	#a() {
+	#i() {
 		let e = this.config?.color_scheme === "custom" ? this.config.accent_color : {
 			v2c_blue: "#0067D9",
 			teal: "#007F86",
@@ -3978,86 +3998,87 @@ var Q = class extends M {
 		}[this.config?.color_scheme ?? ""], t = e && parseInt(e.slice(1, 3), 16) * .299 + parseInt(e.slice(3, 5), 16) * .587 + parseInt(e.slice(5, 7), 16) * .114 > 150 ? "#000" : "#fff";
 		return (e ? `--v2c-control:${e};--v2c-on-control:${t};` : "") + (this.config?.card_radius === void 0 ? "" : `--v2c-radius:${this.config.card_radius}px;`) + `--v2c-hero-scale:${this.config?.hero_scale ?? 1};`;
 	}
-	#o() {
-		return vt(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
+	#a() {
+		return _t(this.config?.language, this.hass?.locale?.language ?? this.hass?.language);
 	}
-	#s(e, t) {
+	#o(e, t) {
 		this.#e.set(e, t), this.pendingRoles = [...this.#e.keys()];
 	}
-	#c(e, t) {
+	#s(e, t) {
 		let n = this.#e.get(e);
 		n?.timer && clearTimeout(n.timer), this.#e.delete(e), this.pendingRoles = [...this.#e.keys()];
-		let r = H(this.#o());
-		this.actionMessage = U(r, t ? "labels.actionDone" : "labels.actionFailed");
+		let r = W(this.#a());
+		this.actionMessage = G(r, t ? "labels.actionDone" : "labels.actionFailed");
 	}
-	#l() {
-		if (this.hass) for (let [e, t] of this.#e) t.matches(this.hass.states[t.entityId]) && this.#c(e, !0);
+	#c() {
+		if (this.hass) for (let [e, t] of this.#e) t.matches(this.hass.states[t.entityId]) && this.#s(e, !0);
 	}
-	async #u(e, t, n, r) {
-		if (!this.hass || !Nt(this.hass, e, t, this.#t)) {
-			this.actionMessage = U(H(this.#o()), "labels.actionFailed");
+	async #l(e, t, n, r) {
+		let i = this.config ? this.hass?.entities?.[this.config.entity] : void 0, a = i?.platform === "v2c" ? i.device_id : void 0;
+		if (!this.hass || !Pt(this.hass, e, t, a)) {
+			this.actionMessage = G(W(this.#a()), "labels.actionFailed");
 			return;
 		}
 		if (this.#e.has(e)) return;
-		let i = H(this.#o());
-		this.actionMessage = U(i, "labels.actionPending");
-		let a = {
+		let o = W(this.#a());
+		this.actionMessage = G(o, "labels.actionPending");
+		let s = {
 			entityId: t,
 			matches: n
 		};
-		this.#s(e, a);
+		this.#o(e, s);
 		try {
 			if (await r(), n(this.hass?.states[t])) {
-				this.#c(e, !0);
+				this.#s(e, !0);
 				return;
 			}
-			a.timer = setTimeout(() => this.#c(e, !1), 6e3);
+			s.timer = setTimeout(() => this.#s(e, !1), 6e3);
 		} catch {
-			this.#c(e, !1);
+			this.#s(e, !1);
 		}
 	}
-	#d(e) {
+	#u(e) {
 		let t = this.resolvedEntities.intensity, n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = Number(n.attributes.min ?? 6), i = Number(n.attributes.max ?? 32), a = Number(n.attributes.step ?? 1), o = Number.isFinite(a) && a > 0 ? a : 1, s = Math.min(i, Math.max(r, Math.round((e - r) / o) * o + r));
-		this.sliderValue = s, this.#u("intensity", t, (e) => Number(e?.state) === s, () => St(this.hass, t, s));
+		this.sliderValue = s, this.#l("intensity", t, (e) => Number(e?.state) === s, () => xt(this.hass, t, s));
+	}
+	#d(e) {
+		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
+		if (!this.hass || !t || !n) return;
+		let r = n.state !== "on";
+		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(G(W(this.#a()), "actions.confirmLock")) || this.#l(e, t, (e) => e?.state === (r ? "on" : "off"), () => St(this.hass, t, r));
 	}
 	#f(e) {
-		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
-		if (!this.hass || !t || !n) return;
-		let r = n.state !== "on";
-		e === "locked" && r && this.config?.confirm_lock !== !1 && !window.confirm(U(H(this.#o()), "actions.confirmLock")) || this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => Ct(this.hass, t, r));
+		let t = this.resolvedEntities.charge_mode, n = t ? this.hass?.states[t] : void 0;
+		!this.hass || !t || !n || !n.attributes.options?.includes(e) || this.#l("charge_mode", t, (t) => t?.state === e, () => Ct(this.hass, t, e));
 	}
 	#p(e) {
-		let t = this.resolvedEntities.charge_mode, n = t ? this.hass?.states[t] : void 0;
-		!this.hass || !t || !n || !n.attributes.options?.includes(e) || this.#u("charge_mode", t, (t) => t?.state === e, () => wt(this.hass, t, e));
-	}
-	#m(e) {
 		let t = this.resolvedEntities[e], n = t ? this.hass?.states[t] : void 0;
 		if (!this.hass || !t || !n) return;
 		let r = n.state !== "on";
-		this.#u(e, t, (e) => e?.state === (r ? "on" : "off"), () => Tt(this.hass, t, r));
+		this.#l(e, t, (e) => e?.state === (r ? "on" : "off"), () => wt(this.hass, t, r));
 	}
-	#h(e) {
+	#m(e) {
 		let t = this.resolvedEntities.logo_led, n = t ? this.hass?.states[t] : void 0;
-		!this.hass || !t || !n || !Number.isFinite(e) || e < 0 || e > 255 || this.#u("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => Tt(this.hass, t, !0, e));
+		!this.hass || !t || !n || !Number.isFinite(e) || e < 0 || e > 255 || this.#l("logo_led", t, (t) => Number(t?.attributes.brightness) === e, () => wt(this.hass, t, !0, e));
 	}
 	render() {
-		if (!this.config || !this.hass) return D`<ha-card><div class="empty">V2C Trydan Card - configuration pending</div></ha-card>`;
-		let e = this.#o(), t = H(e), n = this.hass.states[this.config.entity], r = K("charger", this.#i("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = qt({
+		if (!this.config || !this.hass) return O`<ha-card><div class="empty">V2C Trydan Card - configuration pending</div></ha-card>`;
+		let e = this.#a(), t = W(e), n = this.hass.states[this.config.entity], r = J("charger", this.#r("charge_power"), { thresholdW: this.config.flow_threshold_w }), i = Yt({
 			seedAvailable: !!(n && n.state !== "unknown" && n.state !== "unavailable"),
-			connected: Y(this.#i("connected")?.state),
-			charging: Y(this.#i("charging")?.state),
-			ready: Y(this.#i("ready")?.state),
-			paused: Y(this.#i("paused")?.state),
-			locked: Y(this.#i("locked")?.state),
-			timer: Y(this.#i("timer")?.state),
-			dynamic: Y(this.#i("dynamic")?.state),
-			meterError: this.#i("meter_error")?.state,
+			connected: X(this.#r("connected")?.state),
+			charging: X(this.#r("charging")?.state),
+			ready: X(this.#r("ready")?.state),
+			paused: X(this.#r("paused")?.state),
+			locked: X(this.#r("locked")?.state),
+			timer: X(this.#r("timer")?.state),
+			dynamic: X(this.#r("dynamic")?.state),
+			meterError: this.#r("meter_error")?.state,
 			externalStatus: this.config.status_entity ? this.hass.states[this.config.status_entity]?.state : void 0,
 			chargePowerW: r.watts
-		}), a = Jt(i), o = this.config.name ?? "V2C Trydan", s = this.#i("charge_energy"), c = this.#i("charge_time"), l = this.#i("intensity");
-		this.#i("voltage");
+		}), a = Xt(i), o = this.config.name ?? "V2C Trydan", s = this.#r("charge_energy"), c = this.#r("charge_time"), l = this.#r("intensity");
+		this.#r("voltage");
 		let u = [
 			[
 				"solar",
@@ -4084,31 +4105,31 @@ var Q = class extends M {
 				"charge_power",
 				!1
 			]
-		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => K(e, this.#i(t), {
+		], d = this.config.energy_sources ?? [], f = u.filter(([e, t]) => d.includes(e) && !!this.resolvedEntities[t]).map(([e, t, n]) => J(e, this.#r(t), {
 			invert: n,
 			thresholdW: this.config?.flow_threshold_w
-		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? D`<div class="metric metric-power"><span class="metric-label">${U(t, "labels.power")}</span><strong class="metric-value">${Rt(r.watts, e)}</strong></div>` : n === "energy" ? D`<div class="metric"><span class="metric-label">${U(t, "labels.energy")}</span><strong class="metric-value">${zt(s?.state ?? null, e)}</strong></div>` : D`<div class="metric"><span class="metric-label">${U(t, "labels.time")}</span><strong class="metric-value">${Bt(c?.state ?? null)}</strong></div>`), m = Object.keys(this.ambiguities), h = a.diagnostic && a.diagnostic !== "no_error" ? a.diagnostic.replaceAll("_", " ") : void 0, g = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", ee = q(K("home", this.#i("house_power")).watts) ?? q(K("grid", this.#i("grid_power")).watts), te = q(K("solar", this.#i("fv_power")).watts), _ = xt(e, a.unavailable ? "unavailable" : a.key, {
-			evKw: q(r.watts),
+		})), p = (this.config.metrics ?? []).map((n) => n === "power" ? O`<div class="metric metric-power"><span class="metric-label">${G(t, "labels.power")}</span><strong class="metric-value">${zt(r.watts, e)}</strong></div>` : n === "energy" ? O`<div class="metric"><span class="metric-label">${G(t, "labels.energy")}</span><strong class="metric-value">${Bt(s?.state ?? null, e)}</strong></div>` : O`<div class="metric"><span class="metric-label">${G(t, "labels.time")}</span><strong class="metric-value">${Vt(c?.state ?? null)}</strong></div>`), m = Object.keys(this.ambiguities), h = a.diagnostic && a.diagnostic !== "no_error" ? a.diagnostic.replaceAll("_", " ") : void 0, g = this.config.show_charger !== !1 && this.config.display_mode !== "ultra_compact", ee = Ht(J("home", this.#r("house_power")).watts) ?? Ht(J("grid", this.#r("grid_power")).watts), te = Ht(J("solar", this.#r("fv_power")).watts), _ = bt(e, a.unavailable ? "unavailable" : a.key, {
+			evKw: Ht(r.watts),
 			totalKw: ee,
 			solarKw: te,
-			errorCode: bt(a.diagnostic)
-		}), v = this.config.charger_art ?? "focus", ne = a.key === "disconnected" || a.unavailable || i.phase === "disconnected" || i.phase === "unavailable", re = this.config.show_connector === !0, y = Je(v, re), ie = qe({
+			errorCode: yt(a.diagnostic)
+		}), v = this.config.charger_art ?? "focus", ne = a.key === "disconnected" || a.unavailable || i.phase === "disconnected" || i.phase === "unavailable", re = this.config.show_connector === !0, y = Ke(v, re), b = Ge({
 			crop: v,
 			showConnector: re,
 			connectorHoldered: ne,
 			lcdLines: [_.primary, _.secondary],
-			flashSeconds: rn(l?.state),
-			logoOff: this.#i("logo_led")?.state === "off",
+			flashSeconds: sn(l?.state),
+			logoOff: this.#r("logo_led")?.state === "off",
 			state: a.key,
 			flash: a.key === "charging" || a.key === "wifi_connecting"
-		}), ae = D`
+		}), ie = O`
       <section class="hero ${g ? "has-charger" : "without-charger"}" data-section="hero">
-        ${g ? D`<div class="charger-stage" style=${`--v2c-art-ratio:${y.toFixed(3)}`}>${ie}</div>` : k}
+        ${g ? O`<div class="charger-stage" style=${`--v2c-art-ratio:${y.toFixed(3)}`}>${b}</div>` : A}
         <div class="hero-copy">
-          <div class="charger-status" data-severity=${a.severity} role="status">${U(t, a.labelKey)}</div>
-          ${this.config.show_badges !== !1 && a.badges.length ? D`<div class="badges" aria-label=${U(t, "labels.additionalStatus")}>${a.badges.map((e) => D`<span class="badge">${U(t, `badges.${e}`)}</span>`)}</div>` : k}
+          <div class="charger-status" data-severity=${a.severity} role="status">${G(t, a.labelKey)}</div>
+          ${this.config.show_badges !== !1 && a.badges.length ? O`<div class="badges" aria-label=${G(t, "labels.additionalStatus")}>${a.badges.map((e) => O`<span class="badge">${G(t, `badges.${e}`)}</span>`)}</div>` : A}
         </div>
-      </section>`, b = p.length ? D`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : k, oe = this.config.show_controls ? D`<div data-section="controls">${tn({
+      </section>`, x = p.length ? O`<section class="metrics-section" data-section="metrics"><div class="primary-metrics">${p}</div></section>` : A, ae = this.config.show_controls ? O`<div data-section="controls">${an({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
@@ -4118,50 +4139,50 @@ var Q = class extends M {
 			pending: this.pendingRoles,
 			sliderValue: this.sliderValue,
 			onSliderInput: (e) => this.sliderValue = e,
-			onIntensity: (e) => this.#d(e),
-			onPause: () => this.#f("paused")
-		})}</div>` : k, se = this.config.show_energy_flow ? D`<div data-section="energy">${en(f, t, e)}</div>` : k, x = this.config.show_advanced ? D`<div data-section="advanced">${Qt({
+			onIntensity: (e) => this.#u(e),
+			onPause: () => this.#d("paused")
+		})}</div>` : A, oe = this.config.show_energy_flow ? O`<div data-section="energy">${nn(f, t, e)}</div>` : A, S = this.config.show_advanced ? O`<div data-section="advanced">${en({
 			hass: this.hass,
 			entities: this.resolvedEntities,
 			dictionary: t,
 			pending: this.pendingRoles,
-			voltage: this.#i("voltage"),
+			voltage: this.#r("voltage"),
 			diagnostic: h,
 			ambiguityRoles: m,
 			advancedOpen: this.config.advanced_open,
-			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#m(e) : this.#f(e),
-			onSelect: (e) => this.#p(e),
-			onBrightness: (e) => this.#h(e)
-		})}</div>` : k, ce = (e) => {
+			onToggle: (e) => e === "logo_led" || e === "light_led" ? this.#p(e) : this.#d(e),
+			onSelect: (e) => this.#f(e),
+			onBrightness: (e) => this.#m(e)
+		})}</div>` : A, se = (e) => {
 			switch (e) {
-				case "hero": return ae;
-				case "metrics": return b;
-				case "controls": return oe;
-				case "energy": return se;
-				default: return x;
+				case "hero": return ie;
+				case "metrics": return x;
+				case "controls": return ae;
+				case "energy": return oe;
+				default: return S;
 			}
-		}, le = this.config.section_order ?? [
+		}, ce = this.config.section_order ?? [
 			"hero",
 			"metrics",
 			"controls",
 			"energy",
 			"advanced"
-		], S = this.discoveryDiagnostic ? D`<p class="live-region" data-diagnostic=${this.discoveryDiagnostic} role="status">${this.discoveryDiagnostic.replaceAll("_", " ")}</p>` : k;
-		return D`
-      <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== !1)} style=${this.#a()}>
+		], C = this.discoveryDiagnostic ? O`<p class="live-region" data-diagnostic=${this.discoveryDiagnostic} role="status">${this.discoveryDiagnostic.replaceAll("_", " ")}</p>` : A;
+		return O`
+      <ha-card data-theme=${this.config.theme ?? "auto"} data-mode=${this.config.display_mode ?? "standard"} data-layout=${this.config.layout ?? "auto"} data-surface=${this.config.surface_style ?? "solid"} data-show-header=${String(this.config.show_header !== !1)} style=${this.#i()}>
         <div class="shell">
-          ${this.config.show_header === !1 ? k : D`<header class="card-heading"><h2>${o}</h2>${this.config.location ? D`<span class="location">${this.config.location}</span>` : k}</header>`}
-          <div class="content-sections">${le.map(ce)}</div>
-          ${S}
+          ${this.config.show_header === !1 ? A : O`<header class="card-heading"><h2>${o}</h2>${this.config.location ? O`<span class="location">${this.config.location}</span>` : A}</header>`}
+          <div class="content-sections">${ce.map(se)}</div>
+          ${C}
           <p class="live-region" aria-live="polite">${this.actionMessage}</p>
         </div>
       </ha-card>`;
 	}
 };
-Z([Le({ attribute: !1 })], Q.prototype, "hass", void 0), Z([N()], Q.prototype, "config", void 0), Z([N()], Q.prototype, "resolvedEntities", void 0), Z([N()], Q.prototype, "ambiguities", void 0), Z([N()], Q.prototype, "discoveryDiagnostic", void 0), Z([N()], Q.prototype, "sliderValue", void 0), Z([N()], Q.prototype, "pendingRoles", void 0), Z([N()], Q.prototype, "actionMessage", void 0);
+Z([Fe({ attribute: !1 })], Q.prototype, "hass", void 0), Z([F()], Q.prototype, "config", void 0), Z([F()], Q.prototype, "resolvedEntities", void 0), Z([F()], Q.prototype, "ambiguities", void 0), Z([F()], Q.prototype, "discoveryDiagnostic", void 0), Z([F()], Q.prototype, "sliderValue", void 0), Z([F()], Q.prototype, "pendingRoles", void 0), Z([F()], Q.prototype, "actionMessage", void 0);
 //#endregion
 //#region src/localization/editor-copy.ts
-var an = {
+var cn = {
 	en: {
 		general: "General",
 		appearance: "Appearance",
@@ -4789,7 +4810,7 @@ var an = {
 		advanced: "Avançat",
 		entities: "Entitats",
 		automatic: "Automàtic",
-		modeXxl: "XXL aparador",
+		modeXxl: "Vista XXL",
 		layout: "Disposició",
 		centered: "Centrada",
 		split: "Dividida",
@@ -4826,7 +4847,7 @@ var an = {
 		currentPresets: "Intensitats ràpides",
 		addPreset: "Afegeix un amperatge",
 		removePreset: "Elimina",
-		amps: "ampers",
+		amps: "amperes",
 		openAdvanced: "Obre els ajustos Trydan",
 		confirmLock: "Confirma abans de blocar",
 		invertGrid: "Inverteix la potència de xarxa",
@@ -4840,11 +4861,11 @@ var an = {
 		statusMissing: "No trobada",
 		chargerArt: "Il·lustració del carregador",
 		chargerArtFocus: "Primer pla",
-		chargerArtMid: "Pla mig",
+		chargerArtMid: "Pla mitjà",
 		chargerArtFull: "Carregador sencer",
 		showConnector: "Mostra el connector"
 	}
-}, on = {
+}, ln = {
 	en: {
 		connected: "Vehicle connected",
 		charging: "Charging",
@@ -5154,18 +5175,18 @@ var an = {
 		charge_mode: "Mode de càrrega"
 	}
 };
-function sn(e) {
-	return an[e];
+function un(e) {
+	return cn[e];
 }
-function cn(e, t) {
-	return on[e][t];
+function dn(e, t) {
+	return ln[e][t];
 }
-function ln(e, t) {
+function fn(e, t) {
 	return e[`status${t[0].toUpperCase()}${t.slice(1)}`];
 }
 //#endregion
 //#region src/editor/v2c-trydan-card-editor.ts
-var un = {
+var pn = {
 	en: "English",
 	it: "Italiano",
 	de: "Deutsch",
@@ -5176,8 +5197,8 @@ var un = {
 	no: "Norsk",
 	ro: "Romana",
 	es: "Espanol",
-	ca: "Catala"
-}, dn = {
+	ca: "Català"
+}, mn = {
 	en: "Ultra compact mode hides charger artwork. Setting remains for other sizes.",
 	es: "Modo ultracompacto oculta cargador. Ajuste se conserva para otros tamanos.",
 	it: "Modalita ultra compatta nasconde caricatore.",
@@ -5188,29 +5209,29 @@ var un = {
 	da: "Ultrakompakt skjuler laderen.",
 	no: "Ultrakompakt skjuler laderen.",
 	ro: "Modul ultra compact ascunde incarcatorul.",
-	ca: "El mode ultracompacte amaga la il-lustracio. L ajust es queda per a les altres mides."
-}, fn = [
+	ca: "El mode ultracompacte amaga la il·lustració. L’ajust es conserva per a les altres mides."
+}, hn = [
 	"power",
 	"energy",
 	"time"
-], pn = [
+], gn = [
 	"solar",
 	"grid",
 	"home",
 	"battery",
 	"charger"
-], mn = [
+], _n = [
 	"hero",
 	"metrics",
 	"controls",
 	"energy",
 	"advanced"
-], hn = [
+], vn = [
 	["show_energy_flow", "editor.showEnergyFlow"],
 	["show_controls", "editor.showControls"],
 	["show_advanced", "editor.showAdvanced"],
 	["show_charger", "editor.showCharger"]
-], $ = class extends M {
+], $ = class extends P {
 	constructor(...e) {
 		super(...e), this.accentDraft = "#0067D9", this.presetDraft = "";
 	}
@@ -5281,10 +5302,13 @@ var un = {
   `;
 	}
 	setConfig(e) {
+		let t = tt(e.accent_color);
 		this.config = {
 			...e,
+			color_scheme: e.color_scheme === "custom" && !t ? "monochrome" : e.color_scheme,
+			accent_color: t,
 			entities: { ...e.entities ?? {} }
-		}, this.accentDraft = /^#[0-9a-f]{6}$/i.test(e.accent_color ?? "") ? e.accent_color.toUpperCase() : "#0067D9";
+		}, this.accentDraft = t ?? "#0067D9";
 	}
 	shouldUpdate(e) {
 		if (!e.has("hass") || e.size > 1) return !0;
@@ -5316,7 +5340,7 @@ var un = {
 	}
 	#i(e) {
 		if (!this.config) return;
-		let t = this.config.metrics ?? [...fn], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		let t = this.config.metrics ?? [...hn], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
 		this.#e({
 			...this.config,
 			metrics: n
@@ -5324,15 +5348,15 @@ var un = {
 	}
 	#a(e) {
 		if (!this.config) return;
-		let t = this.config.energy_sources ?? [...pn], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
+		let t = this.config.energy_sources ?? [...gn], n = t.includes(e) ? t.filter((t) => t !== e) : [...t, e];
 		this.#e({
 			...this.config,
 			energy_sources: n
 		});
 	}
 	#o() {
-		let e = (this.config?.section_order ?? []).filter((e) => mn.includes(e));
-		return [.../* @__PURE__ */ new Set([...e, ...mn])];
+		let e = (this.config?.section_order ?? []).filter((e) => _n.includes(e));
+		return [.../* @__PURE__ */ new Set([...e, ..._n])];
 	}
 	#s(e, t) {
 		if (!this.config) return;
@@ -5367,7 +5391,7 @@ var un = {
 		if (!this.config) return;
 		let e = Number(this.presetDraft);
 		if (!Number.isInteger(e) || e <= 0 || e > 80) return;
-		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? B, e])].sort((e, t) => e - t);
+		let t = [.../* @__PURE__ */ new Set([...this.config.current_presets ?? H, e])].sort((e, t) => e - t);
 		this.presetDraft = "", this.#e({
 			...this.config,
 			current_presets: t
@@ -5376,7 +5400,7 @@ var un = {
 	#f(e) {
 		this.config && this.#e({
 			...this.config,
-			current_presets: (this.config.current_presets ?? B).filter((t) => t !== e)
+			current_presets: (this.config.current_presets ?? H).filter((t) => t !== e)
 		});
 	}
 	#p(e, t) {
@@ -5388,41 +5412,41 @@ var un = {
 		});
 	}
 	render() {
-		if (!this.config) return k;
-		let e = vt(this.config.language ?? this.hass?.locale?.language ?? this.hass?.language), t = H(e), n = sn(e), r = Object.keys(this.hass?.entities ?? {}), i = this.hass ? Mt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities, this.hass.states) : void 0, a = this.#o(), o = this.config.metrics ?? [...fn], s = this.config.energy_sources ?? [...pn], c = this.config.current_presets ?? B, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
-			hero: U(t, "editor.showCharger"),
+		if (!this.config) return A;
+		let e = _t(this.config.language, this.hass?.locale?.language ?? this.hass?.language), t = W(e), n = un(e), r = Object.keys(this.hass?.entities ?? {}), i = this.hass ? Nt(Object.values(this.hass.entities ?? {}), this.config.entity, this.config.entities, this.hass.states) : void 0, a = this.#o(), o = this.config.metrics ?? [...hn], s = this.config.energy_sources ?? [...gn], c = this.config.current_presets ?? H, l = this.accentDraft !== "" && !/^#[0-9A-F]{6}$/.test(this.accentDraft), u = (this.config.display_mode ?? "standard") === "ultra_compact", d = {
+			hero: G(t, "editor.showCharger"),
 			metrics: n.metrics,
-			controls: U(t, "editor.showControls"),
-			energy: U(t, "editor.showEnergyFlow"),
-			advanced: U(t, "editor.showAdvanced")
+			controls: G(t, "editor.showControls"),
+			energy: G(t, "editor.showEnergyFlow"),
+			advanced: G(t, "editor.showAdvanced")
 		}, f = {
-			power: U(t, "labels.power"),
-			energy: U(t, "labels.energy"),
-			time: U(t, "labels.time")
+			power: G(t, "labels.power"),
+			energy: G(t, "labels.energy"),
+			time: G(t, "labels.time")
 		}, p = {
-			solar: U(t, "flows.solar"),
-			grid: U(t, "flows.grid"),
-			home: U(t, "flows.home"),
-			battery: U(t, "flows.battery"),
-			charger: U(t, "flows.charger")
+			solar: G(t, "flows.solar"),
+			grid: G(t, "flows.grid"),
+			home: G(t, "flows.home"),
+			battery: G(t, "flows.battery"),
+			charger: G(t, "flows.charger")
 		};
-		return D`
+		return O`
       <div class="editor">
         <details class="group" open>
           <summary>${n.general}</summary><div class="group-body">
-            <label><span>${U(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
+            <label><span>${G(t, "editor.entity")}</span><input data-field="entity" list="v2c-entities" .value=${this.config.entity} @change=${(e) => this.#t("entity", e.target.value)} /></label>
             <div class="grid">
-              <label><span>${U(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
-              <label><span>${U(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
-              <label><span>${U(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${gt.map((e) => D`<option .value=${e}>${un[e]}</option>`)}</select></label>
-              <label><span>${U(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${U(t, "editor.themeAuto")}</option><option value="light">${U(t, "editor.themeLight")}</option><option value="dark">${U(t, "editor.themeDark")}</option></select></label>
+              <label><span>${G(t, "editor.name")}</span><input data-field="name" .value=${this.config.name ?? ""} @change=${(e) => this.#t("name", e.target.value)} /></label>
+              <label><span>${G(t, "editor.location")}</span><input data-field="location" .value=${this.config.location ?? ""} @change=${(e) => this.#t("location", e.target.value)} /></label>
+              <label><span>${G(t, "editor.language")}</span><select data-field="language" .value=${this.config.language ?? "auto"} @change=${(e) => this.#t("language", e.target.value)}><option value="auto">${n.automatic}</option>${ht.map((e) => O`<option .value=${e}>${pn[e]}</option>`)}</select></label>
+              <label><span>${G(t, "editor.theme")}</span><select data-field="theme" .value=${this.config.theme ?? "auto"} @change=${(e) => this.#t("theme", e.target.value)}><option value="auto">${G(t, "editor.themeAuto")}</option><option value="light">${G(t, "editor.themeLight")}</option><option value="dark">${G(t, "editor.themeDark")}</option></select></label>
             </div>
-            <div class="field"><span class="field-title">${U(t, "editor.displayMode")}</span><div class="choices">${[
+            <div class="field"><span class="field-title">${G(t, "editor.displayMode")}</span><div class="choices">${[
 			["xxl", n.modeXxl],
-			["standard", U(t, "editor.modeStandard")],
-			["compact", U(t, "editor.modeCompact")],
-			["ultra_compact", U(t, "editor.modeUltra")]
-		].map(([e, t]) => D`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
+			["standard", G(t, "editor.modeStandard")],
+			["compact", G(t, "editor.modeCompact")],
+			["ultra_compact", G(t, "editor.modeUltra")]
+		].map(([e, t]) => O`<button type="button" class="choice" data-field="display_mode" data-value=${e} aria-pressed=${String((this.config?.display_mode ?? "standard") === e)} @click=${() => this.#t("display_mode", e)}><span class="layout-icon" data-kind="centered"></span>${t}</button>`)}</div></div>
           </div>
         </details>
 
@@ -5433,7 +5457,7 @@ var un = {
 			["centered", n.centered],
 			["split", n.split],
 			["inline", n.inline]
-		].map(([e, t]) => D`<button type="button" class="choice" data-field="layout" data-value=${e} aria-pressed=${String((this.config?.layout ?? "auto") === e)} @click=${() => this.#t("layout", e)}><span class="layout-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="choice" data-field="layout" data-value=${e} aria-pressed=${String((this.config?.layout ?? "auto") === e)} @click=${() => this.#t("layout", e)}><span class="layout-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
             <div class="field"><span class="field-title">${n.colorScheme}</span><div class="swatches">${[
 			[
 				"monochrome",
@@ -5465,18 +5489,18 @@ var un = {
 				n.custom,
 				this.config.accent_color ?? "#0067D9"
 			]
-		].map(([e, t, n]) => D`<button type="button" class="swatch" style=${`--swatch:${n}`} title=${t} aria-label=${t} aria-pressed=${String((this.config?.color_scheme ?? "monochrome") === e)} @click=${() => this.#l(e)}></button>`)}</div></div>
-            ${this.config.color_scheme === "custom" ? D`<div class="field"><span class="field-title">${n.accentColor}</span><div class="color-row"><input data-field="accent_picker" type="color" .value=${/^#[0-9A-F]{6}$/.test(this.accentDraft) ? this.accentDraft : "#0067D9"} @input=${(e) => this.#u(e.target.value)} /><input data-field="accent_color" inputmode="text" .value=${this.accentDraft} @input=${(e) => this.#u(e.target.value)} /></div><p class="help">${n.accentHelp}</p>${l ? D`<p class="error" role="alert">${n.invalidHex}</p>` : k}</div>` : k}
+		].map(([e, t, n]) => O`<button type="button" class="swatch" style=${`--swatch:${n}`} title=${t} aria-label=${t} aria-pressed=${String((this.config?.color_scheme ?? "monochrome") === e)} @click=${() => this.#l(e)}></button>`)}</div></div>
+            ${this.config.color_scheme === "custom" ? O`<div class="field"><span class="field-title">${n.accentColor}</span><div class="color-row"><input data-field="accent_picker" type="color" .value=${/^#[0-9A-F]{6}$/.test(this.accentDraft) ? this.accentDraft : "#0067D9"} @input=${(e) => this.#u(e.target.value)} /><input data-field="accent_color" inputmode="text" .value=${this.accentDraft} @input=${(e) => this.#u(e.target.value)} /></div><p class="help">${n.accentHelp}</p>${l ? O`<p class="error" role="alert">${n.invalidHex}</p>` : A}</div>` : A}
             <div class="field"><span class="field-title">${n.surface}</span><div class="chips">${[
 			["solid", n.solid],
 			["tinted", n.tinted],
 			["transparent", n.transparent]
-		].map(([e, t]) => D`<button type="button" class="chip" aria-pressed=${String((this.config?.surface_style ?? "solid") === e)} @click=${() => this.#t("surface_style", e)}>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="chip" aria-pressed=${String((this.config?.surface_style ?? "solid") === e)} @click=${() => this.#t("surface_style", e)}>${t}</button>`)}</div></div>
             <div class="field"><span class="field-title">${n.chargerArt}</span><div class="choices">${[
 			["focus", n.chargerArtFocus],
 			["mid", n.chargerArtMid],
 			["full", n.chargerArtFull]
-		].map(([e, t]) => D`<button type="button" class="choice" data-field="charger_art" data-value=${e} aria-pressed=${String((this.config?.charger_art ?? "focus") === e)} @click=${() => this.#t("charger_art", e)}><span class="crop-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="choice" data-field="charger_art" data-value=${e} aria-pressed=${String((this.config?.charger_art ?? "focus") === e)} @click=${() => this.#t("charger_art", e)}><span class="crop-icon" data-kind=${e}></span>${t}</button>`)}</div></div>
             <div class="checks"><label><input data-field="show_connector" type="checkbox" .checked=${this.config.show_connector === !0} @change=${(e) => this.#t("show_connector", e.target.checked)} />${n.showConnector}</label></div>
             <div class="grid">
               <label><span class="field-title">${n.heroScale}</span><div class="range-row"><input data-field="hero_scale" type="range" min="0.75" max="1.25" step="0.05" .value=${String(this.config.hero_scale ?? 1)} @input=${(e) => this.#r("hero_scale", e.target.value)} /><output>${Math.round((this.config.hero_scale ?? 1) * 100)}%</output></div></label>
@@ -5487,11 +5511,11 @@ var un = {
 
         <details class="group" open>
           <summary>${n.contentOrder}</summary><div class="group-body">
-            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${fn.map((e) => D`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${pn.map((e) => D`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
-            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => D`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>&#8593;</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>&#8595;</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
-            <div class="checks">${hn.map(([e, n]) => D`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${U(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
-            ${u ? D`<p class="help" data-help="ultra-artwork">${dn[e]}</p>` : k}
+            <div class="field"><span class="field-title">${n.metrics}</span><div class="chips">${hn.map((e) => O`<button type="button" class="chip" data-metric=${e} aria-pressed=${String(o.includes(e))} @click=${() => this.#i(e)}>${f[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.energySources}</span><div class="chips">${gn.map((e) => O`<button type="button" class="chip" data-source=${e} aria-pressed=${String(s.includes(e))} @click=${() => this.#a(e)}>${p[e]}</button>`)}</div></div>
+            <div class="field"><span class="field-title">${n.sectionOrder}</span><ol class="order-list">${a.map((e, t) => O`<li class="order-item" data-order=${e}><span class="order-index">${t + 1}</span><span>${d[e]}</span><button type="button" class="icon-button" aria-label=${`${n.moveUp}: ${d[e]}`} ?disabled=${t === 0} @click=${() => this.#s(t, -1)}>&#8593;</button><button type="button" class="icon-button" aria-label=${`${n.moveDown}: ${d[e]}`} ?disabled=${t === a.length - 1} @click=${() => this.#s(t, 1)}>&#8595;</button></li>`)}</ol><button type="button" class="reset" @click=${() => this.#c()}>${n.resetOrder}</button></div>
+            <div class="checks">${vn.map(([e, n]) => O`<label><input data-field=${e} type="checkbox" .checked=${this.#n(e)} ?disabled=${e === "show_charger" && u} @change=${(t) => this.#t(e, t.target.checked)} /><span>${G(t, n)}</span></label>`)}<label><input data-field="show_header" type="checkbox" .checked=${this.config.show_header !== !1} @change=${(e) => this.#t("show_header", e.target.checked)} />${n.header}</label><label><input data-field="show_badges" type="checkbox" .checked=${this.config.show_badges !== !1} @change=${(e) => this.#t("show_badges", e.target.checked)} />${n.badges}</label><label><input data-field="show_presets" type="checkbox" .checked=${this.config.show_presets !== !1} @change=${(e) => this.#t("show_presets", e.target.checked)} />${n.presets}</label></div>
+            ${u ? O`<p class="help" data-help="ultra-artwork">${mn[e]}</p>` : A}
           </div>
         </details>
 
@@ -5501,9 +5525,9 @@ var un = {
 			["slider", n.slider],
 			["presets", n.presets],
 			["both", n.both]
-		].map(([e, t]) => D`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
+		].map(([e, t]) => O`<button type="button" class="chip" aria-pressed=${String((this.config?.intensity_control ?? "both") === e)} @click=${() => this.#t("intensity_control", e)}>${t}</button>`)}</div></div>
             <label><span class="field-title">${n.flowThreshold}</span><input data-field="flow_threshold_w" type="number" min="0" .value=${String(this.config.flow_threshold_w ?? 50)} @input=${(e) => this.#r("flow_threshold_w", e.target.value)} /></label>
-            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => D`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>&times;</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
+            <div class="field"><span class="field-title">${n.currentPresets}</span><div class="preset-list">${c.map((e) => O`<span class="preset-token">${e} A<button type="button" aria-label=${`${n.removePreset} ${e} A`} @click=${() => this.#f(e)}>&times;</button></span>`)}</div><div class="preset-editor"><input data-field="preset_draft" type="number" min="1" max="80" step="1" placeholder=${n.amps} .value=${this.presetDraft} @input=${(e) => this.presetDraft = e.target.value} @keydown=${(e) => {
 			e.key === "Enter" && (e.preventDefault(), this.#d());
 		}} /><button type="button" data-action="add-preset" @click=${() => this.#d()}>${n.addPreset}</button></div></div>
             <div class="checks"><label><input data-field="advanced_open" type="checkbox" .checked=${this.config.advanced_open === !0} @change=${(e) => this.#t("advanced_open", e.target.checked)} />${n.openAdvanced}</label><label><input data-field="confirm_lock" type="checkbox" .checked=${this.config.confirm_lock !== !1} @change=${(e) => this.#t("confirm_lock", e.target.checked)} />${n.confirmLock}</label><label><input data-field="invert_grid_power" type="checkbox" .checked=${this.config.invert_grid_power === !0} @change=${(e) => this.#t("invert_grid_power", e.target.checked)} />${n.invertGrid}</label><label><input data-field="invert_battery_power" type="checkbox" .checked=${this.config.invert_battery_power === !0} @change=${(e) => this.#t("invert_battery_power", e.target.checked)} />${n.invertBattery}</label><label><input data-field="invert_solar_power" type="checkbox" .checked=${this.config.invert_solar_power === !0} @change=${(e) => this.#t("invert_solar_power", e.target.checked)} />${n.invertSolar}</label></div>
@@ -5511,21 +5535,21 @@ var un = {
         </details>
 
         <details class="group">
-          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p>${i?.diagnostic ? D`<p class="help" data-diagnostic=${i.diagnostic}>${i.diagnostic.replaceAll("_", " ")}</p>` : k}${i?.legacyRoles.length ? D`<p class="help" data-diagnostic="legacy">legacy: ${i.legacyRoles.join(", ")}</p>` : k}<div class="grid">${Vt.map((t) => {
+          <summary>${n.entities}</summary><div class="group-body"><p class="help">${n.entityOverrides}</p>${i?.diagnostic ? O`<p class="help" data-diagnostic=${i.diagnostic}>${i.diagnostic.replaceAll("_", " ")}</p>` : A}${i?.legacyRoles.length ? O`<p class="help" data-diagnostic="legacy">legacy: ${i.legacyRoles.join(", ")}</p>` : A}<div class="grid">${Ut.map((t) => {
 			let r = i?.statuses[t] ?? "missing";
-			return D`<label><span>${cn(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${ln(n, r)}</small></label>`;
+			return O`<label><span>${dn(e, t)}</span><input data-role=${t} list="v2c-entities" .value=${this.config?.entities?.[t] ?? ""} @change=${(e) => this.#p(t, e.target.value)} /><small class="entity-status" data-status=${r}>${fn(n, r)}</small></label>`;
 		})}</div></div>
         </details>
-        <datalist id="v2c-entities">${r.map((e) => D`<option value=${e}></option>`)}</datalist>
+        <datalist id="v2c-entities">${r.map((e) => O`<option value=${e}></option>`)}</datalist>
       </div>`;
 	}
 };
-Z([Le({ attribute: !1 })], $.prototype, "hass", void 0), Z([N()], $.prototype, "config", void 0), Z([N()], $.prototype, "accentDraft", void 0), Z([N()], $.prototype, "presetDraft", void 0);
+Z([Fe({ attribute: !1 })], $.prototype, "hass", void 0), Z([F()], $.prototype, "config", void 0), Z([F()], $.prototype, "accentDraft", void 0), Z([F()], $.prototype, "presetDraft", void 0);
 //#endregion
 //#region src/index.ts
-var gn = "v2c-trydan-card", _n = "v2c-trydan-card-editor";
-customElements.get(gn) || customElements.define(gn, Q), customElements.get(_n) || customElements.define(_n, $), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === gn) || window.customCards.push({
-	type: gn,
+var yn = "v2c-trydan-card", bn = "v2c-trydan-card-editor";
+customElements.get(yn) || customElements.define(yn, Q), customElements.get(bn) || customElements.define(bn, $), window.customCards = window.customCards ?? [], window.customCards.some((e) => e.type === yn) || window.customCards.push({
+	type: yn,
 	name: "V2C Trydan Card",
 	description: "Home Assistant V2C Trydan EV charger card with visual editor, controls and energy monitoring.",
 	documentationURL: "https://github.com/mactron254/v2c-trydan-card#readme",
