@@ -6,9 +6,9 @@ import { getEditorCopy, getEntityRoleLabel, getResolutionLabel } from "../locali
 import { ENTITY_ROLES, type EntityRole, type HomeAssistant, type V2cTrydanCardConfig } from "../models/types";
 import { resolveRegistryRoles } from "../services/discovery";
 
-const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = { en: "English", it: "Italiano", de: "Deutsch", fr: "Francais", nl: "Nederlands", sv: "Svenska", da: "Dansk", no: "Norsk", ro: "Romana", es: "Espanol" };
+const LANGUAGE_NAMES: Record<(typeof SUPPORTED_LANGUAGES)[number], string> = { en: "English", it: "Italiano", de: "Deutsch", fr: "Francais", nl: "Nederlands", sv: "Svenska", da: "Dansk", no: "Norsk", ro: "Romana", es: "Espanol", ca: "Catala" };
 
-const ULTRA_ARTWORK_HELP: Record<Language, string> = { en: "Ultra compact mode hides charger artwork. Setting remains for other sizes.", es: "Modo ultracompacto oculta cargador. Ajuste se conserva para otros tamanos.", it: "Modalita ultra compatta nasconde caricatore.", de: "Ultrakompakt blendet Lader aus.", fr: "Mode ultra compact masque chargeur.", nl: "Ultracompact verbergt lader.", sv: "Ultrakompakt doljer laddaren.", da: "Ultrakompakt skjuler laderen.", no: "Ultrakompakt skjuler laderen.", ro: "Modul ultra compact ascunde incarcatorul." };
+const ULTRA_ARTWORK_HELP: Record<Language, string> = { en: "Ultra compact mode hides charger artwork. Setting remains for other sizes.", es: "Modo ultracompacto oculta cargador. Ajuste se conserva para otros tamanos.", it: "Modalita ultra compatta nasconde caricatore.", de: "Ultrakompakt blendet Lader aus.", fr: "Mode ultra compact masque chargeur.", nl: "Ultracompact verbergt lader.", sv: "Ultrakompakt doljer laddaren.", da: "Ultrakompakt skjuler laderen.", no: "Ultrakompakt skjuler laderen.", ro: "Modul ultra compact ascunde incarcatorul.", ca: "El mode ultracompacte amaga la il-lustracio. L ajust es queda per a les altres mides." };
 const METRICS = ["power", "energy", "time"] as const;
 const SOURCES = ["solar", "grid", "home", "battery", "charger"] as const;
 const SECTIONS = ["hero", "metrics", "controls", "energy", "advanced"] as const;

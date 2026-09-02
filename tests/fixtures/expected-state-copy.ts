@@ -142,4 +142,18 @@ export const EXPECTED_STATUS_COPY: Record<Language, Record<LcdState, string>> = 
     wifi_connected: "Wi-Fi conectado",
     wifi_connecting: "Conectando Wi-Fi",
   },
+  ca: {
+    disconnected: "Sense vehicle",
+    unavailable: "No disponible",
+    charging: "Carregant",
+    complete: "Càrrega completa",
+    timer: "Càrrega programada",
+    updating: "Actualitzant",
+    control_pilot: "Error Control Pilot",
+    load_balancing: "Error Load Balancing",
+    error: "Error del carregador",
+    waiting_power: "Vehicle connectat",
+    wifi_connected: "Wi-Fi connectat",
+    wifi_connecting: "Connectant Wi-Fi",
+  },
 };

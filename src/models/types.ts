@@ -136,7 +136,7 @@ export interface V2cTrydanCardConfig {
   entity: string;
   name?: string;
   location?: string;
-  language?: "auto" | "es" | "en" | "it" | "de" | "fr" | "nl" | "sv" | "da" | "no" | "ro";
+  language?: "auto" | "es" | "en" | "it" | "de" | "fr" | "nl" | "sv" | "da" | "no" | "ro" | "ca";
   theme?: "auto" | "light" | "dark";
   display_mode?: "xxl" | "standard" | "compact" | "ultra_compact";
   layout?: "auto" | "centered" | "split" | "inline";

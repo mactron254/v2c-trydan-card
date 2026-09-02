@@ -1,3 +1,4 @@
+import { ca } from "./ca";
 import { da } from "./da";
 import { de } from "./de";
 import { fr } from "./fr";
@@ -9,7 +10,7 @@ import { sv } from "./sv";
 import { en } from "./en";
 import { es } from "./es";
 
-export const SUPPORTED_LANGUAGES = ["en", "it", "de", "fr", "nl", "sv", "da", "no", "ro", "es"] as const;
+export const SUPPORTED_LANGUAGES = ["en", "it", "de", "fr", "nl", "sv", "da", "no", "ro", "es", "ca"] as const;
 export type Language = (typeof SUPPORTED_LANGUAGES)[number];
 export type Dictionary = { [Section in keyof typeof en]: { [Key in keyof (typeof en)[Section]]: string } };
 
@@ -24,6 +25,7 @@ const dictionaries: Record<Language, Dictionary> = {
   no,
   ro,
   es,
+  ca,
 };
 
 export function getLanguage(value?: string, fallback?: string): Language {

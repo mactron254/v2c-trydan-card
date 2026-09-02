@@ -41,6 +41,7 @@ describe("v0.4.2 localization and defaults", () => {
     // is EN ES PT FR IT DE NL DK VAL RO.
     expect(getLcdCopy("es","charging").primary).toBe("VE CARGANDO");
     expect(getLcdCopy("en","charging").primary).toBe("CHARGING EV");
+    expect(getLcdCopy("ca","disconnected").primary).toBe("ESPERANT EV");
     expect(getLcdCopy("it","disconnected").primary).toBe("IN ATTESA DI EV");
     expect(getLcdCopy("da","waiting_power").primary).toBe("EV TILSLUTTET");
     // Swedish and Norwegian have no firmware slot, so they keep our own wording.
