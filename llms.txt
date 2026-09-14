@@ -44,5 +44,5 @@ The card uses entities exposed by the official Home Assistant V2C integration. I
 - Minimum declared Home Assistant version: 2024.1.0.
 - Public YAML contract is documented in CONFIGURATION.md.
 - Community software under the MIT license, provided without warranties and used at the user's own risk.
-- Current stable release: v0.5.0.
-- Current prerelease: v0.6.0-beta.1, available through HACS when prereleases are enabled.
+- Current stable release: v0.6.0.
+

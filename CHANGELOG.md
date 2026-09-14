@@ -4,9 +4,16 @@ All notable changes are documented here. Versions follow semantic versioning.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-14
+
+### Highlights
+
+- Stable release of the layered charger artwork, framing modes (`focus`, `mid`, `full`), optional connector, Catalan language support, and strengthened entity validation tested throughout the 0.6 beta cycle.
+- Production bundle and provenance verified with 123 automated tests.
+
 ### Documentation
 
-- Publish canonical English notes for `v0.6.0-beta.1`, prepare an SEO/GEO-focused Home Assistant forum reply with prominent community credit, and refresh the agent-readable release and language facts.
+- Publish canonical release notes, update documentation and community guides, and prepare HACS default catalog submission.
 
 ## [0.6.0-beta.1] - 2026-09-02
 

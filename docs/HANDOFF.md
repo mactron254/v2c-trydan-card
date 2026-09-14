@@ -1,5 +1,20 @@
 # Project handoff
 
+## Current release
+
+- Current stable target and published release: v0.6.0.
+- Status: stable release prepared and validated on 2026-09-14.
+- Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.6.0
+- Stack: Lit 3, TypeScript 7, Vite 8, Node 20.19.0+ and pnpm 11.5.1.
+- Attribution order: Codex first; Marc @mactron254 second; Pere @pmontp19 third.
+
+## v0.6.0 stable release - 2026-09-14
+
+- Promotion of v0.6.0-beta.1 to official stable v0.6.0.
+- Features included: layered WebP charger artwork with framing modes (`focus`, `mid`, `full`), optional connector, Catalan language support (`ca-ES`), strict entity role validation, and sanitized CSS styling.
+- Local verification passed: 123 automated tests, build check, SHA-256 verification and smoke test.
+- Next step: submit official HACS default repository PR to `hacs/default` under `plugins`.
+
 ## v0.6.0-beta.1 English announcement correction - 2026-09-02
 
 - The public GitHub prerelease description uses the canonical English source in `docs/RELEASE_NOTES_0.6.0-beta.1.md`; tag, assets, checksum, provenance and prerelease status are unchanged.
