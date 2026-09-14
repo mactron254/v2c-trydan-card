@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v0.6.0-beta.1"
+      - "v0.6.0"
 
 permissions:
   contents: write
@@ -42,17 +42,20 @@ jobs:
         run: git diff --exit-code -- dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256
       - name: Generate provenance
         run: node scripts/provenance.mjs "$GITHUB_REF_NAME" "${{ steps.tag.outputs.commit }}"
-      - name: Publish GitHub release
+      - name: Upload stable release assets
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          gh release create "$GITHUB_REF_NAME" \
+          gh release upload "$GITHUB_REF_NAME" \
             dist/v2c-trydan-card.js \
             dist/v2c-trydan-card.js.sha256 \
             dist/v2c-trydan-card.js.provenance.json \
             --repo "$GITHUB_REPOSITORY" \
-            --verify-tag \
-            --prerelease \
+            --clobber
+
+          gh release edit "$GITHUB_REF_NAME" \
+            --repo "$GITHUB_REPOSITORY" \
             --title "V2C Trydan Card $GITHUB_REF_NAME" \
-            --notes-file "docs/RELEASE_NOTES_0.6.0-beta.1.md"
+            --prerelease=false \
+            --latest
