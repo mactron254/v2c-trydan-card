@@ -4,10 +4,24 @@ All notable changes are documented here. Versions follow semantic versioning.
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-11-14
+
+Maintenance release. No features, behaviour or configuration changes; `src/` is identical to 0.6.0.
+
+### Security
+
+- Clear all `pnpm audit` advisories by updating Vite 8.2.2 to 8.3.8, Vitest 4.1.11 to 4.1.12, the `undici` override 7.29.0 to 7.30.1 and transitive `source-map-js` to 1.2.2. All were development or build dependencies; the production audit was already clean and Lit 3.3.3 is unchanged.
+
+### Changed
+
+- Rebuild the bundle with the updated bundler. Its bytes and SHA-256 differ from 0.6.0 (199,325 to 198,830 bytes) through comment formatting and five logically equivalent minified expressions.
+- Update `@types/node` to 26.6.6, `pnpm/action-setup` to 6.1.1 and `actions/setup-node` to 7.1.0.
+
 ### Maintenance
 
-- Update Vite to 8.3, Vitest to 4.1.12, `undici` to 7.30.1 and `source-map-js` to 1.2.2 to clear all `pnpm audit` advisories; rebuild the bundle.
-- Group Dependabot minor and patch updates, and auto-merge them once CI passes. A workflow rebuilds `dist/` on Dependabot branches when a bump changes the bundle.
+- Group Dependabot minor and patch updates with a three-day cooldown, and auto-merge them once CI passes. Major updates stay manual; `jsdom` 30 and `vitest` 5 are held back while Node 20.19 is supported.
+- Add a workflow that rebuilds `dist/` on Dependabot branches when an update changes the bundle.
+- Require the Validate, Security and HACS checks on `main`.
 
 ## [0.6.0] - 2026-09-14
 

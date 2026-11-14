@@ -2,11 +2,20 @@
 
 ## Current release
 
-- Current stable target and published release: v0.6.0.
-- Status: stable release prepared and validated on 2026-09-14.
-- Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.6.0
+- Current stable target and published release: v0.6.1.
+- Status: maintenance release prepared and validated on 2026-11-14.
+- Release: https://github.com/mactron254/v2c-trydan-card/releases/tag/v0.6.1
 - Stack: Lit 3, TypeScript 7, Vite 8, Node 20.19.0+ and pnpm 11.5.1.
 - Attribution order: Codex first; Marc @mactron254 second; Pere @pmontp19 third.
+
+## v0.6.1 maintenance release - 2026-11-14
+
+- No source changes: `src/` is identical to v0.6.0. The bundle was rebuilt with Vite 8.3.8, so its bytes and SHA-256 differ; the differences are listed in `docs/RELEASE_NOTES_0.6.1.md`.
+- Cleared all `pnpm audit` advisories (Vite, Vitest, `undici` override, `source-map-js`). All were in development tooling; the production audit was already clean.
+- Dependabot minor and patch updates are grouped and auto-merged after CI through `.github/workflows/dependabot-automerge.yml`. `main` has a ruleset requiring the Validate, Security and HACS checks; repository admins can bypass it.
+- Known gaps: the automatic `dist/` rebuild on Dependabot branches has not run against a real bundle-changing update yet, and merges made by auto-merge do not trigger push workflows on `main`.
+- `jsdom` 30 and `vitest` 5 are ignored in `.github/dependabot.yml` until the Node floor moves from 20.19 to 22.
+- Prepared with an AI coding assistant (Claude Code) at the maintainer's request.
 
 ## v0.6.0 stable release - 2026-09-14
 
