@@ -4,6 +4,11 @@ All notable changes are documented here. Versions follow semantic versioning.
 
 ## [Unreleased]
 
+### Maintenance
+
+- Update Vite to 8.3, Vitest to 4.1.12, `undici` to 7.30.1 and `source-map-js` to 1.2.2 to clear all `pnpm audit` advisories; rebuild the bundle.
+- Group Dependabot minor and patch updates, and auto-merge them once CI passes. A workflow rebuilds `dist/` on Dependabot branches when a bump changes the bundle.
+
 ## [0.6.0] - 2026-09-14
 
 ### Highlights
