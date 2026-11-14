@@ -1,0 +1,109 @@
+name: Dependabot auto-merge
+
+# Keeps Dependabot pull requests mergeable without manual work:
+#   1. Rebuilds dist/ when a dependency bump changes the bundle and commits it
+#      to the Dependabot branch.
+#   2. Enables auto-merge for patch and minor updates. Major updates stay open
+#      for manual review.
+#
+# Auto-merge only waits for CI when the main branch has required status checks.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+concurrency:
+  group: dependabot-automerge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: rebuild dist
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    # Dependency code runs in this job, so it gets no write access.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 11.5.1
+          run_install: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.22.2"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec vite build
+      - run: node scripts/checksum.mjs
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: |
+            dist/v2c-trydan-card.js
+            dist/v2c-trydan-card.js.sha256
+          if-no-files-found: error
+          retention-days: 1
+
+  apply:
+    name: commit dist and enable auto-merge
+    needs: build
+    runs-on: ubuntu-latest
+    # No dependency code is installed or executed in this job.
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      HEAD_REF: ${{ github.event.pull_request.head.ref }}
+      PR_URL: ${{ github.event.pull_request.html_url }}
+    steps:
+      - name: Read Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ github.token }}
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist
+      - name: Commit rebuilt dist
+        id: dist
+        shell: bash
+        run: |
+          if git diff --quiet -- dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/v2c-trydan-card.js dist/v2c-trydan-card.js.sha256
+          # "[dependabot skip]" lets Dependabot keep rebasing over this commit.
+          git commit -m "chore(dist): rebuild bundle for dependency update" -m "[dependabot skip]"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Re-run checks on the rebuilt commit
+        # A push made with GITHUB_TOKEN does not trigger pull_request workflows.
+        if: steps.dist.outputs.changed == 'true'
+        shell: bash
+        run: |
+          gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF"
+          gh workflow run security.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF"
+          gh workflow run hacs.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF"
+      - name: Enable auto-merge for patch and minor updates
+        if: >-
+          steps.meta.outputs.update-type == 'version-update:semver-patch' ||
+          steps.meta.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr merge --auto --squash "$PR_URL"

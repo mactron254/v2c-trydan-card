@@ -4,7 +4,32 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 3
+    groups:
+      actions-minor-patch:
+        update-types:
+          - minor
+          - patch
+
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 3
+    groups:
+      npm-minor-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # jsdom >=30 and vitest >=5 require Node >=22. The project still supports
+      # Node 20.19 (see "engines" and the compatibility CI job). Remove these
+      # entries when the Node floor is raised.
+      - dependency-name: jsdom
+        update-types:
+          - version-update:semver-major
+      - dependency-name: vitest
+        update-types:
+          - version-update:semver-major
