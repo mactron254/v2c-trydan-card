@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v0.6.0"
+      - "v0.6.1"
 
 permissions:
   contents: write
@@ -53,6 +53,6 @@ jobs:
             dist/v2c-trydan-card.js.provenance.json \
             --repo "$GITHUB_REPOSITORY" \
             --title "V2C Trydan Card $GITHUB_REF_NAME" \
-            --notes-file "docs/RELEASE_NOTES_0.6.0.md" \
+            --notes-file "docs/RELEASE_NOTES_0.6.1.md" \
             --latest
 
